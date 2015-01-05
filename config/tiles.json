@@ -1,0 +1,94 @@
+{
+    "_default": {
+        "speed_multiplier": 1.0,
+        "is_sticky": false,
+        "uses_transparency": false,
+        "create_sides": true,
+        "footprints_color": null
+    },
+
+
+    "WHITE_TILE": {
+        "index": 0
+    },
+    "BLUE_TILE": {
+        "index": 1
+    },
+    "GOO": {
+        "index": 2,
+        "speed_multiplier": 0.5,
+        "footprints_color": [0, 1, 0]
+    },
+    "FORCE_FIELD": {
+        "index": 3,
+        "uses_transparency": true,
+        "create_sides": false
+    },
+    "LASER_WARNING": {
+        "index": 4
+    },
+    "CHECKER": {
+        "index": 5
+    },
+    "TELEPORTER": {
+        "index": 6
+    },
+    "EARTH": {
+        "index": 7,
+    },
+
+
+    "FIRE_SHAFT": {
+        "index": 8
+    },
+    "WORKSHOP": {
+        "index": 9
+    },
+    "SPACE": {
+        "index": 10
+    },
+    "GLUE": {
+        "index": 11,
+        "is_sticky": true,
+        "footprints_color": [0.8, 0.8, 0.8]
+    },
+    "LASER_CHANNEL": {
+        "index": 12
+    },
+    "CONTROL_PANEL": {
+        "index": 13
+    },
+    "PORTHOLE": {
+        "index": 14
+    },
+    "DOTS": {
+        "index": 15
+    },
+
+
+
+    "WINDOW_TL": {
+        "index": 16
+    },
+    "WINDOW_TR": {
+        "index": 17
+    },
+    "WINDOW_BL": {
+        "index": 18
+    },
+    "WINDOW_BR": {
+        "index": 19
+    },
+    "WINDOW_L": {
+        "index": 20
+    },
+    "WINDOW_R": {
+        "index": 21
+    },
+    "WINDOW_T": {
+        "index": 22
+    },
+    "WINDOW_B": {
+        "index": 23
+    }
+}
