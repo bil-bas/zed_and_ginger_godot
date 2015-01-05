@@ -1,2 +1,4 @@
 favourites.cfg
-.*
+export
+.fscache
+.tmp
