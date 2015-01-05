@@ -13,4 +13,4 @@ func _on_Editor_pressed():
 	print("editor")
 	
 func _on_Quit_pressed():
-	print("quit")
+	OS.get_main_loop().quit()

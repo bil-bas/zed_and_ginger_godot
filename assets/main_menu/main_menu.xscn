@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="9" version="1.0" version_name="Godot Engine v1.0.stable.7eb5d049c2">
-	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
+<resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.stable.7eb5d049c2">
 	<ext_resource path="res://main_menu/scroll_title.gd" type="Script"></ext_resource>
+	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
 	<ext_resource path="res://main_menu/buttons.gd" type="Script"></ext_resource>
 	<ext_resource path="res://sprites/ship.png" type="Texture"></ext_resource>
-	<ext_resource path="res://main_menu/starscape.gd" type="Script"></ext_resource>
 	<ext_resource path="res://main_menu/scaling.gd" type="Script"></ext_resource>
-	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
 	<ext_resource path="res://prefabs/my_button.xscn" type="PackedScene"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="76">
+			<string_array  len="72">
 				<string> "Main Menu" </string>
 				<string> "Node2D" </string>
 				<string> "_import_path" </string>
@@ -24,8 +22,8 @@
 				<string> "transform/scale" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
-				<string> "Starscape" </string>
-				<string> "TextureFrame" </string>
+				<string> "Title" </string>
+				<string> "Label" </string>
 				<string> "margin/left" </string>
 				<string> "margin/top" </string>
 				<string> "margin/right" </string>
@@ -37,24 +35,7 @@
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
-				<string> "size_flags/vertical" </string>
 				<string> "size_flags/stretch_ratio" </string>
-				<string> "texture" </string>
-				<string> "modulate" </string>
-				<string> "expand" </string>
-				<string> "Moon" </string>
-				<string> "Sprite" </string>
-				<string> "centered" </string>
-				<string> "offset" </string>
-				<string> "flip_h" </string>
-				<string> "flip_v" </string>
-				<string> "vframes" </string>
-				<string> "hframes" </string>
-				<string> "frame" </string>
-				<string> "region" </string>
-				<string> "region_rect" </string>
-				<string> "Title" </string>
-				<string> "Label" </string>
 				<string> "custom_fonts/font" </string>
 				<string> "custom_colors/font_color" </string>
 				<string> "custom_colors/font_color_shadow" </string>
@@ -73,10 +54,23 @@
 				<string> "uppercase" </string>
 				<string> "percent_visible" </string>
 				<string> "Ship" </string>
+				<string> "Sprite" </string>
+				<string> "texture" </string>
+				<string> "centered" </string>
+				<string> "offset" </string>
+				<string> "flip_h" </string>
+				<string> "flip_v" </string>
+				<string> "vframes" </string>
+				<string> "hframes" </string>
+				<string> "frame" </string>
+				<string> "modulate" </string>
+				<string> "region" </string>
+				<string> "region_rect" </string>
 				<string> "Buttons" </string>
 				<string> "GridContainer" </string>
 				<string> "anchor/left" </string>
 				<string> "anchor/right" </string>
+				<string> "size_flags/vertical" </string>
 				<string> "custom_constants/separation" </string>
 				<string> "columns" </string>
 				<string> "Play" </string>
@@ -94,9 +88,9 @@
 			<string> "conn_count" </string>
 			<int> 3 </int>
 			<string> "node_count" </string>
-			<int> 9 </int>
+			<int> 7 </int>
 			<string> "variants" </string>
-			<array  len="57" shared="false">
+			<array  len="48" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
@@ -111,7 +105,7 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 1 </int>
+							<int> 3 </int>
 							<string> "sources" </string>
 							<array  len="4" shared="false">
 								<string> "res://main_menu/scroll_title.gd" </string>
@@ -125,11 +119,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 5.162317 </real>
+							<real> 0.323534 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -252.808, 228.334 </vector2>
+							<vector2> -1993, -632 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -234,35 +228,27 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
-				<real> -2 </real>
-				<real> -12 </real>
-				<real> 798 </real>
-				<real> 588 </real>
-				<int> 2 </int>
-				<resource name=""></resource>				<color> 1, 1, 1, 1 </color>
-				<resource  resource_type="Script" path="res://main_menu/starscape.gd">  </resource>
-				<vector2> 568, 171 </vector2>
-				<vector2> 16, 16 </vector2>
-				<resource  resource_type="Texture" path="res://sprites/moon.png">  </resource>
-				<int> 1 </int>
-				<int> 0 </int>
-				<rect2> 0, 0, 0, 0 </rect2>
 				<real> -402 </real>
 				<real> 286 </real>
 				<real> 62 </real>
 				<real> 322 </real>
+				<int> 2 </int>
 				<resource  resource_type="Font" path="res://fonts/lcd_solid_48.fnt">  </resource>
 				<color> 0, 0.563452, 0, 1 </color>
 				<color> 0, 0, 0, 1 </color>
 				<int> 4 </int>
 				<string> "Zed and Ginger" </string>
+				<int> 0 </int>
 				<real> -1 </real>
 				<resource  resource_type="Script" path="res://main_menu/scroll_title.gd">  </resource>
 				<vector2> -31, 145 </vector2>
 				<vector2> 8, 8 </vector2>
 				<resource  resource_type="Texture" path="res://sprites/ship.png">  </resource>
+				<int> 1 </int>
+				<color> 1, 1, 1, 1 </color>
+				<rect2> 0, 0, 0, 0 </rect2>
 				<int> 3 </int>
 				<real> -53 </real>
 				<real> 441 </real>
@@ -292,10 +278,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -363,8 +345,12 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> True </bool>
 							<string> "viewport_mode" </string>
@@ -403,9 +389,9 @@
 				<string> "QUIT_BUTTON" </string>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="353"> 				-1, -1, 1, 0, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 0, 0, 0, 13, 12, -1, 22, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 14, 9, 15, 10, 16, 11, 17, 12, 18, 0, 19, 0, 20, 0, 21, 0, 22, 1, 23, 1, 24, 13, 25, 13, 26, 2, 27, 14, 28, 15, 29, 1, 10, 16, 0, 0, 0, 31, 30, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 17, 8, 5, 9, 18, 27, 19, 32, 1, 33, 4, 34, 3, 35, 3, 36, 20, 37, 20, 38, 21, 28, 15, 39, 3, 40, 22, 0, 0, 0, 42, 41, -1, 35, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 14, 23, 15, 24, 16, 25, 17, 26, 18, 0, 19, 0, 20, 0, 21, 0, 22, 1, 23, 1, 24, 13, 26, 2, 43, 27, 44, 28, 45, 29, 46, 30, 47, 5, 48, 2, 49, 2, 50, 2, 51, 5, 52, 3, 53, 3, 54, 31, 55, 21, 56, 21, 57, 3, 58, 3, 59, 32, 10, 33, 0, 3, 0, 31, 60, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 34, 8, 5, 9, 35, 27, 36, 32, 1, 33, 4, 34, 3, 35, 3, 36, 20, 37, 20, 38, 21, 28, 15, 39, 3, 40, 22, 0, 0, 0, 62, 61, -1, 23, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 63, 37, 64, 37, 14, 38, 15, 39, 16, 40, 17, 41, 18, 0, 19, 0, 20, 0, 21, 0, 22, 3, 23, 3, 24, 13, 25, 13, 26, 2, 65, 42, 66, 37, 10, 43, 0, 5, 0, 68, 67, 44, 5, 2, 0, 16, 45, 69, 46, 54, 47, 11, 48, 0, 5, 0, 68, 70, 44, 6, 2, 0, 14, 49, 16, 50, 69, 51, 54, 52, 11, 48, 0, 5, 0, 68, 71, 44, 6, 2, 0, 14, 53, 16, 54, 69, 55, 54, 56, 11, 48, 0 </int_array>
+			<int_array  len="257"> 				-1, -1, 1, 0, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 0, 0, 0, 13, 12, -1, 35, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 14, 9, 15, 10, 16, 11, 17, 12, 18, 0, 19, 0, 20, 0, 21, 0, 22, 1, 23, 1, 24, 13, 25, 2, 26, 14, 27, 15, 28, 16, 29, 17, 30, 5, 31, 2, 32, 2, 33, 2, 34, 5, 35, 3, 36, 3, 37, 18, 38, 19, 39, 19, 40, 3, 41, 3, 42, 20, 10, 21, 0, 1, 0, 44, 43, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 22, 8, 5, 9, 23, 45, 24, 46, 1, 47, 4, 48, 3, 49, 3, 50, 25, 51, 25, 52, 19, 53, 26, 54, 3, 55, 27, 0, 0, 0, 57, 56, -1, 23, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 58, 28, 59, 28, 14, 29, 15, 30, 16, 31, 17, 32, 18, 0, 19, 0, 20, 0, 21, 0, 22, 3, 23, 3, 24, 13, 60, 13, 25, 2, 61, 33, 62, 28, 10, 34, 0, 3, 0, 64, 63, 35, 5, 2, 0, 16, 36, 65, 37, 37, 38, 11, 39, 0, 3, 0, 64, 66, 35, 6, 2, 0, 14, 40, 16, 41, 65, 42, 37, 43, 11, 39, 0, 3, 0, 64, 67, 35, 6, 2, 0, 14, 44, 16, 45, 65, 46, 37, 47, 11, 39, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="18"> 				6, 5, 73, 72, 2, 0, 7, 5, 73, 74, 2, 0, 8, 5, 73, 75, 2, 0 </int_array>
+			<int_array  len="18"> 				4, 3, 69, 68, 2, 0, 5, 3, 69, 70, 2, 0, 6, 3, 69, 71, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
