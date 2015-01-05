@@ -1,18 +1,16 @@
 
 # Handle button clicks on the main menu
 
-extends Node2D
+extends GridContainer
 
 func _ready():
 	pass
 
-func _on_Play_released():
+func _on_Play_pressed():
 	print("play")
-
-
-func _on_Editor_released():
+	
+func _on_Editor_pressed():
 	print("editor")
-
-
-func _on_Quit_released():
+	
+func _on_Quit_pressed():
 	print("quit")

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.stable.7eb5d049c2">
-	<ext_resource path="res://fonts/lcd_solid_16.fnt" type="Font"></ext_resource>
+	<ext_resource path="res://fonts/lcd_solid_24.fnt" type="Font"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="28">
+			<string_array  len="29">
 				<string> "MyButton" </string>
 				<string> "Button" </string>
 				<string> "_import_path" </string>
@@ -14,6 +14,7 @@
 				<string> "visibility/behind_parent" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
+				<string> "rect/min_size" </string>
 				<string> "focus_neighbour/left" </string>
 				<string> "focus_neighbour/top" </string>
 				<string> "focus_neighbour/right" </string>
@@ -41,15 +42,16 @@
 			<string> "node_count" </string>
 			<int> 1 </int>
 			<string> "variants" </string>
-			<array  len="12" shared="false">
+			<array  len="13" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
 				<bool> False </bool>
-				<real> 104 </real>
-				<real> 32 </real>
+				<real> 180 </real>
+				<real> 50 </real>
+				<vector2> 180, 50 </vector2>
 				<int> 2 </int>
-				<resource  resource_type="Font" path="res://fonts/lcd_solid_16.fnt">  </resource>
+				<resource  resource_type="Font" path="res://fonts/lcd_solid_24.fnt">  </resource>
 				<string> "MyButton" </string>
 				<resource name=""></resource>				<int> 1 </int>
 				<dictionary  shared="false">
@@ -173,7 +175,7 @@
 				</dictionary>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="59"> 				-1, -1, 1, 0, -1, 26, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 3, 14, 1, 15, 6, 16, 6, 17, 2, 18, 7, 19, 3, 20, 3, 21, 3, 22, 8, 23, 9, 24, 3, 25, 3, 26, 10, 27, 11, 0 </int_array>
+			<int_array  len="61"> 				-1, -1, 1, 0, -1, 27, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 0, 11, 0, 12, 0, 13, 0, 14, 3, 15, 1, 16, 7, 17, 7, 18, 2, 19, 8, 20, 3, 21, 3, 22, 3, 23, 9, 24, 10, 25, 3, 26, 3, 27, 11, 28, 12, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

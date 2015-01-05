@@ -2,8 +2,9 @@
 extends TextureFrame
 
 func _ready():
-	var tex = self.texture
-	print("creating starscape ", self.texture)
+	print("creating starscape ")
 
-
-
+	#var image = Image.new()
+	#print(image)
+	#image = image.resized(100, 100)
+	
