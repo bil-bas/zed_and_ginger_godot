@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.stable.7eb5d049c2">
+<resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://main_menu/scroll_title.gd" type="Script"></ext_resource>
-	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
 	<ext_resource path="res://main_menu/buttons.gd" type="Script"></ext_resource>
 	<ext_resource path="res://sprites/ship.png" type="Texture"></ext_resource>
+	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
 	<ext_resource path="res://main_menu/scaling.gd" type="Script"></ext_resource>
 	<ext_resource path="res://prefabs/my_button.xscn" type="PackedScene"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="72">
+			<string_array  len="73">
 				<string> "Main Menu" </string>
 				<string> "Node2D" </string>
 				<string> "_import_path" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
-				<string> "visibility/behind_parent" </string>
 				<string> "transform/pos" </string>
 				<string> "transform/rot" </string>
 				<string> "transform/scale" </string>
+				<string> "z/z" </string>
+				<string> "z/relative" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
 				<string> "Title" </string>
@@ -94,10 +95,10 @@
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
-				<bool> False </bool>
 				<vector2> 0, 0 </vector2>
 				<real> 0 </real>
 				<vector2> 1, 1 </vector2>
+				<int> 0 </int>
 				<resource  resource_type="Script" path="res://main_menu/scaling.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -105,13 +106,14 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 3 </int>
+							<int> 4 </int>
 							<string> "sources" </string>
-							<array  len="4" shared="false">
+							<array  len="5" shared="false">
 								<string> "res://main_menu/scroll_title.gd" </string>
 								<string> "res://main_menu/scaling.gd" </string>
 								<string> "res://main_menu/starscape.gd" </string>
 								<string> "res://main_menu/buttons.gd" </string>
+								<string> "res://generate_mesh.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
@@ -119,11 +121,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 0.323534 </real>
+							<real> 0.397215 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -1993, -632 </vector2>
+							<vector2> -1874.19, -597.515 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -139,7 +141,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 4 </real>
+									<real> 1647.474609 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -205,7 +207,7 @@
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
 							<string> "default_light" </string>
-							<bool> True </bool>
+							<bool> False </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
@@ -228,7 +230,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "3D" </string>
 				</dictionary>
 				<real> -402 </real>
 				<real> 286 </real>
@@ -239,8 +241,8 @@
 				<color> 0, 0.563452, 0, 1 </color>
 				<color> 0, 0, 0, 1 </color>
 				<int> 4 </int>
+				<bool> False </bool>
 				<string> "Zed and Ginger" </string>
-				<int> 0 </int>
 				<real> -1 </real>
 				<resource  resource_type="Script" path="res://main_menu/scroll_title.gd">  </resource>
 				<vector2> -31, 145 </vector2>
@@ -278,6 +280,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -345,28 +353,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -389,9 +391,9 @@
 				<string> "QUIT_BUTTON" </string>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="257"> 				-1, -1, 1, 0, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 0, 0, 0, 13, 12, -1, 35, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 14, 9, 15, 10, 16, 11, 17, 12, 18, 0, 19, 0, 20, 0, 21, 0, 22, 1, 23, 1, 24, 13, 25, 2, 26, 14, 27, 15, 28, 16, 29, 17, 30, 5, 31, 2, 32, 2, 33, 2, 34, 5, 35, 3, 36, 3, 37, 18, 38, 19, 39, 19, 40, 3, 41, 3, 42, 20, 10, 21, 0, 1, 0, 44, 43, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 22, 8, 5, 9, 23, 45, 24, 46, 1, 47, 4, 48, 3, 49, 3, 50, 25, 51, 25, 52, 19, 53, 26, 54, 3, 55, 27, 0, 0, 0, 57, 56, -1, 23, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 58, 28, 59, 28, 14, 29, 15, 30, 16, 31, 17, 32, 18, 0, 19, 0, 20, 0, 21, 0, 22, 3, 23, 3, 24, 13, 60, 13, 25, 2, 61, 33, 62, 28, 10, 34, 0, 3, 0, 64, 63, 35, 5, 2, 0, 16, 36, 65, 37, 37, 38, 11, 39, 0, 3, 0, 64, 66, 35, 6, 2, 0, 14, 40, 16, 41, 65, 42, 37, 43, 11, 39, 0, 3, 0, 64, 67, 35, 6, 2, 0, 14, 44, 16, 45, 65, 46, 37, 47, 11, 39, 0 </int_array>
+			<int_array  len="257"> 				-1, -1, 1, 0, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 1, 11, 7, 12, 8, 0, 0, 0, 14, 13, -1, 34, 2, 0, 3, 1, 4, 2, 5, 2, 15, 9, 16, 10, 17, 11, 18, 12, 19, 0, 20, 0, 21, 0, 22, 0, 23, 1, 24, 1, 25, 13, 26, 2, 27, 14, 28, 15, 29, 16, 30, 17, 31, 4, 32, 2, 33, 2, 34, 2, 35, 4, 36, 18, 37, 18, 38, 19, 39, 6, 40, 6, 41, 18, 42, 18, 43, 20, 11, 21, 0, 1, 0, 45, 44, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 22, 7, 4, 8, 23, 9, 6, 10, 1, 46, 24, 47, 1, 48, 3, 49, 18, 50, 18, 51, 25, 52, 25, 53, 6, 54, 26, 55, 18, 56, 27, 0, 0, 0, 58, 57, -1, 22, 2, 0, 3, 1, 4, 2, 5, 2, 59, 28, 60, 28, 15, 29, 16, 30, 17, 31, 18, 32, 19, 0, 20, 0, 21, 0, 22, 0, 23, 18, 24, 18, 25, 13, 61, 13, 26, 2, 62, 33, 63, 28, 11, 34, 0, 3, 0, 65, 64, 35, 5, 2, 0, 17, 36, 66, 37, 38, 38, 12, 39, 0, 3, 0, 65, 67, 35, 6, 2, 0, 15, 40, 17, 41, 66, 42, 38, 43, 12, 39, 0, 3, 0, 65, 68, 35, 6, 2, 0, 15, 44, 17, 45, 66, 46, 38, 47, 12, 39, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="18"> 				4, 3, 69, 68, 2, 0, 5, 3, 69, 70, 2, 0, 6, 3, 69, 71, 2, 0 </int_array>
+			<int_array  len="18"> 				4, 3, 70, 69, 2, 0, 5, 3, 70, 71, 2, 0, 6, 3, 70, 72, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>

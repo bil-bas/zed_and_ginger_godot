@@ -4,13 +4,13 @@
 extends GridContainer
 
 func _ready():
-	pass
+    pass
 
 func _on_Play_pressed():
-	print("play")
-	
+    print("play")
+
 func _on_Editor_pressed():
-	print("editor")
-	
+    print("editor")
+
 func _on_Quit_pressed():
-	OS.get_main_loop().quit()
+    OS.get_main_loop().quit()
