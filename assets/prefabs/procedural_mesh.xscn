@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+	<ext_resource path="res://mesh_animator.gd" type="Script"></ext_resource>
+	<resource type="BoxShape" path="local://1">
+		<vector3 name="extents"> 1, 1, 1 </vector3>
+
+	</resource>
+	<main_resource>
+		<dictionary name="_bundled" shared="false">
+			<string> "names" </string>
+			<string_array  len="42">
+				<string> "ProceduralMesh" </string>
+				<string> "Node" </string>
+				<string> "_import_path" </string>
+				<string> "RigidBody" </string>
+				<string> "_import_transform" </string>
+				<string> "visibility/visible" </string>
+				<string> "input/ray_pickable" </string>
+				<string> "input/capture_on_drag" </string>
+				<string> "shape_count" </string>
+				<string> "layers" </string>
+				<string> "mode" </string>
+				<string> "mass" </string>
+				<string> "friction" </string>
+				<string> "bounce" </string>
+				<string> "custom_integrator" </string>
+				<string> "continuous_cd" </string>
+				<string> "contacts_reported" </string>
+				<string> "contact_monitor" </string>
+				<string> "sleeping" </string>
+				<string> "can_sleep" </string>
+				<string> "axis_lock" </string>
+				<string> "velocity/linear" </string>
+				<string> "velocity/angular" </string>
+				<string> "CollisionShape" </string>
+				<string> "shape" </string>
+				<string> "trigger" </string>
+				<string> "MeshInstance" </string>
+				<string> "geometry/visible" </string>
+				<string> "geometry/material_override" </string>
+				<string> "geometry/cast_shadow" </string>
+				<string> "geometry/receive_shadows" </string>
+				<string> "geometry/range_begin" </string>
+				<string> "geometry/range_end" </string>
+				<string> "geometry/billboard" </string>
+				<string> "geometry/billboard_y" </string>
+				<string> "geometry/depth_scale" </string>
+				<string> "geometry/visible_in_all_rooms" </string>
+				<string> "geometry/use_baked_light" </string>
+				<string> "geometry/baked_light_tex_id" </string>
+				<string> "mesh/mesh" </string>
+				<string> "mesh/skeleton" </string>
+				<string> "script/script" </string>
+			</string_array>
+			<string> "version" </string>
+			<int> 1 </int>
+			<string> "conn_count" </string>
+			<int> 0 </int>
+			<string> "node_count" </string>
+			<int> 4 </int>
+			<string> "variants" </string>
+			<array  len="13" shared="false">
+				<node_path> "" </node_path>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
+				<bool> True </bool>
+				<bool> False </bool>
+				<int> 0 </int>
+				<int> 1 </int>
+				<real> 1 </real>
+				<real> 0 </real>
+				<vector3> 0, 0, 0 </vector3>
+				<resource  resource_type="Shape" path="local://1">  </resource>
+				<resource name=""></resource>				<node_path> ".." </node_path>
+				<resource  resource_type="Script" path="res://mesh_animator.gd">  </resource>
+			</array>
+			<string> "nodes" </string>
+			<int_array  len="118"> 				-1, -1, 1, 0, -1, 1, 2, 0, 0, 0, 0, 3, 3, -1, 20, 2, 0, 4, 1, 5, 2, 6, 2, 7, 3, 8, 4, 9, 5, 10, 4, 11, 6, 12, 6, 13, 7, 14, 3, 15, 3, 16, 4, 17, 3, 18, 3, 19, 2, 20, 4, 21, 8, 22, 8, 0, 0, 0, 23, 23, -1, 5, 2, 0, 4, 1, 5, 2, 24, 9, 25, 3, 0, 0, 0, 26, 26, -1, 19, 2, 0, 4, 1, 5, 2, 9, 5, 27, 2, 28, 10, 29, 2, 30, 2, 31, 7, 32, 7, 33, 3, 34, 3, 35, 3, 36, 3, 37, 3, 38, 4, 39, 10, 40, 11, 41, 12, 0 </int_array>
+			<string> "conns" </string>
+			<int_array  len="0"> 				 </int_array>
+		</dictionary>
+
+	</main_resource>
+</resource_file>

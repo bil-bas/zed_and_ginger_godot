@@ -1,6 +1,4 @@
 
-extends MeshInstance
-
 const PIXELS_PER_METER = 8
 const PIXEL_SIZE = 1.0 / PIXELS_PER_METER
 const FRONT = Vector3(0, 0, 1)
@@ -15,24 +13,20 @@ var _materials = {}
 var _sprite_sizes = {}
 var _animations = {}
 
-
 func _ready():
-    print("loading sheet")
-    load_sheet("tile")
-    load_sheet("player")
-    print("loaded sheet")
-    set_process(true)
+    self.add_child(new_mesh_object("player"))
+
     
+    for j in range(40):
+        for i in range(5):
+            var tile = new_mesh_object("tile", i)
+            tile.get_child(1).set_translation(Vector3(4 - j * 1, -2 + i * 1, 0))
+            self.add_child(tile)
 
-func _process(delta):
-    var r = delta * 1
-    set_rotation(Vector3(get_rotation().x + r, get_rotation().y + -r /2, get_rotation().z + r / 3))
+    print_tree()
 
 
-func load_sheet(spritesheet):
-    if spritesheet in _materials:
-        return 0 
-    
+func _load_sheet(spritesheet):
     var uses_transparency
     var depth
     var is_centered
@@ -45,31 +39,29 @@ func load_sheet(spritesheet):
         uses_transparency = false
         depth = 1
         is_centered = true
-    
-    # Create a material for all meshes created from the spritesheet
-    #diffuse_material = Instantiate(Resources.Load[of Material]("Materials/Diffuse"))
-    #diffuse_material.mainTexture = texture
-    #var diffuse_material = null
-    
-    # Create a material for all transparent meshes created from the spritesheet
-    #if uses_transparency:
-    #    pass
-        #transparency_material = Instantiate(Resources.Load[of Material]("materials/TransparentDiffuse"))
-        #transparency_material.mainTexture = texture
-    #var transparency_material = null
-    
-    #var materials = { diffuse=diffuse_material, transparency=transparency_material }
-    #_materials[spritesheet] = materials
-    
+
     # Load the sprites themselves and create meshes from them.
     var texture = load("res://atlases/" + spritesheet + ".png")
+
+    # Create a material for all meshes created from the spritesheet
+    var material = FixedMaterial.new()
+    material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
+    _materials[spritesheet] = material
+
     var sprites = texture.get_data()
+    
     var meshes = []
     var dir = "res://voxels/" + spritesheet + "/"
     Directory.new().make_dir_recursive(dir)
 
-    var width = 18
-    var height = 18
+    var width
+    var height
+    if spritesheet == "tile":
+        width = 10
+        height = 10
+    else:
+        width = 18
+        height = 18
     
     _sprite_sizes[spritesheet] = Vector3(texture.get_width() / width, texture.get_height() / height, depth)
     
@@ -81,9 +73,10 @@ func load_sheet(spritesheet):
                 pass #create_sides = TileData.get_config_from_index(index, "create_sides") cast bool
             else:
                 create_sides = true
+            var margin = 1
                 
-            var rect = Rect2(x_offset, y_offset, width, height)
-            var mesh = create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency)
+            var rect = Rect2(x_offset + margin, y_offset + margin, width - margin * 2, height - margin * 2)
+            var mesh = create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency, material)
             if mesh == null:
                 print("Skipping spritesheet frame: ", meshes.size())
             else:
@@ -91,7 +84,6 @@ func load_sheet(spritesheet):
                 #ResourceSaver.save(dir + str(meshes.size()) + ".xml", mesh)
             meshes.append(mesh)
 
-    set_mesh(meshes[0]) # DEBUG
     _meshes[spritesheet] = meshes
 
     print("Created spritesheet: ", spritesheet)
@@ -107,7 +99,7 @@ func load_sheet(spritesheet):
 #        return _materials[spritesheet]["diffuse"]
 
 #    func transparency_material(spritesheet as string) as Material:
-#        load_sheet(spritesheet)
+#        _load_sheet(spritesheet)
 #
 #        return _materials[spritesheet]["transparency"]
 
@@ -125,113 +117,120 @@ func load_sheet(spritesheet):
 #            n_anims += 1
 #
 #        Debug.Log("Loaded $n_anims animations for spritesheet '$spritesheet' in $(Time.realtimeSinceStartup - start)s")
-#
-#    func new_mesh_object(spritesheet as string) as GameObject:
-#        load_sheet(spritesheet)
-#
-#        obj = GameObject()
-#        obj.name = spritesheet
-#
-#        rend = obj.AddComponent(MeshRenderer)
-#        rend.material = default_material(spritesheet)
-#
-#        obj.AddComponent(MeshFilter)
-#        assert spritesheet in _meshes, spritesheet
-#
-#        voxel_animator = obj.AddComponent(VoxelAnimator)
-#        voxel_animator.meshes = _meshes[spritesheet]
-#        voxel_animator.animations = _animations[spritesheet]
-#
-#        is_centered = (spritesheet != "tile")
-#
-#        box = obj.AddComponent(BoxCollider)
-#        size = _sprite_sizes[spritesheet]
-#        width, height, depth = size.x, size.y, size.z
-#        if is_centered:
-#            box.center = Vector3(0, height / 2, 0) * PIXEL_SIZE
-#            box.size = Vector3(width, height, depth) * PIXEL_SIZE
-#        else:
-#            box.center = Vector3(0, height / 2, -depth / 2) * PIXEL_SIZE
-#            box.size = Vector3(width, height, depth) * PIXEL_SIZE
-#
-#        box.material = Resources.Load("PhysicsMaterials/Floor")
-#
-#        return obj
+
+func new_mesh_object(spritesheet, index=0):
+    if not spritesheet in _meshes:
+       _load_sheet(spritesheet)
+
+    var obj = load("res://prefabs/procedural_mesh.xscn").instance()
+    obj.set_name(spritesheet)
+    for i in range(obj.get_child_count()):
+        obj.get_child(i).set_rotation(Vector3(PI, 0, 0))
+
+    var mesh_instance = obj.get_child(1)
+    mesh_instance.meshes = _meshes[spritesheet]
+    mesh_instance.frame = index
+
+    var is_centered = (spritesheet != "tile")
+
+#    box = obj.AddComponent(BoxCollider)
+#    size = _sprite_sizes[spritesheet]
+#    width, height, depth = size.x, size.y, size.z
+#    if is_centered:
+#        box.center = Vector3(0, height / 2, 0) * PIXEL_SIZE
+#        box.size = Vector3(width, height, depth) * PIXEL_SIZE
+#    else:
+#        box.center = Vector3(0, height / 2, -depth / 2) * PIXEL_SIZE
+#        box.size = Vector3(width, height, depth) * PIXEL_SIZE
+
+#    var collision_object = CollisionObject.new()
+#    var shape = BoxShape.new()
+#    shape.extents = Vector3(1, 1, 1)
+#    collision_object.add_shape(shape)
+#    obj.add_child(collision_object)
+
+#    box.material = Resources.Load("PhysicsMaterials/Floor")
+
+    return obj
 
 
-func create_bottom_quad(x, y, front, back): # acw
+func create_bottom_quad(x, y, front, back, uv): # acw
     return [
-        [Vector3(x, y, back), BOTTOM],
-        [Vector3(x + 1, y, front), BOTTOM],
-        [Vector3(x + 1, y, back), BOTTOM],
+        [Vector3(x, y, back), BOTTOM, uv],
+        [Vector3(x + 1, y, front), BOTTOM, uv],
+        [Vector3(x + 1, y, back), BOTTOM, uv],
 
-        [Vector3(x + 1, y, front), BOTTOM],
-        [Vector3(x, y, back), BOTTOM],
-        [Vector3(x, y, front), BOTTOM]
+        [Vector3(x + 1, y, front), BOTTOM, uv],
+        [Vector3(x, y, back), BOTTOM, uv],
+        [Vector3(x, y, front), BOTTOM, uv]
     ]
 
 
-func create_top_quad(x, y, front, back): # cw.
+func create_top_quad(x, y, front, back, uv): # cw.
     return [
-        [Vector3(x, y, front), TOP],
-        [Vector3(x + 1, y, back), TOP],
-        [Vector3(x + 1, y, front), TOP],
+        [Vector3(x, y, front), TOP, uv],
+        [Vector3(x + 1, y, back), TOP, uv],
+        [Vector3(x + 1, y, front), TOP, uv],
 
-        [Vector3(x + 1, y, back), TOP],
-        [Vector3(x, y, front), TOP],
-        [Vector3(x, y, back), TOP]
+        [Vector3(x + 1, y, back), TOP, uv],
+        [Vector3(x, y, front), TOP, uv],
+        [Vector3(x, y, back), TOP, uv]
     ]
 
 
-func create_back_quad(x, y, bottom_y, back):
+func create_back_quad(x, y, bottom_y, back, uv, bottom_uv):
     return [
-        [Vector3(x, bottom_y, back), BACK],
-        [Vector3(x + 1, bottom_y, back), BACK],
-        [Vector3(x, y, back), BACK],
+        [Vector3(x, bottom_y, back), BACK, bottom_uv],
+        [Vector3(x + 1, bottom_y, back), BACK, bottom_uv],
+        [Vector3(x, y, back), BACK, uv],
         
-        [Vector3(x, y, back), BACK],
-        [Vector3(x + 1, bottom_y, back), BACK],
-        [Vector3(x + 1, y, back), BACK]
+        [Vector3(x, y, back), BACK, uv],
+        [Vector3(x + 1, bottom_y, back), BACK, bottom_uv],
+        [Vector3(x + 1, y, back), BACK, uv]
     ]
 
 
-func create_front_quad(x, y, bottom_y, front):
+func create_front_quad(x, y, bottom_y, front, uv, bottom_uv):
     return [
-        [Vector3(x, bottom_y, front), FRONT],
-        [Vector3(x, y, front), FRONT],
-        [Vector3(x + 1, bottom_y, front), FRONT],
+        [Vector3(x, bottom_y, front), FRONT, bottom_uv],
+        [Vector3(x, y, front), FRONT, uv],
+        [Vector3(x + 1, bottom_y, front), FRONT, bottom_uv],
         
-        [Vector3(x + 1, bottom_y, front), FRONT],
-        [Vector3(x, y, front), FRONT],
-        [Vector3(x + 1, y, front), FRONT]
+        [Vector3(x + 1, bottom_y, front), FRONT, bottom_uv],
+        [Vector3(x, y, front), FRONT, uv],
+        [Vector3(x + 1, y, front), FRONT, uv]
     ]
 
 
-func create_left_quad(x, y, front, back):
+func create_left_quad(x, y, front, back, uv):
     return [
-        [Vector3(x, y, back), LEFT],
-        [Vector3(x, y + 1, back), LEFT],
-        [Vector3(x, y + 1, front), LEFT],
+        [Vector3(x, y, back), LEFT, uv],
+        [Vector3(x, y + 1, back), LEFT, uv],
+        [Vector3(x, y + 1, front), LEFT, uv],
 
-        [Vector3(x, y + 1, front), LEFT],
-        [Vector3(x, y, front), LEFT],
-        [Vector3(x, y, back), LEFT]
+        [Vector3(x, y + 1, front), LEFT, uv],
+        [Vector3(x, y, front), LEFT, uv],
+        [Vector3(x, y, back), LEFT, uv]
     ]
 
 
-func create_right_quad(x, y, front, back):
+func create_right_quad(x, y, front, back, uv):
     return [
-        [Vector3(x, y, back), RIGHT],
-        [Vector3(x, y + 1, front), RIGHT],
-        [Vector3(x, y + 1, back), RIGHT],
+        [Vector3(x, y, back), RIGHT, uv],
+        [Vector3(x, y + 1, front), RIGHT, uv],
+        [Vector3(x, y + 1, back), RIGHT, uv],
 
-        [Vector3(x, y + 1, front), RIGHT],
-        [Vector3(x, y, back), RIGHT],
-        [Vector3(x, y, front), RIGHT]
+        [Vector3(x, y + 1, front), RIGHT, uv],
+        [Vector3(x, y, back), RIGHT, uv],
+        [Vector3(x, y, front), RIGHT, uv]
     ]
 
 
-func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency):
+func pos_in_sheet_to_uv(position, sheet_size):
+    return Vector2(position.x + 0.5, position.y) / sheet_size
+
+
+func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency, material):
     var bottom_y
     var color
     
@@ -244,21 +243,19 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
         front = 0
         back = depth
     
-    var material = FixedMaterial.new()
-    material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
-    
     var surface_tool = SurfaceTool.new()
     surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
-
     surface_tool.set_material(material)
+
     var sprite_sheet_size = Vector2(sprites.get_width(), sprites.get_height())
-    
+    var bottom_uv = null
+
     # Vertical pass.
     for x in range(rect.size.width + 1):
         var is_visible = false
         for y in range(rect.size.height + 1):
             var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
-            var uv = Vector2(pos_in_sheet.x + 0.5, pos_in_sheet.y + 0.5) / sprite_sheet_size
+            var uv = pos_in_sheet_to_uv(pos_in_sheet, sprite_sheet_size)
             
             var pixel_opaque = false
             if x != rect.size.width and y != rect.size.height:
@@ -269,19 +266,19 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
                 if not is_visible:# or not create_sides:
                 # Changed from invisible to visible, so draw BOTTOM quad.
                     bottom_y = y
+                    bottom_uv = uv
                     if create_sides:
-                        add_quad(surface_tool, create_bottom_quad(x, y, front, back), uv)
+                        add_quad(surface_tool, create_bottom_quad(x, y, front, back, uv))
 
                     is_visible = true
             else:
                 if is_visible: 
                     # Use the points from the bottom and, now, top, to create long strip.
+                    add_quad(surface_tool, create_back_quad(x, y, bottom_y, back, uv, bottom_uv))
                     
-                    add_quad(surface_tool, create_front_quad(x, y, bottom_y, front), uv)
-                       
                     if create_sides:
-                        add_quad(surface_tool, create_back_quad(x, y, bottom_y, back), uv)
-                        add_quad(surface_tool, create_top_quad(x, y, front, back), uv)
+                        add_quad(surface_tool, create_front_quad(x, y, bottom_y, front, uv, bottom_uv))
+                        add_quad(surface_tool, create_top_quad(x, y, front, back, uv))
                            
                     is_visible = false
 
@@ -291,7 +288,7 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
             var is_visible = false           
             for x in range(rect.size.width + 1):
                 var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
-                var uv = Vector2(pos_in_sheet.x + 0.5, pos_in_sheet.y + 0.5) / sprite_sheet_size
+                var uv = pos_in_sheet_to_uv(pos_in_sheet, sprite_sheet_size)
                 var pixel_opaque = false
                 
                 if x != rect.size.width and y != rect.size.height:
@@ -301,12 +298,12 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
                 if pixel_opaque:
                     if not is_visible:
                         # Changed from invisible to visible, so draw LEFT quad.
-                        add_quad(surface_tool, create_left_quad(x, y, front, back), uv)
+                        add_quad(surface_tool, create_left_quad(x, y, front, back, uv))
                         is_visible = true
                 else:
                     if is_visible:
                         # Changed from visible to invisible, so draw RIGHT quad.
-                        add_quad(surface_tool, create_right_quad(x, y, front, back), uv)
+                        add_quad(surface_tool, create_right_quad(x, y, front, back, uv))
                         is_visible = false
 
 
@@ -322,8 +319,8 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
         return null
     
     
-func add_quad(surface_tool, vertices, uv):
+func add_quad(surface_tool, vertices):
     for vertex in vertices:
         surface_tool.add_normal(vertex[1])
-        surface_tool.add_uv(uv)
+        surface_tool.add_uv(vertex[2])
         surface_tool.add_vertex(vertex[0] * PIXEL_SIZE)
