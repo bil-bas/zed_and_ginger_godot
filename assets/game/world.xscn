@@ -76,7 +76,7 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 1 </int>
+							<int> 0 </int>
 							<string> "sources" </string>
 							<array  len="2" shared="false">
 								<string> "res://generate_mesh.gd" </string>
@@ -197,7 +197,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "3D" </string>
 				</dictionary>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 </transform>
 				<int> 0 </int>
