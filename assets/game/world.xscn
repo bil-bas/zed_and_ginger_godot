@@ -4,7 +4,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="54">
+			<string_array  len="55">
 				<string> "World" </string>
 				<string> "Spatial" </string>
 				<string> "_import_path" </string>
@@ -37,7 +37,11 @@
 				<string> "geometry/visible_in_all_rooms" </string>
 				<string> "geometry/use_baked_light" </string>
 				<string> "geometry/baked_light_tex_id" </string>
-				<string> "OmniLight" </string>
+				<string> "MeshInstance" </string>
+				<string> "mesh/mesh" </string>
+				<string> "mesh/skeleton" </string>
+				<string> "script/script" </string>
+				<string> "DirectionalLight" </string>
 				<string> "params/enabled" </string>
 				<string> "params/editor_only" </string>
 				<string> "params/bake_mode" </string>
@@ -52,22 +56,19 @@
 				<string> "shadow/blur_passes" </string>
 				<string> "projector" </string>
 				<string> "operator" </string>
-				<string> "params/radius" </string>
-				<string> "params/attenuation" </string>
-				<string> "OmniLight1" </string>
-				<string> "MeshInstance" </string>
-				<string> "mesh/mesh" </string>
-				<string> "mesh/skeleton" </string>
-				<string> "script/script" </string>
+				<string> "shadow/mode" </string>
+				<string> "shadow/max_distance" </string>
+				<string> "shadow/split_weight" </string>
+				<string> "shadow/zoffset_scale" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 6 </int>
+			<int> 5 </int>
 			<string> "variants" </string>
-			<array  len="24" shared="false">
+			<array  len="23" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
@@ -108,7 +109,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 54.76054 </real>
+									<real> 74.501114 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -176,7 +177,7 @@
 							<string> "default_light" </string>
 							<bool> False </bool>
 							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
+							<color> 0.424084, 0.423605, 0.424922, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
 							<string> "show_origin" </string>
@@ -199,7 +200,7 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 </transform>
 				<int> 0 </int>
 				<real> 60 </real>
 				<real> 0.1 </real>
@@ -209,18 +210,17 @@
 				<int> 1048575 </int>
 				<resource name=""></resource>				<real> 0 </real>
 				<transform> 0.5, -0.5, 0.707107, 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0, 0, -10 </transform>
-				<transform> 0.998148, 0.0608379, 0, -0.0608379, 0.998148, 0, 0, 0, 1, 1.58124, 1.66842, 0 </transform>
-				<real> 1 </real>
-				<color> 1, 1, 1, 1 </color>
-				<real> 0.001 </real>
-				<real> 41.197193 </real>
-				<transform> 0.999954, 0.00962174, 0, -0.00962174, 0.999954, 0, 0, 0, 1, -1.82037, -2.07613, 0 </transform>
-				<real> 1000 </real>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Script" path="res://generate_mesh.gd">  </resource>
+				<transform> 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5, 10, 20 </transform>
+				<real> 1 </real>
+				<color> 1, 1, 1, 1 </color>
+				<real> 0.05 </real>
+				<real> 0.5 </real>
+				<real> 2 </real>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="234"> 				-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 0, 0, 6, 6, -1, 14, 2, 0, 3, 1, 7, 4, 4, 2, 8, 5, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 12, 16, 13, 17, 13, 0, 0, 0, 18, 18, -1, 17, 2, 0, 3, 1, 7, 14, 4, 2, 19, 9, 20, 2, 21, 12, 22, 2, 23, 2, 24, 13, 25, 13, 26, 10, 27, 10, 28, 10, 29, 10, 30, 10, 31, 5, 0, 0, 0, 32, 32, -1, 21, 2, 0, 3, 1, 7, 15, 4, 2, 19, 9, 33, 2, 34, 10, 35, 5, 36, 16, 37, 17, 38, 17, 39, 10, 40, 13, 41, 18, 42, 13, 43, 6, 44, 16, 45, 12, 46, 5, 47, 19, 48, 16, 0, 0, 0, 32, 49, -1, 21, 2, 0, 3, 1, 7, 20, 4, 2, 19, 9, 33, 2, 34, 10, 35, 5, 36, 16, 37, 17, 38, 17, 39, 10, 40, 13, 41, 18, 42, 13, 43, 6, 44, 16, 45, 12, 46, 5, 47, 21, 48, 16, 0, 0, 0, 50, 50, -1, 19, 2, 0, 3, 1, 4, 2, 19, 9, 20, 2, 21, 12, 22, 2, 23, 2, 24, 13, 25, 13, 26, 10, 27, 10, 28, 10, 29, 10, 30, 10, 31, 5, 51, 12, 52, 22, 53, 23, 0 </int_array>
+			<int_array  len="189"> 				-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 0, 0, 6, 6, -1, 14, 2, 0, 3, 1, 7, 4, 4, 2, 8, 5, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 12, 16, 13, 17, 13, 0, 0, 0, 18, 18, -1, 17, 2, 0, 3, 1, 7, 14, 4, 2, 19, 9, 20, 2, 21, 12, 22, 2, 23, 2, 24, 13, 25, 13, 26, 10, 27, 10, 28, 10, 29, 10, 30, 10, 31, 5, 0, 0, 0, 32, 32, -1, 19, 2, 0, 3, 1, 4, 2, 19, 9, 20, 2, 21, 12, 22, 2, 23, 2, 24, 13, 25, 13, 26, 10, 27, 10, 28, 10, 29, 10, 30, 10, 31, 5, 33, 12, 34, 15, 35, 16, 0, 0, 0, 36, 36, -1, 23, 2, 0, 3, 1, 7, 17, 4, 2, 19, 9, 37, 2, 38, 10, 39, 5, 40, 18, 41, 19, 42, 19, 43, 10, 44, 13, 45, 20, 46, 13, 47, 6, 48, 18, 49, 12, 50, 5, 51, 5, 52, 13, 53, 21, 54, 22, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

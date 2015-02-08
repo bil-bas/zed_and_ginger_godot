@@ -1,7 +1,7 @@
 
 extends MeshInstance
 
-const PIXELS_PER_METER = 10
+const PIXELS_PER_METER = 8
 const PIXEL_SIZE = 1.0 / PIXELS_PER_METER
 const FRONT = Vector3(0, 0, 1)
 const BACK = Vector3(0, 0, -1)
@@ -14,11 +14,11 @@ var _meshes = {}
 var _materials = {}
 var _sprite_sizes = {}
 var _animations = {}
-var _n = 0.0
 
 
 func _ready():
     print("loading sheet")
+    load_sheet("tile")
     load_sheet("player")
     print("loaded sheet")
     set_process(true)
@@ -27,8 +27,6 @@ func _ready():
 func _process(delta):
     var r = delta * 1
     set_rotation(Vector3(get_rotation().x + r, get_rotation().y + -r /2, get_rotation().z + r / 3))
-    set_mesh(load("voxels/player/%d.xml" % _n))
-    _n += 0.01
 
 
 func load_sheet(spritesheet):
@@ -90,11 +88,10 @@ func load_sheet(spritesheet):
                 print("Skipping spritesheet frame: ", meshes.size())
             else:
                 print("Created spritesheet frame: ", meshes.size())
-                ResourceSaver.save(dir + str(meshes.size()) + ".xml", mesh)
+                #ResourceSaver.save(dir + str(meshes.size()) + ".xml", mesh)
             meshes.append(mesh)
 
-    #set_mesh(meshes[0]) # DEBUG
-    set_mesh(load(dir + "0.xml"))
+    set_mesh(meshes[0]) # DEBUG
     _meshes[spritesheet] = meshes
 
     print("Created spritesheet: ", spritesheet)
@@ -164,168 +161,169 @@ func load_sheet(spritesheet):
 
 func create_bottom_quad(x, y, front, back): # acw
     return [
-		[Vector3(x, y, back), BOTTOM],
-		[Vector3(x + 1, y, front), BOTTOM],
-		[Vector3(x + 1, y, back), BOTTOM],
+        [Vector3(x, y, back), BOTTOM],
+        [Vector3(x + 1, y, front), BOTTOM],
+        [Vector3(x + 1, y, back), BOTTOM],
 
-		[Vector3(x + 1, y, front), BOTTOM],
-		[Vector3(x, y, back), BOTTOM],
-		[Vector3(x, y, front), BOTTOM]
-	]
+        [Vector3(x + 1, y, front), BOTTOM],
+        [Vector3(x, y, back), BOTTOM],
+        [Vector3(x, y, front), BOTTOM]
+    ]
 
 
 func create_top_quad(x, y, front, back): # cw.
-	return [
-		[Vector3(x, y, front), TOP],
-		[Vector3(x + 1, y, back), TOP],
-		[Vector3(x + 1, y, front), TOP],
+    return [
+        [Vector3(x, y, front), TOP],
+        [Vector3(x + 1, y, back), TOP],
+        [Vector3(x + 1, y, front), TOP],
 
-		[Vector3(x + 1, y, back), TOP],
-		[Vector3(x, y, front), TOP],
-		[Vector3(x, y, back), TOP]
-	]
+        [Vector3(x + 1, y, back), TOP],
+        [Vector3(x, y, front), TOP],
+        [Vector3(x, y, back), TOP]
+    ]
 
 
 func create_back_quad(x, y, bottom_y, back):
-	return [
-		[Vector3(x, bottom_y, back), BACK],
-		[Vector3(x + 1, bottom_y, back), BACK],
-		[Vector3(x, y, back), BACK],
+    return [
+        [Vector3(x, bottom_y, back), BACK],
+        [Vector3(x + 1, bottom_y, back), BACK],
+        [Vector3(x, y, back), BACK],
         
-		[Vector3(x, y, back), BACK],
-		[Vector3(x + 1, bottom_y, back), BACK],
-		[Vector3(x + 1, y, back), BACK]
-	]
+        [Vector3(x, y, back), BACK],
+        [Vector3(x + 1, bottom_y, back), BACK],
+        [Vector3(x + 1, y, back), BACK]
+    ]
 
 
 func create_front_quad(x, y, bottom_y, front):
-	return [
-		[Vector3(x, bottom_y, front), FRONT],
-		[Vector3(x, y, front), FRONT],
-		[Vector3(x + 1, bottom_y, front), FRONT],
+    return [
+        [Vector3(x, bottom_y, front), FRONT],
+        [Vector3(x, y, front), FRONT],
+        [Vector3(x + 1, bottom_y, front), FRONT],
         
-		[Vector3(x + 1, bottom_y, front), FRONT],
-		[Vector3(x, y, front), FRONT],
-		[Vector3(x + 1, y, front), FRONT]
-	]
+        [Vector3(x + 1, bottom_y, front), FRONT],
+        [Vector3(x, y, front), FRONT],
+        [Vector3(x + 1, y, front), FRONT]
+    ]
 
 
 func create_left_quad(x, y, front, back):
-	return [
-		[Vector3(x, y, back), LEFT],
-		[Vector3(x, y + 1, back), LEFT],
-		[Vector3(x, y + 1, front), LEFT],
+    return [
+        [Vector3(x, y, back), LEFT],
+        [Vector3(x, y + 1, back), LEFT],
+        [Vector3(x, y + 1, front), LEFT],
 
-		[Vector3(x, y + 1, front), LEFT],
-		[Vector3(x, y, front), LEFT],
-		[Vector3(x, y, back), LEFT]
-	]
+        [Vector3(x, y + 1, front), LEFT],
+        [Vector3(x, y, front), LEFT],
+        [Vector3(x, y, back), LEFT]
+    ]
 
 
 func create_right_quad(x, y, front, back):
-	return [
-		[Vector3(x, y, back), RIGHT],
-		[Vector3(x, y + 1, front), RIGHT],
-		[Vector3(x, y + 1, back), RIGHT],
+    return [
+        [Vector3(x, y, back), RIGHT],
+        [Vector3(x, y + 1, front), RIGHT],
+        [Vector3(x, y + 1, back), RIGHT],
 
-		[Vector3(x, y + 1, front), RIGHT],
-		[Vector3(x, y, back), RIGHT],
-		[Vector3(x, y, front), RIGHT]
-	]
+        [Vector3(x, y + 1, front), RIGHT],
+        [Vector3(x, y, back), RIGHT],
+        [Vector3(x, y, front), RIGHT]
+    ]
 
 
 func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency):
-	var bottom_y
-	var color
+    var bottom_y
+    var color
     
-	var front
-	var back
-	if is_centered:
-		front = depth * 0.5
-		back = -front
-	else:
-		front = 0
-		back = depth
+    var front
+    var back
+    if is_centered:
+        front = depth * 0.5
+        back = -front
+    else:
+        front = 0
+        back = depth
     
-	var material = FixedMaterial.new()
-	material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
+    var material = FixedMaterial.new()
+    material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
     
-	var surface_tool = SurfaceTool.new()
-	surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+    var surface_tool = SurfaceTool.new()
+    surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
 
-	surface_tool.set_material(material)
-	var sprite_sheet_size = Vector2(sprites.get_width(), sprites.get_height())
+    surface_tool.set_material(material)
+    var sprite_sheet_size = Vector2(sprites.get_width(), sprites.get_height())
     
-	# Vertical pass.
-	for x in range(rect.size.width + 1):
-		var is_visible = false
-		for y in range(rect.size.height + 1):
-			var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
-			var uv = Vector2(pos_in_sheet.x + 0.5, pos_in_sheet.y + 0.5) / sprite_sheet_size
-			
-			var pixel_opaque = false
-			if x != rect.size.width and y != rect.size.height:
-				color = sprites.get_pixel(pos_in_sheet.x, pos_in_sheet.y)
-				pixel_opaque = (color.a > 0)
+    # Vertical pass.
+    for x in range(rect.size.width + 1):
+        var is_visible = false
+        for y in range(rect.size.height + 1):
+            var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
+            var uv = Vector2(pos_in_sheet.x + 0.5, pos_in_sheet.y + 0.5) / sprite_sheet_size
+            
+            var pixel_opaque = false
+            if x != rect.size.width and y != rect.size.height:
+                color = sprites.get_pixel(pos_in_sheet.x, pos_in_sheet.y)
+                pixel_opaque = (color.a > 0)
 
-			if pixel_opaque:
-				if not is_visible:# or not create_sides:
-				# Changed from invisible to visible, so draw BOTTOM quad.
-					bottom_y = y
-					if create_sides:
-						add_quad(surface_tool, create_bottom_quad(x, y, front, back), uv)
+            if pixel_opaque:
+                if not is_visible:# or not create_sides:
+                # Changed from invisible to visible, so draw BOTTOM quad.
+                    bottom_y = y
+                    if create_sides:
+                        add_quad(surface_tool, create_bottom_quad(x, y, front, back), uv)
 
-					is_visible = true
-			else:
-				if is_visible: 
-					# Use the points from the bottom and, now, top, to create long strip.
-					add_quad(surface_tool, create_back_quad(x, y, bottom_y, back), uv)
-					add_quad(surface_tool, create_front_quad(x, y, bottom_y, front), uv)
-	                   
-					if create_sides:
-						add_quad(surface_tool, create_top_quad(x, y, front, back), uv)
-	                       
-					is_visible = false
+                    is_visible = true
+            else:
+                if is_visible: 
+                    # Use the points from the bottom and, now, top, to create long strip.
+                    
+                    add_quad(surface_tool, create_front_quad(x, y, bottom_y, front), uv)
+                       
+                    if create_sides:
+                        add_quad(surface_tool, create_back_quad(x, y, bottom_y, back), uv)
+                        add_quad(surface_tool, create_top_quad(x, y, front, back), uv)
+                           
+                    is_visible = false
 
     # Horizontal pass.
-	if create_sides:
-		for y in range(rect.size.height + 1):
-			var is_visible = false           
-			for x in range(rect.size.width + 1):
-				var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
-				var uv = Vector2(pos_in_sheet.x + 0.5, pos_in_sheet.y + 0.5) / sprite_sheet_size
-				var pixel_opaque = false
+    if create_sides:
+        for y in range(rect.size.height + 1):
+            var is_visible = false           
+            for x in range(rect.size.width + 1):
+                var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
+                var uv = Vector2(pos_in_sheet.x + 0.5, pos_in_sheet.y + 0.5) / sprite_sheet_size
+                var pixel_opaque = false
                 
-				if x != rect.size.width and y != rect.size.height:
-					color = sprites.get_pixel(pos_in_sheet.x, pos_in_sheet.y)
-					pixel_opaque = (color.a > 0)
+                if x != rect.size.width and y != rect.size.height:
+                    color = sprites.get_pixel(pos_in_sheet.x, pos_in_sheet.y)
+                    pixel_opaque = (color.a > 0)
     
-				if pixel_opaque:
-					if not is_visible:
-						# Changed from invisible to visible, so draw LEFT quad.
-						add_quad(surface_tool, create_left_quad(x, y, front, back), uv)
-						is_visible = true
-				else:
-					if is_visible:
-						# Changed from visible to invisible, so draw RIGHT quad.
-						add_quad(surface_tool, create_right_quad(x, y, front, back), uv)
-						is_visible = false
+                if pixel_opaque:
+                    if not is_visible:
+                        # Changed from invisible to visible, so draw LEFT quad.
+                        add_quad(surface_tool, create_left_quad(x, y, front, back), uv)
+                        is_visible = true
+                else:
+                    if is_visible:
+                        # Changed from visible to invisible, so draw RIGHT quad.
+                        add_quad(surface_tool, create_right_quad(x, y, front, back), uv)
+                        is_visible = false
 
 
-	surface_tool.index() # Convert vertexes into unique vertices + indexes.
-	var mesh = surface_tool.commit()
-	if mesh.get_surface_count() == 1:
-		assert mesh.surface_get_array_len(0) > 0
-		assert mesh.surface_get_array_index_len(0) >= mesh.surface_get_array_len(0)
-		print("num vertexes: ", mesh.surface_get_array_len(0))
-		print("num indexes: ", mesh.surface_get_array_index_len(0))
-		return mesh
-	else:
-		return null
+    surface_tool.index() # Convert vertexes into unique vertices + indexes.
+    var mesh = surface_tool.commit()
+    if mesh.get_surface_count() == 1:
+        assert mesh.surface_get_array_len(0) > 0
+        assert mesh.surface_get_array_index_len(0) >= mesh.surface_get_array_len(0)
+        print("num vertexes: ", mesh.surface_get_array_len(0))
+        print("num indexes: ", mesh.surface_get_array_index_len(0))
+        return mesh
+    else:
+        return null
     
     
 func add_quad(surface_tool, vertices, uv):
-	for vertex in vertices:
-		surface_tool.add_normal(vertex[1])
-		surface_tool.add_uv(uv)
-		surface_tool.add_vertex(vertex[0] / 2)
+    for vertex in vertices:
+        surface_tool.add_normal(vertex[1])
+        surface_tool.add_uv(uv)
+        surface_tool.add_vertex(vertex[0] * PIXEL_SIZE)
