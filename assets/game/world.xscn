@@ -88,6 +88,20 @@
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
+						<string> "Script" </string>
+						<dictionary  shared="false">
+							<string> "current" </string>
+							<int> 4 </int>
+							<string> "sources" </string>
+							<array  len="6" shared="false">
+								<string> "res://mesh_animator.gd" </string>
+								<string> "res://root/tile_data.gd" </string>
+								<string> "res://game/generate_mesh.gd" </string>
+								<string> "res://root/utilities.gd" </string>
+								<string> "res://root/mesh_manager.gd" </string>
+								<string> "res://root/logger.gd" </string>
+							</array>
+						</dictionary>
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "pixel_snap" </string>
@@ -97,7 +111,7 @@
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -1700.48, -597.515 </vector2>
+							<vector2> -1700.48, -630.243 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>

@@ -1,11 +1,20 @@
 extends Spatial
 
 func _ready():
+    var logger = get_node("/root/logger")
+
+    var tile = get_node("/root/tile_data").create("GOO", Vector2(1, 1))
+    logger.debug(tile.type)
+    logger.debug(tile.grid)
+    logger.debug(tile.creates_footprints())
+    logger.debug(tile.uses_transparency())
+    logger.debug(tile.footprints_color())
+
     var mesh_manager = get_node("/root/mesh_manager")
     var player = mesh_manager.new_mesh_object("player")
     var translation = player.get_translation()
     translation.z += 2
-    translation.y += 1.75
+    translation.y += 2
     player.set_translation(translation)
     self.add_child(player)
 

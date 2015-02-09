@@ -1,5 +1,6 @@
 extends Node
 
+
 const PIXELS_PER_METER = 8
 const PIXEL_SIZE = 1.0 / PIXELS_PER_METER
 const FRONT = Vector3(0, 0, 1)
@@ -13,6 +14,11 @@ var _meshes = {}
 var _materials = {}
 var _sprite_sizes = {}
 var _animations = {}
+var logger
+
+
+func _ready():
+    logger = get_node("/root/logger") # Won't exist until we are ready.
 
 
 func _load_sheet(spritesheet):
@@ -53,29 +59,32 @@ func _load_sheet(spritesheet):
         height = 18
     
     _sprite_sizes[spritesheet] = Vector3(texture.get_width() / width, texture.get_height() / height, depth)
-    
+    var tile_data = get_node("/root/tile_data")
+
     for y_offset in range(0, texture.get_height(), height):
         for x_offset in range(0, texture.get_width(), width):
             var create_sides = false
+            var index = meshes.size()
             
             if spritesheet == "tile":
-                pass #create_sides = TileData.get_config_from_index(index, "create_sides") cast bool
+                create_sides = tile_data.get_config_from_index(index, "create_sides")               
             else:
                 create_sides = true
+
             var margin = 1
                 
             var rect = Rect2(x_offset + margin, y_offset + margin, width - margin * 2, height - margin * 2)
             var mesh = create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency, material)
             if mesh == null:
-                print("Skipping spritesheet frame: ", meshes.size())
+                logger.info("Skipping spritesheet frame: %s" % index)
             else:
-                print("Created spritesheet frame: ", meshes.size())
+                logger.info("Created spritesheet frame: %s" % index)
                 #ResourceSaver.save(dir + str(meshes.size()) + ".xml", mesh)
             meshes.append(mesh)
 
     _meshes[spritesheet] = meshes
 
-    print("Created spritesheet: ", spritesheet)
+    logger.info("Created spritesheet: %" % spritesheet)
     
     #load_animation(spritesheet)
     
@@ -228,8 +237,8 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
         front = depth * 0.5
         back = -front
     else:
-        front = 0
-        back = depth
+        front = depth
+        back = 0
     
     var surface_tool = SurfaceTool.new()
     surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -300,8 +309,9 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
     if mesh.get_surface_count() == 1:
         assert mesh.surface_get_array_len(0) > 0
         assert mesh.surface_get_array_index_len(0) >= mesh.surface_get_array_len(0)
-        print("num vertexes: ", mesh.surface_get_array_len(0))
-        print("num indexes: ", mesh.surface_get_array_index_len(0))
+
+        logger.debug("num vertexes: %s" % mesh.surface_get_array_len(0))
+        logger.debug("num indexes: %s" % mesh.surface_get_array_index_len(0))
         return mesh
     else:
         return null

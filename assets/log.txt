@@ -1,0 +1,186 @@
+INFO: Loading TileData config
+DEBUG: GOO
+DEBUG: 1,1
+DEBUG: True
+DEBUG: False
+DEBUG: 0,1,0,1
+DEBUG: num vertexes: 496
+DEBUG: num indexes: 744
+INFO: Created spritesheet frame: 0
+DEBUG: num vertexes: 520
+DEBUG: num indexes: 780
+INFO: Created spritesheet frame: 1
+DEBUG: num vertexes: 472
+DEBUG: num indexes: 708
+INFO: Created spritesheet frame: 2
+DEBUG: num vertexes: 392
+DEBUG: num indexes: 588
+INFO: Created spritesheet frame: 3
+DEBUG: num vertexes: 496
+DEBUG: num indexes: 744
+INFO: Created spritesheet frame: 4
+DEBUG: num vertexes: 520
+DEBUG: num indexes: 780
+INFO: Created spritesheet frame: 5
+DEBUG: num vertexes: 472
+DEBUG: num indexes: 708
+INFO: Created spritesheet frame: 6
+DEBUG: num vertexes: 392
+DEBUG: num indexes: 588
+INFO: Created spritesheet frame: 7
+INFO: Skipping spritesheet frame: 8
+INFO: Skipping spritesheet frame: 9
+INFO: Skipping spritesheet frame: 10
+INFO: Skipping spritesheet frame: 11
+INFO: Skipping spritesheet frame: 12
+INFO: Skipping spritesheet frame: 13
+INFO: Skipping spritesheet frame: 14
+INFO: Skipping spritesheet frame: 15
+DEBUG: num vertexes: 320
+DEBUG: num indexes: 480
+INFO: Created spritesheet frame: 16
+DEBUG: num vertexes: 328
+DEBUG: num indexes: 492
+INFO: Created spritesheet frame: 17
+DEBUG: num vertexes: 336
+DEBUG: num indexes: 504
+INFO: Created spritesheet frame: 18
+DEBUG: num vertexes: 328
+DEBUG: num indexes: 492
+INFO: Created spritesheet frame: 19
+DEBUG: num vertexes: 448
+DEBUG: num indexes: 672
+INFO: Created spritesheet frame: 20
+DEBUG: num vertexes: 376
+DEBUG: num indexes: 564
+INFO: Created spritesheet frame: 21
+DEBUG: num vertexes: 440
+DEBUG: num indexes: 660
+INFO: Created spritesheet frame: 22
+INFO: Skipping spritesheet frame: 23
+DEBUG: num vertexes: 432
+DEBUG: num indexes: 648
+INFO: Created spritesheet frame: 24
+DEBUG: num vertexes: 376
+DEBUG: num indexes: 564
+INFO: Created spritesheet frame: 25
+DEBUG: num vertexes: 416
+DEBUG: num indexes: 624
+INFO: Created spritesheet frame: 26
+DEBUG: num vertexes: 360
+DEBUG: num indexes: 540
+INFO: Created spritesheet frame: 27
+DEBUG: num vertexes: 432
+DEBUG: num indexes: 648
+INFO: Created spritesheet frame: 28
+DEBUG: num vertexes: 448
+DEBUG: num indexes: 672
+INFO: Created spritesheet frame: 29
+DEBUG: num vertexes: 416
+DEBUG: num indexes: 624
+INFO: Created spritesheet frame: 30
+DEBUG: num vertexes: 440
+DEBUG: num indexes: 660
+INFO: Created spritesheet frame: 31
+DEBUG: num vertexes: 352
+DEBUG: num indexes: 528
+INFO: Created spritesheet frame: 32
+DEBUG: num vertexes: 408
+DEBUG: num indexes: 612
+INFO: Created spritesheet frame: 33
+DEBUG: num vertexes: 600
+DEBUG: num indexes: 900
+INFO: Created spritesheet frame: 34
+DEBUG: num vertexes: 296
+DEBUG: num indexes: 444
+INFO: Created spritesheet frame: 35
+DEBUG: num vertexes: 352
+DEBUG: num indexes: 528
+INFO: Created spritesheet frame: 36
+DEBUG: num vertexes: 280
+DEBUG: num indexes: 420
+INFO: Created spritesheet frame: 37
+INFO: Skipping spritesheet frame: 38
+INFO: Skipping spritesheet frame: 39
+INFO: 
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 0
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 1
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 2
+DEBUG: num vertexes: 32
+DEBUG: num indexes: 48
+INFO: Created spritesheet frame: 3
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 4
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 5
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 6
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 7
+DEBUG: num vertexes: 240
+DEBUG: num indexes: 360
+INFO: Created spritesheet frame: 8
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 9
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 10
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 11
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 12
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 13
+DEBUG: num vertexes: 288
+DEBUG: num indexes: 432
+INFO: Created spritesheet frame: 14
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 15
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 16
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 17
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 18
+DEBUG: num vertexes: 192
+DEBUG: num indexes: 288
+INFO: Created spritesheet frame: 19
+DEBUG: num vertexes: 80
+DEBUG: num indexes: 120
+INFO: Created spritesheet frame: 20
+DEBUG: num vertexes: 80
+DEBUG: num indexes: 120
+INFO: Created spritesheet frame: 21
+DEBUG: num vertexes: 136
+DEBUG: num indexes: 204
+INFO: Created spritesheet frame: 22
+DEBUG: num vertexes: 136
+DEBUG: num indexes: 204
+INFO: Created spritesheet frame: 23
+INFO: Skipping spritesheet frame: 24
+INFO: Skipping spritesheet frame: 25
+INFO: Skipping spritesheet frame: 26
+INFO: Skipping spritesheet frame: 27
+INFO: Skipping spritesheet frame: 28
+INFO: Skipping spritesheet frame: 29
+INFO: Skipping spritesheet frame: 30
+INFO: Skipping spritesheet frame: 31
+INFO: 
