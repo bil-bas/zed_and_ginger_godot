@@ -16,7 +16,7 @@ func _ready():
 
 func debug(text):
     if level <= LEVEL_DEBUG:
-    	_write("DEBUG", text)
+        _write("DEBUG", text)
 
 func info(text):
     if level <= LEVEL_INFO:

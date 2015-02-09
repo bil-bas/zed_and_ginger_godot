@@ -2,3 +2,5 @@ favourites.cfg
 export
 .fscache
 .tmp
+level.json
+log.txt

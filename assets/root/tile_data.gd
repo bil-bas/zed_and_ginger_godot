@@ -26,7 +26,7 @@ class Tile:
         self.type = type
         self.grid = grid
        
-    func type_index():
+    func index():
         return types[type]["index"]
 
     func uses_transparency():
@@ -47,10 +47,13 @@ class Tile:
     func footprints_color():
         return types[type]["footprints_color"]
 
+    func to_data():
+        return { "type": type, "grid": [grid.x, grid.y] }
+
 
 func create(type, grid):
     return Tile.new(type, grid, TYPES)
-
+    
 
 func get_config_from_index(index, key):
     if not index in INDEX_TO_NAME:
@@ -63,7 +66,7 @@ func _ready():
     var logger = get_node("/root/logger")
     logger.info("Loading TileData config")
 
-    TYPES = get_node("/root/utilities").load_json("config/tiles")
+    TYPES = get_node("/root/utilities").load_json("res://config/tiles.json")
 
     var default = TYPES["_default"]
 
