@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+<resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://generate_mesh.gd" type="Script"></ext_resource>
+	<resource type="GDScript" path="local://1">
+		<string name="script/source"> "func _ready():&#000a;    set_viewport_path(&quot;../Viewport&quot;)&#000a;" </string>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="53">
+			<string_array  len="65">
 				<string> "World" </string>
 				<string> "Spatial" </string>
 				<string> "_import_path" </string>
 				<string> "_import_transform" </string>
 				<string> "visibility/visible" </string>
 				<string> "__meta__" </string>
+				<string> "Viewport" </string>
+				<string> "rect" </string>
+				<string> "own_world" </string>
+				<string> "world" </string>
+				<string> "transparent_bg" </string>
+				<string> "render_target/enabled" </string>
+				<string> "render_target/v_flip" </string>
+				<string> "render_target/filter" </string>
+				<string> "render_target/gen_mipmaps" </string>
+				<string> "render_target/update_mode" </string>
+				<string> "audio_listener/enable_2d" </string>
+				<string> "audio_listener/enable_3d" </string>
+				<string> "physics/object_picking" </string>
 				<string> "Camera" </string>
 				<string> "transform/local" </string>
 				<string> "projection" </string>
@@ -23,21 +40,8 @@
 				<string> "environment" </string>
 				<string> "h_offset" </string>
 				<string> "v_offset" </string>
-				<string> "TestCube" </string>
-				<string> "layers" </string>
-				<string> "geometry/visible" </string>
-				<string> "geometry/material_override" </string>
-				<string> "geometry/cast_shadow" </string>
-				<string> "geometry/receive_shadows" </string>
-				<string> "geometry/range_begin" </string>
-				<string> "geometry/range_end" </string>
-				<string> "geometry/billboard" </string>
-				<string> "geometry/billboard_y" </string>
-				<string> "geometry/depth_scale" </string>
-				<string> "geometry/visible_in_all_rooms" </string>
-				<string> "geometry/use_baked_light" </string>
-				<string> "geometry/baked_light_tex_id" </string>
 				<string> "DirectionalLight" </string>
+				<string> "layers" </string>
 				<string> "params/enabled" </string>
 				<string> "params/editor_only" </string>
 				<string> "params/bake_mode" </string>
@@ -58,15 +62,27 @@
 				<string> "shadow/zoffset_scale" </string>
 				<string> "Mesh Generator" </string>
 				<string> "script/script" </string>
+				<string> "ViewportSprite" </string>
+				<string> "visibility/opacity" </string>
+				<string> "visibility/self_opacity" </string>
+				<string> "transform/pos" </string>
+				<string> "transform/rot" </string>
+				<string> "transform/scale" </string>
+				<string> "z/z" </string>
+				<string> "z/relative" </string>
+				<string> "viewport" </string>
+				<string> "centered" </string>
+				<string> "offset" </string>
+				<string> "modulate" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 5 </int>
+			<int> 6 </int>
 			<string> "variants" </string>
-			<array  len="22" shared="false">
+			<array  len="27" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
@@ -76,11 +92,12 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 0 </int>
+							<int> 2 </int>
 							<string> "sources" </string>
-							<array  len="2" shared="false">
+							<array  len="3" shared="false">
 								<string> "res://generate_mesh.gd" </string>
 								<string> "res://mesh_animator.gd" </string>
+								<node_path> "/root/EditorNode/@Panel3/@VBoxContainer6/@HSplitContainer8/@VSplitContainer9/@VSplitContainer10/@VBoxContainer11/@Panel16/@Control18/@CanvasItemEditor5850/@VSplitContainer5804/@HSplitContainer5805/@Control5806/@Control5807/@Viewport5808/World/ViewportSprite" </node_path>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
@@ -92,7 +109,7 @@
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -1700.48, -597.515 </vector2>
+							<vector2> -800, -597.515 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -199,26 +216,31 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 </transform>
+				<rect2> 0, 0, 800, 600 </rect2>
+				<bool> False </bool>
+				<resource name=""></resource>				<int> 2 </int>
+				<transform> 0.996195, 0, -0.0871557, 0.00759612, 0.996195, 0.0868241, 0.0868241, -0.0871557, 0.992404, 0, 2, 9 </transform>
 				<int> 0 </int>
 				<real> 60 </real>
 				<real> 0.1 </real>
 				<real> 100 </real>
 				<int> 1 </int>
-				<bool> False </bool>
 				<int> 1048575 </int>
-				<resource name=""></resource>				<real> 0 </real>
-				<transform> 0.5, -0.5, 0.707107, 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0, 0, -10 </transform>
-				<transform> 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5, 10, 20 </transform>
+				<real> 0 </real>
+				<transform> 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0.5, -0.5, 0.707107, -5, 10, 20 </transform>
 				<real> 1 </real>
 				<color> 1, 1, 1, 1 </color>
 				<real> 0.05 </real>
 				<real> 0.5 </real>
 				<real> 2 </real>
 				<resource  resource_type="Script" path="res://generate_mesh.gd">  </resource>
+				<vector2> 400, 300 </vector2>
+				<vector2> 1, 1 </vector2>
+				<vector2> 0, 0 </vector2>
+				<resource  resource_type="Script" path="local://1">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="159"> 				-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 0, 0, 6, 6, -1, 14, 2, 0, 3, 1, 7, 4, 4, 2, 8, 5, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 12, 16, 13, 17, 13, 0, 0, 0, 18, 18, -1, 17, 2, 0, 3, 1, 7, 14, 4, 2, 19, 9, 20, 2, 21, 12, 22, 2, 23, 2, 24, 13, 25, 13, 26, 10, 27, 10, 28, 10, 29, 10, 30, 10, 31, 5, 0, 0, 0, 32, 32, -1, 23, 2, 0, 3, 1, 7, 15, 4, 2, 19, 9, 33, 2, 34, 10, 35, 5, 36, 16, 37, 17, 38, 17, 39, 10, 40, 13, 41, 18, 42, 13, 43, 6, 44, 16, 45, 12, 46, 5, 47, 5, 48, 13, 49, 19, 50, 20, 0, 0, 0, 1, 51, -1, 4, 2, 0, 3, 1, 4, 2, 52, 21, 0 </int_array>
+			<int_array  len="186"> 				-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 0, 0, 6, 6, -1, 13, 2, 0, 7, 4, 8, 5, 9, 6, 10, 2, 11, 2, 12, 5, 13, 5, 14, 5, 15, 7, 16, 5, 17, 5, 18, 5, 0, 1, 0, 19, 19, -1, 14, 2, 0, 3, 1, 20, 8, 4, 2, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 2, 27, 14, 28, 6, 29, 15, 30, 15, 0, 1, 0, 31, 31, -1, 23, 2, 0, 3, 1, 20, 16, 4, 2, 32, 13, 33, 2, 34, 5, 35, 9, 36, 17, 37, 18, 38, 18, 39, 2, 40, 15, 41, 19, 42, 15, 43, 10, 44, 17, 45, 6, 46, 9, 47, 13, 48, 15, 49, 20, 50, 21, 0, 1, 0, 1, 51, -1, 4, 2, 0, 3, 1, 4, 2, 52, 22, 0, 0, 0, 53, 53, -1, 14, 2, 0, 4, 2, 54, 17, 55, 17, 56, 23, 57, 15, 58, 24, 59, 9, 60, 2, 61, 0, 62, 2, 63, 25, 64, 18, 52, 26, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
