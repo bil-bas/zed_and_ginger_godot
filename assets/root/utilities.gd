@@ -15,5 +15,5 @@ func load_json(name):
 func save_json(name, data):
     var json = File.new()
     json.open(name, File.WRITE)
-    json.store_line(data.to_json())
+    json.store_string(data.to_json())
     json.close()
