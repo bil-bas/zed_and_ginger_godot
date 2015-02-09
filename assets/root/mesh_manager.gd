@@ -1,3 +1,4 @@
+extends Node
 
 const PIXELS_PER_METER = 8
 const PIXEL_SIZE = 1.0 / PIXELS_PER_METER
@@ -12,31 +13,6 @@ var _meshes = {}
 var _materials = {}
 var _sprite_sizes = {}
 var _animations = {}
-
-
-func _ready():
-    var player = new_mesh_object("player")
-    var translation = player.get_translation()
-    translation.z += 2
-    translation.y += 1.75
-    player.set_translation(translation)
-    self.add_child(player)
-
-    for j in range(20):
-        # Floor
-        for i in range(5):
-            var tile = new_mesh_object("tile", i)
-            tile.set_translation(Vector3(j * 8 * PIXEL_SIZE, i * 8 * PIXEL_SIZE, 0))
-            add_child(tile)
-
-        # Wall
-        for i in range(5):
-            var tile = new_mesh_object("tile", i)
-            tile.set_translation(Vector3(j * 8 * PIXEL_SIZE, 0, i * 8 * PIXEL_SIZE))
-            var rotation = tile.get_rotation()
-            rotation.x -= PI / 2
-            tile.set_rotation(rotation)
-            add_child(tile)
 
 
 func _load_sheet(spritesheet):
