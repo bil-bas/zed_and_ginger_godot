@@ -18,6 +18,8 @@ func _ready():
 
     generate_tiles()
 
+    create_flytrap()
+
 
 func restore():
     logger.info("Loading level")
@@ -70,6 +72,20 @@ func generate_tiles():
         rotation.x -= PI / 2
         tile.set_rotation(rotation)
         add_child(tile)
+
+
+
+func create_flytrap():
+    var mesh_manager = get_node("/root/mesh_manager")
+    var flytrap = mesh_manager.new_mesh_object("flytrap")
+    add_child(flytrap)
+
+    flytrap.get_node("MeshInstance").animation = "swallowing"
+
+    var translation = flytrap.get_translation()
+    translation.z += 2.5
+    translation.y += 1.75
+    flytrap.set_translation(translation)
 
 
 func save():

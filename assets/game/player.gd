@@ -15,16 +15,20 @@ const GRAVITY = -9.81
 
 
 func _ready():
+    create_player()
+    set_fixed_process(true)
+
+
+func create_player():
     var mesh_manager = get_node("/root/mesh_manager")
     player = mesh_manager.new_mesh_object("player")
-    self.add_child(player)
+    add_child(player)
 
     player.get_node("MeshInstance").animation = "walking"
     var translation = player.get_translation()
     translation.z += 2.5
     translation.y += 2
     player.set_translation(translation)
-    set_fixed_process(true)
 
 
 func _fixed_process(delta):
