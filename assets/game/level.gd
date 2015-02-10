@@ -76,6 +76,7 @@ func generate_tiles():
 
 
 func create_flytrap():
+    # Swallower
     var mesh_manager = get_node("/root/mesh_manager")
     var flytrap = mesh_manager.new_mesh_object("flytrap")
     add_child(flytrap)
@@ -86,6 +87,23 @@ func create_flytrap():
     translation.z += 2.5
     translation.y += 1.75
     flytrap.set_translation(translation)
+
+    # Sleeper
+    var flytrap = mesh_manager.new_mesh_object("flytrap")
+    add_child(flytrap)
+
+    flytrap.get_node("MeshInstance").animation = "inactive"
+
+    var translation = flytrap.get_translation()
+    translation.z += 2.5
+    translation.y += 0
+    translation.x += 5
+    flytrap.set_translation(translation)
+    var rotation = flytrap.get_rotation()
+    rotation.x -= PI / 2
+    flytrap.set_rotation(rotation)
+    add_child(flytrap)
+
 
 
 func save():
