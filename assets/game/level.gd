@@ -62,12 +62,12 @@ func generate_tiles():
         add_child(tile)
    
     for floor_tile in floor_tiles:
-       var tile = mesh_manager.new_mesh_object("tile", floor_tile.index())
-       tile.set_translation(Vector3(floor_tile.grid.x * scale, 0, floor_tile.grid.y * scale))
-       var rotation = tile.get_rotation()
-       rotation.x -= PI / 2
-       tile.set_rotation(rotation)
-       add_child(tile)
+        var tile = mesh_manager.new_mesh_object("tile", floor_tile.index())
+        tile.set_translation(Vector3(floor_tile.grid.x * scale, 0, floor_tile.grid.y * scale))
+        var rotation = tile.get_rotation()
+        rotation.x -= PI / 2
+        tile.set_rotation(rotation)
+        add_child(tile)
 
 
 func save():
