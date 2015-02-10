@@ -5,19 +5,18 @@ class Animation:
     var frame_indices = []
     var frame_durations = []
 
-    var type setget , get_type
-    func get_type():
-        return type
+    var name setget , get_name
+    func get_name():
+        return name
 
     func size():
         return frame_indices.size()
 
-    func init(type, frames):
-        self.type = type
-
+    func _init(name, frames):
+        self.name = name
         for frame in frames:
-            frame_indices.append(frame[0])
-            frame_durations.append(frame[1])
+            frame_indices.append(int(frame["tile"]))
+            frame_durations.append(frame["duration"])
 
     func frame_index(index):
         return frame_indices[index]
@@ -27,7 +26,7 @@ class Animation:
 
 
 var index
-var direction
+var anim_index
 
 
 var meshes = [] setget set_meshes
@@ -36,62 +35,61 @@ func set_meshes(value):
     self.frame = 0
 
 
-var animation = [] setget set_animation, get_animation
+var animation setget set_animation, get_animation
 func get_animation():
-    return animation
-
+    return animation.name
 func set_animation(value):
-    if value == animation:
+    if typeof(animation) == typeof(""):
+        animation = null
+
+    # Don't do anything if repeating same animation.
+    if animation != null and value == animation.name:
         return
-    animation = value
-    if animation != null:
-        if animation.type == "bounce":
-            animate_bounce()
-        elif animation.type == "loop":
-            animate_loop()
-        elif animation.type == "static":
-            self.frame = animation.frame_index(0)
+
+    assert(value in animations)
+    stop()
+
+    animation = animations[value]
+    if animation.size() == 1:
+        self.frame = animation.frame_index(0)
+    else:
+        anim_index = 0
+        _on_animate()
 
 
 var animations = {} setget set_animations
 func set_animations(value):
-    animations = value
+    for name in value:
+        animations[name] = Animation.new(name, value[name])
 
 
 var frame = -1 setget set_frame, get_frame
 func get_frame():
     return frame
-
 func set_frame(value):
     frame = value
     set_mesh(meshes[frame])
 
 
-func _ready():
-    frame = -1
+func stop():
+    var timer = get_child("Timer")
+    if timer != null:
+        timer.stop()
 
 
-func animate_loop():
-    index = 0
+func _on_animate():
+    var timer = get_child("Timer")
+    if timer == null:
+        timer = Timer.new()
+        add_child(timer)
+        timer.set_one_shot(false)
+        timer.connect("timeout", self, "_on_animate")
 
-    while true:
-        self.frame = animation.frame_index(index)
-        yield()# WaitForSeconds(animation.frame_duration(index))
-        index = (index + 1) % animation.size()
+    self.frame = animation.frame_index(anim_index)
 
+    var timer = get_child("Timer")
+    timer.set_wait_time(animation.frame_duration(anim_index))
+    timer.start()
 
-func animate_bounce():
-    index = 0
-    direction = 1
+    anim_index = (anim_index + 1) % animation.size()
 
-    while true:
-        self.frame = animation.frame_index(index)
-        yield()# WaitForSeconds(animation.frame_duration(index))
-
-        index += direction
-        if index == animation.size():
-            direction = -1
-            index -= 2
-        elif index == -1:
-            direction = 1
-            index = 1

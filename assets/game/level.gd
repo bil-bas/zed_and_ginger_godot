@@ -3,7 +3,7 @@ extends Spatial
 var floor_tiles = []
 var wall_tiles = []
 var name = "MyLevel"
-var filename = "res://level.json"
+var filename = "res://levels/level0.json"
 var logger
 
 
@@ -57,12 +57,14 @@ func generate_tiles():
     var scale = 8 * mesh_manager.PIXEL_SIZE
 
     for wall_tile in wall_tiles:
-        var tile = mesh_manager.new_mesh_object("tile", wall_tile.index())
+        var tile = mesh_manager.new_mesh_object("tile")
+        tile.get_node("MeshInstance").animation = wall_tile.type
         tile.set_translation(Vector3(wall_tile.grid.x * scale, (wall_tile.grid.y + 1) * scale, 0))
         add_child(tile)
    
     for floor_tile in floor_tiles:
-        var tile = mesh_manager.new_mesh_object("tile", floor_tile.index())
+        var tile = mesh_manager.new_mesh_object("tile")
+        tile.get_node("MeshInstance").animation = floor_tile.type
         tile.set_translation(Vector3(floor_tile.grid.x * scale, 0, floor_tile.grid.y * scale))
         var rotation = tile.get_rotation()
         rotation.x -= PI / 2
@@ -80,8 +82,6 @@ func save():
 
     for wall_tile in wall_tiles:
         data["wall_tiles"].append(wall_tile.to_data())
-
-    logger.debug(data)
 
     get_node("/root/utilities").save_json(filename, data)
     

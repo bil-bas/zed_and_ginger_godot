@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 1.530298 </real>
 		<real name="height"> 1 </real>
@@ -14,7 +14,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="79">
+			<string_array  len="83">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -82,6 +82,10 @@
 				<string> "shape" </string>
 				<string> "trigger" </string>
 				<string> "Level" </string>
+				<string> "Timer" </string>
+				<string> "wait_time" </string>
+				<string> "one_shot" </string>
+				<string> "autostart" </string>
 				<string> "ViewportSprite" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
@@ -100,28 +104,13 @@
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 9 </int>
+			<int> 10 </int>
 			<string> "variants" </string>
 			<array  len="30" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
-						<string> "Script" </string>
-						<dictionary  shared="false">
-							<string> "current" </string>
-							<int> 5 </int>
-							<string> "sources" </string>
-							<array  len="7" shared="false">
-								<string> "res://mesh_animator.gd" </string>
-								<string> "res://root/tile_data.gd" </string>
-								<string> "res://root/utilities.gd" </string>
-								<string> "res://root/mesh_manager.gd" </string>
-								<string> "res://root/logger.gd" </string>
-								<string> "res://game/level.gd" </string>
-								<string> "res://game/player.gd" </string>
-							</array>
-						</dictionary>
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "pixel_snap" </string>
@@ -267,7 +256,7 @@
 				<resource  resource_type="Script" path="local://2">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="245"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 3, 11, 3, 12, 3, 13, 6, 14, 3, 15, 3, 16, 3, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 5, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 5, 27, 14, 28, 4, 29, 15, 30, 15, 0, 1, 0, 31, 31, -1, 23, 2, 0, 18, 7, 19, 16, 20, 5, 32, 13, 33, 5, 34, 3, 35, 9, 36, 17, 37, 18, 38, 18, 39, 5, 40, 15, 41, 19, 42, 15, 43, 10, 44, 17, 45, 4, 46, 9, 47, 13, 48, 15, 49, 20, 50, 21, 0, 1, 0, 52, 51, -1, 4, 2, 0, 18, 7, 20, 5, 53, 22, 0, 4, 0, 54, 54, -1, 12, 2, 0, 18, 7, 20, 5, 55, 5, 56, 3, 57, 9, 32, 13, 58, 5, 59, 5, 60, 5, 61, 5, 62, 23, 0, 4, 0, 63, 63, -1, 5, 2, 0, 18, 7, 20, 5, 64, 24, 65, 3, 0, 1, 0, 52, 66, -1, 4, 2, 0, 18, 7, 20, 5, 53, 25, 0, 0, 0, 67, 67, -1, 14, 2, 0, 20, 5, 68, 17, 69, 17, 70, 26, 71, 15, 72, 27, 73, 9, 74, 5, 75, 0, 76, 5, 77, 28, 78, 18, 53, 29, 0 </int_array>
+			<int_array  len="260"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 3, 11, 3, 12, 3, 13, 6, 14, 3, 15, 3, 16, 3, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 5, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 5, 27, 14, 28, 4, 29, 15, 30, 15, 0, 1, 0, 31, 31, -1, 23, 2, 0, 18, 7, 19, 16, 20, 5, 32, 13, 33, 5, 34, 3, 35, 9, 36, 17, 37, 18, 38, 18, 39, 5, 40, 15, 41, 19, 42, 15, 43, 10, 44, 17, 45, 4, 46, 9, 47, 13, 48, 15, 49, 20, 50, 21, 0, 1, 0, 52, 51, -1, 4, 2, 0, 18, 7, 20, 5, 53, 22, 0, 4, 0, 54, 54, -1, 12, 2, 0, 18, 7, 20, 5, 55, 5, 56, 3, 57, 9, 32, 13, 58, 5, 59, 5, 60, 5, 61, 5, 62, 23, 0, 4, 0, 63, 63, -1, 5, 2, 0, 18, 7, 20, 5, 64, 24, 65, 3, 0, 1, 0, 52, 66, -1, 4, 2, 0, 18, 7, 20, 5, 53, 25, 0, 7, 0, 67, 67, -1, 4, 2, 0, 68, 17, 69, 3, 70, 3, 0, 0, 0, 71, 71, -1, 14, 2, 0, 20, 5, 72, 17, 73, 17, 74, 26, 75, 15, 76, 27, 77, 9, 78, 5, 79, 0, 80, 5, 81, 28, 82, 18, 53, 29, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

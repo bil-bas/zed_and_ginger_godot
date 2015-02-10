@@ -13,7 +13,7 @@ const BOTTOM = Vector3(0, -1, 0)
 var _meshes = {}
 var _materials = {}
 var _sprite_sizes = {}
-var _animations = {}
+var _metadata = {}
 var logger
 
 
@@ -36,7 +36,7 @@ func _load_sheet(spritesheet):
         is_centered = true
 
     # Load the sprites themselves and create meshes from them.
-    var texture = load("res://atlases/" + spritesheet + ".png")
+    var texture = load("res://atlases/%s.png" % spritesheet)
 
     # Create a material for all meshes created from the spritesheet
     var material = FixedMaterial.new()
@@ -45,21 +45,18 @@ func _load_sheet(spritesheet):
 
     var sprites = texture.get_data()
     
-    var meshes = []
-    var dir = "res://voxels/" + spritesheet + "/"
-    Directory.new().make_dir_recursive(dir)
-
-    var width
-    var height
-    if spritesheet == "tile":
-        width = 10
-        height = 10
-    else:
-        width = 18
-        height = 18
+    # Read metadata.
+    _metadata[spritesheet] = get_node("/root/utilities").load_json("res://atlases/%s.json" % spritesheet)
+    var width = _metadata[spritesheet]["tile_size"][0]
+    var height = _metadata[spritesheet]["tile_size"][1]
     
     _sprite_sizes[spritesheet] = Vector3(texture.get_width() / width, texture.get_height() / height, depth)
     var tile_data = get_node("/root/tile_data")
+
+    # Create save data.
+    var meshes = []
+    var dir = "res://voxels/%s/" % spritesheet
+    Directory.new().make_dir_recursive(dir)
 
     for y_offset in range(0, texture.get_height(), height):
         for x_offset in range(0, texture.get_width(), width):
@@ -67,7 +64,7 @@ func _load_sheet(spritesheet):
             var index = meshes.size()
             
             if spritesheet == "tile":
-                create_sides = tile_data.get_config_from_index(index, "create_sides")               
+                create_sides = tile_data.get_config_from_index(index, "create_sides")
             else:
                 create_sides = true
 
@@ -127,6 +124,7 @@ func new_mesh_object(spritesheet, index=0):
     var mesh_instance = obj.get_node("MeshInstance")
     mesh_instance.meshes = _meshes[spritesheet]
     mesh_instance.frame = index
+    mesh_instance.animations = _metadata[spritesheet]["animations"]
 
     var is_centered = (spritesheet != "tile")
 

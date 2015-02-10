@@ -25,9 +25,6 @@ class Tile:
         self.types = types
         self.type = type
         self.grid = grid
-       
-    func index():
-        return types[type]["index"]
 
     func uses_transparency():
         return types[type]["uses_transparency"]
@@ -58,15 +55,18 @@ func create(type, grid):
 func get_config_from_index(index, key):
     if not index in INDEX_TO_NAME:
        index = 0
-    var type = TYPES[INDEX_TO_NAME[index]]
+
+    var type = TYPES[INDEX_TO_NAME[int(index)]]
     return type[key]
 
 
 func _ready():
     var logger = get_node("/root/logger")
+    var utilities = get_node("/root/utilities")
+
     logger.info("Loading TileData config")
 
-    TYPES = get_node("/root/utilities").load_json("res://config/tiles.json")
+    TYPES = utilities.load_json("res://config/tiles.json")
 
     var default = TYPES["_default"]
 
@@ -80,8 +80,10 @@ func _ready():
 
         var footprints = TYPES[type]["footprints_color"]
         if footprints != null:
-            TYPES[type]["footprints_color"] = Color(footprints[0], footprints[1], footprints[2])
+            TYPES[type]["footprints_color"] = Color(footprints[0], footprints[1], footprints[2])  
 
     # Fill dict for reverse lookup.
-    for type in TYPES:
-        INDEX_TO_NAME[int(TYPES[type]["index"])] = type
+    var animations = utilities.load_json("res://atlases/tile.json")["animations"]
+    for type in animations:
+        var frame = animations[type][0]
+        INDEX_TO_NAME[int(frame["tile"])] = type

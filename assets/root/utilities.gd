@@ -3,6 +3,7 @@ extends Node
 
 func load_json(name):
     var json = File.new()
+    assert(json.file_exists(name))
     json.open(name, File.READ)
     var data = {}
     var status = data.parse_json(json.get_as_text())
