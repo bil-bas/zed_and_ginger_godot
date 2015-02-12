@@ -1,98 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
-	<resource type="GDScript" path="local://1">
-		<string name="script/source"> "func _ready():&#000a;    set_viewport_path(&quot;../Viewport&quot;)&#000a;" </string>
+	<ext_resource path="res://mesh_animator.gd" type="Script"></ext_resource>
+	<resource type="CapsuleShape" path="local://1">
+		<real name="radius"> 0.5 </real>
+		<real name="height"> 1 </real>
 
 	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="74">
-				<string> "World" </string>
-				<string> "Node" </string>
+			<string_array  len="46">
+				<string> "ProceduralPlayerMesh" </string>
+				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
-				<string> "__meta__" </string>
-				<string> "Viewport" </string>
-				<string> "rect" </string>
-				<string> "own_world" </string>
-				<string> "world" </string>
-				<string> "transparent_bg" </string>
-				<string> "render_target/enabled" </string>
-				<string> "render_target/v_flip" </string>
-				<string> "render_target/filter" </string>
-				<string> "render_target/gen_mipmaps" </string>
-				<string> "render_target/update_mode" </string>
-				<string> "audio_listener/enable_2d" </string>
-				<string> "audio_listener/enable_3d" </string>
-				<string> "physics/object_picking" </string>
-				<string> "Camera" </string>
 				<string> "_import_transform" </string>
-				<string> "transform/local" </string>
 				<string> "visibility/visible" </string>
-				<string> "projection" </string>
-				<string> "fov" </string>
-				<string> "near" </string>
-				<string> "far" </string>
-				<string> "keep_aspect" </string>
-				<string> "current" </string>
-				<string> "visible_layers" </string>
-				<string> "environment" </string>
-				<string> "h_offset" </string>
-				<string> "v_offset" </string>
-				<string> "DirectionalLight" </string>
-				<string> "layers" </string>
-				<string> "params/enabled" </string>
-				<string> "params/editor_only" </string>
-				<string> "params/bake_mode" </string>
-				<string> "params/energy" </string>
-				<string> "colors/diffuse" </string>
-				<string> "colors/specular" </string>
-				<string> "shadow/shadow" </string>
-				<string> "shadow/darkening" </string>
-				<string> "shadow/z_offset" </string>
-				<string> "shadow/z_slope_scale" </string>
-				<string> "shadow/esm_multiplier" </string>
-				<string> "shadow/blur_passes" </string>
-				<string> "projector" </string>
-				<string> "operator" </string>
-				<string> "shadow/mode" </string>
-				<string> "shadow/max_distance" </string>
-				<string> "shadow/split_weight" </string>
-				<string> "shadow/zoffset_scale" </string>
-				<string> "Level" </string>
-				<string> "Spatial" </string>
-				<string> "script/script" </string>
-				<string> "ViewportSprite" </string>
-				<string> "visibility/opacity" </string>
-				<string> "visibility/self_opacity" </string>
-				<string> "transform/pos" </string>
-				<string> "transform/rot" </string>
-				<string> "transform/scale" </string>
-				<string> "z/z" </string>
-				<string> "z/relative" </string>
-				<string> "viewport" </string>
-				<string> "centered" </string>
-				<string> "offset" </string>
-				<string> "modulate" </string>
-				<string> "StaticBody" </string>
 				<string> "input/ray_pickable" </string>
 				<string> "input/capture_on_drag" </string>
 				<string> "shape_count" </string>
+				<string> "shapes/0/shape" </string>
+				<string> "shapes/0/transform" </string>
+				<string> "shapes/0/trigger" </string>
+				<string> "layers" </string>
+				<string> "mode" </string>
+				<string> "mass" </string>
 				<string> "friction" </string>
 				<string> "bounce" </string>
-				<string> "constant_linear_velocity" </string>
-				<string> "constant_angular_velocity" </string>
+				<string> "custom_integrator" </string>
+				<string> "continuous_cd" </string>
+				<string> "contacts_reported" </string>
+				<string> "contact_monitor" </string>
+				<string> "sleeping" </string>
+				<string> "can_sleep" </string>
+				<string> "axis_lock" </string>
+				<string> "velocity/linear" </string>
+				<string> "velocity/angular" </string>
+				<string> "__meta__" </string>
+				<string> "MeshInstance" </string>
+				<string> "geometry/visible" </string>
+				<string> "geometry/material_override" </string>
+				<string> "geometry/cast_shadow" </string>
+				<string> "geometry/receive_shadows" </string>
+				<string> "geometry/range_begin" </string>
+				<string> "geometry/range_end" </string>
+				<string> "geometry/billboard" </string>
+				<string> "geometry/billboard_y" </string>
+				<string> "geometry/depth_scale" </string>
+				<string> "geometry/visible_in_all_rooms" </string>
+				<string> "geometry/use_baked_light" </string>
+				<string> "geometry/baked_light_tex_id" </string>
+				<string> "mesh/mesh" </string>
+				<string> "mesh/skeleton" </string>
+				<string> "script/script" </string>
+				<string> "CollisionShape" </string>
+				<string> "transform/local" </string>
+				<string> "shape" </string>
+				<string> "trigger" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 7 </int>
+			<int> 3 </int>
 			<string> "variants" </string>
-			<array  len="28" shared="false">
+			<array  len="17" shared="false">
 				<node_path> "" </node_path>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
+				<bool> True </bool>
+				<bool> False </bool>
+				<int> 1 </int>
+				<resource  resource_type="Shape" path="local://1">  </resource>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 </transform>
+				<int> 2 </int>
+				<real> 1 </real>
+				<real> 0 </real>
+				<int> 3 </int>
+				<int> 0 </int>
+				<vector3> 0, 0, 0 </vector3>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -105,7 +90,7 @@
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -800, -600 </vector2>
+							<vector2> -800, -597.515 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -121,7 +106,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 63.872696 </real>
+									<real> 6.347497 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -187,9 +172,9 @@
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
 							<string> "default_light" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
-							<color> 0.424084, 0.423605, 0.424922, 1 </color>
+							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
 							<string> "show_origin" </string>
@@ -212,34 +197,11 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
-				<rect2> 0, 0, 800, 600 </rect2>
-				<bool> False </bool>
-				<resource name=""></resource>				<bool> True </bool>
-				<int> 2 </int>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-				<transform> 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 5, 2, 9 </transform>
-				<int> 0 </int>
-				<real> 60 </real>
-				<real> 0.1 </real>
-				<real> 100 </real>
-				<int> 1 </int>
-				<int> 1048575 </int>
-				<real> 0 </real>
-				<transform> 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0.5, -0.5, 0.707107, -5, 10, 20 </transform>
-				<real> 1 </real>
-				<color> 1, 1, 1, 1 </color>
-				<real> 0.05 </real>
-				<real> 0.5 </real>
-				<real> 2 </real>
-				<resource  resource_type="Script" path="res://game/level.gd">  </resource>
-				<vector2> 400, 300 </vector2>
-				<vector2> 1, 1 </vector2>
-				<vector2> 0, 0 </vector2>
-				<resource  resource_type="Script" path="local://1">  </resource>
-				<vector3> 0, 0, 0 </vector3>
+				<resource name=""></resource>				<node_path> ".." </node_path>
+				<resource  resource_type="Script" path="res://mesh_animator.gd">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="211"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 3, 11, 3, 12, 3, 13, 6, 14, 3, 15, 3, 16, 3, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 5, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 5, 27, 14, 28, 4, 29, 15, 30, 15, 0, 1, 0, 31, 31, -1, 23, 2, 0, 18, 7, 19, 16, 20, 5, 32, 13, 33, 5, 34, 3, 35, 9, 36, 17, 37, 18, 38, 18, 39, 5, 40, 15, 41, 19, 42, 15, 43, 10, 44, 17, 45, 4, 46, 9, 47, 13, 48, 15, 49, 20, 50, 21, 0, 1, 0, 52, 51, -1, 4, 2, 0, 18, 7, 20, 5, 53, 22, 0, 0, 0, 54, 54, -1, 14, 2, 0, 20, 5, 55, 17, 56, 17, 57, 23, 58, 15, 59, 24, 60, 9, 61, 5, 62, 0, 63, 5, 64, 25, 65, 18, 53, 26, 0, 0, 0, 66, 66, -1, 11, 2, 0, 18, 7, 20, 5, 67, 5, 68, 3, 69, 9, 32, 13, 70, 17, 71, 15, 72, 27, 73, 27, 0 </int_array>
+			<int_array  len="119"> 				-1, -1, 1, 0, -1, 24, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 7, 13, 8, 14, 8, 15, 9, 16, 3, 17, 3, 18, 10, 19, 2, 20, 3, 21, 2, 22, 11, 23, 12, 24, 12, 25, 13, 0, 0, 0, 26, 26, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 27, 2, 28, 14, 29, 2, 30, 2, 31, 9, 32, 9, 33, 3, 34, 3, 35, 3, 36, 3, 37, 3, 38, 11, 39, 14, 40, 15, 41, 16, 0, 0, 0, 42, 42, -1, 6, 2, 0, 3, 1, 43, 6, 4, 2, 44, 5, 45, 3, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

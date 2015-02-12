@@ -12,8 +12,9 @@ const BOTTOM = Vector3(0, -1, 0)
 
 var _meshes = {}
 var _materials = {}
-var _sprite_sizes = {}
+var _sprite_sizes = {} # In fractions of sheet.
 var _metadata = {}
+var _world_offsets = {} # In pixels, without the margin.
 var logger
 
 
@@ -49,6 +50,11 @@ func _load_sheet(spritesheet):
     _metadata[spritesheet] = get_node("/root/utilities").load_json("res://atlases/%s.json" % spritesheet)
     var width = _metadata[spritesheet]["tile_size"][0]
     var height = _metadata[spritesheet]["tile_size"][1]
+
+    if spritesheet == "tile":
+        _world_offsets[spritesheet] = Vector3()
+    else:
+        _world_offsets[spritesheet] = Vector3(-(width - 2) * PIXEL_SIZE / 2, (height - 2) * PIXEL_SIZE, 0)
     
     _sprite_sizes[spritesheet] = Vector3(texture.get_width() / width, texture.get_height() / height, depth)
     var tile_data = get_node("/root/tile_data")
@@ -117,11 +123,21 @@ func new_mesh_object(spritesheet, index=0):
     if not spritesheet in _meshes:
        _load_sheet(spritesheet)
 
-    var obj = load("res://prefabs/procedural_mesh.xscn").instance()
-    obj.set_name(spritesheet)
-    obj.set_rotation(Vector3(PI, 0, 0))
+    var obj_type
+    if spritesheet == "player":
+        obj_type = "player"
+    elif spritesheet == "tile":
+        obj_type = "tile"
+    else:
+        obj_type = "object"
 
+    var obj = load("res://prefabs/%s.xscn" % obj_type).instance()
+    
+    obj.set_name(spritesheet)
+    
     var mesh_instance = obj.get_node("MeshInstance")
+    mesh_instance.set_rotation(Vector3(PI, 0, 0))
+    mesh_instance.set_translation(_world_offsets[spritesheet])
     mesh_instance.meshes = _meshes[spritesheet]
     mesh_instance.frame = index
     mesh_instance.animations = _metadata[spritesheet]["animations"]

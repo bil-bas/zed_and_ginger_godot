@@ -1,82 +1,90 @@
-extends Spatial
+extends RigidBody
 
-var player
-var right_vel = 1
-var up_vel = 0
 
-const RIGHT_ACCEL = 1
-const RIGHT_DECEL = -2
-const MAX_RIGHT_VEL = 2
-
-const SIDEWAYS_VEL = 2
-
+const MOVE_VEL = 2
 const JUMP_VEL = 6
-const GRAVITY = -9.81
+
+var logger
+var mesh
+var shape
+var on_floor = true
+var velocity_y = 0
 
 
 func _ready():
-    create_player()
+    logger = get_node("/root/logger")
+    mesh = get_node("MeshInstance")
+    shape = get_node("CapsuleShape")
+
     set_fixed_process(true)
 
+    mesh.animation = "walking"
 
-func create_player():
-    var mesh_manager = get_node("/root/mesh_manager")
-    player = mesh_manager.new_mesh_object("player")
-    add_child(player)
-
-    player.get_node("MeshInstance").animation = "walking"
-    var translation = player.get_translation()
-    translation.z += 2.5
-    translation.y += 2
-    player.set_translation(translation)
+    logger.info("Created player")
 
 
-func _fixed_process(delta):
-    var translation = get_translation()
+func move_direction():
+    var dir = Vector3()
 
-    var accel_right = 0
-    if Input.is_action_pressed("ui_right"):
-        accel_right = RIGHT_ACCEL
-    elif Input.is_action_pressed("ui_left"):
-        accel_right = RIGHT_DECEL
+    if (Input.is_action_pressed("move_forward")):
+        dir += Vector3(0, 0, 1)
+    elif (Input.is_action_pressed("move_backwards")):
+        dir += Vector3(0, 0, -1)
 
-    right_vel = clamp(right_vel + delta * accel_right, 0, MAX_RIGHT_VEL)
-    
-    translation.x += delta * right_vel
+    if (Input.is_action_pressed("move_left")):
+        dir += Vector3(-1, 0, 0)
+    elif (Input.is_action_pressed("move_right")):
+        dir += Vector3(1, 0, 0)
 
-    var moving_sideways = false
-    if Input.is_action_pressed("ui_up"):
-        translation.z -= delta * SIDEWAYS_VEL
-        moving_sideways = true
-    elif Input.is_action_pressed("ui_down"):
-        translation.z += delta * SIDEWAYS_VEL
-        moving_sideways = true
+    return dir.normalized()
 
-
-    if translation.y == 0:
-        if Input.is_action_pressed("ui_accept"):
-          up_vel = JUMP_VEL
-          translation.y = max(translation.y + delta * up_vel, 0)
-    else:
-        up_vel += delta * GRAVITY
-        translation.y = max(translation.y + delta * up_vel, 0)
-    
-    set_translation(translation)
-
-    # Update animation
+func update_animation(velocity):
     var animation
-    if translation.y > 0:
-        if up_vel > 1:
+
+    if on_floor:
+        if velocity.x > 0:
+            animation = "walking"
+        else:
+            animation = "sitting"
+    else:
+        if velocity.y > 0.7:
             animation = "jumping_up"
-        elif up_vel < -1:
+        elif velocity.y < -0.7:
             animation = "jumping_down"
         else:
             animation = "jumping_across"
-    else:
-        if right_vel == 0 and not moving_sideways:
-            animation = "sitting"
-        else:
-            animation = "walking"
 
-    if animation != player.get_node("MeshInstance").animation:
-        player.get_node("MeshInstance").animation = animation
+    if animation != mesh.animation:
+        mesh.animation = animation
+
+
+func _fixed_process(delta):
+    return
+    logger.debug(get_linear_velocity())
+
+    #if state.get_contact_count() == 0:
+    #    on_floor = false
+    #else:
+    #    on_floor = true
+                
+    #if not on_floor and is_colliding():
+    #    on_floor = true
+
+    if shape.is_colliding():
+        on_floor = true
+
+    var velocity = get_linear_velocity()
+    update_animation(velocity)
+
+    var jump_pressed = Input.is_action_pressed("jump")
+
+    if on_floor:
+        if jump_pressed:
+            apply_impulse(get_translation() + Vector3(0, -1, 0), Vector3(0, JUMP_VEL * 100, 0))
+
+            on_floor = false
+            #get_node("sfx").play("jump")
+
+    velocity = move_direction() * MOVE_VEL * delta
+    
+    apply_impulse(get_translation() - velocity.normalized(), velocity * 100)

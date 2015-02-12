@@ -17,8 +17,23 @@ func _ready():
         save()
 
     generate_tiles()
+    create_player(Vector2(4, 4))
 
-    create_flytrap()
+    for i in range(5):
+        create_flytrap_swallower(Vector2(i, i % 2))
+
+    create_flytrap_sleeper(Vector2(8, 4))
+
+
+func create_player(grid):
+    var mesh_manager = get_node("/root/mesh_manager")
+    var player = mesh_manager.new_mesh_object("player")
+    
+    player.set_script(load("res://game/player.gd"))
+    
+    add_child(player)
+
+    player.set_translation(grid_to_world(grid))
 
 
 func restore():
@@ -61,7 +76,7 @@ func generate_tiles():
     for wall_tile in wall_tiles:
         var tile = mesh_manager.new_mesh_object("tile")
         tile.get_node("MeshInstance").animation = wall_tile.type
-        tile.set_translation(Vector3(wall_tile.grid.x * scale, (wall_tile.grid.y + 1) * scale, 0))
+        tile.set_translation(Vector3(wall_tile.grid.x * scale, wall_tile.grid.y * scale, 0))
         add_child(tile)
    
     for floor_tile in floor_tiles:
@@ -74,36 +89,32 @@ func generate_tiles():
         add_child(tile)
 
 
-
-func create_flytrap():
-    # Swallower
+func create_flytrap_swallower(grid):
     var mesh_manager = get_node("/root/mesh_manager")
     var flytrap = mesh_manager.new_mesh_object("flytrap")
     add_child(flytrap)
 
     flytrap.get_node("MeshInstance").animation = "swallowing"
 
-    var translation = flytrap.get_translation()
-    translation.z += 2.5
-    translation.y += 1.75
-    flytrap.set_translation(translation)
+    flytrap.set_translation(grid_to_world(grid))
 
-    # Sleeper
+
+func create_flytrap_sleeper(grid):
+    var mesh_manager = get_node("/root/mesh_manager")
     var flytrap = mesh_manager.new_mesh_object("flytrap")
     add_child(flytrap)
 
     flytrap.get_node("MeshInstance").animation = "inactive"
 
-    var translation = flytrap.get_translation()
-    translation.z += 2.5
-    translation.y += 0
-    translation.x += 5
-    flytrap.set_translation(translation)
+    flytrap.set_translation(grid_to_world(grid))
     var rotation = flytrap.get_rotation()
     rotation.x -= PI / 2
     flytrap.set_rotation(rotation)
     add_child(flytrap)
 
+
+func grid_to_world(grid):
+    return Vector3(grid.x + 0.5, 0, grid.y + 0.5)
 
 
 func save():
