@@ -17,9 +17,9 @@ func _ready():
         save()
 
     generate_tiles()
-    create_player(Vector2(4, 4))
+    create_player(Vector2(4, 3))
 
-    for i in range(5):
+    for i in range(3):
         create_flytrap_swallower(Vector2(i, i % 2))
 
     create_flytrap_sleeper(Vector2(8, 4))
@@ -33,7 +33,7 @@ func create_player(grid):
     
     add_child(player)
 
-    player.set_translation(grid_to_world(grid))
+    player.set_translation(grid_to_world(grid) + Vector3(0, 5, 0))
 
 
 func restore():

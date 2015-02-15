@@ -8,7 +8,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="74">
+			<string_array  len="66">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -75,23 +75,15 @@
 				<string> "centered" </string>
 				<string> "offset" </string>
 				<string> "modulate" </string>
-				<string> "StaticBody" </string>
-				<string> "input/ray_pickable" </string>
-				<string> "input/capture_on_drag" </string>
-				<string> "shape_count" </string>
-				<string> "friction" </string>
-				<string> "bounce" </string>
-				<string> "constant_linear_velocity" </string>
-				<string> "constant_angular_velocity" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 7 </int>
+			<int> 6 </int>
 			<string> "variants" </string>
-			<array  len="28" shared="false">
+			<array  len="27" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -236,10 +228,9 @@
 				<vector2> 1, 1 </vector2>
 				<vector2> 0, 0 </vector2>
 				<resource  resource_type="Script" path="local://1">  </resource>
-				<vector3> 0, 0, 0 </vector3>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="211"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 3, 11, 3, 12, 3, 13, 6, 14, 3, 15, 3, 16, 3, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 5, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 5, 27, 14, 28, 4, 29, 15, 30, 15, 0, 1, 0, 31, 31, -1, 23, 2, 0, 18, 7, 19, 16, 20, 5, 32, 13, 33, 5, 34, 3, 35, 9, 36, 17, 37, 18, 38, 18, 39, 5, 40, 15, 41, 19, 42, 15, 43, 10, 44, 17, 45, 4, 46, 9, 47, 13, 48, 15, 49, 20, 50, 21, 0, 1, 0, 52, 51, -1, 4, 2, 0, 18, 7, 20, 5, 53, 22, 0, 0, 0, 54, 54, -1, 14, 2, 0, 20, 5, 55, 17, 56, 17, 57, 23, 58, 15, 59, 24, 60, 9, 61, 5, 62, 0, 63, 5, 64, 25, 65, 18, 53, 26, 0, 0, 0, 66, 66, -1, 11, 2, 0, 18, 7, 20, 5, 67, 5, 68, 3, 69, 9, 32, 13, 70, 17, 71, 15, 72, 27, 73, 27, 0 </int_array>
+			<int_array  len="182"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 3, 11, 3, 12, 3, 13, 6, 14, 3, 15, 3, 16, 3, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 5, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 5, 27, 14, 28, 4, 29, 15, 30, 15, 0, 1, 0, 31, 31, -1, 23, 2, 0, 18, 7, 19, 16, 20, 5, 32, 13, 33, 5, 34, 3, 35, 9, 36, 17, 37, 18, 38, 18, 39, 5, 40, 15, 41, 19, 42, 15, 43, 10, 44, 17, 45, 4, 46, 9, 47, 13, 48, 15, 49, 20, 50, 21, 0, 1, 0, 52, 51, -1, 4, 2, 0, 18, 7, 20, 5, 53, 22, 0, 0, 0, 54, 54, -1, 14, 2, 0, 20, 5, 55, 17, 56, 17, 57, 23, 58, 15, 59, 24, 60, 9, 61, 5, 62, 0, 63, 5, 64, 25, 65, 18, 53, 26, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

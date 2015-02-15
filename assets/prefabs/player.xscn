@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+<resource_file type="PackedScene" subresource_count="4" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://mesh_animator.gd" type="Script"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 0.5 </real>
-		<real name="height"> 1 </real>
+		<real name="height"> 0.5 </real>
+
+	</resource>
+	<resource type="SampleLibrary" path="local://2">
 
 	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="46">
+			<string_array  len="56">
 				<string> "ProceduralPlayerMesh" </string>
 				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
@@ -56,26 +59,36 @@
 				<string> "transform/local" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
+				<string> "SpatialSamplePlayer" </string>
+				<string> "params/volume_db" </string>
+				<string> "params/pitch_scale" </string>
+				<string> "params/attenuation/min_distance" </string>
+				<string> "params/attenuation/max_distance" </string>
+				<string> "params/attenuation/distance_exp" </string>
+				<string> "params/emission_cone/degrees" </string>
+				<string> "params/emission_cone/attenuation_db" </string>
+				<string> "config/polyphony" </string>
+				<string> "config/samples" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 3 </int>
+			<int> 4 </int>
 			<string> "variants" </string>
-			<array  len="17" shared="false">
+			<array  len="21" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
 				<bool> False </bool>
 				<int> 1 </int>
 				<resource  resource_type="Shape" path="local://1">  </resource>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 </transform>
 				<int> 2 </int>
 				<real> 1 </real>
 				<real> 0 </real>
-				<int> 3 </int>
+				<int> 20 </int>
 				<int> 0 </int>
 				<vector3> 0, 0, 0 </vector3>
 				<dictionary  shared="false">
@@ -106,7 +119,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 6.347497 </real>
+									<real> 10.07268 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -199,9 +212,13 @@
 				</dictionary>
 				<resource name=""></resource>				<node_path> ".." </node_path>
 				<resource  resource_type="Script" path="res://mesh_animator.gd">  </resource>
+				<real> 100 </real>
+				<real> 180 </real>
+				<real> -6 </real>
+				<resource  resource_type="SampleLibrary" path="local://2">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="119"> 				-1, -1, 1, 0, -1, 24, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 7, 13, 8, 14, 8, 15, 9, 16, 3, 17, 3, 18, 10, 19, 2, 20, 3, 21, 2, 22, 11, 23, 12, 24, 12, 25, 13, 0, 0, 0, 26, 26, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 27, 2, 28, 14, 29, 2, 30, 2, 31, 9, 32, 9, 33, 3, 34, 3, 35, 3, 36, 3, 37, 3, 38, 11, 39, 14, 40, 15, 41, 16, 0, 0, 0, 42, 42, -1, 6, 2, 0, 3, 1, 43, 6, 4, 2, 44, 5, 45, 3, 0 </int_array>
+			<int_array  len="150"> 				-1, -1, 1, 0, -1, 24, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 7, 13, 8, 14, 8, 15, 9, 16, 2, 17, 3, 18, 10, 19, 2, 20, 3, 21, 2, 22, 11, 23, 12, 24, 12, 25, 13, 0, 0, 0, 26, 26, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 27, 2, 28, 14, 29, 2, 30, 2, 31, 9, 32, 9, 33, 3, 34, 3, 35, 3, 36, 3, 37, 3, 38, 11, 39, 14, 40, 15, 41, 16, 0, 0, 0, 42, 42, -1, 6, 2, 0, 3, 1, 43, 6, 4, 2, 44, 5, 45, 3, 0, 0, 0, 46, 46, -1, 12, 2, 0, 3, 1, 4, 2, 47, 9, 48, 8, 49, 8, 50, 17, 51, 8, 52, 18, 53, 19, 54, 4, 55, 20, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

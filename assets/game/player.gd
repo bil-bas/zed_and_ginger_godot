@@ -1,13 +1,15 @@
 extends RigidBody
 
 
-const MOVE_VEL = 2
-const JUMP_VEL = 6
+const WALK_SPEED = 4
+const JUMP_SPEED = 6
+const UP = Vector3(0, 1, 0)
 
 var logger
 var mesh
 var shape
-var on_floor = true
+var audio
+var on_floor = false
 var velocity_y = 0
 
 
@@ -15,8 +17,7 @@ func _ready():
     logger = get_node("/root/logger")
     mesh = get_node("MeshInstance")
     shape = get_node("CapsuleShape")
-
-    set_fixed_process(true)
+    audio = get_node("SpatialSamplePlayer")
 
     mesh.animation = "walking"
 
@@ -26,17 +27,18 @@ func _ready():
 func move_direction():
     var dir = Vector3()
 
-    if (Input.is_action_pressed("move_forward")):
-        dir += Vector3(0, 0, 1)
-    elif (Input.is_action_pressed("move_backwards")):
+    if Input.is_action_pressed("move_up"):
         dir += Vector3(0, 0, -1)
+    if Input.is_action_pressed("move_down"):
+        dir += Vector3(0, 0, 1)
 
-    if (Input.is_action_pressed("move_left")):
+    if Input.is_action_pressed("move_left"):
         dir += Vector3(-1, 0, 0)
-    elif (Input.is_action_pressed("move_right")):
+    if Input.is_action_pressed("move_right"):
         dir += Vector3(1, 0, 0)
 
     return dir.normalized()
+
 
 func update_animation(velocity):
     var animation
@@ -58,33 +60,35 @@ func update_animation(velocity):
         mesh.animation = animation
 
 
-func _fixed_process(delta):
-    return
-    logger.debug(get_linear_velocity())
+func _integrate_forces(state):
+    var velocity = state.get_linear_velocity()
+    var delta = state.get_step()
+    var gravity = state.get_total_gravity()
 
-    #if state.get_contact_count() == 0:
-    #    on_floor = false
-    #else:
-    #    on_floor = true
-                
-    #if not on_floor and is_colliding():
-    #    on_floor = true
+    # Check if on a horizontalish surface.
+    on_floor = false
+    for i in range(state.get_contact_count()):
+        logger.debug(state.get_contact_local_normal(i))
+        logger.debug(state.get_contact_local_normal(i).dot(UP))
+        if state.get_contact_local_normal(i).dot(UP) > 0.7:
+            on_floor = true
+            break
 
-    if shape.is_colliding():
-        on_floor = true
-
-    var velocity = get_linear_velocity()
-    update_animation(velocity)
-
-    var jump_pressed = Input.is_action_pressed("jump")
-
+    # Jump up from the floor.
     if on_floor:
+        var jump_pressed = Input.is_action_pressed("jump")
+
         if jump_pressed:
-            apply_impulse(get_translation() + Vector3(0, -1, 0), Vector3(0, JUMP_VEL * 100, 0))
+            velocity.y = JUMP_SPEED
 
-            on_floor = false
-            #get_node("sfx").play("jump")
+    # Move by walking/swimming in the air :D
+    var direction = move_direction()
+    velocity.x = direction.x * WALK_SPEED
+    velocity.z = direction.z * WALK_SPEED
 
-    velocity = move_direction() * MOVE_VEL * delta
-    
-    apply_impulse(get_translation() - velocity.normalized(), velocity * 100)
+    # Apply gravity
+    velocity += gravity * delta
+
+    # Update new state.
+    state.set_linear_velocity(velocity)
+    update_animation(velocity)

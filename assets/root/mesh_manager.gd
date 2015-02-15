@@ -135,12 +135,12 @@ func new_mesh_object(spritesheet, index=0):
     
     obj.set_name(spritesheet)
     
-    var mesh_instance = obj.get_node("MeshInstance")
-    mesh_instance.set_rotation(Vector3(PI, 0, 0))
-    mesh_instance.set_translation(_world_offsets[spritesheet])
-    mesh_instance.meshes = _meshes[spritesheet]
-    mesh_instance.frame = index
-    mesh_instance.animations = _metadata[spritesheet]["animations"]
+    var mesh = obj.get_node("MeshInstance")
+    mesh.set_rotation(Vector3(PI, 0, 0))
+    mesh.set_translation(_world_offsets[spritesheet])
+    mesh.meshes = _meshes[spritesheet]
+    mesh.frame = index
+    mesh.animations = _metadata[spritesheet]["animations"]
 
     var is_centered = (spritesheet != "tile")
 
