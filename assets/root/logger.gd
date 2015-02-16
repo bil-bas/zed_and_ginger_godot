@@ -45,8 +45,12 @@
 #     Setting time formatter to use your own function (which would normally be called as my_instance.time_formatter()):
 #         logger.time_format_func = funcref(my_instance, "time_formatter")
 #
-#     Logging to a file (set to 'null' to close the file):
-#         logger.filename = 'user://log.txt'
+#     Logging to a file (set to 'null' to stop logging to file):
+#         logger.filename = 'user://log.txt' # Appends to existing file.
+#
+#         logger.truncate_log_file = true
+#         logger.filename = 'user://log.txt' # Truncates any existing file.
+#
 #        
 #     Logging messages of various types (will use var2str() to output any non-string being logged):
 #         logger.info("Creating a new fish object")
@@ -91,24 +95,29 @@ func set_level(value):
     assert(level in [Level.DEBUG, Level.INFO, Level.WARNING, Level.ERROR, Level.CRITICAL])
     level = value
 
-# Logging to file.
-var file = null
+# --- Logging to file.
+
+var truncate_log_file = false setget get_truncate_log_file, set_truncate_log_file
+func get_truncate_log_file():
+    return truncate_log_file
+func set_truncate_log_file(value):
+    assert(value in [true, false])
+    truncate_log_file = value
+
 var filename = null setget set_filename, get_filename
 func get_filename():
     return filename
 func set_filename(value):
-    if file != null:
-        info("Stopped logging to file: %s" % filename)
-        file.close()
+    filename = value
 
-    if value != null:
-        file = File.new()
-        filename = value
-        file.open(filename, File.WRITE)
-        info("Started logging to file: %s" % filename)
-    else:
-        file = null
-        filename = null  
+    if filename != null:
+        var file = File.new()
+        if not file.file_exists(filename) or truncate_log_file:
+            # Ensure the file exists so we can append to it!    
+            file.open(filename, File.WRITE)
+            file.close()
+
+        debug("Started logging to file: %s" % filename)
 
 # Log timer
 var time_format_func = funcref(self, "format_time_datetime") setget set_time_format_func
@@ -203,5 +212,9 @@ func _write(type, data):
     if print_stdout:
         print(message)
 
-    if file != null:
+    if filename != null:
+        var file = File.new()
+        file.open(filename, File.READ_WRITE)
+        file.seek_end()
         file.store_line(message)
+        file.close()
