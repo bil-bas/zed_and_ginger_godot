@@ -1,5 +1,10 @@
 extends Node
 
+func _ready():
+    var logger = get_node("/root/logger")
+    logger.level = logger.Level.DEBUG
+    logger.filename = "user://log.txt"
+
 
 func load_json(name):
     var json = File.new()

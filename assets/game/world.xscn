@@ -202,7 +202,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "3D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<rect2> 0, 0, 800, 600 </rect2>
 				<bool> False </bool>
