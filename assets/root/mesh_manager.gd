@@ -79,18 +79,16 @@ func _load_sheet(spritesheet):
             var rect = Rect2(x_offset + margin, y_offset + margin, width - margin * 2, height - margin * 2)
             var mesh = create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency, material)
             if mesh == null:
-                logger.info("Skipping spritesheet frame: %s" % index)
+                logger.debug("Skipping spritesheet frame: %s" % index)
             else:
-                logger.info("Created spritesheet frame: %s" % index)
+                logger.debug("Created spritesheet frame: %s" % index)
                 #ResourceSaver.save(dir + str(meshes.size()) + ".xml", mesh)
             meshes.append(mesh)
 
     _meshes[spritesheet] = meshes
 
-    logger.info("Created spritesheet: %" % spritesheet)
-    
-    #load_animation(spritesheet)
-    
+    logger.info("Created spritesheet: %s" % spritesheet)
+
     return meshes.size()
 
 
@@ -104,20 +102,6 @@ func _load_sheet(spritesheet):
 #
 #        return _materials[spritesheet]["transparency"]
 
-#    func load_animation(spritesheet):
-#        start = Time.realtimeSinceStartup
-#        n_anims = 0
-#
-#        data = JSON.load_resource("Config/Animations/$spritesheet")
-#        item_anims = Dictionary[of string, VoxelAnimator.Animation]()
-#        _animations[spritesheet] = item_anims
-#
-#        for anim as KeyValuePair[of string, duck] in data:
-#            anim_data = anim.Value as Dictionary[of string, duck]
-#            item_anims[anim.Key] = VoxelAnimator.Animation(anim_data["type"], anim_data["frames"])
-#            n_anims += 1
-#
-#        Debug.Log("Loaded $n_anims animations for spritesheet '$spritesheet' in $(Time.realtimeSinceStartup - start)s")
 
 func new_mesh_object(spritesheet, index=0):
     if not spritesheet in _meshes:
