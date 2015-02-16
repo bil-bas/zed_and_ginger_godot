@@ -5,6 +5,7 @@ var wall_tiles = []
 var name = "MyLevel"
 var filename = "res://levels/level0.json"
 var logger
+var player
 
 
 func _ready():
@@ -27,7 +28,7 @@ func _ready():
 
 func create_player(grid):
     var mesh_manager = get_node("/root/mesh_manager")
-    var player = mesh_manager.new_mesh_object("player")
+    player = mesh_manager.new_mesh_object("player")
     add_child(player)
 
     player.set_translation(grid_to_world(grid) + Vector3(0, 0, 0))
@@ -89,7 +90,6 @@ func generate_tiles():
 func create_flytrap_swallower(grid):
     var mesh_manager = get_node("/root/mesh_manager")
     var flytrap = mesh_manager.new_mesh_object("flytrap")
-    flytrap.kills_player = false
     add_child(flytrap)
 
     flytrap.get_node("MeshInstance").animation = "swallowing"
@@ -100,7 +100,7 @@ func create_flytrap_swallower(grid):
 func create_flytrap_sleeper(grid):
     var mesh_manager = get_node("/root/mesh_manager")
     var flytrap = mesh_manager.new_mesh_object("flytrap")
-    flytrap.kills_player = true
+    flytrap.player_kill_type = player.State.DEAD
     add_child(flytrap)
 
     flytrap.get_node("MeshInstance").animation = "inactive"

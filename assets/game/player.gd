@@ -1,17 +1,9 @@
 extends KinematicBody
 
-
 const WALK_SPEED = 4
 const JUMP_SPEED = 6
 const UP = Vector3(0, 1, 0)
 const GRAVITY = -9.81
-
-var logger
-var mesh
-var shape
-var audio
-var on_floor = false
-var velocity = Vector3(0, 0, 0)
 
 class State:
     const ALIVE = 0
@@ -21,7 +13,12 @@ class State:
     const BURNT = 4
     const EATEN = 5
 
-
+var logger
+var mesh
+var shape
+var audio
+var on_floor = false
+var velocity = Vector3(0, 0, 0)
 var state = State.ALIVE
 
 func _ready():
@@ -56,8 +53,7 @@ func update_animation(velocity):
 
     if state == State.ALIVE:
         if on_floor:
-            
-            if velocity.x > 0:
+            if velocity.x != 0 or velocity.z != 0:
                 animation = "walking"
             else:
                 animation = "sitting"
@@ -68,6 +64,7 @@ func update_animation(velocity):
                 animation = "jumping_down"
             else:
                 animation = "jumping_across"
+
     elif state == State.DEAD:
         animation = "on_back"
     elif state == State.ELECTROCUTED:
@@ -91,6 +88,7 @@ func _fixed_process(delta):
 
             if jump_pressed:
                 velocity.y = JUMP_SPEED
+                on_floor = false
 
         var direction = move_direction()
         velocity.x = direction.x * WALK_SPEED
@@ -101,9 +99,8 @@ func _fixed_process(delta):
 
     if is_colliding():
         var collider = get_collider()
-        if collider.kills_player:
-            logger.debug("Ouch!")
-            state = State.DEAD
+        if collider.player_kill_type != State.ALIVE:
+            state = collider.player_kill_type
             velocity = Vector3()
 
         var normal = get_collision_normal()
