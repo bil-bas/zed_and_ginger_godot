@@ -11,6 +11,7 @@ var loading_label
 var logger
 var time_max = 1
 var setup_routine
+var setup_progress
 
 func _ready():
     logger = get_node("/root/logger")
@@ -52,10 +53,8 @@ func load_scene():
 
 func setup_scene():
     setup_routine.resume()
-
-    logger.debug(progress_bar.get_value())
-    progress_bar.set_value(progress_bar.get_value() + 1)
-    logger.debug(progress_bar.get_value())
+    setup_progress += 1
+    progress_bar.set_value(setup_progress % int(progress_bar.get_max()))
     
     if not setup_routine.is_valid():
         setup_routine = false
@@ -72,7 +71,7 @@ func set_new_scene(scene_resource):
     logger.info("Loaded scene")
     current_scene = scene_resource.instance()
     root_node.add_child(current_scene)
-    
+
     # Hide everything behind the background
     root_node.get_node("Background").set_layer(127)
     
@@ -81,7 +80,8 @@ func set_new_scene(scene_resource):
 
     # Start a new count
     loading_label.set_text("SETUP_SCENE")
-    progress_bar.set_value(0)
+    setup_progress = 0
+    progress_bar.set_value(setup_progress)
 
 func goto(scene_file):
     logger.info("Loading scene: %s" % scene_file)
