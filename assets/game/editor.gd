@@ -26,6 +26,7 @@ var save_button
 var undo_button
 var redo_button
 var level
+var current_tile_type = "WHITE_TILE"
 
 func _ready():
     logger = get_node("/root/logger")
@@ -35,9 +36,9 @@ func _ready():
     ray = camera.get_node("RayCast")
 
     history = get_node("History")
-    save_button = get_node("ButtonPanel/Buttons/SaveButton")
-    undo_button = get_node("ButtonPanel/Buttons/UndoButton")
-    redo_button = get_node("ButtonPanel/Buttons/RedoButton")
+    save_button = get_node("ButtonsPanel/Buttons/SaveButton")
+    undo_button = get_node("ButtonsPanel/Buttons/UndoButton")
+    redo_button = get_node("ButtonsPanel/Buttons/RedoButton")
     
     set_process(true)
 
@@ -48,13 +49,7 @@ func _process(delta):
         var collider = ray.get_collider()
         if collider != null:
             if collider.object_type() == "TILE":
-                var type 
-                if collider.type == "GOO":
-                    type = "WHITE_TILE"
-                else:
-                    type = "GOO"
-
-                var action = ChangeTileAction.new(collider, type)
+                var action = ChangeTileAction.new(collider, current_tile_type)
                 history.add(action)
                 update_history_buttons()
 
@@ -93,3 +88,7 @@ func update_history_buttons():
 	undo_button.set_disabled(not history.get_can_undo())
 	redo_button.set_disabled(not history.get_can_redo())
     
+func _on_TilePicker_input_event(event):
+    if event.type == InputEvent.MOUSE_BUTTON and event.is_pressed():
+        var tile_index = int(event.pos.x / 50) + int(event.pos.y / 50) * 8
+        current_tile_type = get_node("/root/tile_data").INDEX_TO_NAME[tile_index]
