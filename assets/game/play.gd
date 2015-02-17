@@ -9,8 +9,6 @@ func _ready():
     level = get_node("World/Viewport/Level")
 
 func setup():
-    yield()
-
     var level_setup = level.setup()
     while level_setup.is_valid():
         level_setup.resume()

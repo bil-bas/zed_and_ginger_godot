@@ -51,7 +51,6 @@ func setup():
         yield()
 
     fill_item_picker()
-
     update_history_buttons()
     set_process(true)
 

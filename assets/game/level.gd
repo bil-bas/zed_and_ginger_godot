@@ -22,11 +22,14 @@ func setup():
 
     generate_tiles()
 
+    #yield()
+
     for i in range(3):
         create_flytrap_swallower(Vector2(i, i % 2))
-        yield()
+        #yield()
 
     create_flytrap_sleeper(Vector2(8, 4))
+
 
 func restore():
     logger.info("Loading level")
