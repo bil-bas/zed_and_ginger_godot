@@ -308,8 +308,8 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
         assert mesh.surface_get_array_len(0) > 0
         assert mesh.surface_get_array_index_len(0) >= mesh.surface_get_array_len(0)
 
-        logger.debug("num vertexes: %s" % mesh.surface_get_array_len(0))
-        logger.debug("num indexes: %s" % mesh.surface_get_array_index_len(0))
+        #logger.debug("num vertexes: %s" % mesh.surface_get_array_len(0))
+        #logger.debug("num indexes: %s" % mesh.surface_get_array_index_len(0))
         return mesh
     else:
         return null

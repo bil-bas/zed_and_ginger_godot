@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+<resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+	<ext_resource path="res://scripts/show_after_process.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
+	<resource type="Environment" path="local://1">
+		<bool name="ambient_light/enabled"> False </bool>
+		<color name="ambient_light/color"> 0, 0, 0, 1 </color>
+		<real name="ambient_light/energy"> 1 </real>
+		<bool name="fxaa/enabled"> True </bool>
+		<int name="background/mode"> 1 </int>
+		<color name="background/color"> 0, 0, 0, 1 </color>
+		<resource name="background/texture"></resource>		<resource name="background/cubemap"></resource>		<real name="background/energy"> 1 </real>
+		<real name="background/scale"> 1 </real>
+		<real name="background/glow"> 0 </real>
+		<bool name="glow/enabled"> False </bool>
+		<int name="glow/blur_passes"> 1 </int>
+		<int name="glow/blur_scale"> 1 </int>
+		<int name="glow/blur_strength"> 1 </int>
+		<nil name="glow/blur_blend_mode">  </nil>
+		<real name="glow/bloom"> 0 </real>
+		<real name="glow/bloom_treshold"> 0.5 </real>
+		<bool name="dof_blur/enabled"> False </bool>
+		<int name="dof_blur/blur_passes"> 1 </int>
+		<real name="dof_blur/begin"> 100 </real>
+		<real name="dof_blur/range"> 10 </real>
+		<bool name="hdr/enabled"> False </bool>
+		<int name="hdr/tonemapper"> 0 </int>
+		<real name="hdr/exposure"> 0.4 </real>
+		<real name="hdr/white"> 1 </real>
+		<real name="hdr/glow_treshold"> 0.95 </real>
+		<real name="hdr/glow_scale"> 0.2 </real>
+		<real name="hdr/min_luminance"> 0.4 </real>
+		<real name="hdr/max_luminance"> 8 </real>
+		<real name="hdr/exposure_adj_speed"> 0.5 </real>
+		<bool name="fog/enabled"> False </bool>
+		<real name="fog/begin"> 100 </real>
+		<color name="fog/begin_color"> 0, 0, 0, 1 </color>
+		<color name="fog/end_color"> 0, 0, 0, 1 </color>
+		<real name="fog/attenuation"> 1 </real>
+		<bool name="fog/bg"> True </bool>
+		<bool name="bcs/enabled"> False </bool>
+		<real name="bcs/brightness"> 1 </real>
+		<real name="bcs/contrast"> 1 </real>
+		<real name="bcs/saturation"> 1 </real>
+		<bool name="srgb/enabled"> False </bool>
+
+	</resource>
+	<resource type="World" path="local://2">
+		<resource name="environment" resource_type="Environment" path="local://1">  </resource>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
@@ -82,7 +130,7 @@
 			<string> "node_count" </string>
 			<int> 7 </int>
 			<string> "variants" </string>
-			<array  len="28" shared="false">
+			<array  len="29" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -204,9 +252,10 @@
 					<string> "2D" </string>
 				</dictionary>
 				<rect2> 0, 0, 800, 600 </rect2>
+				<bool> True </bool>
+				<resource  resource_type="World" path="local://2">  </resource>
 				<bool> False </bool>
-				<resource name=""></resource>				<bool> True </bool>
-				<int> 2 </int>
+				<int> 3 </int>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<transform> 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 5, 2, 9 </transform>
 				<int> 0 </int>
@@ -215,7 +264,7 @@
 				<real> 100 </real>
 				<int> 1 </int>
 				<int> 1048575 </int>
-				<real> 0 </real>
+				<resource name=""></resource>				<real> 0 </real>
 				<vector3> 0, -1, 0 </vector3>
 				<transform> 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0.5, -0.5, 0.707107, -5, 10, 20 </transform>
 				<real> 1 </real>
@@ -224,13 +273,13 @@
 				<real> 0.5 </real>
 				<real> 2 </real>
 				<resource  resource_type="Script" path="res://game/level.gd">  </resource>
-				<vector2> 400, 300 </vector2>
+				<vector2> 0, 0 </vector2>
 				<vector2> 1, 1 </vector2>
 				<node_path> "../Viewport" </node_path>
-				<vector2> 0, 0 </vector2>
+				<resource  resource_type="Script" path="res://scripts/show_after_process.gd">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="197"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 3, 11, 3, 12, 3, 13, 6, 14, 3, 15, 3, 16, 3, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 5, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 5, 27, 14, 28, 4, 29, 15, 30, 15, 0, 2, 0, 31, 31, -1, 5, 2, 0, 18, 7, 20, 5, 32, 3, 33, 16, 0, 1, 0, 34, 34, -1, 23, 2, 0, 18, 7, 19, 17, 20, 5, 35, 13, 36, 5, 37, 3, 38, 9, 39, 18, 40, 19, 41, 19, 42, 5, 43, 15, 44, 20, 45, 15, 46, 10, 47, 18, 48, 4, 49, 9, 50, 13, 51, 15, 52, 21, 53, 22, 0, 1, 0, 55, 54, -1, 4, 2, 0, 18, 7, 20, 5, 56, 23, 0, 0, 0, 57, 57, -1, 13, 2, 0, 20, 5, 58, 18, 59, 18, 60, 24, 61, 15, 62, 25, 63, 9, 64, 5, 65, 26, 66, 5, 67, 27, 68, 19, 0 </int_array>
+			<int_array  len="199"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 3, 9, 3, 10, 5, 11, 5, 12, 5, 13, 6, 14, 5, 15, 5, 16, 5, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 3, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 3, 27, 14, 28, 15, 29, 16, 30, 16, 0, 2, 0, 31, 31, -1, 5, 2, 0, 18, 7, 20, 3, 32, 5, 33, 17, 0, 1, 0, 34, 34, -1, 23, 2, 0, 18, 7, 19, 18, 20, 3, 35, 13, 36, 3, 37, 5, 38, 9, 39, 19, 40, 20, 41, 20, 42, 3, 43, 16, 44, 21, 45, 16, 46, 10, 47, 19, 48, 15, 49, 9, 50, 13, 51, 16, 52, 22, 53, 23, 0, 1, 0, 55, 54, -1, 4, 2, 0, 18, 7, 20, 3, 56, 24, 0, 0, 0, 57, 57, -1, 14, 2, 0, 20, 3, 58, 19, 59, 19, 60, 25, 61, 16, 62, 26, 63, 9, 64, 3, 65, 27, 66, 5, 67, 25, 68, 20, 56, 28, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

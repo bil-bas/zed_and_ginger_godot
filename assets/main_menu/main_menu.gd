@@ -24,7 +24,7 @@ func _ready():
     logger.info("Setting pos as: %s" % get_pos())
 
 func setup():
-	pass
+    yield()
 
 func _on_Play_pressed():
     scene_manager.goto("res://game/play.xscn")

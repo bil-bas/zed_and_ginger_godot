@@ -15,15 +15,18 @@ func setup():
         restore()
     else:
         create()
+        yield()
         save()
+
+    yield()
 
     generate_tiles()
 
     for i in range(3):
         create_flytrap_swallower(Vector2(i, i % 2))
+        yield()
 
     create_flytrap_sleeper(Vector2(8, 4))
-
 
 func restore():
     logger.info("Loading level")
@@ -41,7 +44,6 @@ func restore():
        var tile = tile_data.create(tile_hash["type"], Vector2(tile_hash["grid"][0], tile_hash["grid"][1]))
        wall_tiles.append(tile)
 
-
 func create():
     logger.info("Creating level")
 
@@ -56,7 +58,6 @@ func create():
             # Floor
             tile_info = tile_data.create("WHITE_TILE", Vector2(x, y))
             floor_tiles.append(tile_info)
-
 
 func generate_tiles():
     var mesh_manager = get_node("/root/mesh_manager")
@@ -80,7 +81,6 @@ func generate_tiles():
         rotation.x -= PI / 2
         tile.set_rotation(rotation)
         add_child(tile)
-
 
 func create_flytrap_swallower(grid):
     var mesh_manager = get_node("/root/mesh_manager")
@@ -106,10 +106,8 @@ func create_flytrap_sleeper(grid):
     flytrap.set_rotation(rotation)
     add_child(flytrap)
 
-
 func grid_to_world(grid):
     return Vector3(grid.x + 0.5, 0, grid.y + 0.5)
-
 
 func save():
     logger.info("Saving level: %s" % name)

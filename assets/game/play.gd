@@ -9,7 +9,13 @@ func _ready():
     level = get_node("World/Viewport/Level")
 
 func setup():
-    level.setup()
+    yield()
+
+    var level_setup = level.setup()
+    while level_setup.is_valid():
+        level_setup.resume()
+        yield()
+
     create_player(Vector2(4, 3))
 
 func create_player(grid):

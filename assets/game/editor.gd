@@ -45,9 +45,15 @@ func _ready():
     logger.debug("Created 3d viewport")
 
 func setup():
+    var level_setup = level.setup()
+    while level_setup.is_valid():
+        level_setup.resume()
+        yield()
+
     fill_item_picker()
+
+    update_history_buttons()
     set_process(true)
-    level.setup()
 
 func _process(delta):
     if ray.is_enabled() and ray.is_colliding():

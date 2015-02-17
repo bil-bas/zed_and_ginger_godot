@@ -1,4 +1,11 @@
-ID, en, fr
-PLAY_BUTTON, Play,Joue
-EDITOR_BUTTON, Editor,éditeur
-QUIT_BUTTON, Quit,Quitte
+ID, en
+PLAY_BUTTON, Play
+EDITOR_BUTTON, Editor
+QUIT_BUTTON, Quit
+LOADING_SCENE, Loading...
+SETUP_SCENE, Setup...
+SAVE_BUTTON, Save
+SAVE_AS_BUTTON, Save..
+UNDO_BUTTON, Undo
+REDO_BUTTON, Redo
+BACK_BUTTON, Back

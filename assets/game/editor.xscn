@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+<resource_file type="PackedScene" subresource_count="6" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://scripts/history.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/editor.gd" type="Script"></ext_resource>
 	<ext_resource path="res://atlases/tile.png" type="Texture"></ext_resource>
 	<ext_resource path="res://prefabs/world.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://prefabs/small_button.xscn" type="PackedScene"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="62">
+			<string_array  len="55">
 				<string> "Editor" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -39,14 +40,7 @@
 				<string> "margin/top" </string>
 				<string> "SaveButton" </string>
 				<string> "Button" </string>
-				<string> "disabled" </string>
-				<string> "toggle_mode" </string>
-				<string> "click_on_press" </string>
 				<string> "text" </string>
-				<string> "icon" </string>
-				<string> "flat" </string>
-				<string> "clip_text" </string>
-				<string> "align" </string>
 				<string> "UndoButton" </string>
 				<string> "RedoButton" </string>
 				<string> "BackButton" </string>
@@ -78,7 +72,7 @@
 			<string> "node_count" </string>
 			<int> 14 </int>
 			<string> "variants" </string>
-			<array  len="41" shared="false">
+			<array  len="39" shared="false">
 				<node_path> "" </node_path>
 				<resource  resource_type="Script" path="res://game/editor.gd">  </resource>
 				<dictionary  shared="false">
@@ -198,10 +192,12 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "2D" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://prefabs/world.xscn">  </resource>
 				<dictionary  shared="false">
+					<string> "_editor_collapsed" </string>
+					<bool> True </bool>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
@@ -219,10 +215,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -290,8 +282,12 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> False </bool>
 							<string> "viewport_mode" </string>
@@ -335,19 +331,18 @@
 				<real> 10 </real>
 				<real> 80 </real>
 				<real> 106 </real>
-				<real> 70 </real>
-				<real> 21 </real>
-				<string> "Save" </string>
-				<resource name=""></resource>				<int> 1 </int>
+				<resource  resource_type="PackedScene" path="res://prefabs/small_button.xscn">  </resource>
+				<real> 109 </real>
+				<string> "SAVE_BUTTON" </string>
 				<real> 25 </real>
 				<real> 46 </real>
-				<string> "Undo" </string>
+				<string> "UNDO_BUTTON" </string>
 				<real> 50 </real>
 				<real> 71 </real>
-				<string> "Redo" </string>
+				<string> "REDO_BUTTON" </string>
 				<real> 75 </real>
 				<real> 96 </real>
-				<string> "Back" </string>
+				<string> "BACK_BUTTON" </string>
 				<real> 450 </real>
 				<real> 400 </real>
 				<real> 150 </real>
@@ -359,9 +354,9 @@
 				<int> 7 </int>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="534"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 1, 5, 3, 2, 2, 0, 4, 4, 0, 0, 0, 1, 6, -1, 2, 2, 0, 3, 5, 0, 0, 0, 8, 7, -1, 15, 2, 0, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 0, 0, 24, 23, -1, 15, 2, 0, 9, 6, 10, 8, 11, 8, 12, 13, 13, 14, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 4, 0, 26, 25, -1, 17, 2, 0, 9, 6, 10, 8, 11, 8, 27, 15, 28, 15, 12, 16, 13, 17, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 11, 20, 12, 21, 12, 22, 8, 0, 5, 0, 30, 29, -1, 23, 2, 0, 9, 6, 10, 8, 11, 8, 12, 18, 13, 19, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 31, 11, 32, 11, 33, 11, 34, 20, 35, 21, 36, 11, 37, 11, 38, 22, 0, 5, 0, 30, 39, -1, 24, 2, 0, 9, 6, 10, 8, 11, 8, 28, 23, 12, 18, 13, 24, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 31, 6, 32, 11, 33, 11, 34, 25, 35, 21, 36, 11, 37, 11, 38, 22, 0, 5, 0, 30, 40, -1, 24, 2, 0, 9, 6, 10, 8, 11, 8, 28, 26, 12, 18, 13, 27, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 31, 6, 32, 11, 33, 11, 34, 28, 35, 21, 36, 11, 37, 11, 38, 22, 0, 5, 0, 30, 41, -1, 24, 2, 0, 9, 6, 10, 8, 11, 8, 28, 29, 12, 18, 13, 30, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 31, 11, 32, 11, 33, 11, 34, 31, 35, 21, 36, 11, 37, 11, 38, 22, 0, 0, 0, 24, 42, -1, 16, 2, 0, 9, 6, 10, 8, 11, 8, 28, 32, 12, 33, 13, 10, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 10, 0, 44, 43, -1, 19, 2, 0, 9, 6, 10, 8, 11, 8, 12, 33, 13, 34, 45, 35, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 46, 36, 47, 37, 48, 6, 0, 0, 0, 24, 49, -1, 17, 2, 0, 9, 6, 10, 8, 11, 8, 27, 32, 28, 32, 12, 9, 13, 10, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 12, 0, 51, 50, -1, 17, 2, 0, 9, 6, 10, 8, 11, 8, 12, 38, 13, 34, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 11, 20, 12, 21, 12, 22, 8, 52, 39, 53, 40, 0 </int_array>
+			<int_array  len="380"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 1, 5, 3, 2, 2, 0, 4, 4, 0, 0, 0, 1, 6, -1, 2, 2, 0, 3, 5, 0, 0, 0, 8, 7, -1, 15, 2, 0, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 0, 0, 24, 23, -1, 15, 2, 0, 9, 6, 10, 8, 11, 8, 12, 13, 13, 14, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 4, 0, 26, 25, -1, 17, 2, 0, 9, 6, 10, 8, 11, 8, 27, 15, 28, 15, 12, 16, 13, 17, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 11, 20, 12, 21, 12, 22, 8, 0, 5, 0, 30, 29, 18, 3, 2, 0, 12, 19, 31, 20, 0, 5, 0, 30, 32, 18, 5, 2, 0, 28, 21, 12, 19, 13, 22, 31, 23, 0, 5, 0, 30, 33, 18, 5, 2, 0, 28, 24, 12, 19, 13, 25, 31, 26, 0, 5, 0, 30, 34, 18, 5, 2, 0, 28, 27, 12, 19, 13, 28, 31, 29, 0, 0, 0, 24, 35, -1, 16, 2, 0, 9, 6, 10, 8, 11, 8, 28, 30, 12, 31, 13, 10, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 10, 0, 37, 36, -1, 19, 2, 0, 9, 6, 10, 8, 11, 8, 12, 31, 13, 32, 38, 33, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 39, 34, 40, 35, 41, 6, 0, 0, 0, 24, 42, -1, 17, 2, 0, 9, 6, 10, 8, 11, 8, 27, 30, 28, 30, 12, 9, 13, 10, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 6, 20, 12, 21, 12, 22, 8, 0, 12, 0, 44, 43, -1, 17, 2, 0, 9, 6, 10, 8, 11, 8, 12, 36, 13, 32, 14, 0, 15, 0, 16, 0, 17, 0, 18, 11, 19, 11, 20, 12, 21, 12, 22, 8, 45, 37, 46, 38, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="36"> 				3, 0, 55, 54, 2, 0, 6, 0, 57, 56, 2, 0, 7, 0, 57, 58, 2, 0, 8, 0, 57, 59, 2, 0, 9, 0, 57, 60, 2, 0, 11, 0, 55, 61, 2, 0 </int_array>
+			<int_array  len="36"> 				3, 0, 48, 47, 2, 0, 6, 0, 50, 49, 2, 0, 7, 0, 50, 51, 2, 0, 8, 0, 50, 52, 2, 0, 9, 0, 50, 53, 2, 0, 11, 0, 48, 54, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
