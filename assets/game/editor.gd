@@ -60,7 +60,7 @@ func _process(delta):
 
         ray.set_enabled(false)
 
-func _input_event(event):
+func _on_EditorPanel_input_event(event):
     if event.type == InputEvent.MOUSE_BUTTON and event.is_pressed():
         if event.button_index == LMB:
             select_with_cursor(event.global_pos)
