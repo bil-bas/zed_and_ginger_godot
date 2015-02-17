@@ -42,11 +42,12 @@ func _ready():
     undo_button = get_node("ButtonsPanel/Buttons/UndoButton")
     redo_button = get_node("ButtonsPanel/Buttons/RedoButton")
 
-    fill_item_picker()
-
-    set_process(true)
-
     logger.debug("Created 3d viewport")
+
+func setup():
+    fill_item_picker()
+    set_process(true)
+    level.setup()
 
 func _process(delta):
     if ray.is_enabled() and ray.is_colliding():
@@ -83,22 +84,22 @@ func select_with_cursor(mouse_pos, length=100):
 
 
 func _on_SaveButton_pressed():
-	level.save()
+    level.save()
 
 func _on_UndoButton_pressed():
-	history.undo()
-	update_history_buttons()
+    history.undo()
+    update_history_buttons()
 
 func _on_RedoButton_pressed():
-	history.redo()
-	update_history_buttons()
+    history.redo()
+    update_history_buttons()
 
 func _on_BackButton_pressed():
-    get_node("/root/scene_manager").goto("res://main_menu/main_menu.xscn")
+    get_node("/root/Root/SceneManager").goto("res://main_menu/main_menu.xscn")
 
 func update_history_buttons():
-	undo_button.set_disabled(not history.get_can_undo())
-	redo_button.set_disabled(not history.get_can_redo())
+    undo_button.set_disabled(not history.get_can_undo())
+    redo_button.set_disabled(not history.get_can_redo())
     
 func _on_TilePicker_input_event(event):
     if event.type == InputEvent.MOUSE_BUTTON and event.is_pressed():

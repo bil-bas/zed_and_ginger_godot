@@ -1,10 +1,15 @@
 extends Node
 
 var player
+var level 
 var mesh_manager
 
 func _ready():
     mesh_manager = get_node("/root/mesh_manager")
+    level = get_node("World/Viewport/Level")
+
+func setup():
+    level.setup()
     create_player(Vector2(4, 3))
 
 func create_player(grid):

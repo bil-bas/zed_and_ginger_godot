@@ -207,7 +207,7 @@ func _write(type, data):
     if typeof(data) != STRING_TYPE:
         data = var2str(data)
 
-    var message = '%s%5s %s' % [time_format_func.call_func(), type, data]
+    var message = '%s%s %s' % [time_format_func.call_func(), type, data]
 
     if print_stdout:
         print(message)

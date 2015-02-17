@@ -10,6 +10,7 @@ var logger
 func _ready():
     logger = get_node("/root/logger")
 
+func setup():
     if File.new().file_exists(filename):
         restore()
     else:

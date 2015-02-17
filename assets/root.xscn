@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
+<resource_file type="PackedScene" subresource_count="4" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
+	<ext_resource path="res://scripts/scene_manager.gd" type="Script"></ext_resource>
+	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="42">
-				<string> "RootScene" </string>
-				<string> "CanvasLayer" </string>
+			<string_array  len="58">
+				<string> "Root" </string>
+				<string> "Node" </string>
 				<string> "_import_path" </string>
+				<string> "__meta__" </string>
+				<string> "Background" </string>
+				<string> "CanvasLayer" </string>
 				<string> "layer" </string>
 				<string> "offset" </string>
 				<string> "rotation" </string>
 				<string> "scale" </string>
-				<string> "__meta__" </string>
+				<string> "Stars" </string>
 				<string> "TextureFrame" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
@@ -32,6 +36,7 @@
 				<string> "texture" </string>
 				<string> "modulate" </string>
 				<string> "expand" </string>
+				<string> "Moon" </string>
 				<string> "Sprite" </string>
 				<string> "transform/pos" </string>
 				<string> "transform/rot" </string>
@@ -46,22 +51,30 @@
 				<string> "frame" </string>
 				<string> "region" </string>
 				<string> "region_rect" </string>
-				<string> "DummyScene" </string>
-				<string> "Node" </string>
+				<string> "SceneManager" </string>
+				<string> "script/script" </string>
+				<string> "LoadingProgress" </string>
+				<string> "ProgressBar" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "range/min" </string>
+				<string> "range/max" </string>
+				<string> "range/step" </string>
+				<string> "range/page" </string>
+				<string> "range/value" </string>
+				<string> "range/exp_edit" </string>
+				<string> "rounded_values" </string>
+				<string> "percent/visible" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 4 </int>
+			<int> 6 </int>
 			<string> "variants" </string>
-			<array  len="20" shared="false">
+			<array  len="25" shared="false">
 				<node_path> "" </node_path>
-				<int> -1 </int>
-				<vector2> 0, 0 </vector2>
-				<real> 0 </real>
-				<vector2> 1, 1 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -70,11 +83,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 0.440127 </real>
+							<real> 0.735092 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -800, -515.713 </vector2>
+							<vector2> -5.06856, -348.643 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -181,6 +194,10 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
+				<int> -1 </int>
+				<vector2> 0, 0 </vector2>
+				<real> 0 </real>
+				<vector2> 1, 1 </vector2>
 				<bool> True </bool>
 				<real> 1 </real>
 				<real> 800 </real>
@@ -195,9 +212,14 @@
 				<bool> False </bool>
 				<int> 1 </int>
 				<rect2> 0, 0, 0, 0 </rect2>
+				<resource  resource_type="Script" path="res://scripts/scene_manager.gd">  </resource>
+				<real> 200 </real>
+				<real> 500 </real>
+				<real> 530 </real>
+				<real> 100 </real>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="118"> 				-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 0, 0, 8, 8, -1, 18, 2, 0, 9, 6, 10, 7, 11, 7, 12, 8, 13, 9, 14, 0, 15, 0, 16, 0, 17, 0, 18, 6, 19, 6, 20, 10, 21, 10, 22, 7, 23, 11, 24, 12, 25, 6, 0, 0, 0, 26, 26, -1, 20, 2, 0, 9, 6, 10, 7, 11, 7, 27, 13, 28, 3, 29, 14, 30, 15, 31, 6, 23, 16, 32, 6, 4, 2, 33, 17, 34, 17, 35, 18, 36, 18, 37, 15, 24, 12, 38, 17, 39, 19, 0, 0, 0, 41, 40, -1, 1, 2, 0, 0 </int_array>
+			<int_array  len="184"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, -1, 5, 2, 0, 6, 2, 7, 3, 8, 4, 9, 5, 0, 1, 0, 11, 10, -1, 18, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 16, 9, 17, 0, 18, 0, 19, 0, 20, 0, 21, 6, 22, 6, 23, 10, 24, 10, 25, 7, 26, 11, 27, 12, 28, 6, 0, 1, 0, 30, 29, -1, 20, 2, 0, 12, 6, 13, 7, 14, 7, 31, 13, 32, 4, 33, 14, 34, 15, 35, 6, 26, 16, 36, 6, 7, 3, 37, 17, 38, 17, 39, 18, 40, 18, 41, 15, 27, 12, 42, 17, 43, 19, 0, 0, 0, 1, 44, -1, 2, 2, 0, 45, 20, 0, 4, 0, 47, 46, -1, 24, 2, 0, 12, 6, 13, 7, 14, 7, 48, 21, 49, 22, 15, 9, 16, 23, 17, 0, 18, 0, 19, 0, 20, 0, 21, 17, 22, 6, 23, 10, 25, 7, 50, 4, 51, 24, 52, 7, 53, 4, 54, 4, 55, 17, 56, 17, 57, 17, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
