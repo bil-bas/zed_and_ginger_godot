@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
-	<ext_resource path="res://mesh_animator.gd" type="Script"></ext_resource>
+	<ext_resource path="res://scripts/mesh_animator.gd" type="Script"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 0.5 </real>
 		<real name="height"> 0.5 </real>
@@ -202,7 +202,7 @@
 				<resource name=""></resource>				<real> 0 </real>
 				<int> 0 </int>
 				<node_path> ".." </node_path>
-				<resource  resource_type="Script" path="res://mesh_animator.gd">  </resource>
+				<resource  resource_type="Script" path="res://scripts/mesh_animator.gd">  </resource>
 				<real> 1 </real>
 				<real> 100 </real>
 				<real> 180 </real>

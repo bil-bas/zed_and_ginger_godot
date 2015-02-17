@@ -113,7 +113,7 @@ func new_mesh_object(spritesheet, index=0):
     elif spritesheet == "tile":
         obj_type = "tile"
     else:
-        obj_type = "object"
+        obj_type = "item"
 
     var obj = load("res://prefabs/%s.xscn" % obj_type).instance()
     

@@ -73,12 +73,16 @@ func generate_tiles():
 
     for wall_tile in wall_tiles:
         var tile = mesh_manager.new_mesh_object("tile")
+        tile.is_floor = false
+        tile.data = wall_tile
         tile.get_node("MeshInstance").animation = wall_tile.type
         tile.set_translation(Vector3(wall_tile.grid.x * scale, wall_tile.grid.y * scale, 0))
         add_child(tile)
    
     for floor_tile in floor_tiles:
         var tile = mesh_manager.new_mesh_object("tile")
+        tile.is_floor = true
+        tile.data = floor_tile
         tile.get_node("MeshInstance").animation = floor_tile.type
         tile.set_translation(Vector3(floor_tile.grid.x * scale, 0, floor_tile.grid.y * scale))
         var rotation = tile.get_rotation()
@@ -128,4 +132,3 @@ func save():
         data["wall_tiles"].append(wall_tile.to_data())
 
     get_node("/root/utilities").save_json(filename, data)
-    

@@ -1,90 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
-	<resource type="GDScript" path="local://1">
-		<string name="script/source"> "func _ready():&#000a;    set_viewport_path(&quot;../Viewport&quot;)&#000a;" </string>
-
-	</resource>
+	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
+	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="66">
-				<string> "World" </string>
-				<string> "Node" </string>
+			<string_array  len="42">
+				<string> "RootScene" </string>
+				<string> "CanvasLayer" </string>
 				<string> "_import_path" </string>
+				<string> "layer" </string>
+				<string> "offset" </string>
+				<string> "rotation" </string>
+				<string> "scale" </string>
 				<string> "__meta__" </string>
-				<string> "Viewport" </string>
-				<string> "rect" </string>
-				<string> "own_world" </string>
-				<string> "world" </string>
-				<string> "transparent_bg" </string>
-				<string> "render_target/enabled" </string>
-				<string> "render_target/v_flip" </string>
-				<string> "render_target/filter" </string>
-				<string> "render_target/gen_mipmaps" </string>
-				<string> "render_target/update_mode" </string>
-				<string> "audio_listener/enable_2d" </string>
-				<string> "audio_listener/enable_3d" </string>
-				<string> "physics/object_picking" </string>
-				<string> "Camera" </string>
-				<string> "_import_transform" </string>
-				<string> "transform/local" </string>
+				<string> "TextureFrame" </string>
 				<string> "visibility/visible" </string>
-				<string> "projection" </string>
-				<string> "fov" </string>
-				<string> "near" </string>
-				<string> "far" </string>
-				<string> "keep_aspect" </string>
-				<string> "current" </string>
-				<string> "visible_layers" </string>
-				<string> "environment" </string>
-				<string> "h_offset" </string>
-				<string> "v_offset" </string>
-				<string> "DirectionalLight" </string>
-				<string> "layers" </string>
-				<string> "params/enabled" </string>
-				<string> "params/editor_only" </string>
-				<string> "params/bake_mode" </string>
-				<string> "params/energy" </string>
-				<string> "colors/diffuse" </string>
-				<string> "colors/specular" </string>
-				<string> "shadow/shadow" </string>
-				<string> "shadow/darkening" </string>
-				<string> "shadow/z_offset" </string>
-				<string> "shadow/z_slope_scale" </string>
-				<string> "shadow/esm_multiplier" </string>
-				<string> "shadow/blur_passes" </string>
-				<string> "projector" </string>
-				<string> "operator" </string>
-				<string> "shadow/mode" </string>
-				<string> "shadow/max_distance" </string>
-				<string> "shadow/split_weight" </string>
-				<string> "shadow/zoffset_scale" </string>
-				<string> "Level" </string>
-				<string> "Spatial" </string>
-				<string> "script/script" </string>
-				<string> "ViewportSprite" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "focus_neighbour/left" </string>
+				<string> "focus_neighbour/top" </string>
+				<string> "focus_neighbour/right" </string>
+				<string> "focus_neighbour/bottom" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "size_flags/vertical" </string>
+				<string> "size_flags/stretch_ratio" </string>
+				<string> "texture" </string>
+				<string> "modulate" </string>
+				<string> "expand" </string>
+				<string> "Sprite" </string>
 				<string> "transform/pos" </string>
 				<string> "transform/rot" </string>
 				<string> "transform/scale" </string>
 				<string> "z/z" </string>
 				<string> "z/relative" </string>
-				<string> "viewport" </string>
 				<string> "centered" </string>
-				<string> "offset" </string>
-				<string> "modulate" </string>
+				<string> "flip_h" </string>
+				<string> "flip_v" </string>
+				<string> "vframes" </string>
+				<string> "hframes" </string>
+				<string> "frame" </string>
+				<string> "region" </string>
+				<string> "region_rect" </string>
+				<string> "DummyScene" </string>
+				<string> "Node" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 6 </int>
+			<int> 4 </int>
 			<string> "variants" </string>
-			<array  len="27" shared="false">
+			<array  len="20" shared="false">
 				<node_path> "" </node_path>
+				<int> -1 </int>
+				<vector2> 0, 0 </vector2>
+				<real> 0 </real>
+				<vector2> 1, 1 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -93,11 +70,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 0.397215 </real>
+							<real> 0.440127 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -800, -600 </vector2>
+							<vector2> -800, -515.713 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -113,7 +90,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 63.872696 </real>
+									<real> 6.3475 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -179,9 +156,9 @@
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
 							<string> "default_light" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
-							<color> 0.424084, 0.423605, 0.424922, 1 </color>
+							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
 							<string> "show_origin" </string>
@@ -204,33 +181,23 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
-				<rect2> 0, 0, 800, 600 </rect2>
-				<bool> False </bool>
-				<resource name=""></resource>				<bool> True </bool>
-				<int> 2 </int>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-				<transform> 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 5, 2, 9 </transform>
-				<int> 0 </int>
-				<real> 60 </real>
-				<real> 0.1 </real>
-				<real> 100 </real>
-				<int> 1 </int>
-				<int> 1048575 </int>
-				<real> 0 </real>
-				<transform> 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0.5, -0.5, 0.707107, -5, 10, 20 </transform>
+				<bool> True </bool>
 				<real> 1 </real>
+				<real> 800 </real>
+				<real> 600 </real>
+				<int> 2 </int>
+				<resource  resource_type="Texture" path="res://sprites/starscape.png">  </resource>
 				<color> 1, 1, 1, 1 </color>
-				<real> 0.05 </real>
-				<real> 0.5 </real>
-				<real> 2 </real>
-				<resource  resource_type="Script" path="res://game/level.gd">  </resource>
-				<vector2> 400, 300 </vector2>
-				<vector2> 1, 1 </vector2>
-				<vector2> 0, 0 </vector2>
-				<resource  resource_type="Script" path="local://1">  </resource>
+				<vector2> 550, 200 </vector2>
+				<vector2> 16, 16 </vector2>
+				<int> 0 </int>
+				<resource  resource_type="Texture" path="res://sprites/moon.png">  </resource>
+				<bool> False </bool>
+				<int> 1 </int>
+				<rect2> 0, 0, 0, 0 </rect2>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="182"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 3, 11, 3, 12, 3, 13, 6, 14, 3, 15, 3, 16, 3, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 5, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 5, 27, 14, 28, 4, 29, 15, 30, 15, 0, 1, 0, 31, 31, -1, 23, 2, 0, 18, 7, 19, 16, 20, 5, 32, 13, 33, 5, 34, 3, 35, 9, 36, 17, 37, 18, 38, 18, 39, 5, 40, 15, 41, 19, 42, 15, 43, 10, 44, 17, 45, 4, 46, 9, 47, 13, 48, 15, 49, 20, 50, 21, 0, 1, 0, 52, 51, -1, 4, 2, 0, 18, 7, 20, 5, 53, 22, 0, 0, 0, 54, 54, -1, 14, 2, 0, 20, 5, 55, 17, 56, 17, 57, 23, 58, 15, 59, 24, 60, 9, 61, 5, 62, 0, 63, 5, 64, 25, 65, 18, 53, 26, 0 </int_array>
+			<int_array  len="118"> 				-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 0, 0, 8, 8, -1, 18, 2, 0, 9, 6, 10, 7, 11, 7, 12, 8, 13, 9, 14, 0, 15, 0, 16, 0, 17, 0, 18, 6, 19, 6, 20, 10, 21, 10, 22, 7, 23, 11, 24, 12, 25, 6, 0, 0, 0, 26, 26, -1, 20, 2, 0, 9, 6, 10, 7, 11, 7, 27, 13, 28, 3, 29, 14, 30, 15, 31, 6, 23, 16, 32, 6, 4, 2, 33, 17, 34, 17, 35, 18, 36, 18, 37, 15, 24, 12, 38, 17, 39, 19, 0, 0, 0, 41, 40, -1, 1, 2, 0, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

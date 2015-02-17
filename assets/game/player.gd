@@ -21,6 +21,9 @@ var on_floor = false
 var velocity = Vector3(0, 0, 0)
 var state = State.ALIVE
 
+func object_type():
+    return "PLAYER"
+
 func _ready():
     logger = get_node("/root/logger")
     mesh = get_node("MeshInstance")
