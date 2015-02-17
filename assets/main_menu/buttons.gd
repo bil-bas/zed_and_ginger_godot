@@ -9,7 +9,7 @@ func _ready():
     utilities = get_node("/root/utilities")
 
 func _on_Play_pressed():
-    utilities.goto_scene("res://game/editor.xscn")
+    utilities.goto_scene("res://game/play.xscn")
 
 func _on_Editor_pressed():
     utilities.goto_scene("res://game/editor.xscn")
