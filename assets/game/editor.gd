@@ -94,7 +94,7 @@ func _on_RedoButton_pressed():
 	update_history_buttons()
 
 func _on_BackButton_pressed():
-    get_node("/root/utilities").goto_scene("res://main_menu/main_menu.xscn")
+    get_node("/root/scene_manager").goto("res://main_menu/main_menu.xscn")
 
 func update_history_buttons():
 	undo_button.set_disabled(not history.get_can_undo())

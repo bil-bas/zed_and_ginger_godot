@@ -3,16 +3,16 @@
 
 extends GridContainer
 
-var utilities
+var scene_manager
 
 func _ready():
-    utilities = get_node("/root/utilities")
+    scene_manager = get_node("/root/scene_manager")
 
 func _on_Play_pressed():
-    utilities.goto_scene("res://game/play.xscn")
+    scene_manager.goto("res://game/play.xscn")
 
 func _on_Editor_pressed():
-    utilities.goto_scene("res://game/editor.xscn")
+    scene_manager.goto("res://game/editor.xscn")
 
 func _on_Quit_pressed():
     OS.get_main_loop().quit()
