@@ -62,7 +62,7 @@
 				<bool> False </bool>
 				<int> 1 </int>
 				<resource  resource_type="Shape" path="local://1">  </resource>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.1 </transform>
 				<real> 1 </real>
 				<real> 0 </real>
 				<vector3> 0, 0, 0 </vector3>
@@ -95,7 +95,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 4 </real>
+									<real> 5.441956 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -184,7 +184,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "3D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<resource name=""></resource>				<int> 0 </int>
 				<node_path> ".." </node_path>

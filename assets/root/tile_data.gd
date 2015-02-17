@@ -26,23 +26,14 @@ class Tile:
         self.type = type
         self.grid = grid
 
-    func uses_transparency():
-        return types[type]["uses_transparency"]
+    func _get(name):
+        return types[type][name]
 
-    func depth():
-        return types[type]["depth"]
-
-    func speed_multiplier():
-        return types[type]["speed_multiplier"]
-
-    func is_sticky():
-        return types[type]["is_sticky"]
+    func _get_property_list():
+        return types[type].keys()
 
     func creates_footprints():
-        return footprints_color() != null
-
-    func footprints_color():
-        return types[type]["footprints_color"]
+        return types[type]["footprints_color"] != null
 
     func to_data():
         return { "type": type, "grid": [grid.x, grid.y] }

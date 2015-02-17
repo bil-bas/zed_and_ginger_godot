@@ -15,8 +15,9 @@ class State:
 
 var logger
 var mesh
-var shape
 var audio
+var floor_tile
+var floor_ray
 var on_floor = false
 var velocity = Vector3(0, 0, 0)
 var state = State.ALIVE
@@ -27,8 +28,8 @@ func object_type():
 func _ready():
     logger = get_node("/root/logger")
     mesh = get_node("MeshInstance")
-    shape = get_node("CapsuleShape")
     audio = get_node("SpatialSamplePlayer")
+    floor_ray = get_node("FloorRay")
 
     mesh.animation = "walking"
 
@@ -86,16 +87,27 @@ func _fixed_process(delta):
     velocity.y += GRAVITY * delta
 
     if state == State.ALIVE:
+        if floor_ray.is_colliding():
+            var collider = floor_ray.get_collider()
+            if collider != null and collider.object_type() == "TILE":
+                floor_tile = collider
+
+        var walk_speed = WALK_SPEED
+
         if on_floor:
             var jump_pressed = Input.is_action_pressed("jump")
-
             if jump_pressed:
-                velocity.y = JUMP_SPEED
-                on_floor = false
+                if floor_tile.is_sticky:
+                    pass # TODO: play sound?
+                else:
+                    velocity.y = JUMP_SPEED
+                    on_floor = false
+
+            walk_speed *= floor_tile.speed_multiplier
 
         var direction = move_direction()
-        velocity.x = direction.x * WALK_SPEED
-        velocity.z = direction.z * WALK_SPEED
+        velocity.x = direction.x * walk_speed
+        velocity.z = direction.z * walk_speed
 
     var motion = velocity * delta
     motion = move(motion)

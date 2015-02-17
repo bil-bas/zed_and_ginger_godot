@@ -15,7 +15,6 @@ func setup():
         restore()
     else:
         create()
-        yield()
         save()
 
     yield()
@@ -66,23 +65,19 @@ func generate_tiles():
     var mesh_manager = get_node("/root/mesh_manager")
     var scale = 8 * mesh_manager.PIXEL_SIZE
 
-    for wall_tile in wall_tiles:
+    for tile_data in wall_tiles:
         var tile = mesh_manager.new_mesh_object("tile")
-        tile.is_floor = false
-        tile.data = wall_tile
-        tile.get_node("MeshInstance").animation = wall_tile.type
-        tile.set_translation(Vector3(wall_tile.grid.x * scale, wall_tile.grid.y * scale, 0))
+        tile.data = tile_data
+        tile.get_node("MeshInstance").animation = tile_data.type
+        tile.set_translation(Vector3(tile_data.grid.x * scale, (tile_data.grid.y + 1) * scale, 0))
         add_child(tile)
    
-    for floor_tile in floor_tiles:
+    for tile_data in floor_tiles:
         var tile = mesh_manager.new_mesh_object("tile")
-        tile.is_floor = true
-        tile.data = floor_tile
-        tile.get_node("MeshInstance").animation = floor_tile.type
-        tile.set_translation(Vector3(floor_tile.grid.x * scale, 0, floor_tile.grid.y * scale))
-        var rotation = tile.get_rotation()
-        rotation.x -= PI / 2
-        tile.set_rotation(rotation)
+        tile.data = tile_data
+        tile.get_node("MeshInstance").animation = tile_data.type
+        tile.set_rotation(Vector3(-PI / 2, 0, 0))
+        tile.set_translation(Vector3(tile_data.grid.x * scale, 0, tile_data.grid.y * scale))
         add_child(tile)
 
 func create_flytrap_swallower(grid):
@@ -93,7 +88,6 @@ func create_flytrap_swallower(grid):
     flytrap.get_node("MeshInstance").animation = "swallowing"
 
     flytrap.set_translation(grid_to_world(grid))
-
 
 func create_flytrap_sleeper(grid):
     var mesh_manager = get_node("/root/mesh_manager")

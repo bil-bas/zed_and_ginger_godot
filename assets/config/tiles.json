@@ -13,7 +13,7 @@
     "BLUE_TILE": {
     },
     "GOO": {
-        "speed_multiplier": 0.5,
+        "speed_multiplier": 0.25,
         "footprints_color": [0, 1, 0]
     },
     "FORCE_FIELD": {
@@ -25,6 +25,7 @@
     "CHECKER": {
     },
     "TELEPORTER": {
+        "speed_multiplier": 2.0,
     },
     "EARTH": {
     },
