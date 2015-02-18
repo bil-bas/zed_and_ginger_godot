@@ -4,7 +4,7 @@
         "is_sticky": false,
         "uses_transparency": false,
         "create_sides": true,
-        "footprints_color": null
+        "footprints_color": [0, 0, 0, 0]
     },
 
 
@@ -14,7 +14,7 @@
     },
     "GOO": {
         "speed_multiplier": 0.25,
-        "footprints_color": [0, 1, 0]
+        "footprints_color": [0, 0.6, 0, 1]
     },
     "FORCE_FIELD": {
         "uses_transparency": true,
@@ -39,7 +39,7 @@
     },
     "GLUE": {
         "is_sticky": true,
-        "footprints_color": [0.8, 0.8, 0.8]
+        "footprints_color": [0.8, 0.8, 0.8, 1]
     },
     "LASER_CHANNEL": {
     },

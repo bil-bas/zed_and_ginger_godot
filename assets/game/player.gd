@@ -4,6 +4,8 @@ const WALK_SPEED = 4
 const JUMP_SPEED = 6
 const UP = Vector3(0, 1, 0)
 const GRAVITY = -9.81
+const FOOTPRINT_DISTANCE = 0.3
+const NUM_FOOTPRINTS = 12
 
 class State:
     const ALIVE = 0
@@ -18,6 +20,9 @@ var mesh
 var audio
 var floor_tile
 var floor_ray
+var footprints_color = null
+var footprints_remaining
+var distance_to_footprint
 var on_floor = false
 var velocity = Vector3(0, 0, 0)
 var state = State.ALIVE
@@ -104,13 +109,31 @@ func _fixed_process(delta):
                     on_floor = false
 
             walk_speed *= floor_tile.speed_multiplier
-
+            
         var direction = move_direction()
         velocity.x = direction.x * walk_speed
         velocity.z = direction.z * walk_speed
 
     var motion = velocity * delta
     motion = move(motion)
+
+    if state == State.ALIVE and on_floor:
+        if floor_tile.footprints_color.a > 0:
+            if floor_tile.footprints_color != footprints_color:
+                distance_to_footprint = FOOTPRINT_DISTANCE
+            footprints_remaining = NUM_FOOTPRINTS
+            footprints_color = floor_tile.footprints_color
+
+        if footprints_color != null and floor_tile.footprints_color.a == 0:
+            distance_to_footprint -= motion.length()
+            if distance_to_footprint <= 0:
+                create_footprint()
+
+                footprints_remaining -= 1
+                if footprints_remaining == 0:
+                    footprints_color = null
+                else:
+                    distance_to_footprint = FOOTPRINT_DISTANCE
 
     if is_colliding():
         var collider = get_collider()
@@ -131,3 +154,8 @@ func _fixed_process(delta):
 
     update_animation(velocity)
 
+func create_footprint():
+    var footprint = load("res://prefabs/footprint.xscn").instance()
+    get_node("..").add_child(footprint)
+    footprint.set_translation(get_translation())
+    footprint.set_color(footprints_color)

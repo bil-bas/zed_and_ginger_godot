@@ -30,10 +30,12 @@ class Tile:
         return types[type][name]
 
     func _get_property_list():
-        return types[type].keys()
+        var properties = []
+        for name in types[type]:
+            var value = types[type][name]
+            properties.append({"name": name, "type": typeof(value) })
 
-    func creates_footprints():
-        return types[type]["footprints_color"] != null
+        return properties
 
     func to_data():
         return { "type": type, "grid": [grid.x, grid.y] }
@@ -69,9 +71,9 @@ func _ready():
             if not key in TYPES[type]:
                 TYPES[type][key] = default[key]
 
-        var footprints = TYPES[type]["footprints_color"]
-        if footprints != null:
-            TYPES[type]["footprints_color"] = Color(footprints[0], footprints[1], footprints[2])  
+        # Convert colour array into something sensible.
+        var channels = TYPES[type]["footprints_color"]
+        TYPES[type]["footprints_color"] = Color(channels[0] * 255, channels[1] * 255, channels[2] * 255, channels[3] * 255)
 
     # Fill dict for reverse lookup.
     var animations = utilities.load_json("res://atlases/tile.json")["animations"]
