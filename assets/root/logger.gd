@@ -77,8 +77,6 @@ class TimeFormat:
     const TIME = 2
     const DATETIME = 3 # default
 
-const STRING_TYPE = typeof("") # TODO: Is there a nicer way to avoid creating a string every time we compare an object?
-
 # Print to stdout?
 var print_stdout = true setget set_print_stdout, get_print_stdout
 func get_print_stdout():
@@ -204,7 +202,7 @@ func critical(data):
 
 func _write(type, data):
     """Actually write out the message string"""
-    if typeof(data) != STRING_TYPE:
+    if typeof(data) != TYPE_STRING:
         data = var2str(data)
 
     var message = '%s%s %s' % [time_format_func.call_func(), type, data]

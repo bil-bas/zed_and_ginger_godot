@@ -39,7 +39,7 @@ var animation setget set_animation, get_animation
 func get_animation():
     return animation.name
 func set_animation(value):
-    if typeof(animation) == typeof(""):
+    if typeof(animation) == TYPE_STRING:
         animation = null
 
     # Don't do anything if repeating same animation.
