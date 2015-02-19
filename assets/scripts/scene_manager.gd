@@ -1,6 +1,7 @@
 extends Node
 
 const INITIAL_SCENE = "res://main_menu/main_menu.xscn"
+const BASE_SIZE = Vector2(800, 600) # Size the game is developed for.
 
 var current_scene = null
 var loader
@@ -22,8 +23,20 @@ func _ready():
     loading_label = get_node("LoadingLabel")
     progress_bar = get_node("LoadingProgress")
     root_node = get_node("..")
-
     goto(INITIAL_SCENE) # Load first scene.
+    rescale()
+
+    logger.info("Operating system: %s" % OS.get_name())
+
+func rescale():
+    var size = OS.get_video_mode_size()
+    var scale_x = size.x / BASE_SIZE.x
+    var scale_y = size.y / BASE_SIZE.y
+    var scale = max(scale_x, scale_y)
+
+    var background = get_node("../Background")
+    background.set_scale(Vector2(scale, scale))
+    background.set_offset(Vector2(0, (size.height - BASE_SIZE.y * scale) / 2))
 
 func _process(delta):
     if wait_frames > 0: # wait for frames to let the "loading" animation to show up

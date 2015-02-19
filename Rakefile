@@ -4,7 +4,7 @@ Dir["tasks/*.rake"].each { |t| load t }
 
 desc "Edit project"
 task :edit do
-  system "../godot/bin/godot.x11.tools.64 -editor -path assets"
+  system "../godot/bin/godot.x11.tools.64 -editor -path assets root.xscn &"
 end
 
 desc "Run project"
