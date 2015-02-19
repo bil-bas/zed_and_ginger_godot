@@ -11,3 +11,8 @@ desc "Run project"
 task :run do
   system "../godot/bin/godot.x11.tools.64 -path assets root.xscn"
 end
+
+desc "Run project fullscreen"
+task :run_fs do
+  system "../godot/bin/godot.x11.tools.64 -path assets -f root.xscn"
+end
