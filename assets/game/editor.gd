@@ -132,7 +132,7 @@ func create_item_picker(name):
     item.get_node("MeshInstance").frame = 1
     item.get_node("MeshInstance").stop() # Stop animation.
     picker.name = name
-    picker.callback =funcref(self, "_on_ItemPicker_pressed")
+    picker.callback = funcref(self, "_on_ItemPicker_pressed")
     return picker
 
 func fill_tile_picker():
