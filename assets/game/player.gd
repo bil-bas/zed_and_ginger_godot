@@ -127,7 +127,7 @@ func _fixed_process(delta):
             footprints_remaining = NUM_FOOTPRINTS
             footprints_color = floor_tile.footprints_color
 
-        if footprints_color != null and floor_tile.footprints_color.a == 0:
+        if footprints_color != null and floor_tile.accepts_footprints:
             distance_to_footprint -= motion.length()
             if distance_to_footprint <= 0:
                 create_footprint()
@@ -158,7 +158,7 @@ func _fixed_process(delta):
     update_animation(velocity)
 
     if on_floor and floor_tile:
-        move(floor_tile.push_speed * delta * 0.8)
+        move(floor_tile.push_speed * delta)
 
 func create_footprint():
     var footprint = load("res://prefabs/footprint.xscn").instance()

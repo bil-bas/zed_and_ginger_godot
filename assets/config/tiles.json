@@ -5,7 +5,8 @@
         "uses_transparency": false,
         "create_sides": true,
         "footprints_color": [0, 0, 0, 0],
-        "push_speed": [0, 0, 0]
+        "push_speed": [0, 0, 0],
+        "accepts_footprints": true
     },
 
 
@@ -15,7 +16,8 @@
     },
     "GOO": {
         "speed_multiplier": 0.25,
-        "footprints_color": [0, 0.6, 0, 1]
+        "footprints_color": [0, 0.6, 0, 1],
+        "accepts_footprints": false
     },
     "FORCE_FIELD": {
         "uses_transparency": true,
@@ -40,7 +42,8 @@
     },
     "GLUE": {
         "is_sticky": true,
-        "footprints_color": [0.8, 0.8, 0.8, 1]
+        "footprints_color": [0.8, 0.8, 0.8, 1],
+        "accepts_footprints": false
     },
     "LASER_CHANNEL": {
     },
@@ -74,12 +77,15 @@
     },
 
     "CONVEYOR_U": {
-        "push_speed": [0, 0, -1]
+        "push_speed": [0, 0, -1.2],
+        "accepts_footprints": false
     },
     "CONVEYOR_R": {
-        "push_speed": [1, 0, 0]
+        "push_speed": [1.2, 0, 0],
+        "accepts_footprints": false
     },
     "CONVEYOR_D": {
-        "push_speed": [0, 0, 1]
+        "push_speed": [0, 0, 1.2],
+        "accepts_footprints": false
     }
 }
