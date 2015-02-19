@@ -51,7 +51,11 @@ func setup():
         yield()
 
     fill_item_picker()
+    #yield()
+    fill_tile_picker()
+    #yield()
     update_history_buttons()
+
     set_process(true)
 
 func _process(delta):
@@ -106,20 +110,20 @@ func update_history_buttons():
     undo_button.set_disabled(not history.get_can_undo())
     redo_button.set_disabled(not history.get_can_redo())
     
-func _on_TilePicker_input_event(event):
-    if event.type == InputEvent.MOUSE_BUTTON and event.is_pressed():
-        var tile_index = int(event.pos.x / 50) + int(event.pos.y / 50) * 8
-        current_tile_type = get_node("/root/tile_data").INDEX_TO_NAME[tile_index]
+func _on_TilePicker_pressed(control):
+    logger.info("Picked tile: %s" % control.name)
+    current_tile_type = control.name
 
-func _on_ItemPicker_input_event(event):
-    pass
+func _on_ItemPicker_pressed(control):
+    logger.info("Picked item: %s" % control.name)
+    return
 
 func fill_item_picker():
-    var item_pickers = get_node("ItemPickerPanel/ItemPickers")
-    item_pickers.add_child(item_picker("flytrap"))
-    item_pickers.add_child(item_picker("flytrap"))
+    var pickers = get_node("Tabs/Items/ScrollArea/Pickers")
+    pickers.add_child(create_item_picker("flytrap"))
+    pickers.add_child(create_item_picker("flytrap"))
 
-func item_picker(name):
+func create_item_picker(name):
     var mesh_manager = get_node("/root/mesh_manager")
     var item = mesh_manager.new_mesh_object(name)
 
@@ -127,4 +131,25 @@ func item_picker(name):
     picker.get_node("Viewport").add_child(item)
     item.get_node("MeshInstance").frame = 1
     item.get_node("MeshInstance").stop() # Stop animation.
+    picker.name = name
+    picker.callback =funcref(self, "_on_ItemPicker_pressed")
+    return picker
+
+func fill_tile_picker():
+    var pickers = get_node("Tabs/Tiles/ScrollArea/Pickers")
+    var mesh_manager = get_node("/root/mesh_manager")
+    var animations = mesh_manager.get_animations("tile")
+    var utilities = get_node("/root/utilities")
+    var tiles = utilities.load_json("res://config/tile_order_editor.json")["tiles"]
+
+    for tile in tiles:
+        var frame = animations[tile][0]["tile"]
+        pickers.add_child(create_tile_picker(frame, tile))
+
+func create_tile_picker(frame, tile):
+    var prefab = load("res://prefabs/tile_picker.xscn")
+    var picker = prefab.instance()
+    picker.get_node("Sprite").set_frame(frame)
+    picker.name = tile
+    picker.callback = funcref(self, "_on_TilePicker_pressed")
     return picker

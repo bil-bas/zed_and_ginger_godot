@@ -70,7 +70,7 @@ func _load_sheet(spritesheet):
             var index = meshes.size()
             
             if spritesheet == "tile":
-                create_sides = tile_data.get_config_from_index(index, "create_sides")
+                create_sides = true#tile_data.get_config_from_index(index, "create_sides")
             else:
                 create_sides = true
 
@@ -102,6 +102,8 @@ func _load_sheet(spritesheet):
 #
 #        return _materials[spritesheet]["transparency"]
 
+func get_animations(spritesheet):
+    return _metadata[spritesheet]["animations"]
 
 func new_mesh_object(spritesheet, index=0):
     if not spritesheet in _meshes:
@@ -124,7 +126,7 @@ func new_mesh_object(spritesheet, index=0):
     mesh.set_translation(_world_offsets[spritesheet])
     mesh.meshes = _meshes[spritesheet]
     mesh.frame = index
-    mesh.animations = _metadata[spritesheet]["animations"]
+    mesh.animations = get_animations(spritesheet)
 
     var is_centered = (spritesheet != "tile")
 

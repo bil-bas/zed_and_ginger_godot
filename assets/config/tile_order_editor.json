@@ -1,0 +1,37 @@
+{
+    "tiles": [
+        "WHITE_TILE",
+        "BLUE_TILE",
+        "GOO",
+        "FORCE_FIELD",
+
+        "LASER_WARNING",
+        "LASER_CHANNEL",
+        "CHECKER",
+        "EARTH",
+
+        "FIRE_SHAFT",
+        "WORKSHOP",
+        "SPACE",
+        "GLUE",
+
+        "TELEPORTER",
+        "CONTROL_PANEL_1",
+        "CONTROL_PANEL_2",
+        "CONTROL_PANEL_3",
+
+        "WINDOW_TL",
+        "WINDOW_TR",
+        "WINDOW_BL",
+        "WINDOW_BR",
+
+        "WINDOW_L",
+        "WINDOW_R",
+        "WINDOW_T",
+        "WINDOW_B",
+
+        "WINDOW_C",
+        "PORTHOLE",
+        "DOTS",
+    ]
+}

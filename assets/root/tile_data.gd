@@ -3,7 +3,6 @@ extends Node
 
 #const DEPTH = 2.5
 var TYPES
-var INDEX_TO_NAME = {}
 
 
 class Tile:
@@ -43,14 +42,6 @@ class Tile:
 
 func create(type, grid):
     return Tile.new(type, grid, TYPES)
-    
-
-func get_config_from_index(index, key):
-    if not index in INDEX_TO_NAME:
-       index = 0
-
-    var type = TYPES[INDEX_TO_NAME[int(index)]]
-    return type[key]
 
 
 func _ready():
@@ -74,9 +65,3 @@ func _ready():
         # Convert colour array into something sensible.
         var channels = TYPES[type]["footprints_color"]
         TYPES[type]["footprints_color"] = Color(channels[0] * 255, channels[1] * 255, channels[2] * 255, channels[3] * 255)
-
-    # Fill dict for reverse lookup.
-    var animations = utilities.load_json("res://atlases/tile.json")["animations"]
-    for type in animations:
-        var frame = animations[type][0]
-        INDEX_TO_NAME[int(frame["tile"])] = type
