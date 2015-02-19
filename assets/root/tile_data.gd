@@ -65,3 +65,6 @@ func _ready():
         # Convert colour array into something sensible.
         var channels = TYPES[type]["footprints_color"]
         TYPES[type]["footprints_color"] = Color(channels[0] * 255, channels[1] * 255, channels[2] * 255, channels[3] * 255)
+
+        var push_speed = TYPES[type]["push_speed"]
+        TYPES[type]["push_speed"] = Vector3(push_speed[0], push_speed[1], push_speed[2])

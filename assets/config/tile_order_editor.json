@@ -31,6 +31,10 @@
         "WINDOW_B",
 
         "WINDOW_C",
+        "CONVEYOR_R",
+        "CONVEYOR_U",
+        "CONVEYOR_D",
+
         "PORTHOLE",
         "DOTS",
     ]

@@ -91,6 +91,8 @@ func update_animation(velocity):
 func _fixed_process(delta):
     velocity.y += GRAVITY * delta
 
+    var push_speed = Vector3(0, 0, 0)
+
     if state == State.ALIVE:
         if floor_ray.is_colliding():
             var collider = floor_ray.get_collider()
@@ -98,7 +100,7 @@ func _fixed_process(delta):
                 floor_tile = collider
 
         var walk_speed = WALK_SPEED
-
+        
         if on_floor:
             var jump_pressed = Input.is_action_pressed("jump")
             if jump_pressed:
@@ -109,6 +111,7 @@ func _fixed_process(delta):
                     on_floor = false
 
             walk_speed *= floor_tile.speed_multiplier
+            
             
         var direction = move_direction()
         velocity.x = direction.x * walk_speed
@@ -153,6 +156,9 @@ func _fixed_process(delta):
         on_floor = false
 
     update_animation(velocity)
+
+    if on_floor and floor_tile:
+        move(floor_tile.push_speed * delta * 0.8)
 
 func create_footprint():
     var footprint = load("res://prefabs/footprint.xscn").instance()

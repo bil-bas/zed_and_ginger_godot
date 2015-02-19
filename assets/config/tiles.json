@@ -4,7 +4,8 @@
         "is_sticky": false,
         "uses_transparency": false,
         "create_sides": true,
-        "footprints_color": [0, 0, 0, 0]
+        "footprints_color": [0, 0, 0, 0],
+        "push_speed": [0, 0, 0]
     },
 
 
@@ -70,5 +71,15 @@
     "WINDOW_T": {
     },
     "WINDOW_B": {
+    },
+
+    "CONVEYOR_U": {
+        "push_speed": [0, 0, -1]
+    },
+    "CONVEYOR_R": {
+        "push_speed": [1, 0, 0]
+    },
+    "CONVEYOR_D": {
+        "push_speed": [0, 0, 1]
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://scripts/picker.gd" type="Script"></ext_resource>
 	<ext_resource path="res://atlases/tile.png" type="Texture"></ext_resource>
+	<ext_resource path="res://scripts/picker.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
@@ -184,7 +184,7 @@
 				<vector2> 5, 5 </vector2>
 				<int> 0 </int>
 				<resource  resource_type="Texture" path="res://atlases/tile.png">  </resource>
-				<int> 4 </int>
+				<int> 7 </int>
 				<int> 8 </int>
 				<color> 1, 1, 1, 1 </color>
 				<rect2> 0, 0, 0, 0 </rect2>
