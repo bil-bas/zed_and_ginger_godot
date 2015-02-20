@@ -71,7 +71,7 @@ func restore():
 func create():
     logger.info("Creating level")
 
-    for x in range(20):
+    for x in range(50):
         var wall_row = []
         var floor_row = []
         for y in range(5):
