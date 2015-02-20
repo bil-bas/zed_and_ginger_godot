@@ -2,6 +2,7 @@ extends "object.gd"
 
 var is_horizontal = false
 var collision_layer
+
 func object_type():
     return "ITEM"
 
@@ -29,7 +30,11 @@ func set_is_horizontal(value):
         set_translation(get_translation() - Vector3(0, 0, -0.5))
         set_rotation(Vector3(0, 0, 0))
 
-func set_velocity(velocity):
-    set_linear_velocity(velocity)
-    set_friction(0)
+var velocity = Vector3() setget set_velocity
+func set_velocity(value):
+    velocity = value
     set_mode(RigidBody.MODE_RIGID)
+    set_fixed_process(true)
+
+func _fixed_process(delta):
+	set_linear_velocity(velocity)

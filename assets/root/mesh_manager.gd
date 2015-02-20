@@ -128,6 +128,8 @@ func new_mesh_object(spritesheet, index=0):
 
     var obj = load("res://prefabs/%s.xscn" % obj_type).instance()
     obj.set_name(spritesheet)
+    if obj_type == "item":
+        obj.set_mass(object_data.ITEM_TYPES[spritesheet]["mass"])
     
     var mesh = obj.get_node("MeshInstance")
     mesh.set_rotation(Vector3(PI, 0, 0))
