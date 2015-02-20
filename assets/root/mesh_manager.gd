@@ -29,7 +29,7 @@ func _load_sheet(spritesheet):
     
     if spritesheet == "tile":
         uses_transparency = true
-        depth = 3#TileData.DEPTH
+        depth = 3
         is_centered = false
     else:
         uses_transparency = false
@@ -38,6 +38,8 @@ func _load_sheet(spritesheet):
 
     # Load the sprites themselves and create meshes from them.
     var texture = load("res://atlases/%s.png" % spritesheet)
+    logger.debug("Loading texture for spritesheet: %s" % spritesheet)
+    assert(texture)
 
     # Create a material for all meshes created from the spritesheet
     var material = FixedMaterial.new()
@@ -57,7 +59,7 @@ func _load_sheet(spritesheet):
         _world_offsets[spritesheet] = Vector3(-(width - 2) * PIXEL_SIZE / 2, (height - 2) * PIXEL_SIZE, 0)
     
     _sprite_sizes[spritesheet] = Vector3(texture.get_width() / width, texture.get_height() / height, depth)
-    var tile_data = get_node("/root/tile_data")
+    var object_data = get_node("/root/object_data")
 
     # Create save data.
     var meshes = []
@@ -70,7 +72,7 @@ func _load_sheet(spritesheet):
             var index = meshes.size()
             
             if spritesheet == "tile":
-                create_sides = true#tile_data.get_config_from_index(index, "create_sides")
+                create_sides = true
             else:
                 create_sides = true
 

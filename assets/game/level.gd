@@ -1,14 +1,23 @@
 extends Spatial
 
+# Stored data.
 var floor_tiles = []
 var wall_tiles = []
+var items = {} # grid => item-data
 var name = "MyLevel"
+
 var filename = "res://levels/level0.json"
 var logger
-
+var mesh_manager
+var object_data
+var utilities
+var item_objects = {} # grid => item nodes
 
 func _ready():
     logger = get_node("/root/logger")
+    mesh_manager = get_node("/root/mesh_manager")
+    object_data = get_node("/root/object_data")
+    utilities = get_node("/root/utilities")
 
 func setup():
     if File.new().file_exists(filename):
@@ -20,77 +29,109 @@ func setup():
     yield()
 
     generate_tiles()
+    generate_items()
 
     #yield()
 
-    for i in range(3):
-        create_flytrap_swallower(Vector2(i, i % 2))
-        #yield()
-
     create_flytrap_sleeper(Vector2(8, 4))
-
 
 func restore():
     logger.info("Loading level")
 
-    var tile_data = get_node("/root/tile_data")
-
-    var data = get_node("/root/utilities").load_json(filename)
+    var data = utilities.load_json(filename)
     name = data["name"]
 
-    for tile_hash in data["floor_tiles"]:
-       var tile = tile_data.create(tile_hash["type"], Vector2(tile_hash["grid"][0], tile_hash["grid"][1]))
-       floor_tiles.append(tile)
+    var x = 0
+    for tile_row in data["floor_tiles"]:
+        var y = 0
+        var row = []
+        for tile_hash in tile_row:
+            var tile = object_data.create_tile(tile_hash["type"], Vector2(x, y))
+            row.append(tile)
+            y += 1
+        x += 1
+        floor_tiles.append(row)
 
-    for tile_hash in data["wall_tiles"]:
-       var tile = tile_data.create(tile_hash["type"], Vector2(tile_hash["grid"][0], tile_hash["grid"][1]))
-       wall_tiles.append(tile)
+    var x = 0
+    for tile_row in data["wall_tiles"]:
+        var y = 0
+        var row = []
+        for tile_hash in tile_row:
+            var tile = object_data.create_tile(tile_hash["type"], Vector2(x, y))
+            row.append(tile)
+            y += 1
+        x += 1
+        wall_tiles.append(row)
+
+    logger.debug(data["items"])
+    for item_data in data["items"]:
+        logger.debug(item_data)
+        var grid = Vector2(item_data["grid"][0], item_data["grid"][1])
+        var item = object_data.create_item(item_data["data"]["type"], grid)
+        items[grid] = item
 
 func create():
     logger.info("Creating level")
 
-    var tile_data = get_node("/root/tile_data")
-
     for x in range(20):
+        var wall_row = []
+        var floor_row = []
         for y in range(5):
+            logger.info("Creating wall tile")
             # Wall
-            var tile_info = tile_data.create("BLUE_TILE", Vector2(x, y))
-            wall_tiles.append(tile_info)
-
+            var tile_info = object_data.create_tile("BLUE_TILE", Vector2(x, y))
+            wall_row.append(tile_info)
+            logger.info("Creating floor tile")
             # Floor
-            tile_info = tile_data.create("WHITE_TILE", Vector2(x, y))
-            floor_tiles.append(tile_info)
+            tile_info = object_data.create_tile("WHITE_TILE", Vector2(x, y))
+            floor_row.append(tile_info)
+
+        wall_tiles.append(wall_row)
+        floor_tiles.append(floor_row)
+
+    logger.info("Created level")
 
 func generate_tiles():
-    var mesh_manager = get_node("/root/mesh_manager")
     var scale = 8 * mesh_manager.PIXEL_SIZE
 
-    for tile_data in wall_tiles:
-        var tile = mesh_manager.new_mesh_object("tile")
-        tile.data = tile_data
-        tile.get_node("MeshInstance").animation = tile_data.type
-        tile.set_translation(Vector3(tile_data.grid.x * scale, (tile_data.grid.y + 1) * scale, 0))
-        add_child(tile)
+    var i = 0
+    for tile_row in wall_tiles:
+        var j = 0
+        for tile_data in tile_row:
+            var tile = mesh_manager.new_mesh_object("tile")
+            tile.data = tile_data
+            tile.get_node("MeshInstance").animation = tile_data.type
+            tile.set_translation(Vector3(i * scale, (j + 1) * scale, 0))
+            add_child(tile)
+            j += 1
+        i += 1
    
-    for tile_data in floor_tiles:
-        var tile = mesh_manager.new_mesh_object("tile")
-        tile.data = tile_data
-        tile.get_node("MeshInstance").animation = tile_data.type
-        tile.set_rotation(Vector3(-PI / 2, 0, 0))
-        tile.set_translation(Vector3(tile_data.grid.x * scale, 0, tile_data.grid.y * scale))
-        add_child(tile)
+    var i = 0
+    for tile_row in floor_tiles:
+        var j = 0
+        for tile_data in tile_row:
+            var tile = mesh_manager.new_mesh_object("tile")
+            tile.data = tile_data
+            tile.get_node("MeshInstance").animation = tile_data.type
+            tile.set_rotation(Vector3(-PI / 2, 0, 0))
+            tile.set_translation(Vector3(i * scale, 0, j * scale))
+            add_child(tile)
+            j += 1
+        i += 1
 
-func create_flytrap_swallower(grid):
-    var mesh_manager = get_node("/root/mesh_manager")
-    var flytrap = mesh_manager.new_mesh_object("flytrap")
-    add_child(flytrap)
+func generate_items():
+    for grid in items:
+        var item_data = items[grid]
+        create_item_object(item_data, grid)
 
-    flytrap.get_node("MeshInstance").animation = "swallowing"
-
-    flytrap.set_translation(grid_to_world(grid))
+func create_item_object(item_data, grid):
+    var item = mesh_manager.new_mesh_object(item_data.type)
+    item.set_translation(grid_to_world(grid))
+    item.get_node("MeshInstance").animation = item_data.default_animation
+    add_child(item)
+    item_objects[grid] = item
 
 func create_flytrap_sleeper(grid):
-    var mesh_manager = get_node("/root/mesh_manager")
     var flytrap = mesh_manager.new_mesh_object("flytrap")
     #flytrap.player_kill_type = load("res://game.player.gd").State.DEAD
     add_child(flytrap)
@@ -109,12 +150,49 @@ func grid_to_world(grid):
 func save():
     logger.info("Saving level: %s" % name)
 
-    var data = { "name": name,  "floor_tiles": [], "wall_tiles": [] }
+    var data = { "name": name,  "floor_tiles": [], "wall_tiles": [], "items": [] }
 
-    for floor_tile in floor_tiles:
-        data["floor_tiles"].append(floor_tile.to_data())
+    for floor_row in floor_tiles:
+        var row = []
+        for floor_tile in floor_row:
+            row.append(floor_tile.to_data())
+        data["floor_tiles"].append(row)
 
-    for wall_tile in wall_tiles:
-        data["wall_tiles"].append(wall_tile.to_data())
+    for wall_row in wall_tiles:
+        var row = []
+        for wall_tile in wall_row:
+            row.append(wall_tile.to_data())
+        data["wall_tiles"].append(row)
+
+    for grid in items:
+        var item = items[grid]
+        data["items"].append({"grid": [grid.x, grid.y], "data": item.to_data()})
 
     get_node("/root/utilities").save_json(filename, data)
+
+
+# -- Editor manipulation...
+
+func add_item(grid, item_type):
+    logger.debug("Added %s at %s" % [item_type, var2str(grid)])
+
+    assert(not grid in items)
+
+    var item_data = object_data.create_item(item_type, grid)
+    items[grid] = item_data
+    create_item_object(item_data, grid)
+    
+func remove_item(grid):
+    assert(grid in items)
+
+    logger.debug("Removed %s at %s" % [items[grid].type, var2str(grid)])
+    var item = item_objects[grid]
+    items.erase(grid)
+    item_objects.erase(grid)
+    item.queue_free()
+
+func get_item_at(grid):
+    if grid in item_objects:
+        return items[grid]
+    else:
+        return null

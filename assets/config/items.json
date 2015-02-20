@@ -1,0 +1,15 @@
+{
+    "default": {
+        "uses_transparency": false,
+    },
+
+    "order_in_editor": [
+        "flytrap"
+    ],
+
+    "types": {
+        "flytrap": {
+            "default_animation": "swallowing"
+        }
+    }
+}

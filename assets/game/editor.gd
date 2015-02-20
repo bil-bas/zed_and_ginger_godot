@@ -16,8 +16,63 @@ class ChangeTileAction:
     func undo_action():
         _tile.type = _old_type
 
+class AddItemAction:
+    var _grid
+    var _type
+    var _level
+
+    func _init(grid, type, level):
+        _grid = grid
+        _type = type
+        _level = level
+
+    func do_action():
+        _level.add_item(_grid, _type)
+
+    func undo_action():
+        _level.remove_item(_grid)
+
+class RemoveItemAction:
+    var _grid
+    var _type
+    var _level
+
+    func _init(grid, type, level):
+        _grid = grid
+        _type = type
+        _level = level
+
+    func do_action():
+        _level.remove_item(_grid)
+        
+    func undo_action():
+        _level.add_item(_grid, _type)
+
+class ChangeItemAction:
+    var _grid
+    var _old_type
+    var _new_type
+    var _level
+
+    func _init(grid, old_type, new_type, level):
+        _grid = grid
+        _old_type = old_type
+        _new_type = new_type
+        _level = level
+
+    func do_action():
+        _level.remove_item(_grid)
+        _level.add_item(_grid, _new_type)
+        
+    func undo_action():
+        _level.remove_item(_grid)
+        _level.add_item(_grid, _old_type)
+
 const LMB = 1
 const RMB = 2
+
+const TILES_TAB = 0
+const ITEMS_TAB = 1
 
 var logger
 var camera
@@ -28,7 +83,11 @@ var undo_button
 var redo_button
 var level
 var current_tile_type = "WHITE_TILE"
-var paint
+var left_mouse_down
+var tabs
+var current_item_type
+var mesh_manager
+var object_data
 
 func _ready():
     logger = get_node("/root/logger")
@@ -36,11 +95,14 @@ func _ready():
     camera = get_node("World/Viewport/Camera")
     level = get_node("World/Viewport/Level")
     ray = camera.get_node("RayCast")
+    mesh_manager = get_node("/root/mesh_manager")
+    object_data = get_node("/root/object_data")
 
     history = get_node("History")
     save_button = get_node("ButtonsPanel/Buttons/SaveButton")
     undo_button = get_node("ButtonsPanel/Buttons/UndoButton")
     redo_button = get_node("ButtonsPanel/Buttons/RedoButton")
+    tabs = get_node("Tabs")
 
     logger.debug("Created 3d viewport")
 
@@ -63,22 +125,54 @@ func _process(delta):
         var collider = ray.get_collider()
         if collider != null:
             if collider.object_type() == "TILE":
-                if paint:
-                    var action = ChangeTileAction.new(collider, current_tile_type)
-                    history.add(action)
-                    update_history_buttons()
+                var current_tab = tabs.get_current_tab()
+                if current_tab == ITEMS_TAB:
+                    click_in_item_mode(collider)
+                elif current_tab == TILES_TAB:
+                    click_in_tile_mode(collider)
                 else:
-                    current_tile_type = collider.type
+                    assert(false)
 
         ray.set_enabled(false)
+
+func click_in_item_mode(tile):
+    if left_mouse_down:
+        var old_item = level.get_item_at(tile.grid)
+
+        if current_item_type == null:
+            if old_item != null:
+                var action = RemoveItemAction.new(tile.grid, old_item.type, level)
+                history.add(action)
+        else:
+            var action
+            if old_item != null:
+                action = ChangeItemAction.new(tile.grid, old_item.type, current_item_type, level)
+            else:
+                action = AddItemAction.new(tile.grid, current_item_type, level)
+            history.add(action)
+
+        update_history_buttons()
+    else:
+        current_item_type = level.get_item_at(tile.grid)
+
+func click_in_tile_mode(tile):
+    if left_mouse_down:
+        var action = ChangeTileAction.new(tile, current_tile_type)
+        history.add(action)
+        update_history_buttons()
+    else:
+        current_tile_type = tile.type
+
+func _on_Tabs_tab_changed(tab):
+    pass
 
 func _on_EditorPanel_input_event(event):
     if event.type == InputEvent.MOUSE_BUTTON and event.is_pressed():
         if event.button_index == LMB:
-            paint = true # Paint.
+            left_mouse_down = true # Paint.
         elif event.button_index == RMB:
-            paint = false # Pick type.
-        
+            left_mouse_down = false # Pick type.
+
         select_with_cursor(event.pos)
 
 func select_with_cursor(mouse_pos, length=100):
@@ -90,7 +184,6 @@ func select_with_cursor(mouse_pos, length=100):
    
     ray.set_cast_to(local_dir * length)
     ray.set_enabled(true)
-
 
 func _on_SaveButton_pressed():
     level.save()
@@ -115,16 +208,27 @@ func _on_TilePicker_pressed(control):
     current_tile_type = control.name
 
 func _on_ItemPicker_pressed(control):
-    logger.info("Picked item: %s" % control.name)
-    return
+    if control.name == null:
+        logger.info("Picked to delete items")
+    else:
+        logger.info("Picked item: %s" % control.name)
+
+    current_item_type = control.name
 
 func fill_item_picker():
-    var pickers = get_node("Tabs/Items/ScrollArea/Pickers")
-    pickers.add_child(create_item_picker("flytrap"))
-    pickers.add_child(create_item_picker("flytrap"))
+    var pickers = tabs.get_node("Items/ScrollArea/Pickers")
+    pickers.add_child(create_delete_picker())
+
+    for item in object_data.ITEM_ORDER_IN_EDITOR:
+        pickers.add_child(create_item_picker(item))
+
+func create_delete_picker():
+    var picker = load("res://prefabs/item_picker.xscn").instance()
+    picker.name = null
+    picker.callback = funcref(self, "_on_ItemPicker_pressed")
+    return picker
 
 func create_item_picker(name):
-    var mesh_manager = get_node("/root/mesh_manager")
     var item = mesh_manager.new_mesh_object(name)
 
     var picker = load("res://prefabs/item_picker.xscn").instance()
@@ -136,13 +240,11 @@ func create_item_picker(name):
     return picker
 
 func fill_tile_picker():
-    var pickers = get_node("Tabs/Tiles/ScrollArea/Pickers")
-    var mesh_manager = get_node("/root/mesh_manager")
+    var pickers = tabs.get_node("Tiles/ScrollArea/Pickers")
     var animations = mesh_manager.get_animations("tile")
     var utilities = get_node("/root/utilities")
-    var tiles = utilities.load_json("res://config/tile_order_editor.json")["tiles"]
 
-    for tile in tiles:
+    for tile in object_data.TILE_ORDER_IN_EDITOR:
         var frame = animations[tile][0]["tile"]
         pickers.add_child(create_tile_picker(frame, tile))
 

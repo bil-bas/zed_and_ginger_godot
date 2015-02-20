@@ -1,5 +1,5 @@
 {
-    "_default": {
+    "default": {
         "speed_multiplier": 1.0,
         "is_sticky": false,
         "uses_transparency": false,
@@ -9,83 +9,124 @@
         "accepts_footprints": true
     },
 
+    "order_in_editor": [
+        "WHITE_TILE",
+        "BLUE_TILE",
+        "GOO",
+        "FORCE_FIELD",
 
-    "WHITE_TILE": {
-    },
-    "BLUE_TILE": {
-    },
-    "GOO": {
-        "speed_multiplier": 0.25,
-        "footprints_color": [0.2, 0.6, 0.2, 1],
-        "accepts_footprints": false
-    },
-    "FORCE_FIELD": {
-        "uses_transparency": true,
-        "create_sides": false
-    },
-    "LASER_WARNING": {
-    },
-    "CHECKER": {
-    },
-    "TELEPORTER": {
-        "speed_multiplier": 2.0,
-    },
-    "EARTH": {
-    },
+        "LASER_WARNING",
+        "LASER_CHANNEL",
+        "CHECKER",
+        "EARTH",
+
+        "FIRE_SHAFT",
+        "WORKSHOP",
+        "SPACE",
+        "GLUE",
+
+        "TELEPORTER",
+        "CONTROL_PANEL_1",
+        "CONTROL_PANEL_2",
+        "CONTROL_PANEL_3",
+
+        "WINDOW_TL",
+        "WINDOW_TR",
+        "WINDOW_BL",
+        "WINDOW_BR",
+
+        "WINDOW_L",
+        "WINDOW_R",
+        "WINDOW_T",
+        "WINDOW_B",
+
+        "WINDOW_C",
+        "CONVEYOR_R",
+        "CONVEYOR_U",
+        "CONVEYOR_D",
+
+        "PORTHOLE",
+        "DOTS",
+    ],
+
+    "types": {
+        "WHITE_TILE": {
+        },
+        "BLUE_TILE": {
+        },
+        "GOO": {
+            "speed_multiplier": 0.25,
+            "footprints_color": [0.2, 0.6, 0.2, 1],
+            "accepts_footprints": false
+        },
+        "FORCE_FIELD": {
+            "uses_transparency": true,
+            "create_sides": false
+        },
+        "LASER_WARNING": {
+        },
+        "CHECKER": {
+        },
+        "TELEPORTER": {
+            "speed_multiplier": 2.0,
+        },
+        "EARTH": {
+        },
 
 
-    "FIRE_SHAFT": {
-    },
-    "WORKSHOP": {
-    },
-    "SPACE": {
-    },
-    "GLUE": {
-        "is_sticky": true,
-        "footprints_color": [0.5, 0.5, 0.5, 1],
-        "accepts_footprints": false
-    },
-    "LASER_CHANNEL": {
-    },
-    "CONTROL_PANEL_1": {
-    },
-    "CONTROL_PANEL_2": {
-    },
-    "CONTROL_PANEL_3": {
-    },
-    "PORTHOLE": {
-    },
-    "DOTS": {
-    },
+        "FIRE_SHAFT": {
+        },
+        "WORKSHOP": {
+        },
+        "SPACE": {
+        },
+        "GLUE": {
+            "is_sticky": true,
+            "footprints_color": [0.5, 0.5, 0.5, 1],
+            "accepts_footprints": false
+        },
+        "LASER_CHANNEL": {
+        },
+        "CONTROL_PANEL_1": {
+        },
+        "CONTROL_PANEL_2": {
+        },
+        "CONTROL_PANEL_3": {
+        },
+        "PORTHOLE": {
+        },
+        "DOTS": {
+        },
 
 
-    "WINDOW_TL": {
-    },
-    "WINDOW_TR": {
-    },
-    "WINDOW_BL": {
-    },
-    "WINDOW_BR": {
-    },
-    "WINDOW_L": {
-    },
-    "WINDOW_R": {
-    },
-    "WINDOW_T": {
-    },
-    "WINDOW_B": {
-    },
+        "WINDOW_TL": {
+        },
+        "WINDOW_TR": {
+        },
+        "WINDOW_BL": {
+        },
+        "WINDOW_BR": {
+        },
+        "WINDOW_L": {
+        },
+        "WINDOW_R": {
+        },
+        "WINDOW_T": {
+        },
+        "WINDOW_B": {
+        },
 
-    "CONVEYOR_U": {
-        "push_speed": [0, 0, -1.2],
-        "accepts_footprints": false
-    },
-    "CONVEYOR_R": {
-        "push_speed": [1.2, 0, 0],
-        "accepts_footprints": false
-    },
-    "CONVEYOR_D": {
-        "push_speed": [0, 0, 1.2],
-        "accepts_footprints": false
+        "CONVEYOR_U": {
+            "push_speed": [0, 0, -1.2],
+            "accepts_footprints": false
+        },
+        "CONVEYOR_R": {
+            "push_speed": [1.2, 0, 0],
+            "accepts_footprints": false
+        },
+        "CONVEYOR_D": {
+            "push_speed": [0, 0, 1.2],
+            "accepts_footprints": false
+        }
     }
 }
