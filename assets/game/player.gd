@@ -2,6 +2,7 @@ extends KinematicBody
 
 const WALK_SPEED = 4
 const JUMP_SPEED = 6
+const EXPLODED_SPEED = 20
 const UP = Vector3(0, 1, 0)
 const GRAVITY = -9.81
 const FOOTPRINT_DISTANCE = 0.3
@@ -9,11 +10,12 @@ const NUM_FOOTPRINTS = 12
 
 class State:
     const ALIVE = 0
-    const DEAD = 1
+    const ON_BACK = 1
     const ELECTROCUTED = 2
     const FLATTENED = 3
     const BURNT = 4
     const EATEN = 5
+    const EXPLODED = 6
 
 var logger
 var mesh
@@ -60,38 +62,24 @@ func move_direction():
 func update_animation(velocity):
     var animation
 
-    if state == State.ALIVE:
-        if on_floor:
-            if velocity.x != 0 or velocity.z != 0:
-                animation = "walking"
-            else:
-                animation = "sitting"
+    if on_floor:
+        if velocity.x != 0 or velocity.z != 0:
+            animation = "walking"
         else:
-            if velocity.y > 0.7:
-                animation = "jumping_up"
-            elif velocity.y < -0.7:
-                animation = "jumping_down"
-            else:
-                animation = "jumping_across"
-
-    elif state == State.DEAD:
-        animation = "on_back"
-    elif state == State.ELECTROCUTED:
-        animation = "electrocuted"
-    elif state == State.FLATTENED:
-        animation = "flattened"
-    elif state == State.BURNT:
-        animation = "burnt"
-    elif state == State.EATEN:
-        animation = "eaten" # Show nothing.
+            animation = "sitting"
+    else:
+        if velocity.y > 0.7:
+            animation = "jumping_up"
+        elif velocity.y < -0.7:
+            animation = "jumping_down"
+        else:
+            animation = "jumping_across"
 
     if animation != mesh.animation:
         mesh.animation = animation
 
 func _fixed_process(delta):
     velocity.y += GRAVITY * delta
-
-    var push_speed = Vector3(0, 0, 0)
 
     if state == State.ALIVE:
         if floor_ray.is_colliding():
@@ -111,8 +99,7 @@ func _fixed_process(delta):
                     on_floor = false
 
             walk_speed *= floor_tile.speed_multiplier
-            
-            
+
         var direction = move_direction()
         velocity.x = direction.x * walk_speed
         velocity.z = direction.z * walk_speed
@@ -121,33 +108,28 @@ func _fixed_process(delta):
     motion = move(motion)
 
     if state == State.ALIVE and on_floor:
-        if floor_tile.footprints_color.a > 0:
-            if floor_tile.footprints_color != footprints_color:
-                distance_to_footprint = FOOTPRINT_DISTANCE
-            footprints_remaining = NUM_FOOTPRINTS
-            footprints_color = floor_tile.footprints_color
-
-        if footprints_color != null and floor_tile.accepts_footprints:
-            distance_to_footprint -= motion.length()
-            if distance_to_footprint <= 0:
-                create_footprint()
-
-                footprints_remaining -= 1
-                if footprints_remaining == 0:
-                    footprints_color = null
-                else:
-                    distance_to_footprint = FOOTPRINT_DISTANCE
+        footprints(motion)
 
     if is_colliding():
-        var collider = get_collider()
-        var player_state = collider.player_state
-        if player_state != "alive":
-            kill(player_state)
+        handle_collision(motion)
 
-        var normal = get_collision_normal()
+    if state == State.ALIVE:
+        update_animation(velocity)
 
-        if normal.dot(UP) > 0.7:
-            on_floor = true
+    if on_floor and floor_tile:
+        move(floor_tile.push_speed * delta)
+
+func handle_collision(motion):
+    var collider = get_collider()
+    var new_player_state = collider.player_state
+
+    if state == State.ALIVE and new_player_state != "alive":
+        kill(new_player_state)
+
+    var normal = get_collision_normal()
+
+    if normal.dot(UP) > 0.7:
+        on_floor = true
 
         motion = normal.slide(motion)
         velocity = normal.slide(velocity)
@@ -155,27 +137,46 @@ func _fixed_process(delta):
     else:
         on_floor = false
 
-    update_animation(velocity)
+func footprints(motion):
+    if floor_tile.footprints_color.a > 0:
+        if floor_tile.footprints_color != footprints_color:
+            distance_to_footprint = FOOTPRINT_DISTANCE
+        footprints_remaining = NUM_FOOTPRINTS
+        footprints_color = floor_tile.footprints_color
 
-    if on_floor and floor_tile:
-        move(floor_tile.push_speed * delta)
+    if footprints_color != null and floor_tile.accepts_footprints:
+        distance_to_footprint -= motion.length()
+        if distance_to_footprint <= 0:
+            create_footprint()
+
+            footprints_remaining -= 1
+            if footprints_remaining == 0:
+                footprints_color = null
+            else:
+                distance_to_footprint = FOOTPRINT_DISTANCE
 
 func kill(new_state):
+    velocity = Vector3()
+
     if new_state == "burnt":
         state = State.BURNT
     elif new_state == "electrocuted":
         state = State.ELECTROCUTED
     elif new_state == "flattened":
         state = State.FLATTENED
-    elif new_state == "dead":
-        state = State.DEAD
+    elif new_state == "on_back":
+        state = State.ON_BACK
     elif new_state == "eaten":
         state = State.EATEN
+    elif new_state == "exploded":
+        state = State.EXPLODED
+        velocity.y = EXPLODED_SPEED
     else:
         logger.error("Bad player state: %s", new_state)
         assert(false)
 
-    velocity = Vector3()
+    if new_state != mesh.animation:
+        mesh.animation = new_state
 
 func create_footprint():
     var footprint = load("res://prefabs/footprint.xscn").instance()

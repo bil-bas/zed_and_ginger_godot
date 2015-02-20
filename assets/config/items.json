@@ -32,7 +32,7 @@
         },
         "mine": {
             "is_horizontal": true,
-            "player_state": "dead"
+            "player_state": "exploded"
         }
     }
 }
