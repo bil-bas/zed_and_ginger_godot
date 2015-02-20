@@ -118,6 +118,10 @@ func setup():
     #yield()
     update_history_buttons()
 
+    var view_slider = get_node("ViewSlider")
+    view_slider.set_max(level.get_length() - 1)
+    view_slider.set_value(camera.get_translation().x + 0.5)
+
     set_process(true)
 
 func _process(delta):
@@ -256,3 +260,8 @@ func create_tile_picker(frame, tile):
     picker.name = tile
     picker.callback = funcref(self, "_on_TilePicker_pressed")
     return picker
+
+func _on_ViewSlider_value_changed(value):
+    var translation = camera.get_translation()
+    translation.x = value + 0.5
+    camera.set_translation(translation)

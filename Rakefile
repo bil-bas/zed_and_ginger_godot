@@ -21,3 +21,8 @@ desc "Edit pixel art"
 task :pixel do
   system "wine ~/Downloads/PyxelEditPortable0.3.108/PyxelEdit0.3.108/PyxelEdit.exe &"
 end
+
+desc "Edit log"
+task :log do
+  system "subl '~/.godot/app_userdata/Zed and Ginger/log.txt'"
+end

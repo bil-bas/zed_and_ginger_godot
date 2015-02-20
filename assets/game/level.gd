@@ -64,7 +64,6 @@ func restore():
 
     logger.debug(data["items"])
     for item_data in data["items"]:
-        logger.debug(item_data)
         var grid = Vector2(item_data["grid"][0], item_data["grid"][1])
         var item = object_data.create_item(item_data["data"]["type"], grid)
         items[grid] = item
@@ -169,6 +168,8 @@ func save():
 
     get_node("/root/utilities").save_json(filename, data)
 
+func get_length():
+    return wall_tiles.size()
 
 # -- Editor manipulation...
 
@@ -195,3 +196,4 @@ func get_item_at(grid):
         return items[grid]
     else:
         return null
+
