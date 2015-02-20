@@ -16,3 +16,8 @@ desc "Run project fullscreen"
 task :run_fs do
   system "../godot/bin/godot.x11.tools.64 -path assets -f root.xscn"
 end
+
+desc "Edit pixel art"
+task :pixel do
+  system "wine ~/Downloads/PyxelEditPortable0.3.108/PyxelEdit0.3.108/PyxelEdit.exe &"
+end

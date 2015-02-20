@@ -131,11 +131,7 @@ func create_item_object(item_data, grid):
     mesh.set_flag(3, item_data.cast_shadow)
     mesh.set_flag(4, item_data.receive_shadow)
 
-    if item_data.is_horizontal:
-        item.set_rotation(Vector3(PI / 2, 0, 0))
-        item.set_translation(grid_to_world(grid) + Vector3(0, 0, -0.5))
-    else:
-        item.set_translation(grid_to_world(grid))
+    item.set_translation(grid_to_world(grid))
 
     add_child(item)
     item_objects[grid] = item

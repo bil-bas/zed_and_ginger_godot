@@ -5,6 +5,11 @@ var TILE_ORDER_IN_EDITOR
 var ITEM_TYPES
 var ITEM_ORDER_IN_EDITOR
 
+class CollisionLayer:
+    const TILES_PLAYER = 1
+    const TILES_ITEMS = 2
+    const ITEMS_PLAYER = 4
+
 var logger
 var utilities
 

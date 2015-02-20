@@ -9,3 +9,8 @@ func get_type():
 func set_type(value):
     data.type = value
     get_node("MeshInstance").animation = value
+
+func _ready():
+    var object_data = get_node("/root/object_data")
+    var layer = object_data.CollisionLayer
+    set_layer_mask(layer.TILES_PLAYER + layer.TILES_ITEMS)

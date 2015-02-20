@@ -28,6 +28,7 @@ var distance_to_footprint
 var on_floor = false
 var velocity = Vector3(0, 0, 0)
 var state = State.ALIVE
+var object_data
 
 func object_type():
     return "PLAYER"
@@ -43,6 +44,10 @@ func _ready():
     set_fixed_process(true)
 
     logger.info("Created player")
+
+    object_data = get_node("/root/object_data")
+    var layer = object_data.CollisionLayer
+    set_layer_mask(layer.ITEMS_PLAYER + layer.TILES_PLAYER)
 
 func move_direction():
     var dir = Vector3()
@@ -122,11 +127,15 @@ func _fixed_process(delta):
 func handle_collision(motion):
     var collider = get_collider()
     var new_player_state = collider.player_state
-    if state == State.ALIVE and new_player_state != "alive":
-
-        var safe = collider.get_node("MeshInstance").frame in collider.safe_frames
-        if not safe:
-            kill(new_player_state)
+    if state == State.ALIVE:
+        if new_player_state == "alive":
+            if collider.type == "rat":
+                handle_rat_collision(collider)
+                
+        else:
+            var safe = collider.get_node("MeshInstance").frame in collider.safe_frames
+            if not safe:
+                kill(new_player_state)
 
     var normal = get_collision_normal()
 
@@ -138,6 +147,18 @@ func handle_collision(motion):
         move(motion)
     else:
         on_floor = false
+
+func handle_rat_collision(rat):
+    if get_translation().y > 0.3:
+        rat.get_node("MeshInstance").animation = "dead"
+        rat.set_layer_mask(0)
+        rat.set_is_horizontal(true)
+    else:
+        rat.get_node("MeshInstance").animation = "running"
+        rat.set_linear_velocity(Vector3(-10, 0, 0))
+        rat.set_friction(0)
+        rat.set_layer_mask(object_data.CollisionLayer.TILES_ITEMS)
+        rat.set_mode(RigidBody.MODE_RIGID)
 
 func footprints(motion):
     if floor_tile.footprints_color.a > 0:
@@ -187,8 +208,11 @@ func create_footprint():
     footprint.set_color(footprints_color)
 
 func on_in_area(area):
-    var new_player_state = area.player_state
-    if state == State.ALIVE and new_player_state != "alive":
-        var safe = area.get_node("MeshInstance").frame in area.safe_frames
-        if not safe:
-            kill(new_player_state)
+    if state == State.ALIVE:
+        var new_player_state = area.player_state
+        if new_player_state == "alive":
+            pass
+        else:
+            var safe = area.get_node("MeshInstance").frame in area.safe_frames
+            if not safe:
+                kill(new_player_state)

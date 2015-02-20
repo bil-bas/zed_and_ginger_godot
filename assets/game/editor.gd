@@ -230,6 +230,7 @@ func create_delete_picker():
 
 func create_item_picker(name):
     var item = mesh_manager.new_mesh_object(name)
+    item.data = object_data.ITEM_TYPES[name]
 
     var picker = load("res://prefabs/item_picker.xscn").instance()
     picker.get_node("Viewport").add_child(item)
