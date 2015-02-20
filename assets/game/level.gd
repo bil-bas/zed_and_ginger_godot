@@ -29,11 +29,8 @@ func setup():
     yield()
 
     generate_tiles()
+    # yield()
     generate_items()
-
-    #yield()
-
-    create_flytrap_sleeper(Vector2(8, 4))
 
 func restore():
     logger.info("Loading level")
@@ -126,27 +123,22 @@ func generate_items():
 
 func create_item_object(item_data, grid):
     var item = mesh_manager.new_mesh_object(item_data.type)
-    item.set_translation(grid_to_world(grid))
+    
+
     var mesh = item.get_node("MeshInstance")
     mesh.animation = item_data.default_animation
     # TODO: get these constants MeshInstance.FLAG_CAST_SHADOW/MeshInstance.FLAG_RECEIVE_SHADOW
     mesh.set_flag(3, item_data.cast_shadow)
     mesh.set_flag(4, item_data.receive_shadow)
+
+    if item_data.is_horizontal:
+        item.set_rotation(Vector3(PI / 2, 0, 0))
+        item.set_translation(grid_to_world(grid) + Vector3(0, 0, -0.5))
+    else:
+        item.set_translation(grid_to_world(grid))
+
     add_child(item)
     item_objects[grid] = item
-
-func create_flytrap_sleeper(grid):
-    var flytrap = mesh_manager.new_mesh_object("flytrap")
-    #flytrap.player_kill_type = load("res://game.player.gd").State.DEAD
-    add_child(flytrap)
-
-    flytrap.get_node("MeshInstance").animation = "inactive"
-
-    flytrap.set_translation(grid_to_world(grid))
-    var rotation = flytrap.get_rotation()
-    rotation.x -= PI / 2
-    flytrap.set_rotation(rotation)
-    add_child(flytrap)
 
 func grid_to_world(grid):
     return Vector3(grid.x + 0.5, 0, grid.y + 0.5)

@@ -233,7 +233,7 @@ func create_item_picker(name):
 
     var picker = load("res://prefabs/item_picker.xscn").instance()
     picker.get_node("Viewport").add_child(item)
-    item.get_node("MeshInstance").frame = 1
+    item.get_node("MeshInstance").frame = 0
     item.get_node("MeshInstance").stop() # Stop animation.
     picker.name = name
     picker.callback = funcref(self, "_on_ItemPicker_pressed")

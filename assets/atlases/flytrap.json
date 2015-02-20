@@ -1,1 +1,1 @@
-{"tile_size":[15,16],"animations":{"inactive":[{"tile":0,"duration":0.1}],"eating":[{"tile":1,"duration":0.15},{"tile":2,"duration":0.15},{"tile":3,"duration":0.15}],"swallowing":[{"tile":4,"duration":0.2},{"tile":5,"duration":0.2},{"tile":4,"duration":0.2},{"tile":6,"duration":0.2}]}}
+{"tile_size":[15,16],"animations":{"default":[{"tile":0,"duration":0.1}],"eating":[{"tile":1,"duration":0.15},{"tile":2,"duration":0.15},{"tile":3,"duration":0.15}],"swallowing":[{"tile":4,"duration":0.2},{"tile":5,"duration":0.2},{"tile":4,"duration":0.2},{"tile":6,"duration":0.2}]}}

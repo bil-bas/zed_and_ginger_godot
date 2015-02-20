@@ -3,18 +3,20 @@
         "uses_transparency": false,
         "default_animation": "default",
         "cast_shadow": true,
-        "receive_shadow": true
+        "receive_shadow": true,
+        "is_horizontal": false
     },
 
     "order_in_editor": [
         "flytrap",
         "pacer",
-        "fire_exhaust"
+        "fire_exhaust",
+        "mine"
     ],
 
     "types": {
         "flytrap": {
-            "default_animation": "swallowing"
+            "is_horizontal": true
         },
         "pacer": {
             "cast_shadow": false,
@@ -23,6 +25,9 @@
         "fire_exhaust": {
             "cast_shadow": false,
             "receive_shadow": false
+        },
+        "mine": {
+            "is_horizontal": true
         }
     }
 }

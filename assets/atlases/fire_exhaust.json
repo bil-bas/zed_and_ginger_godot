@@ -1,1 +1,1 @@
-{"tile_size":[10,11],"animations":{"default":[{"tile":0,"duration":2.0},{"tile":1,"duration":0.1},{"tile":2,"duration":0.1},{"tile":3,"duration":0.1},{"tile":4,"duration":0.1},{"tile":5,"duration":0.1},{"tile":6,"duration":0.1},{"tile":7,"duration":0.1},{"tile":8,"duration":0.1}]}}
+{"tile_size":[10,11],"animations":{"default":[{"tile":0,"duration":0.1},{"tile":1,"duration":0.1},{"tile":2,"duration":0.1},{"tile":3,"duration":0.1},{"tile":4,"duration":0.1},{"tile":5,"duration":0.1},{"tile":6,"duration":0.1},{"tile":7,"duration":0.1},{"tile":8,"duration":2.0}]}}
