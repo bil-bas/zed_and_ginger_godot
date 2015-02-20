@@ -122,9 +122,11 @@ func _fixed_process(delta):
 func handle_collision(motion):
     var collider = get_collider()
     var new_player_state = collider.player_state
-
     if state == State.ALIVE and new_player_state != "alive":
-        kill(new_player_state)
+
+        var safe = collider.get_node("MeshInstance").frame in collider.safe_frames
+        if not safe:
+            kill(new_player_state)
 
     var normal = get_collision_normal()
 
@@ -183,3 +185,10 @@ func create_footprint():
     get_node("..").add_child(footprint)
     footprint.set_translation(get_translation())
     footprint.set_color(footprints_color)
+
+func on_in_area(area):
+    var new_player_state = area.player_state
+    if state == State.ALIVE and new_player_state != "alive":
+        var safe = area.get_node("MeshInstance").frame in area.safe_frames
+        if not safe:
+            kill(new_player_state)

@@ -1,4 +1,4 @@
-extends PhysicsBody
+extends CollisionObject
 
 var data setget set_data
 func set_data(value):

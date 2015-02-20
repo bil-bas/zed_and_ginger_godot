@@ -16,11 +16,12 @@ var _sprite_sizes = {} # In fractions of sheet.
 var _metadata = {}
 var _world_offsets = {} # In pixels, without the margin.
 var logger
+var object_data
 
 
 func _ready():
     logger = get_node("/root/logger") # Won't exist until we are ready.
-
+    object_data = get_node("/root/object_data")
 
 func _load_sheet(spritesheet):
     var uses_transparency
@@ -59,7 +60,6 @@ func _load_sheet(spritesheet):
         _world_offsets[spritesheet] = Vector3(-(width - 2) * PIXEL_SIZE / 2, (height - 2) * PIXEL_SIZE, 0)
     
     _sprite_sizes[spritesheet] = Vector3(texture.get_width() / width, texture.get_height() / height, depth)
-    var object_data = get_node("/root/object_data")
 
     # Create save data.
     var meshes = []
@@ -117,10 +117,12 @@ func new_mesh_object(spritesheet, index=0):
     elif spritesheet == "tile":
         obj_type = "tile"
     else:
-        obj_type = "item"
+        if object_data.ITEM_TYPES[spritesheet]["is_area"]:
+            obj_type = "item_area"
+        else:
+            obj_type = "item"
 
     var obj = load("res://prefabs/%s.xscn" % obj_type).instance()
-    
     obj.set_name(spritesheet)
     
     var mesh = obj.get_node("MeshInstance")

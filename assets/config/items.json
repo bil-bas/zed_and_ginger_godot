@@ -5,7 +5,9 @@
         "cast_shadow": true,
         "receive_shadow": true,
         "is_horizontal": false,
-        "player_state": "alive"
+        "player_state": "alive",
+        "safe_frames": [],
+        "is_area": false,
     },
 
     "order_in_editor": [
@@ -23,12 +25,15 @@
         "pacer": {
             "cast_shadow": false,
             "receive_shadow": false,
-            "player_state": "electrocuted"
+            "player_state": "electrocuted",
+            "is_area": true,
         },
         "fire_exhaust": {
             "cast_shadow": false,
             "receive_shadow": false,
-            "player_state": "burnt"
+            "player_state": "burnt",
+            "safe_frames": [8],
+            "is_area": true,
         },
         "mine": {
             "is_horizontal": true,

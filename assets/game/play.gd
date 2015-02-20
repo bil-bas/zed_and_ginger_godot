@@ -22,3 +22,6 @@ func create_player(grid):
     var level = get_node("World/Viewport/Level")
     level.add_child(player)
     player.set_translation(level.grid_to_world(grid))
+
+func _on_BackButton_pressed():
+    get_node("/root/Root/SceneManager").goto("res://main_menu/main_menu.xscn")

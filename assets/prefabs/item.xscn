@@ -10,7 +10,7 @@
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
 			<string_array  len="46">
-				<string> "ProceduralMesh" </string>
+				<string> "Item" </string>
 				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
 				<string> "_import_transform" </string>
@@ -194,7 +194,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "3D" </string>
 				</dictionary>
 				<resource name=""></resource>				<node_path> ".." </node_path>
 				<resource  resource_type="Script" path="res://scripts/mesh_animator.gd">  </resource>

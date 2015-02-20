@@ -93,3 +93,8 @@ func load_item_data():
         for key in default:
             if not key in ITEM_TYPES[type]:
                 ITEM_TYPES[type][key] = default[key]
+
+        var safe_frames = []
+        for frame in ITEM_TYPES[type]["safe_frames"]:
+            safe_frames.append(int(frame))
+        ITEM_TYPES[type]["safe_frames"] = safe_frames
