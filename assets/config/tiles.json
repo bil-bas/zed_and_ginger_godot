@@ -6,7 +6,8 @@
         "create_sides": true,
         "footprints_color": [0, 0, 0, 0],
         "push_speed": [0, 0, 0],
-        "accepts_footprints": true
+        "accepts_footprints": true,
+        "player_state": "alive"
     },
 
     "order_in_editor": [

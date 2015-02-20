@@ -4,7 +4,8 @@
         "default_animation": "default",
         "cast_shadow": true,
         "receive_shadow": true,
-        "is_horizontal": false
+        "is_horizontal": false,
+        "player_state": "alive"
     },
 
     "order_in_editor": [
@@ -16,18 +17,22 @@
 
     "types": {
         "flytrap": {
-            "is_horizontal": true
+            "is_horizontal": true,
+            "player_state": "eaten"
         },
         "pacer": {
             "cast_shadow": false,
-            "receive_shadow": false
+            "receive_shadow": false,
+            "player_state": "electrocuted"
         },
         "fire_exhaust": {
             "cast_shadow": false,
-            "receive_shadow": false
+            "receive_shadow": false,
+            "player_state": "burnt"
         },
         "mine": {
-            "is_horizontal": true
+            "is_horizontal": true,
+            "player_state": "dead"
         }
     }
 }

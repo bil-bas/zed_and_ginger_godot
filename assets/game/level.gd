@@ -123,8 +123,8 @@ func generate_items():
 
 func create_item_object(item_data, grid):
     var item = mesh_manager.new_mesh_object(item_data.type)
+    item.data = item_data
     
-
     var mesh = item.get_node("MeshInstance")
     mesh.animation = item_data.default_animation
     # TODO: get these constants MeshInstance.FLAG_CAST_SHADOW/MeshInstance.FLAG_RECEIVE_SHADOW

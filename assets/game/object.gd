@@ -1,7 +1,11 @@
 extends PhysicsBody
 
-var player_kill_type = 0 setget set_player_kill_type, get_player_kill_type
-func get_player_kill_type():
-    return player_kill_type
-func set_player_kill_type(value):
-    player_kill_type = value
+var data setget set_data
+func set_data(value):
+    data = value
+
+func _get(name):
+    return data.get(name)
+
+func _get_property_list():
+    return data._get_property_list()

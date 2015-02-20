@@ -83,7 +83,7 @@ func update_animation(velocity):
     elif state == State.BURNT:
         animation = "burnt"
     elif state == State.EATEN:
-        animation = "none" # Show nothing.
+        animation = "eaten" # Show nothing.
 
     if animation != mesh.animation:
         mesh.animation = animation
@@ -140,9 +140,9 @@ func _fixed_process(delta):
 
     if is_colliding():
         var collider = get_collider()
-        if collider.player_kill_type != State.ALIVE:
-            state = collider.player_kill_type
-            velocity = Vector3()
+        var player_state = collider.player_state
+        if player_state != "alive":
+            kill(player_state)
 
         var normal = get_collision_normal()
 
@@ -159,6 +159,23 @@ func _fixed_process(delta):
 
     if on_floor and floor_tile:
         move(floor_tile.push_speed * delta)
+
+func kill(new_state):
+    if new_state == "burnt":
+        state = State.BURNT
+    elif new_state == "electrocuted":
+        state = State.ELECTROCUTED
+    elif new_state == "flattened":
+        state = State.FLATTENED
+    elif new_state == "dead":
+        state = State.DEAD
+    elif new_state == "eaten":
+        state = State.EATEN
+    else:
+        logger.error("Bad player state: %s", new_state)
+        assert(false)
+
+    velocity = Vector3()
 
 func create_footprint():
     var footprint = load("res://prefabs/footprint.xscn").instance()
