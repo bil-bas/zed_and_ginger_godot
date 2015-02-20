@@ -1,15 +1,28 @@
 {
     "default": {
         "uses_transparency": false,
+        "default_animation": "default",
+        "cast_shadow": true,
+        "receive_shadow": true
     },
 
     "order_in_editor": [
-        "flytrap"
+        "flytrap",
+        "pacer",
+        "fire_exhaust"
     ],
 
     "types": {
         "flytrap": {
             "default_animation": "swallowing"
+        },
+        "pacer": {
+            "cast_shadow": false,
+            "receive_shadow": false
+        },
+        "fire_exhaust": {
+            "cast_shadow": false,
+            "receive_shadow": false
         }
     }
 }
