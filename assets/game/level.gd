@@ -12,6 +12,7 @@ var mesh_manager
 var object_data
 var utilities
 var item_objects = {} # grid => item nodes
+var is_editor
 
 func _ready():
     logger = get_node("/root/logger")
@@ -19,7 +20,8 @@ func _ready():
     object_data = get_node("/root/object_data")
     utilities = get_node("/root/utilities")
 
-func setup():
+func setup(is_editor):
+    self.is_editor = is_editor
     if File.new().file_exists(filename):
         restore()
     else:
@@ -124,7 +126,7 @@ func generate_items():
 func create_item_object(item_data, grid):
     var item = mesh_manager.new_mesh_object(item_data.type)
     item.data = item_data
-    
+
     var mesh = item.get_node("MeshInstance")
     mesh.animation = item_data.default_animation
     # TODO: get these constants MeshInstance.FLAG_CAST_SHADOW/MeshInstance.FLAG_RECEIVE_SHADOW
@@ -135,6 +137,11 @@ func create_item_object(item_data, grid):
 
     add_child(item)
     item_objects[grid] = item
+
+    if not is_editor and item.initial_velocity.length() > 0.1:
+        item.set_velocity(item.initial_velocity)
+        var layer = object_data.CollisionLayer
+        item.set_layer_mask(layer.TILES_MOVING_ITEMS + layer.PLAYER_MOVING_ITEMS)
 
 func grid_to_world(grid):
     return Vector3(grid.x + 0.5, 0, grid.y + 0.5)

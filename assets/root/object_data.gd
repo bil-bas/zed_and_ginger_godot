@@ -9,6 +9,8 @@ class CollisionLayer:
     const TILES_PLAYER = 1
     const TILES_ITEMS = 2
     const ITEMS_PLAYER = 4
+    const TILES_MOVING_ITEMS = 8
+    const PLAYER_MOVING_ITEMS = 16
 
 var logger
 var utilities
@@ -103,3 +105,6 @@ func load_item_data():
         for frame in ITEM_TYPES[type]["safe_frames"]:
             safe_frames.append(int(frame))
         ITEM_TYPES[type]["safe_frames"] = safe_frames
+
+        var vel = ITEM_TYPES[type]["initial_velocity"]
+        ITEM_TYPES[type]["initial_velocity"] = Vector3(vel[0], vel[1], vel[2])

@@ -32,9 +32,13 @@ func _load_sheet(spritesheet):
         uses_transparency = true
         depth = 3
         is_centered = false
+    elif spritesheet == "player":
+        uses_transparency = false
+        is_centered = true
+        depth = 1
     else:
         uses_transparency = false
-        depth = 1
+        depth = object_data.ITEM_TYPES[spritesheet]["depth"]
         is_centered = true
 
     # Load the sprites themselves and create meshes from them.

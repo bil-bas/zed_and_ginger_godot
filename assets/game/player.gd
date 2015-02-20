@@ -47,7 +47,7 @@ func _ready():
 
     object_data = get_node("/root/object_data")
     var layer = object_data.CollisionLayer
-    set_layer_mask(layer.ITEMS_PLAYER + layer.TILES_PLAYER)
+    set_layer_mask(layer.ITEMS_PLAYER + layer.TILES_PLAYER + layer.PLAYER_MOVING_ITEMS)
 
 func move_direction():
     var dir = Vector3()
@@ -155,10 +155,8 @@ func handle_rat_collision(rat):
         rat.set_is_horizontal(true)
     else:
         rat.get_node("MeshInstance").animation = "running"
-        rat.set_linear_velocity(Vector3(-10, 0, 0))
-        rat.set_friction(0)
-        rat.set_layer_mask(object_data.CollisionLayer.TILES_ITEMS)
-        rat.set_mode(RigidBody.MODE_RIGID)
+        rat.set_velocity(Vector3(-10, 0, 0))
+        rat.set_layer_mask(object_data.CollisionLayer.TILES_MOVING_ITEMS)
 
 func footprints(motion):
     if floor_tile.footprints_color.a > 0:
@@ -181,12 +179,18 @@ func footprints(motion):
 func kill(new_state):
     velocity = Vector3()
 
+    set_layer_mask(object_data.CollisionLayer.TILES_PLAYER)
+
     if new_state == "burnt":
         state = State.BURNT
     elif new_state == "electrocuted":
         state = State.ELECTROCUTED
     elif new_state == "flattened":
         state = State.FLATTENED
+        var translation = get_translation()
+        translation.y = 0
+        set_translation(translation)
+        set_is_horizontal(true)
     elif new_state == "on_back":
         state = State.ON_BACK
     elif new_state == "eaten":
@@ -216,3 +220,17 @@ func on_in_area(area):
             var safe = area.get_node("MeshInstance").frame in area.safe_frames
             if not safe:
                 kill(new_player_state)
+
+var is_horizontal = false setget set_is_horizontal
+func set_is_horizontal(value):
+    if is_horizontal == value:
+        return
+
+    is_horizontal = value
+
+    if is_horizontal:
+        set_rotation(Vector3(PI / 2, 0, 0))
+        set_translation(get_translation() + Vector3(0, 0, -0.5))
+    else:
+        set_translation(get_translation() - Vector3(0, 0, -0.5))
+        set_rotation(Vector3(0, 0, 0))

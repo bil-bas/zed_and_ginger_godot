@@ -13,4 +13,4 @@ func set_type(value):
 func _ready():
     var object_data = get_node("/root/object_data")
     var layer = object_data.CollisionLayer
-    set_layer_mask(layer.TILES_PLAYER + layer.TILES_ITEMS)
+    set_layer_mask(layer.TILES_PLAYER + layer.TILES_ITEMS + layer.TILES_MOVING_ITEMS)

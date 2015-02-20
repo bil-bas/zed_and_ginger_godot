@@ -8,6 +8,8 @@
         "player_state": "alive",
         "safe_frames": [],
         "is_area": false,
+        "depth": 1,
+        "initial_velocity": [0, 0, 0]
     },
 
     "order_in_editor": [
@@ -15,7 +17,8 @@
         "pacer",
         "fire_exhaust",
         "mine",
-        "rat"
+        "rat",
+        "roller"
     ],
 
     "types": {
@@ -26,8 +29,7 @@
         "pacer": {
             "cast_shadow": false,
             "receive_shadow": false,
-            "player_state": "electrocuted",
-            "is_area": true,
+            "player_state": "electrocuted"
         },
         "fire_exhaust": {
             "cast_shadow": false,
@@ -41,6 +43,11 @@
             "player_state": "exploded"
         },
         "rat": {
+        },
+        "roller": {
+            "depth": 8,
+            "player_state": "flattened",
+            "initial_velocity": [-2, 0, 0]
         }
     }
 }
