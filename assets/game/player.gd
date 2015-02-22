@@ -80,8 +80,7 @@ func update_animation(velocity):
         else:
             animation = "jumping_across"
 
-    if animation != mesh.animation:
-        mesh.animation = animation
+    mesh.animation = animation
 
 func _fixed_process(delta):
     velocity.y += GRAVITY * delta
@@ -202,8 +201,7 @@ func kill(new_state):
         logger.error("Bad player state: %s", new_state)
         assert(false)
 
-    if new_state != mesh.animation:
-        mesh.animation = new_state
+    mesh.animation = new_state
 
 func create_footprint():
     var footprint = load("res://prefabs/footprint.xscn").instance()

@@ -1,4 +1,4 @@
-extends "object.gd"
+extends "item.gd"
 
 func object_type():
     return "ITEM_AREA"

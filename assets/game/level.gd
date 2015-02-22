@@ -1,5 +1,7 @@
 extends Spatial
 
+var SCALE
+
 # Stored data.
 var floor_tiles = []
 var wall_tiles = []
@@ -21,6 +23,7 @@ func _ready():
     mesh_manager = get_node(@'/root/mesh_manager')
     object_data = get_node(@'/root/object_data')
     utilities = get_node(@'/root/utilities')
+    SCALE = 8 * mesh_manager.PIXEL_SIZE
 
 func setup(is_editor):
     self.is_editor = is_editor
@@ -91,19 +94,11 @@ func create():
     logger.info("Created level")
 
 func generate_tiles():
-    var scale = 8 * mesh_manager.PIXEL_SIZE
-
     var i = 0
     for tile_row in wall_tiles:
         var j = 0
         for tile_data in tile_row:
-            var tile = mesh_manager.new_mesh_object("tile", is_editor)
-            tile.data = tile_data
-            tile.get_node(@'MeshInstance').animation = tile_data.type
-            tile.set_translation(Vector3(i * scale, (j + 1) * scale, 0))
-            tile.is_floor = false
-            add_child(tile)
-            wall_tile_objects[tile_data.grid] = tile
+            create_wall_tile(tile_data, i, j)
             j += 1
         i += 1
    
@@ -111,16 +106,26 @@ func generate_tiles():
     for tile_row in floor_tiles:
         var j = 0
         for tile_data in tile_row:
-            var tile = mesh_manager.new_mesh_object("tile", is_editor)
-            tile.data = tile_data
-            tile.get_node(@'MeshInstance').animation = tile_data.type
-            tile.set_rotation(Vector3(-PI / 2, 0, 0))
-            tile.set_translation(Vector3(i * scale, 0, j * scale))
-            tile.is_floor = true
-            add_child(tile)
-            floor_tile_objects[tile_data.grid] = tile
+            create_floor_tile(tile_data, i, j)
             j += 1
         i += 1
+
+func create_wall_tile(tile_data, i, j):
+    var tile = mesh_manager.new_mesh_object("tile", is_editor)
+    tile.data = tile_data
+    tile.set_translation(Vector3(i * SCALE, (j + 1) * SCALE, 0))
+    tile.is_floor = false
+    add_child(tile)
+    wall_tile_objects[tile_data.grid] = tile
+
+func create_floor_tile(tile_data, i, j):
+    var tile = mesh_manager.new_mesh_object("tile", is_editor)
+    tile.data = tile_data
+    tile.set_rotation(Vector3(-PI / 2, 0, 0))
+    tile.set_translation(Vector3(i * SCALE, 0, j * SCALE))
+    tile.is_floor = true
+    add_child(tile)
+    floor_tile_objects[tile_data.grid] = tile
 
 func generate_items():
     for grid in items:
@@ -130,12 +135,6 @@ func generate_items():
 func create_item_object(item_data, grid):
     var item = mesh_manager.new_mesh_object(item_data.type, is_editor)
     item.data = item_data
-
-    var mesh = item.get_node(@'MeshInstance')
-    mesh.animation = item_data.default_animation
-    # TODO: get these constants MeshInstance.FLAG_CAST_SHADOW/MeshInstance.FLAG_RECEIVE_SHADOW
-    mesh.set_flag(3, item_data.cast_shadow)
-    mesh.set_flag(4, item_data.receive_shadow)
 
     item.set_translation(grid_to_world(grid))
     item_objects[grid] = item
@@ -207,3 +206,21 @@ func get_floor_tile_at(grid):
 
 func get_wall_tile_at(grid):
     return wall_tile_objects[grid]
+
+func change_wall_tile(type, grid):
+    var tile = wall_tile_objects[grid]
+    wall_tile_objects.erase(tile)
+    tile.queue_free()
+
+    var tile_data = object_data.create_tile(type, grid)
+    wall_tiles[grid.x][grid.y] = tile_data
+    create_wall_tile(tile_data, grid.x, grid.y)
+
+func change_floor_tile(type, grid):
+    var tile = floor_tile_objects[grid]
+    floor_tile_objects.erase(tile)
+    tile.queue_free()
+
+    var tile_data = object_data.create_tile(type, grid)
+    floor_tiles[grid.x][grid.y] = tile_data
+    create_floor_tile(tile_data, grid.x, grid.y)

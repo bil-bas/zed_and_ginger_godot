@@ -1,20 +1,30 @@
 extends Node
 
 class ChangeTileAction:
-    var _tile
+    var _grid
     var _old_type
     var _new_type
+    var _level
+    var _is_floor
 
-    func _init(tile, new_type):
-        _tile = tile
-        _old_type = tile.type
+    func _init(grid, is_floor, old_type, new_type, level):
+        _grid = grid
+        _old_type = old_type
         _new_type = new_type
+        _level = level
+        _is_floor = is_floor
 
     func do_action():
-        _tile.type = _new_type
-
+        if _is_floor:
+            _level.change_floor_tile(_new_type, _grid)
+        else:
+            _level.change_wall_tile(_new_type, _grid)
+        
     func undo_action():
-        _tile.type = _old_type
+        if _is_floor:
+            _level.change_floor_tile(_new_type, _grid)
+        else:
+            _level.change_wall_tile(_new_type, _grid)
 
 class AddItemAction:
     var _grid
@@ -143,7 +153,7 @@ func _process(delta):
                 if collider.object_type() == "TILE":
                     click_in_tile_mode(collider)
                 elif collider.object_type() == "ITEM":
-                    click_in_tile_mode(level.get_floor_tile_at(collider.grid))
+                    click_in_tile_mode(collider)
 
         ray.set_enabled(false)
 
@@ -169,7 +179,7 @@ func click_in_item_mode(grid):
 
 func click_in_tile_mode(tile):
     if left_mouse_down:
-        var action = ChangeTileAction.new(tile, current_tile_type)
+        var action = ChangeTileAction.new(tile.grid, tile.is_floor, tile.type, current_tile_type, level)
         history.add(action)
         update_history_buttons()
     else:
@@ -255,8 +265,6 @@ func create_item_picker(name):
 
     var picker = load("res://prefabs/item_picker.xscn").instance()
     picker.get_node(@'Viewport').add_child(item)
-    item.get_node(@'MeshInstance').frame = 0
-    item.get_node(@'MeshInstance').stop() # Stop animation.
     picker.name = name
     picker.set_tooltip(name)
     picker.callback = funcref(self, "_on_ItemPicker_pressed")

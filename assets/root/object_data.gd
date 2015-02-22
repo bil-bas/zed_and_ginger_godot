@@ -26,7 +26,8 @@ class ObjectData:
     func get_type():
         return type
     func set_type(value):
-        assert(type in types)
+        if not type in types:
+            value = types.keys()[0]
         type = value
         
     func _init(type, types, grid):

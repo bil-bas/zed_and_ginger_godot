@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="4" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/item.gd" type="Script"></ext_resource>
 	<ext_resource path="res://scripts/mesh_animator.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/item_solid.gd" type="Script"></ext_resource>
 	<resource type="BoxShape" path="local://1">
 		<vector3 name="extents"> 0.5, 0.5, 0.1 </vector3>
 
@@ -10,7 +10,7 @@
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
 			<string_array  len="46">
-				<string> "Item" </string>
+				<string> "ItemSolid" </string>
 				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
 				<string> "_import_transform" </string>
@@ -77,7 +77,7 @@
 				<int> 0 </int>
 				<int> 3 </int>
 				<vector3> 0, 0, 0 </vector3>
-				<resource  resource_type="Script" path="res://game/item.gd">  </resource>
+				<resource  resource_type="Script" path="res://game/item_solid.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">

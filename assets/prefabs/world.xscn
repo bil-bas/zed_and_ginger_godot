@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://scripts/show_after_process.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
+	<ext_resource path="res://scripts/show_after_process.gd" type="Script"></ext_resource>
 	<resource type="Environment" path="local://1">
 		<bool name="ambient_light/enabled"> False </bool>
 		<color name="ambient_light/color"> 0, 0, 0, 1 </color>
@@ -9,7 +9,9 @@
 		<bool name="fxaa/enabled"> True </bool>
 		<int name="background/mode"> 1 </int>
 		<color name="background/color"> 0, 0, 0, 1 </color>
-		<resource name="background/texture"></resource>		<resource name="background/cubemap"></resource>		<real name="background/energy"> 1 </real>
+		<nil name="background/texture">  </nil>
+		<nil name="background/cubemap">  </nil>
+		<real name="background/energy"> 1 </real>
 		<real name="background/scale"> 1 </real>
 		<real name="background/glow"> 0 </real>
 		<bool name="glow/enabled"> False </bool>
@@ -52,7 +54,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="69">
+			<string_array  len="71">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -64,6 +66,7 @@
 				<string> "transparent_bg" </string>
 				<string> "render_target/enabled" </string>
 				<string> "render_target/v_flip" </string>
+				<string> "render_target/clear_on_new_frame" </string>
 				<string> "render_target/filter" </string>
 				<string> "render_target/gen_mipmaps" </string>
 				<string> "render_target/update_mode" </string>
@@ -113,6 +116,7 @@
 				<string> "ViewportSprite" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
+				<string> "visibility/light_mask" </string>
 				<string> "transform/pos" </string>
 				<string> "transform/rot" </string>
 				<string> "transform/scale" </string>
@@ -249,7 +253,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "3D" </string>
 				</dictionary>
 				<rect2> 0, 0, 800, 600 </rect2>
 				<bool> True </bool>
@@ -266,7 +270,7 @@
 				<int> 1048575 </int>
 				<resource name=""></resource>				<real> 0 </real>
 				<vector3> 0, -1, 0 </vector3>
-				<transform> 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0.5, -0.5, 0.707107, -5, 10, 20 </transform>
+				<transform> 0.706676, 0.706676, 0.0348995, -0.51745, 0.48255, 0.706676, 0.48255, -0.51745, 0.706676, -5, 10, 20 </transform>
 				<real> 1 </real>
 				<color> 1, 1, 1, 1 </color>
 				<real> 0.05 </real>
@@ -279,7 +283,7 @@
 				<resource  resource_type="Script" path="res://scripts/show_after_process.gd">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="199"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 13, 2, 0, 5, 2, 6, 3, 7, 4, 8, 3, 9, 3, 10, 5, 11, 5, 12, 5, 13, 6, 14, 5, 15, 5, 16, 5, 0, 1, 0, 17, 17, -1, 14, 2, 0, 18, 7, 19, 8, 20, 3, 21, 9, 22, 10, 23, 11, 24, 12, 25, 13, 26, 3, 27, 14, 28, 15, 29, 16, 30, 16, 0, 2, 0, 31, 31, -1, 5, 2, 0, 18, 7, 20, 3, 32, 5, 33, 17, 0, 1, 0, 34, 34, -1, 23, 2, 0, 18, 7, 19, 18, 20, 3, 35, 13, 36, 3, 37, 5, 38, 9, 39, 19, 40, 20, 41, 20, 42, 3, 43, 16, 44, 21, 45, 16, 46, 10, 47, 19, 48, 15, 49, 9, 50, 13, 51, 16, 52, 22, 53, 23, 0, 1, 0, 55, 54, -1, 4, 2, 0, 18, 7, 20, 3, 56, 24, 0, 0, 0, 57, 57, -1, 14, 2, 0, 20, 3, 58, 19, 59, 19, 60, 25, 61, 16, 62, 26, 63, 9, 64, 3, 65, 27, 66, 5, 67, 25, 68, 20, 56, 28, 0 </int_array>
+			<int_array  len="203"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 14, 2, 0, 5, 2, 6, 3, 7, 4, 8, 3, 9, 3, 10, 5, 11, 3, 12, 5, 13, 5, 14, 6, 15, 5, 16, 5, 17, 5, 0, 1, 0, 18, 18, -1, 14, 2, 0, 19, 7, 20, 8, 21, 3, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13, 27, 3, 28, 14, 29, 15, 30, 16, 31, 16, 0, 2, 0, 32, 32, -1, 5, 2, 0, 19, 7, 21, 3, 33, 5, 34, 17, 0, 1, 0, 35, 35, -1, 23, 2, 0, 19, 7, 20, 18, 21, 3, 36, 13, 37, 3, 38, 5, 39, 9, 40, 19, 41, 20, 42, 20, 43, 3, 44, 16, 45, 21, 46, 16, 47, 10, 48, 19, 49, 15, 50, 9, 51, 13, 52, 16, 53, 22, 54, 23, 0, 1, 0, 56, 55, -1, 4, 2, 0, 19, 7, 21, 3, 57, 24, 0, 0, 0, 58, 58, -1, 15, 2, 0, 21, 3, 59, 19, 60, 19, 61, 13, 62, 25, 63, 16, 64, 26, 65, 9, 66, 3, 67, 27, 68, 5, 69, 25, 70, 20, 57, 28, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

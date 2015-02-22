@@ -25,7 +25,6 @@ class Animation:
         return frame_durations[index]
 
 
-var index
 var anim_index
 
 
@@ -39,6 +38,7 @@ var animation setget set_animation, get_animation
 func get_animation():
     return animation.name
 func set_animation(value):
+    # TODO: work out why this is needed!
     if typeof(animation) == TYPE_STRING:
         animation = null
 

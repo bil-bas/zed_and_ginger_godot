@@ -1,7 +1,6 @@
 {
     "default": {
         "uses_transparency": false,
-        "default_animation": "default",
         "cast_shadow": true,
         "receive_shadow": true,
         "initially_horizontal": false,

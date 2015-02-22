@@ -84,10 +84,8 @@ func _load_sheet(spritesheet):
                 
             var rect = Rect2(x_offset + margin, y_offset + margin, width - margin * 2, height - margin * 2)
             var mesh = create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency, material)
-            if mesh == null:
-                logger.debug("Skipping spritesheet frame: %s" % index)
-            else:
-                logger.debug("Created spritesheet frame: %s" % index)
+            if mesh != null:
+                pass
                 #ResourceSaver.save(dir + str(meshes.size()) + ".xml", mesh)
             meshes.append(mesh)
 
@@ -124,18 +122,17 @@ func new_mesh_object(spritesheet, is_editor=false):
         if object_data.ITEM_TYPES[spritesheet]["is_area"] and not is_editor:
             obj_type = "item_area"
         else:
-            obj_type = "item"
+            obj_type = "item_solid"
 
     var obj = load("res://prefabs/%s.xscn" % obj_type).instance()
     obj.set_name(spritesheet)
-    if obj_type == "item":
+    if obj_type == "item_solid":
         obj.set_mass(object_data.ITEM_TYPES[spritesheet]["mass"])
     
     var mesh = obj.get_node(@'MeshInstance')
     mesh.set_rotation(Vector3(PI, 0, 0))
     mesh.set_translation(_world_offsets[spritesheet])
     mesh.meshes = _meshes[spritesheet]
-    mesh.frame = 0
     mesh.animations = get_animations(spritesheet)
 
     var is_centered = (spritesheet != "tile")
