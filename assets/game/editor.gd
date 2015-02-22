@@ -82,12 +82,14 @@ var save_button
 var undo_button
 var redo_button
 var level
-var current_tile_type = "WHITE_TILE"
+var current_tile_type
 var left_mouse_down
 var tabs
 var current_item_type
 var mesh_manager
 var object_data
+var current_item_picker
+var current_tile_picker
 
 func _ready():
     logger = get_node(@'/root/logger')
@@ -215,6 +217,9 @@ func update_history_buttons():
     
 func _on_TilePicker_pressed(control):
     logger.info("Picked tile: %s" % control.name)
+    current_tile_picker.is_selected = false
+    current_tile_picker = control
+    current_tile_picker.is_selected = true
     current_tile_type = control.name
 
 func _on_ItemPicker_pressed(control):
@@ -223,6 +228,9 @@ func _on_ItemPicker_pressed(control):
     else:
         logger.info("Picked item: %s" % control.name)
 
+    current_item_picker.is_selected = false
+    current_item_picker = control
+    current_item_picker.is_selected = true
     current_item_type = control.name
 
 func fill_item_picker():
@@ -235,6 +243,8 @@ func fill_item_picker():
 func create_delete_picker():
     var picker = load("res://prefabs/item_picker.xscn").instance()
     picker.name = null
+    picker.is_selected = true
+    current_item_picker = picker
     picker.callback = funcref(self, "_on_ItemPicker_pressed")
     return picker
 
@@ -247,6 +257,7 @@ func create_item_picker(name):
     item.get_node(@'MeshInstance').frame = 0
     item.get_node(@'MeshInstance').stop() # Stop animation.
     picker.name = name
+    picker.set_tooltip(name)
     picker.callback = funcref(self, "_on_ItemPicker_pressed")
     return picker
 
@@ -255,15 +266,23 @@ func fill_tile_picker():
     var animations = mesh_manager.get_animations("tile")
     var utilities = get_node(@'/root/utilities')
 
+    var selected = false
     for tile in object_data.TILE_ORDER_IN_EDITOR:
         var frame = animations[tile][0]["tile"]
-        pickers.add_child(create_tile_picker(frame, tile))
+        var picker = create_tile_picker(frame, tile)
+        if not selected:
+            current_tile_picker = picker
+            picker.is_selected = true
+            current_tile_type = tile
+            selected = true
+        pickers.add_child(picker)
 
 func create_tile_picker(frame, tile):
     var prefab = load("res://prefabs/tile_picker.xscn")
     var picker = prefab.instance()
     picker.get_node(@'Sprite').set_frame(frame)
     picker.name = tile
+    picker.set_tooltip(tile)
     picker.callback = funcref(self, "_on_TilePicker_pressed")
     return picker
 

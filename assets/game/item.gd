@@ -37,4 +37,4 @@ func set_velocity(value):
     set_fixed_process(true)
 
 func _fixed_process(delta):
-	set_linear_velocity(velocity)
+    set_linear_velocity(velocity)

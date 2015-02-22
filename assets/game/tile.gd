@@ -5,9 +5,9 @@ func object_type():
 
 var is_floor setget set_is_floor, get_is_floor
 func get_is_floor():
-	return is_floor
+    return is_floor
 func set_is_floor(value):
-	is_floor = value
+    is_floor = value
 
 var type setget set_type, get_type
 func get_type():

@@ -5,13 +5,14 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="37">
+			<string_array  len="38">
 				<string> "TilePicker" </string>
 				<string> "Control" </string>
 				<string> "_import_path" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
+				<string> "visibility/light_mask" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
 				<string> "rect/min_size" </string>
@@ -51,12 +52,13 @@
 			<string> "node_count" </string>
 			<int> 2 </int>
 			<string> "variants" </string>
-			<array  len="18" shared="false">
+			<array  len="19" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
+				<int> 1 </int>
 				<real> 40 </real>
-				<vector2> 40, 40 </vector2>
+				<vector2> 50, 50 </vector2>
 				<bool> False </bool>
 				<int> 2 </int>
 				<resource  resource_type="Script" path="res://scripts/picker.gd">  </resource>
@@ -190,7 +192,7 @@
 				<rect2> 0, 0, 0, 0 </rect2>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="90"> 				-1, -1, 1, 0, -1, 18, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 3, 8, 4, 9, 0, 10, 0, 11, 0, 12, 0, 13, 5, 14, 1, 15, 6, 16, 6, 17, 2, 18, 7, 19, 8, 0, 0, 0, 20, 20, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 21, 9, 22, 10, 23, 11, 24, 12, 25, 1, 26, 13, 27, 5, 28, 9, 29, 5, 30, 5, 31, 14, 32, 15, 33, 12, 34, 16, 35, 5, 36, 17, 0 </int_array>
+			<int_array  len="94"> 				-1, -1, 1, 0, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 4, 9, 5, 10, 0, 11, 0, 12, 0, 13, 0, 14, 6, 15, 1, 16, 7, 17, 7, 18, 2, 19, 8, 20, 9, 0, 0, 0, 21, 21, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 10, 23, 11, 24, 12, 25, 13, 26, 1, 27, 14, 28, 6, 29, 10, 30, 6, 31, 6, 32, 15, 33, 16, 34, 13, 35, 17, 36, 6, 37, 18, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
