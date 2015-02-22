@@ -1,16 +1,14 @@
 extends "item.gd"
 
 var is_horizontal = false
+var collision_layer
 
 func object_type():
     return "ITEM"
 
 func _ready():
-    var object_data = get_node(@'/root/object_data')
-
-    var collision_layer = object_data.CollisionLayer
+    collision_layer = get_node(@'/root/object_data').CollisionLayer
     set_layer_mask(collision_layer.ITEMS_PLAYER)
-
     set_is_horizontal(data.initially_horizontal)
 
 func on_in_area(area):
@@ -32,8 +30,17 @@ func set_is_horizontal(value):
 var velocity = Vector3() setget set_velocity
 func set_velocity(value):
     velocity = value
-    set_mode(RigidBody.MODE_RIGID)
-    set_fixed_process(true)
+    if velocity.length() == 0:
+        set_mode(RigidBody.MODE_STATIC)
+        set_fixed_process(false)
+        set_layer_mask(collision_layer.ITEMS_PLAYER)
+    else:
+        set_mode(RigidBody.MODE_RIGID)
+        set_layer_mask(collision_layer.PLAYER_MOVING_ITEMS + collision_layer.TILES_MOVING_ITEMS)
+        set_fixed_process(true)
+
 
 func _fixed_process(delta):
     set_linear_velocity(velocity)
+    if get_translation().x < 0:
+        queue_free()
