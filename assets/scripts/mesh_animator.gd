@@ -33,25 +33,23 @@ func set_meshes(value):
     meshes = value
     self.frame = 0
 
-
+var animation_name
+var animation_obj
 var animation setget set_animation, get_animation
 func get_animation():
-    return animation.name
+    return animation_name
 func set_animation(value):
-    # TODO: work out why this is needed!
-    if typeof(animation) == TYPE_STRING:
-        animation = null
-
     # Don't do anything if repeating same animation.
-    if animation != null and value == animation.name:
+    if value == animation_name:
         return
 
     assert(value in animations)
+    animation_name = value
+    animation_obj = animations[value]
     stop()
 
-    animation = animations[value]
-    if animation.size() == 1:
-        self.frame = animation.frame_index(0)
+    if animation_obj.size() == 1:
+        self.frame = animation_obj.frame_index(0)
     else:
         anim_index = 0
         _on_animate()
@@ -85,11 +83,11 @@ func _on_animate():
         timer.set_one_shot(false)
         timer.connect("timeout", self, "_on_animate")
 
-    self.frame = animation.frame_index(anim_index)
+    self.frame = animation_obj.frame_index(anim_index)
 
     var timer = get_child("Timer")
-    timer.set_wait_time(animation.frame_duration(anim_index))
+    timer.set_wait_time(animation_obj.frame_duration(anim_index))
     timer.start()
 
-    anim_index = (anim_index + 1) % animation.size()
+    anim_index = (anim_index + 1) % animation_obj.size()
 
