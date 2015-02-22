@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="4" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://scripts/mesh_animator.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/tile.gd" type="Script"></ext_resource>
+	<ext_resource path="res://scripts/mesh_animator.gd" type="Script"></ext_resource>
 	<resource type="BoxShape" path="local://1">
-		<vector3 name="extents"> 1, 1, 0.1 </vector3>
+		<vector3 name="extents"> 0.5, 0.5, 0.1 </vector3>
 
 	</resource>
 	<main_resource>
@@ -29,6 +29,7 @@
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
 				<string> "MeshInstance" </string>
+				<string> "transform/local" </string>
 				<string> "geometry/visible" </string>
 				<string> "geometry/material_override" </string>
 				<string> "geometry/cast_shadow" </string>
@@ -44,7 +45,6 @@
 				<string> "mesh/mesh" </string>
 				<string> "mesh/skeleton" </string>
 				<string> "CollisionShape" </string>
-				<string> "transform/local" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
 			</string_array>
@@ -55,14 +55,14 @@
 			<string> "node_count" </string>
 			<int> 3 </int>
 			<string> "variants" </string>
-			<array  len="16" shared="false">
+			<array  len="17" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
 				<bool> False </bool>
 				<int> 1 </int>
 				<resource  resource_type="Shape" path="local://1">  </resource>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.1 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.1 </transform>
 				<real> 1 </real>
 				<real> 0 </real>
 				<vector3> 0, 0, 0 </vector3>
@@ -95,7 +95,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 5.441956 </real>
+									<real> 6.347497 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -186,12 +186,13 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0 </transform>
 				<resource name=""></resource>				<int> 0 </int>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Script" path="res://scripts/mesh_animator.gd">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="103"> 				-1, -1, 1, 0, -1, 16, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 7, 13, 8, 14, 9, 15, 9, 16, 10, 17, 11, 0, 0, 0, 18, 18, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 19, 2, 20, 12, 21, 2, 22, 2, 23, 8, 24, 8, 25, 3, 26, 3, 27, 3, 28, 3, 29, 3, 30, 13, 31, 12, 32, 14, 16, 15, 0, 0, 0, 33, 33, -1, 6, 2, 0, 3, 1, 34, 6, 4, 2, 35, 5, 36, 3, 0 </int_array>
+			<int_array  len="105"> 				-1, -1, 1, 0, -1, 16, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 7, 13, 8, 14, 9, 15, 9, 16, 10, 17, 11, 0, 0, 0, 18, 18, -1, 20, 2, 0, 3, 1, 19, 12, 4, 2, 11, 4, 20, 2, 21, 13, 22, 2, 23, 2, 24, 8, 25, 8, 26, 3, 27, 3, 28, 3, 29, 3, 30, 3, 31, 14, 32, 13, 33, 15, 16, 16, 0, 0, 0, 34, 34, -1, 6, 2, 0, 3, 1, 19, 6, 4, 2, 35, 5, 36, 3, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
