@@ -52,7 +52,7 @@ task :atlases do
       zip_file.glob('tile*.png').each do |tile_file|
         tile_index = /tile(\d+)\.png\Z/.match(tile_file.name)[1].to_i
         image = ChunkyPNG::Image.from_blob(tile_file.get_input_stream.read)
-        sheet = sheet.compose(image, 
+        sheet = sheet.replace(image, 
                               tile_width * (tile_index % tiles_wide),
                               tile_height * (tile_index / tiles_wide))
       end

@@ -192,10 +192,10 @@ func _on_EditorPanel_input_event(event):
     if event.type == InputEvent.MOUSE_BUTTON and event.is_pressed():
         if event.button_index == LMB:
             left_mouse_down = true # Paint.
+            select_with_cursor(event.pos)
         elif event.button_index == RMB:
             left_mouse_down = false # Pick type.
-
-        select_with_cursor(event.pos)
+            select_with_cursor(event.pos)
 
 func select_with_cursor(mouse_pos, length=100):
     var dir = camera.project_ray_normal(mouse_pos) # Uses camera projection matrix to project mouse 2D coordinates to 3D vector in world space

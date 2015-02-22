@@ -1,6 +1,6 @@
 {
     "default": {
-        "uses_transparency": false,
+        "is_transparent": false,
         "cast_shadow": true,
         "receive_shadow": true,
         "initially_horizontal": false,
@@ -19,7 +19,10 @@
         "pacer",
         "mine",
         "rat",
-        "roller"
+        "roller",
+        "crate",
+        "glass_tower",
+        "start_post"
     ],
 
     "types": {
@@ -33,7 +36,7 @@
             "player_state": "electrocuted",
             "is_area": "true",
             "light_color": [0.005, 0.005, 0.01, 1],
-            "uses_transparency": true,
+            "is_transparent": true,
         },
         "fire_exhaust": {
             "cast_shadow": false,
@@ -42,7 +45,7 @@
             "safe_frames": [8],
             "is_area": true,
             "light_color": [0.015, 0.01, 0, 1],
-            "uses_transparency": true,
+            "is_transparent": true,
         },
         "mine": {
             "initially_horizontal": true,
@@ -55,6 +58,18 @@
             "player_state": "flattened",
             "initial_velocity": [-2, 0, 0],
             "mass": 1000
+        },
+        "crate": {
+            "depth": 7,
+        },
+        "glass_tower": {
+            "depth": 8,
+            "is_transparent": true,
+            "cast_shadow": false,
+            "is_area": true,
+        },
+        "start_post": {
+            "depth": 4,
         }
     }
 }

@@ -2,7 +2,7 @@
     "default": {
         "speed_multiplier": 1.0,
         "is_sticky": false,
-        "uses_transparency": false,
+        "is_transparent": false,
         "create_sides": true,
         "footprints_color": [0, 0, 0, 0],
         "push_speed": [0, 0, 0],
@@ -64,7 +64,7 @@
             "accepts_footprints": false
         },
         "FORCE_FIELD": {
-            "uses_transparency": true,
+            "is_transparent": true,
             "create_sides": false
         },
         "LASER_WARNING": {

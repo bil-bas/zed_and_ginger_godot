@@ -24,7 +24,7 @@ func _ready():
     object_data = get_node(@'/root/object_data')
 
 func _load_sheet(spritesheet):
-    var uses_transparency
+    var is_transparent
     var depth
     var is_centered
     var create_sides
@@ -37,7 +37,7 @@ func _load_sheet(spritesheet):
         is_light_source = false
         create_sides = true
     elif spritesheet == "player":
-        uses_transparency = false
+        is_transparent = false
         is_centered = true
         depth = 1
         is_centered = true
@@ -45,11 +45,11 @@ func _load_sheet(spritesheet):
         create_sides = true
     else:
         var data = object_data.ITEM_TYPES[spritesheet]
-        uses_transparency = data["uses_transparency"]
+        is_transparent = data["is_transparent"]
         is_light_source = data["light_color"].a > 0
         depth = data["depth"]
         create_sides = data["create_sides"]
-        is_centered = not create_sides
+        is_centered = create_sides
 
     # Load the sprites themselves and create meshes from them.
     var texture = load("res://atlases/%s.png" % spritesheet)
@@ -59,10 +59,15 @@ func _load_sheet(spritesheet):
     # Create a material for all meshes created from the spritesheet
     var material = FixedMaterial.new()
     material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
-    if uses_transparency:
-        material.set_depth_draw_mode(FixedMaterial.DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA)
+    # DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA, DEPTH_DRAW_OPAQUE_ONLY
+    material.set_depth_draw_mode(Material.DEPTH_DRAW_OPAQUE_ONLY)
+    if is_transparent:
+        material.set_fixed_flag(FixedMaterial.FLAG_USE_ALPHA, true)
+        if is_light_source:
+            material.set_blend_mode(Material.BLEND_MODE_ADD)
+        else:
+            pass#material.set_blend_mode(Material.BLEND_MODE_PREMULT_ALPHA)
     if is_light_source:
-        material.set_blend_mode(FixedMaterial.BLEND_MODE_ADD)
         material.set_flag(FixedMaterial.FLAG_UNSHADED, true)
 
     _materials[spritesheet] = material
@@ -96,7 +101,7 @@ func _load_sheet(spritesheet):
             var margin = 1
                 
             var rect = Rect2(x_offset + margin, y_offset + margin, width - margin * 2, height - margin * 2)
-            var mesh = create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency, material)
+            var mesh = create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_transparent, material)
             if mesh != null:
                 pass
                 #ResourceSaver.save(dir + str(meshes.size()) + ".xml", mesh)
@@ -246,7 +251,7 @@ func pos_in_sheet_to_uv(position, sheet_size):
     return Vector2(position.x + 0.5, position.y) / sheet_size
 
 
-func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_transparency, material):
+func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_transparent, material):
     var bottom_y
     var color
     
