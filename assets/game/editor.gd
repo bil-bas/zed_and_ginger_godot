@@ -244,6 +244,7 @@ func create_delete_picker():
     var picker = load("res://prefabs/item_picker.xscn").instance()
     picker.name = null
     picker.is_selected = true
+    picker.set_tooltip("delete item")
     current_item_picker = picker
     picker.callback = funcref(self, "_on_ItemPicker_pressed")
     return picker
