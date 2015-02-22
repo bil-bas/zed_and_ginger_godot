@@ -8,7 +8,8 @@
         "push_speed": [0, 0, 0],
         "accepts_footprints": true,
         "player_state": "alive",
-        "safe_frames": []
+        "safe_frames": [],
+        "spawn_items": []
     },
 
     "order_in_editor": [
@@ -77,6 +78,7 @@
 
 
         "FIRE_SHAFT": {
+            "spawn_items": ["fire_exhaust"]
         },
         "WORKSHOP": {
         },

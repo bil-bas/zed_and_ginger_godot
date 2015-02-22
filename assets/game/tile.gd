@@ -16,7 +16,19 @@ func set_type(value):
     data.type = value
     get_node(@'MeshInstance').animation = value
 
+    for item in get_node(@'Items').get_children():
+        item.queue_free()
+
+    create_spawn_items()
+
 func _ready():
     var object_data = get_node(@'/root/object_data')
     var layer = object_data.CollisionLayer
     set_layer_mask(layer.TILES_PLAYER + layer.TILES_ITEMS + layer.TILES_MOVING_ITEMS)
+    create_spawn_items()
+
+func create_spawn_items():
+    for name in get("spawn_items"):
+        var item = get_node(@'/root/mesh_manager').new_mesh_object(name)
+        item.get_node("MeshInstance").animation = "default"
+        get_node(@'Items').add_child(item)

@@ -138,14 +138,14 @@ func create_item_object(item_data, grid):
     mesh.set_flag(4, item_data.receive_shadow)
 
     item.set_translation(grid_to_world(grid))
-
-    add_child(item)
     item_objects[grid] = item
 
     if not is_editor and item.initial_velocity.length() > 0.1:
         item.set_velocity(item.initial_velocity)
         var layer = object_data.CollisionLayer
         item.set_layer_mask(layer.TILES_MOVING_ITEMS + layer.PLAYER_MOVING_ITEMS)
+
+    add_child(item)
 
 func grid_to_world(grid):
     return Vector3(grid.x + 0.5, 0, grid.y + 0.5)
