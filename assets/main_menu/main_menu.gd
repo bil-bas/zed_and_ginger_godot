@@ -7,8 +7,8 @@ var scene_manager
 var logger
 
 func _ready():
-    scene_manager = get_node("/root/Root/SceneManager")
-    logger = get_node("/root/logger")
+    scene_manager = get_node(@'/root/Root/SceneManager')
+    logger = get_node(@'/root/logger')
 
 func setup():
     yield()

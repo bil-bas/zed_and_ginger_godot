@@ -34,10 +34,10 @@ func object_type():
     return "PLAYER"
 
 func _ready():
-    logger = get_node("/root/logger")
-    mesh = get_node("MeshInstance")
-    audio = get_node("SpatialSamplePlayer")
-    floor_ray = get_node("FloorRay")
+    logger = get_node(@'/root/logger')
+    mesh = get_node(@'MeshInstance')
+    audio = get_node(@'SpatialSamplePlayer')
+    floor_ray = get_node(@'FloorRay')
 
     mesh.animation = "walking"
 
@@ -45,7 +45,7 @@ func _ready():
 
     logger.info("Created player")
 
-    object_data = get_node("/root/object_data")
+    object_data = get_node(@'/root/object_data')
     var layer = object_data.CollisionLayer
     set_layer_mask(layer.ITEMS_PLAYER + layer.TILES_PLAYER + layer.PLAYER_MOVING_ITEMS)
 
@@ -133,7 +133,7 @@ func handle_collision(motion):
                 handle_rat_collision(collider)
                 
         else:
-            var safe = collider.get_node("MeshInstance").frame in collider.safe_frames
+            var safe = collider.get_node(@'MeshInstance').frame in collider.safe_frames
             if not safe:
                 kill(new_player_state)
 
@@ -150,11 +150,11 @@ func handle_collision(motion):
 
 func handle_rat_collision(rat):
     if get_translation().y > 0.3:
-        rat.get_node("MeshInstance").animation = "dead"
+        rat.get_node(@'MeshInstance').animation = "dead"
         rat.set_layer_mask(0)
         rat.set_is_horizontal(true)
     else:
-        rat.get_node("MeshInstance").animation = "running"
+        rat.get_node(@'MeshInstance').animation = "running"
         rat.set_velocity(Vector3(-10, 0, 0))
         rat.set_layer_mask(object_data.CollisionLayer.TILES_MOVING_ITEMS)
 
@@ -207,7 +207,7 @@ func kill(new_state):
 
 func create_footprint():
     var footprint = load("res://prefabs/footprint.xscn").instance()
-    get_node("..").add_child(footprint)
+    get_node(@'..').add_child(footprint)
     footprint.set_translation(get_translation())
     footprint.set_color(footprints_color)
 
@@ -217,7 +217,7 @@ func on_in_area(area):
         if new_player_state == "alive":
             pass
         else:
-            var safe = area.get_node("MeshInstance").frame in area.safe_frames
+            var safe = area.get_node(@'MeshInstance').frame in area.safe_frames
             if not safe:
                 kill(new_player_state)
 

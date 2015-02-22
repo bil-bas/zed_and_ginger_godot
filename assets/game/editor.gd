@@ -90,19 +90,19 @@ var mesh_manager
 var object_data
 
 func _ready():
-    logger = get_node("/root/logger")
+    logger = get_node(@'/root/logger')
 
-    camera = get_node("World/Viewport/Camera")
-    level = get_node("World/Viewport/Level")
-    ray = camera.get_node("RayCast")
-    mesh_manager = get_node("/root/mesh_manager")
-    object_data = get_node("/root/object_data")
+    camera = get_node(@'World/Viewport/Camera')
+    level = get_node(@'World/Viewport/Level')
+    ray = camera.get_node(@'RayCast')
+    mesh_manager = get_node(@'/root/mesh_manager')
+    object_data = get_node(@'/root/object_data')
 
-    history = get_node("History")
-    save_button = get_node("ButtonsPanel/Buttons/SaveButton")
-    undo_button = get_node("ButtonsPanel/Buttons/UndoButton")
-    redo_button = get_node("ButtonsPanel/Buttons/RedoButton")
-    tabs = get_node("Tabs")
+    history = get_node(@'History')
+    save_button = get_node(@'ButtonsPanel/Buttons/SaveButton')
+    undo_button = get_node(@'ButtonsPanel/Buttons/UndoButton')
+    redo_button = get_node(@'ButtonsPanel/Buttons/RedoButton')
+    tabs = get_node(@'Tabs')
 
     logger.debug("Created 3d viewport")
 
@@ -118,7 +118,7 @@ func setup():
     #yield()
     update_history_buttons()
 
-    var view_slider = get_node("ViewSlider")
+    var view_slider = get_node(@'ViewSlider')
     view_slider.set_max(level.get_length() - 1)
     view_slider.set_value(camera.get_translation().x + 0.5)
 
@@ -201,7 +201,7 @@ func _on_RedoButton_pressed():
     update_history_buttons()
 
 func _on_BackButton_pressed():
-    get_node("/root/Root/SceneManager").goto("res://main_menu/main_menu.xscn")
+    get_node(@'/root/Root/SceneManager').goto("res://main_menu/main_menu.xscn")
 
 func update_history_buttons():
     undo_button.set_disabled(not history.get_can_undo())
@@ -220,7 +220,7 @@ func _on_ItemPicker_pressed(control):
     current_item_type = control.name
 
 func fill_item_picker():
-    var pickers = tabs.get_node("Items/ScrollArea/Pickers")
+    var pickers = tabs.get_node(@'Items/ScrollArea/Pickers')
     pickers.add_child(create_delete_picker())
 
     for item in object_data.ITEM_ORDER_IN_EDITOR:
@@ -237,17 +237,17 @@ func create_item_picker(name):
     item.data = object_data.ITEM_TYPES[name]
 
     var picker = load("res://prefabs/item_picker.xscn").instance()
-    picker.get_node("Viewport").add_child(item)
-    item.get_node("MeshInstance").frame = 0
-    item.get_node("MeshInstance").stop() # Stop animation.
+    picker.get_node(@'Viewport').add_child(item)
+    item.get_node(@'MeshInstance').frame = 0
+    item.get_node(@'MeshInstance').stop() # Stop animation.
     picker.name = name
     picker.callback = funcref(self, "_on_ItemPicker_pressed")
     return picker
 
 func fill_tile_picker():
-    var pickers = tabs.get_node("Tiles/ScrollArea/Pickers")
+    var pickers = tabs.get_node(@'Tiles/ScrollArea/Pickers')
     var animations = mesh_manager.get_animations("tile")
-    var utilities = get_node("/root/utilities")
+    var utilities = get_node(@'/root/utilities')
 
     for tile in object_data.TILE_ORDER_IN_EDITOR:
         var frame = animations[tile][0]["tile"]
@@ -256,7 +256,7 @@ func fill_tile_picker():
 func create_tile_picker(frame, tile):
     var prefab = load("res://prefabs/tile_picker.xscn")
     var picker = prefab.instance()
-    picker.get_node("Sprite").set_frame(frame)
+    picker.get_node(@'Sprite').set_frame(frame)
     picker.name = tile
     picker.callback = funcref(self, "_on_TilePicker_pressed")
     return picker

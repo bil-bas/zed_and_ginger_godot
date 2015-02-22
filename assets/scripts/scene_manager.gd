@@ -15,14 +15,14 @@ var setup_routine
 var setup_progress
 
 func _ready():
-    logger = get_node("/root/logger")
+    logger = get_node(@'/root/logger')
     logger.level = logger.Level.DEBUG
     logger.truncate_log_file = true
     logger.filename = "user://log.txt"
 
-    loading_label = get_node("LoadingLabel")
-    progress_bar = get_node("LoadingProgress")
-    root_node = get_node("..")
+    loading_label = get_node(@'LoadingLabel')
+    progress_bar = get_node(@'LoadingProgress')
+    root_node = get_node(@'..')
     goto(INITIAL_SCENE) # Load first scene.
     rescale()
 
@@ -34,7 +34,7 @@ func rescale():
     var scale_y = size.y / BASE_SIZE.y
     var scale = max(scale_x, scale_y)
 
-    var background = get_node("../Background")
+    var background = get_node(@'../Background')
     background.set_scale(Vector2(scale, scale))
     background.set_offset(Vector2(0, (size.height - BASE_SIZE.y * scale) / 2))
 
@@ -74,7 +74,7 @@ func setup_scene():
         set_process(false)
         loading_label.hide()
         progress_bar.hide()
-        root_node.get_node("Background").set_layer(-1)
+        root_node.get_node(@'Background').set_layer(-1)
 
 func update_loading_progress():
     var progress = loader.get_stage() * 100.0 / loader.get_stage_count()
@@ -86,7 +86,7 @@ func set_new_scene(scene_resource):
     root_node.add_child(current_scene)
 
     # Hide everything behind the background
-    root_node.get_node("Background").set_layer(127)
+    root_node.get_node(@'Background').set_layer(127)
     
     logger.info("Setting up scene")
     setup_routine = current_scene.setup()

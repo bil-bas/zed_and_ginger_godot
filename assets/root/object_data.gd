@@ -57,8 +57,8 @@ func create_item(type, grid):
     return ObjectData.new(type, ITEM_TYPES, grid)
 
 func _ready():
-    logger = get_node("/root/logger")
-    utilities = get_node("/root/utilities")
+    logger = get_node(@'/root/logger')
+    utilities = get_node(@'/root/utilities')
 
     load_tile_data()
     load_item_data()
@@ -85,8 +85,8 @@ func load_tile_data():
         TILE_TYPES[type]["push_speed"] = Vector3(push_speed[0], push_speed[1], push_speed[2])
 
 func load_item_data():
-    var logger = get_node("/root/logger")
-    var utilities = get_node("/root/utilities")
+    var logger = get_node(@'/root/logger')
+    var utilities = get_node(@'/root/utilities')
 
     logger.info("Loading ItemData config")
 

@@ -7,7 +7,7 @@ func object_type():
     return "ITEM"
 
 func _ready():
-    var object_data = get_node("/root/object_data")
+    var object_data = get_node(@'/root/object_data')
     collision_layer = object_data.CollisionLayer
 
     set_layer_mask(collision_layer.ITEMS_PLAYER)

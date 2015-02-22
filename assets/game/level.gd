@@ -15,10 +15,10 @@ var item_objects = {} # grid => item nodes
 var is_editor
 
 func _ready():
-    logger = get_node("/root/logger")
-    mesh_manager = get_node("/root/mesh_manager")
-    object_data = get_node("/root/object_data")
-    utilities = get_node("/root/utilities")
+    logger = get_node(@'/root/logger')
+    mesh_manager = get_node(@'/root/mesh_manager')
+    object_data = get_node(@'/root/object_data')
+    utilities = get_node(@'/root/utilities')
 
 func setup(is_editor):
     self.is_editor = is_editor
@@ -62,7 +62,6 @@ func restore():
         x += 1
         wall_tiles.append(row)
 
-    logger.debug(data["items"])
     for item_data in data["items"]:
         var grid = Vector2(item_data["grid"][0], item_data["grid"][1])
         var item = object_data.create_item(item_data["data"]["type"], grid)
@@ -98,7 +97,7 @@ func generate_tiles():
         for tile_data in tile_row:
             var tile = mesh_manager.new_mesh_object("tile")
             tile.data = tile_data
-            tile.get_node("MeshInstance").animation = tile_data.type
+            tile.get_node(@'MeshInstance').animation = tile_data.type
             tile.set_translation(Vector3(i * scale, (j + 1) * scale, 0))
             add_child(tile)
             j += 1
@@ -110,7 +109,7 @@ func generate_tiles():
         for tile_data in tile_row:
             var tile = mesh_manager.new_mesh_object("tile")
             tile.data = tile_data
-            tile.get_node("MeshInstance").animation = tile_data.type
+            tile.get_node(@'MeshInstance').animation = tile_data.type
             tile.set_rotation(Vector3(-PI / 2, 0, 0))
             tile.set_translation(Vector3(i * scale, 0, j * scale))
             add_child(tile)
@@ -126,7 +125,7 @@ func create_item_object(item_data, grid):
     var item = mesh_manager.new_mesh_object(item_data.type)
     item.data = item_data
 
-    var mesh = item.get_node("MeshInstance")
+    var mesh = item.get_node(@'MeshInstance')
     mesh.animation = item_data.default_animation
     # TODO: get these constants MeshInstance.FLAG_CAST_SHADOW/MeshInstance.FLAG_RECEIVE_SHADOW
     mesh.set_flag(3, item_data.cast_shadow)
@@ -166,7 +165,7 @@ func save():
         var item = items[grid]
         data["items"].append({"grid": [grid.x, grid.y], "data": item.to_data()})
 
-    get_node("/root/utilities").save_json(filename, data)
+    get_node(@'/root/utilities').save_json(filename, data)
 
 func get_length():
     return wall_tiles.size()

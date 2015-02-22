@@ -20,8 +20,8 @@ var object_data
 
 
 func _ready():
-    logger = get_node("/root/logger") # Won't exist until we are ready.
-    object_data = get_node("/root/object_data")
+    logger = get_node(@'/root/logger') # Won't exist until we are ready.
+    object_data = get_node(@'/root/object_data')
 
 func _load_sheet(spritesheet):
     var uses_transparency
@@ -54,7 +54,7 @@ func _load_sheet(spritesheet):
     var sprites = texture.get_data()
     
     # Read metadata.
-    _metadata[spritesheet] = get_node("/root/utilities").load_json("res://atlases/%s.json" % spritesheet)
+    _metadata[spritesheet] = get_node(@'/root/utilities').load_json("res://atlases/%s.json" % spritesheet)
     var width = _metadata[spritesheet]["tile_size"][0]
     var height = _metadata[spritesheet]["tile_size"][1]
 
@@ -131,7 +131,7 @@ func new_mesh_object(spritesheet, index=0):
     if obj_type == "item":
         obj.set_mass(object_data.ITEM_TYPES[spritesheet]["mass"])
     
-    var mesh = obj.get_node("MeshInstance")
+    var mesh = obj.get_node(@'MeshInstance')
     mesh.set_rotation(Vector3(PI, 0, 0))
     mesh.set_translation(_world_offsets[spritesheet])
     mesh.meshes = _meshes[spritesheet]

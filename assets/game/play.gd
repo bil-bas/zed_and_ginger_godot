@@ -5,8 +5,8 @@ var level
 var mesh_manager
 
 func _ready():
-    mesh_manager = get_node("/root/mesh_manager")
-    level = get_node("World/Viewport/Level")
+    mesh_manager = get_node(@'/root/mesh_manager')
+    level = get_node(@'World/Viewport/Level')
 
 func setup():
     var level_setup = level.setup(false)
@@ -19,9 +19,9 @@ func setup():
 func create_player(grid):
     player = mesh_manager.new_mesh_object("player")
 
-    var level = get_node("World/Viewport/Level")
+    var level = get_node(@'World/Viewport/Level')
     level.add_child(player)
     player.set_translation(level.grid_to_world(grid))
 
 func _on_BackButton_pressed():
-    get_node("/root/Root/SceneManager").goto("res://main_menu/main_menu.xscn")
+    get_node(@'/root/Root/SceneManager').goto("res://main_menu/main_menu.xscn")
