@@ -111,7 +111,7 @@ func _load_sheet(spritesheet):
 func get_animations(spritesheet):
     return _metadata[spritesheet]["animations"]
 
-func new_mesh_object(spritesheet, index=0):
+func new_mesh_object(spritesheet, is_editor=false):
     if not spritesheet in _meshes:
        _load_sheet(spritesheet)
 
@@ -121,7 +121,7 @@ func new_mesh_object(spritesheet, index=0):
     elif spritesheet == "tile":
         obj_type = "tile"
     else:
-        if object_data.ITEM_TYPES[spritesheet]["is_area"]:
+        if object_data.ITEM_TYPES[spritesheet]["is_area"] and not is_editor:
             obj_type = "item_area"
         else:
             obj_type = "item"
@@ -135,7 +135,7 @@ func new_mesh_object(spritesheet, index=0):
     mesh.set_rotation(Vector3(PI, 0, 0))
     mesh.set_translation(_world_offsets[spritesheet])
     mesh.meshes = _meshes[spritesheet]
-    mesh.frame = index
+    mesh.frame = 0
     mesh.animations = get_animations(spritesheet)
 
     var is_centered = (spritesheet != "tile")

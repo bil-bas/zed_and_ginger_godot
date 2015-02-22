@@ -128,37 +128,42 @@ func _process(delta):
     if ray.is_enabled() and ray.is_colliding():
         var collider = ray.get_collider()
         if collider != null:
-            if collider.object_type() == "TILE":
-                var current_tab = tabs.get_current_tab()
-                if current_tab == ITEMS_TAB:
+            var current_tab = tabs.get_current_tab()
+
+            if current_tab == ITEMS_TAB:
+                if collider.object_type() == "TILE":
                     if collider.is_floor:
-                        click_in_item_mode(collider)
-                elif current_tab == TILES_TAB:
+                        click_in_item_mode(collider.grid)
+                elif collider.object_type() == "ITEM":
+                    click_in_item_mode(collider.grid)
+
+            elif current_tab == TILES_TAB:
+                if collider.object_type() == "TILE":
                     click_in_tile_mode(collider)
-                else:
-                    assert(false)
+                elif collider.object_type() == "ITEM":
+                    click_in_tile_mode(level.get_floor_tile_at(collider.grid))
 
         ray.set_enabled(false)
 
-func click_in_item_mode(tile):
+func click_in_item_mode(grid):
     if left_mouse_down:
-        var old_item = level.get_item_at(tile.grid)
+        var old_item = level.get_item_at(grid)
 
         if current_item_type == null:
             if old_item != null:
-                var action = RemoveItemAction.new(tile.grid, old_item.type, level)
+                var action = RemoveItemAction.new(grid, old_item.type, level)
                 history.add(action)
         else:
             var action
             if old_item != null:
-                action = ChangeItemAction.new(tile.grid, old_item.type, current_item_type, level)
+                action = ChangeItemAction.new(grid, old_item.type, current_item_type, level)
             else:
-                action = AddItemAction.new(tile.grid, current_item_type, level)
+                action = AddItemAction.new(grid, current_item_type, level)
             history.add(action)
 
         update_history_buttons()
     else:
-        current_item_type = level.get_item_at(tile.grid)
+        current_item_type = level.get_item_at(grid)
 
 func click_in_tile_mode(tile):
     if left_mouse_down:
