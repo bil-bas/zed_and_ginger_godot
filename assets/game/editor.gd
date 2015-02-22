@@ -131,7 +131,8 @@ func _process(delta):
             if collider.object_type() == "TILE":
                 var current_tab = tabs.get_current_tab()
                 if current_tab == ITEMS_TAB:
-                    click_in_item_mode(collider)
+                    if collider.is_floor:
+                        click_in_item_mode(collider)
                 elif current_tab == TILES_TAB:
                     click_in_tile_mode(collider)
                 else:

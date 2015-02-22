@@ -99,6 +99,7 @@ func generate_tiles():
             tile.data = tile_data
             tile.get_node(@'MeshInstance').animation = tile_data.type
             tile.set_translation(Vector3(i * scale, (j + 1) * scale, 0))
+            tile.is_floor = false
             add_child(tile)
             j += 1
         i += 1
@@ -112,6 +113,7 @@ func generate_tiles():
             tile.get_node(@'MeshInstance').animation = tile_data.type
             tile.set_rotation(Vector3(-PI / 2, 0, 0))
             tile.set_translation(Vector3(i * scale, 0, j * scale))
+            tile.is_floor = true
             add_child(tile)
             j += 1
         i += 1
