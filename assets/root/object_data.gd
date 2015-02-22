@@ -64,6 +64,15 @@ func _ready():
     load_tile_data()
     load_item_data()
 
+func list_to_color(color):
+    assert(color.size() == 4)
+    var channels = color
+    return Color(channels[0] * 255, channels[1] * 255, channels[2] * 255, channels[3] * 255)
+
+func list_to_vec3(numbers):
+    assert(numbers.size() == 3)
+    return Vector3(numbers[0], numbers[1], numbers[2])
+
 func load_tile_data():
     logger.info("Loading TileData config")
 
@@ -78,12 +87,8 @@ func load_tile_data():
             if not key in TILE_TYPES[type]:
                 TILE_TYPES[type][key] = default[key]
 
-        # Convert colour array into something sensible.
-        var channels = TILE_TYPES[type]["footprints_color"]
-        TILE_TYPES[type]["footprints_color"] = Color(channels[0] * 255, channels[1] * 255, channels[2] * 255, channels[3] * 255)
-
-        var push_speed = TILE_TYPES[type]["push_speed"]
-        TILE_TYPES[type]["push_speed"] = Vector3(push_speed[0], push_speed[1], push_speed[2])
+        TILE_TYPES[type]["footprints_color"] = list_to_color(TILE_TYPES[type]["footprints_color"])
+        TILE_TYPES[type]["push_speed"] = list_to_vec3(TILE_TYPES[type]["push_speed"])
 
 func load_item_data():
     var logger = get_node(@'/root/logger')
@@ -105,7 +110,7 @@ func load_item_data():
         var safe_frames = []
         for frame in ITEM_TYPES[type]["safe_frames"]:
             safe_frames.append(int(frame))
-        ITEM_TYPES[type]["safe_frames"] = safe_frames
+        ["safe_frames"] = safe_frames
 
-        var vel = ITEM_TYPES[type]["initial_velocity"]
-        ITEM_TYPES[type]["initial_velocity"] = Vector3(vel[0], vel[1], vel[2])
+        ITEM_TYPES[type]["initial_velocity"] = list_to_vec3(ITEM_TYPES[type]["initial_velocity"])
+        ITEM_TYPES[type]["light_color"] = list_to_color(ITEM_TYPES[type]["light_color"])

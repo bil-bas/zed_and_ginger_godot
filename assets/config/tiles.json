@@ -9,7 +9,8 @@
         "accepts_footprints": true,
         "player_state": "alive",
         "safe_frames": [],
-        "spawn_items": []
+        "spawn_items": [],
+        "depth": 1
     },
 
     "order_in_editor": [

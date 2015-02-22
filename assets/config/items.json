@@ -9,7 +9,9 @@
         "is_area": false,
         "depth": 1,
         "initial_velocity": [0, 0, 0],
-        "mass": 1
+        "mass": 1,
+        "create_sides": true,
+        "light_color": [0, 0, 0, 0]
     },
 
     "order_in_editor": [
@@ -29,7 +31,9 @@
             "cast_shadow": false,
             "receive_shadow": false,
             "player_state": "electrocuted",
-            "is_area": "true"
+            "is_area": "true",
+            "light_color": [0.005, 0.005, 0.01, 1],
+            "uses_transparency": true,
         },
         "fire_exhaust": {
             "cast_shadow": false,
@@ -37,6 +41,8 @@
             "player_state": "burnt",
             "safe_frames": [8],
             "is_area": true,
+            "light_color": [0.015, 0.01, 0, 1],
+            "uses_transparency": true,
         },
         "mine": {
             "initially_horizontal": true,

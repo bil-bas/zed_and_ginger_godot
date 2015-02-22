@@ -27,19 +27,29 @@ func _load_sheet(spritesheet):
     var uses_transparency
     var depth
     var is_centered
-    
+    var create_sides
+    var is_light_source
+    var light_color
+
     if spritesheet == "tile":
-        uses_transparency = true
         depth = 3
         is_centered = false
+        is_light_source = false
+        create_sides = true
     elif spritesheet == "player":
         uses_transparency = false
         is_centered = true
         depth = 1
-    else:
-        uses_transparency = false
-        depth = object_data.ITEM_TYPES[spritesheet]["depth"]
         is_centered = true
+        is_light_source = false
+        create_sides = true
+    else:
+        var data = object_data.ITEM_TYPES[spritesheet]
+        uses_transparency = data["uses_transparency"]
+        is_light_source = data["light_color"].a > 0
+        depth = data["depth"]
+        create_sides = data["create_sides"]
+        is_centered = not create_sides
 
     # Load the sprites themselves and create meshes from them.
     var texture = load("res://atlases/%s.png" % spritesheet)
@@ -49,6 +59,12 @@ func _load_sheet(spritesheet):
     # Create a material for all meshes created from the spritesheet
     var material = FixedMaterial.new()
     material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
+    if uses_transparency:
+        material.set_depth_draw_mode(FixedMaterial.DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA)
+    if is_light_source:
+        material.set_blend_mode(FixedMaterial.BLEND_MODE_ADD)
+        material.set_flag(FixedMaterial.FLAG_UNSHADED, true)
+
     _materials[spritesheet] = material
 
     var sprites = texture.get_data()
@@ -72,13 +88,10 @@ func _load_sheet(spritesheet):
 
     for y_offset in range(0, texture.get_height(), height):
         for x_offset in range(0, texture.get_width(), width):
-            var create_sides = false
             var index = meshes.size()
             
             if spritesheet == "tile":
-                create_sides = true
-            else:
-                create_sides = true
+                pass# TODO: work out if tile wants sides.
 
             var margin = 1
                 
@@ -94,17 +107,6 @@ func _load_sheet(spritesheet):
     logger.info("Created spritesheet: %s" % spritesheet)
 
     return meshes.size()
-
-
-#    func default_material(spritesheet as string) as Material:
-#        load_sheet(spritesheet)
-#
-#        return _materials[spritesheet]["diffuse"]
-
-#    func transparency_material(spritesheet as string) as Material:
-#        _load_sheet(spritesheet)
-#
-#        return _materials[spritesheet]["transparency"]
 
 func get_animations(spritesheet):
     return _metadata[spritesheet]["animations"]
@@ -134,6 +136,16 @@ func new_mesh_object(spritesheet, is_editor=false):
     mesh.set_translation(_world_offsets[spritesheet])
     mesh.meshes = _meshes[spritesheet]
     mesh.animations = get_animations(spritesheet)
+
+    if obj_type in ["item_area", "item_solid"]:
+        var light_color = object_data.ITEM_TYPES[spritesheet]["light_color"]
+        if light_color.a > 0:
+            var light = OmniLight.new()
+            light.set_parameter(OmniLight.PARAM_RADIUS, 2)
+            light.set_color(0, light_color)
+            light.set_parameter(OmniLight.PARAM_ATTENUATION, 2)
+            light.set_translation(Vector3(0, 0.5, 0))
+            obj.add_child(light)
 
     var is_centered = (spritesheet != "tile")
 
@@ -298,7 +310,7 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, uses_
                 if x != rect.size.width and y != rect.size.height:
                     color = sprites.get_pixel(pos_in_sheet.x, pos_in_sheet.y)
                     pixel_opaque = (color.a > 0)
-    
+
                 if pixel_opaque:
                     if not is_visible:
                         # Changed from invisible to visible, so draw LEFT quad.
