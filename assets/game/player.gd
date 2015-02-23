@@ -148,6 +148,8 @@ func handle_collision(motion):
                 handle_rat_collision(collider)
             elif collider.type == "hover_board":
                 handle_hover_board_collision(collider)
+            elif collider.type == "speed_pill":
+                collider.queue_free()
         else:
             var safe = collider.get_node(@'MeshInstance').frame in collider.safe_frames
             if not safe:

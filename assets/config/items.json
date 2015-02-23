@@ -25,6 +25,7 @@
         "start_post",
         "hover_board",
         "tentacle",
+        "speed_pill",
     ],
     "types": {
         "flytrap": {
@@ -77,6 +78,8 @@
         },
         "tentacle": {
             "player_state": "eaten",
-        }
+        },
+        "speed_pill": {
+        },
     }
 }
