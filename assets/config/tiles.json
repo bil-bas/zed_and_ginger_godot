@@ -7,7 +7,7 @@
         "footprints_color": [0, 0, 0, 0],
         "push_speed": [0, 0, 0],
         "accepts_footprints": true,
-        "player_state": "alive",
+        "player_state": "ok",
         "safe_frames": [],
         "spawn_items": [],
         "depth": 1

@@ -4,7 +4,7 @@
         "cast_shadow": true,
         "receive_shadow": true,
         "initially_horizontal": false,
-        "player_state": "alive",
+        "player_state": "ok",
         "safe_frames": [],
         "is_area": false,
         "depth": 1,
@@ -22,7 +22,8 @@
         "roller",
         "crate",
         "glass_tower",
-        "start_post"
+        "start_post",
+        "hover_board"
     ],
 
     "types": {
@@ -70,6 +71,9 @@
         },
         "start_post": {
             "depth": 4,
+        },
+        "hover_board": {
+            "initially_horizontal": true
         }
     }
 }

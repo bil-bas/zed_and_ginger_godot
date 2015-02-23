@@ -9,17 +9,17 @@ const FOOTPRINT_DISTANCE = 0.3
 const NUM_FOOTPRINTS = 12
 
 class State:
-    const ALIVE = 0
+    const OK = 0
     # Game over
-    const FINISHED = 7
-    const CAUGHT = 8
+    const FINISHED = 10
+    const CAUGHT = 11
     # Dead.
-    const ON_BACK = 1
-    const ELECTROCUTED = 2
-    const FLATTENED = 3
-    const BURNT = 4
-    const EATEN = 5
-    const EXPLODED = 6
+    const ON_BACK = 20
+    const ELECTROCUTED = 21
+    const FLATTENED = 22
+    const BURNT = 23
+    const EATEN = 24
+    const EXPLODED = 25
 
 var logger
 var mesh
@@ -31,9 +31,10 @@ var footprints_remaining
 var distance_to_footprint
 var on_floor = false
 var velocity = Vector3(0, 0, 0)
-var state = State.ALIVE
+var state = State.OK
 var object_data
 var camera
+var surfing_on
 
 func object_type():
     return "PLAYER"
@@ -91,7 +92,7 @@ func update_animation(velocity):
 func _fixed_process(delta):
     velocity.y += GRAVITY * delta
 
-    if state == State.ALIVE:
+    if state == State.OK:
         if floor_ray.is_colliding():
             var collider = floor_ray.get_collider()
             if collider != null and collider.object_type() == "TILE":
@@ -102,13 +103,15 @@ func _fixed_process(delta):
         if on_floor:
             var jump_pressed = Input.is_action_pressed("jump")
             if jump_pressed:
-                if floor_tile.is_sticky:
-                    pass # TODO: play sound?
-                else:
+                if surfing_on != null or not floor_tile.is_sticky:
+                    if surfing_on != null:
+                        remove_board()
                     velocity.y = JUMP_SPEED
                     on_floor = false
-
-            walk_speed *= floor_tile.speed_multiplier
+                else:
+                    pass # TODO: play sound?
+            elif surfing_on == null:
+                walk_speed *= floor_tile.speed_multiplier
 
         var direction = move_direction()
         velocity.x = direction.x * walk_speed
@@ -117,13 +120,13 @@ func _fixed_process(delta):
     var motion = velocity * delta
     motion = move(motion)
 
-    if state == State.ALIVE and on_floor:
+    if surfing_on == null and state == State.OK and on_floor:
         footprints(motion)
 
     if is_colliding():
         handle_collision(motion)
 
-    if state == State.ALIVE:
+    if state == State.OK and surfing_on == null:
         update_animation(velocity)
 
     if on_floor and floor_tile:
@@ -139,11 +142,12 @@ func update_camera_pos():
 func handle_collision(motion):
     var collider = get_collider()
     var new_player_state = collider.player_state
-    if state == State.ALIVE:
-        if new_player_state == "alive":
+    if state == State.OK:
+        if new_player_state == "ok":
             if collider.type == "rat":
                 handle_rat_collision(collider)
-                
+            elif collider.type == "hover_board":
+                handle_hover_board_collision(collider)
         else:
             var safe = collider.get_node(@'MeshInstance').frame in collider.safe_frames
             if not safe:
@@ -170,6 +174,37 @@ func handle_rat_collision(rat):
         rat.set_velocity(Vector3(-10, 0, 0))
         rat.set_layer_mask(object_data.CollisionLayer.TILES_MOVING_ITEMS)
 
+func handle_hover_board_collision(board):
+    remove_board()
+
+    logger.debug("Jumped onto board")
+    surfing_on = board
+
+    get_parent().remove_child(surfing_on)
+    add_child(surfing_on)
+
+    surfing_on.set_translation(Vector3(0, 0.3, -0.4))
+    surfing_on.set_layer_mask(0)
+
+    mesh.animation = "surfing"
+
+func remove_board():
+    if surfing_on == null:
+        return
+
+    logger.debug("Jumped off board")
+    remove_child(surfing_on)
+    get_parent().add_child(surfing_on)
+
+    surfing_on.set_translation(get_translation() + Vector3(-0.6, 0.2, 0))
+    surfing_on.velocity = Vector3(-0.8, 0, 0)
+
+    footprints_color = null
+    footprints_remaining = null
+
+    surfing_on = null
+    state = State.OK
+
 func footprints(motion):
     if floor_tile.footprints_color.a > 0:
         if floor_tile.footprints_color != footprints_color:
@@ -192,6 +227,8 @@ func kill(new_state):
     velocity = Vector3()
 
     set_layer_mask(object_data.CollisionLayer.TILES_PLAYER)
+
+    remove_board()
 
     if new_state == "burnt":
         state = State.BURNT
@@ -223,9 +260,9 @@ func create_footprint():
     footprint.set_color(footprints_color)
 
 func on_in_area(area):
-    if state == State.ALIVE:
+    if state == State.OK:
         var new_player_state = area.player_state
-        if new_player_state == "alive":
+        if new_player_state == "ok":
             pass
         else:
             var safe = area.get_node(@'MeshInstance').frame in area.safe_frames
@@ -248,11 +285,13 @@ func set_is_horizontal(value):
 
 
 func finish():
+    remove_board()
     mesh.animation = "dancing"
     state = State.FINISHED
     velocity.x = 0
 
 func caught():
+    remove_board()
     mesh.animation = "crouching"
     state = State.CAUGHT
     velocity.x = 0
