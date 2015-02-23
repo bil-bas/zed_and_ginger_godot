@@ -251,7 +251,7 @@ func fill_item_picker():
         pickers.add_child(create_item_picker(item))
 
 func create_delete_picker():
-    var picker = load("res://prefabs/item_picker.xscn").instance()
+    var picker = preload("res://prefabs/item_picker.xscn").instance()
     picker.name = null
     picker.is_selected = true
     picker.set_tooltip("delete item")
@@ -263,7 +263,7 @@ func create_item_picker(name):
     var item = mesh_manager.new_mesh_object(name)
     item.data = object_data.ITEM_TYPES[name]
 
-    var picker = load("res://prefabs/item_picker.xscn").instance()
+    var picker = preload("res://prefabs/item_picker.xscn").instance()
     picker.get_node(@'Viewport').add_child(item)
     picker.name = name
     picker.set_tooltip(name)
@@ -287,7 +287,7 @@ func fill_tile_picker():
         pickers.add_child(picker)
 
 func create_tile_picker(frame, tile):
-    var prefab = load("res://prefabs/tile_picker.xscn")
+    var prefab = preload("res://prefabs/tile_picker.xscn")
     var picker = prefab.instance()
     picker.get_node(@'Sprite').set_frame(frame)
     picker.name = tile

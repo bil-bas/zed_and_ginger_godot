@@ -1,21 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="4" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+<resource_file type="PackedScene" subresource_count="6" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+	<ext_resource path="res://atlases/player.png" type="Texture"></ext_resource>
 	<ext_resource path="res://game/play.gd" type="Script"></ext_resource>
-	<ext_resource path="res://prefabs/world.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://scripts/level_progress.gd" type="Script"></ext_resource>
 	<ext_resource path="res://prefabs/small_button.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://prefabs/world.xscn" type="PackedScene"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="11">
+			<string_array  len="61">
 				<string> "Play" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
 				<string> "World" </string>
+				<string> "CanvasLayer" </string>
+				<string> "layer" </string>
+				<string> "offset" </string>
+				<string> "rotation" </string>
+				<string> "scale" </string>
 				<string> "BackButton" </string>
 				<string> "Button" </string>
 				<string> "text" </string>
+				<string> "ScorePanel" </string>
+				<string> "PanelContainer" </string>
+				<string> "visibility/visible" </string>
+				<string> "visibility/opacity" </string>
+				<string> "visibility/self_opacity" </string>
+				<string> "visibility/light_mask" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "focus_neighbour/left" </string>
+				<string> "focus_neighbour/top" </string>
+				<string> "focus_neighbour/right" </string>
+				<string> "focus_neighbour/bottom" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "size_flags/vertical" </string>
+				<string> "size_flags/stretch_ratio" </string>
+				<string> "LevelProgress" </string>
+				<string> "Range" </string>
+				<string> "range/min" </string>
+				<string> "range/max" </string>
+				<string> "range/step" </string>
+				<string> "range/page" </string>
+				<string> "range/value" </string>
+				<string> "range/exp_edit" </string>
+				<string> "rounded_values" </string>
+				<string> "PlayerSprite" </string>
+				<string> "Sprite" </string>
+				<string> "transform/pos" </string>
+				<string> "transform/rot" </string>
+				<string> "transform/scale" </string>
+				<string> "z/z" </string>
+				<string> "z/relative" </string>
+				<string> "texture" </string>
+				<string> "centered" </string>
+				<string> "flip_h" </string>
+				<string> "flip_v" </string>
+				<string> "vframes" </string>
+				<string> "hframes" </string>
+				<string> "frame" </string>
+				<string> "modulate" </string>
+				<string> "region" </string>
+				<string> "region_rect" </string>
 				<string> "_on_BackButton_pressed" </string>
 				<string> "pressed" </string>
 			</string_array>
@@ -24,9 +76,9 @@
 			<string> "conn_count" </string>
 			<int> 1 </int>
 			<string> "node_count" </string>
-			<int> 3 </int>
+			<int> 7 </int>
 			<string> "variants" </string>
-			<array  len="7" shared="false">
+			<array  len="33" shared="false">
 				<node_path> "" </node_path>
 				<resource  resource_type="Script" path="res://game/play.gd">  </resource>
 				<dictionary  shared="false">
@@ -37,11 +89,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 1.360376 </real>
+							<real> 2.272077 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -19.6362, -149.859 </vector2>
+							<vector2> -68.2893, 445.012 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -146,7 +198,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "2D" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://prefabs/world.xscn">  </resource>
 				<dictionary  shared="false">
@@ -167,10 +219,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "zfar" </string>
 							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -238,24 +292,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "default_light" </string>
-							<bool> False </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> False </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.424084, 0.423605, 0.424922, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_show_subtree" </string>
@@ -270,13 +322,39 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
+				<int> 1 </int>
+				<vector2> 0, 0 </vector2>
+				<real> 0 </real>
+				<vector2> 1, 1 </vector2>
 				<resource  resource_type="PackedScene" path="res://prefabs/small_button.xscn">  </resource>
 				<string> "Back" </string>
+				<bool> True </bool>
+				<real> 1 </real>
+				<real> 25 </real>
+				<real> 550 </real>
+				<real> 775 </real>
+				<real> 590 </real>
+				<bool> False </bool>
+				<int> 2 </int>
+				<real> 4 </real>
+				<real> 8 </real>
+				<real> 746 </real>
+				<real> 36 </real>
+				<real> 10 </real>
+				<resource  resource_type="Script" path="res://scripts/level_progress.gd">  </resource>
+				<vector2> 2.5, 2.5 </vector2>
+				<int> 0 </int>
+				<resource  resource_type="Texture" path="res://atlases/player.png">  </resource>
+				<vector2> -7, 2 </vector2>
+				<int> 4 </int>
+				<int> 8 </int>
+				<color> 1, 1, 1, 1 </color>
+				<rect2> 0, 0, 0, 0 </rect2>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="35"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 1, 5, 3, 2, 2, 0, 4, 4, 0, 0, 0, 7, 6, 5, 2, 2, 0, 8, 6, 0 </int_array>
+			<int_array  len="203"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 1, 5, 3, 2, 2, 0, 4, 4, 0, 0, 0, 6, 6, -1, 5, 2, 0, 7, 5, 8, 6, 9, 7, 10, 8, 0, 2, 0, 12, 11, 9, 2, 2, 0, 13, 10, 0, 2, 0, 15, 14, -1, 18, 2, 0, 16, 11, 17, 12, 18, 12, 19, 5, 20, 13, 21, 14, 22, 15, 23, 16, 24, 0, 25, 0, 26, 0, 27, 0, 28, 17, 29, 11, 30, 18, 31, 18, 32, 12, 0, 4, 0, 34, 33, -1, 26, 2, 0, 16, 11, 17, 12, 18, 12, 19, 5, 20, 19, 21, 20, 22, 21, 23, 22, 24, 0, 25, 0, 26, 0, 27, 0, 28, 17, 29, 11, 30, 18, 31, 18, 32, 12, 35, 7, 36, 23, 37, 12, 38, 7, 39, 12, 40, 17, 41, 17, 3, 24, 0, 5, 0, 43, 42, -1, 21, 2, 0, 16, 11, 17, 12, 18, 12, 19, 5, 44, 6, 45, 7, 46, 25, 47, 26, 48, 11, 49, 27, 50, 11, 8, 28, 51, 17, 52, 17, 53, 29, 54, 30, 55, 26, 56, 31, 57, 17, 58, 32, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="6"> 				2, 0, 10, 9, 2, 0 </int_array>
+			<int_array  len="6"> 				3, 0, 60, 59, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>

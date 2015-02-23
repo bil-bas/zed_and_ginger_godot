@@ -204,7 +204,7 @@ func kill(new_state):
     mesh.animation = new_state
 
 func create_footprint():
-    var footprint = load("res://prefabs/footprint.xscn").instance()
+    var footprint = preload("res://prefabs/footprint.xscn").instance()
     get_node(@'..').add_child(footprint)
     footprint.set_translation(get_translation())
     footprint.set_color(footprints_color)
