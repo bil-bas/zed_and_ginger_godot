@@ -18,7 +18,7 @@ func _ready():
     set_process(true)
 
 func world_x_to_bar_x(x):
-	return ((x - get_min()) / (get_max() - get_min())) * (get_size().x - (END_OFFSET + MARGIN * 2)) + END_OFFSET + MARGIN
+    return ((x - get_min()) / (get_max() - get_min())) * (get_size().x - (END_OFFSET + MARGIN * 2)) + END_OFFSET + MARGIN
 
 func _process(delta):
     x = world_x_to_bar_x(get_value())

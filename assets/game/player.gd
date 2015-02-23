@@ -35,6 +35,9 @@ var state = State.OK
 var object_data
 var camera
 var surfing_on
+var speed_trail_prefab = preload("res://prefabs/speed_trail.xscn")
+var speed_trail
+var speed_remaining = 0
 
 func object_type():
     return "PLAYER"
@@ -113,6 +116,14 @@ func _fixed_process(delta):
             elif surfing_on == null:
                 walk_speed *= floor_tile.speed_multiplier
 
+        if speed_remaining > 0:
+            speed_remaining -= delta
+            
+            if speed_remaining <= 0:
+                remove_trail()
+            else:
+                walk_speed *= 1.5
+
         var direction = move_direction()
         velocity.x = direction.x * walk_speed
         velocity.z = direction.z * walk_speed
@@ -150,6 +161,9 @@ func handle_collision(motion):
                 handle_hover_board_collision(collider)
             elif collider.type == "speed_pill":
                 collider.queue_free()
+                speed_trail = speed_trail_prefab.instance()
+                add_child(speed_trail)
+                speed_remaining = 5
         else:
             var safe = collider.get_node(@'MeshInstance').frame in collider.safe_frames
             if not safe:
@@ -178,6 +192,8 @@ func handle_rat_collision(rat):
 
 func handle_hover_board_collision(board):
     remove_board()
+    if speed_trail != null:
+        speed_trail.height = 1.8
 
     logger.debug("Jumped onto board")
     surfing_on = board
@@ -190,9 +206,20 @@ func handle_hover_board_collision(board):
 
     mesh.animation = "surfing"
 
+func remove_trail():
+    if speed_trail == null:
+        return
+
+    speed_remaining = 0
+    speed_trail.is_emitting = false
+    speed_trail = null
+
 func remove_board():
     if surfing_on == null:
         return
+
+    if speed_trail != null:
+        speed_trail.height = 0.4
 
     logger.debug("Jumped off board")
     remove_child(surfing_on)
@@ -231,6 +258,7 @@ func kill(killer, new_state):
     set_layer_mask(object_data.CollisionLayer.TILES_PLAYER)
 
     remove_board()
+    remove_trail()
 
     if new_state == "burnt":
         state = State.BURNT
@@ -292,7 +320,10 @@ func set_is_horizontal(value):
 func finish():
     if state != State.OK:
         return
+
     remove_board()
+    remove_trail()
+
     mesh.animation = "dancing"
     state = State.FINISHED
     velocity.x = 0
@@ -301,7 +332,10 @@ func finish():
 func caught():
     if state != State.OK:
         return
+
     remove_board()
+    remove_trail()
+
     mesh.animation = "crouching"
     state = State.CAUGHT
     velocity.x = 0
