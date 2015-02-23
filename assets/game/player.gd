@@ -10,6 +10,10 @@ const NUM_FOOTPRINTS = 12
 
 class State:
     const ALIVE = 0
+    # Game over
+    const FINISHED = 7
+    const CAUGHT = 8
+    # Dead.
     const ON_BACK = 1
     const ELECTROCUTED = 2
     const FLATTENED = 3
@@ -29,6 +33,7 @@ var on_floor = false
 var velocity = Vector3(0, 0, 0)
 var state = State.ALIVE
 var object_data
+var camera
 
 func object_type():
     return "PLAYER"
@@ -38,6 +43,7 @@ func _ready():
     mesh = get_node(@'MeshInstance')
     audio = get_node(@'SpatialSamplePlayer')
     floor_ray = get_node(@'FloorRay')
+    camera = get_node(@'../../Camera')
 
     mesh.animation = "walking"
 
@@ -60,9 +66,9 @@ func move_direction():
     if Input.is_action_pressed("move_left"):
         dir += Vector3(-1, 0, 0)
     if Input.is_action_pressed("move_right"):
-        dir += Vector3(1, 0, 0)
+        dir += Vector3(0.5, 0, 0)
 
-    return dir.normalized()
+    return dir.normalized() + Vector3(1, 0, 0)
 
 func update_animation(velocity):
     var animation
@@ -122,6 +128,13 @@ func _fixed_process(delta):
 
     if on_floor and floor_tile:
         move(floor_tile.push_speed * delta)
+
+    update_camera_pos()
+
+func update_camera_pos():
+    var camera_pos = camera.get_translation()
+    camera_pos.x = get_translation().x + 1.5
+    camera.set_translation(camera_pos)
 
 func handle_collision(motion):
     var collider = get_collider()
@@ -232,3 +245,14 @@ func set_is_horizontal(value):
     else:
         set_translation(get_translation() - Vector3(0, 0, -0.5))
         set_rotation(Vector3(0, 0, 0))
+
+
+func finish():
+    mesh.animation = "dancing"
+    state = State.FINISHED
+    velocity.x = 0
+
+func caught():
+    mesh.animation = "crouching"
+    state = State.CAUGHT
+    velocity.x = 0
