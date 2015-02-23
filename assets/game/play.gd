@@ -1,6 +1,6 @@
 extends Node
 
-const CHASE_SPEED = 3
+const CHASE_SPEED = 2
 const LEVEL_MARGIN = 10 # Tiles at the ends.
 
 var player
@@ -23,6 +23,8 @@ func setup():
 
     var start_x = LEVEL_MARGIN
     chase_x = start_x - 2
+    progress.chase_x = chase_x
+    
     finish_x = level.get_length() - LEVEL_MARGIN
     progress.set_min(start_x)
     progress.set_max(finish_x)

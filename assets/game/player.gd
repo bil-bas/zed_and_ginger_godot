@@ -1,7 +1,7 @@
 extends KinematicBody
 
-const WALK_SPEED = 4
-const JUMP_SPEED = 6
+const WALK_SPEED = 2
+const JUMP_SPEED = 5
 const EXPLODED_SPEED = 20
 const UP = Vector3(0, 1, 0)
 const GRAVITY = -9.81
