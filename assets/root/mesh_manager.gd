@@ -278,8 +278,12 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_tr
         for y in range(rect.size.height + 1):
             var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
             var uv = pos_in_sheet_to_uv(pos_in_sheet, sprite_sheet_size)
+
+            var pos_in_sheet_side = Vector2(rect.pos.x + x, rect.pos.y + y + 0.5)
+            var uv_side = pos_in_sheet_to_uv(pos_in_sheet_side, sprite_sheet_size)
             
             var pixel_opaque = false
+            
             if x != rect.size.width and y != rect.size.height:
                 color = sprites.get_pixel(pos_in_sheet.x, pos_in_sheet.y)
                 pixel_opaque = (color.a > 0)
@@ -290,7 +294,7 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_tr
                     bottom_y = y
                     bottom_uv = uv
                     if create_sides:
-                        add_quad(surface_tool, create_bottom_quad(x, y, front, back, uv))
+                        add_quad(surface_tool, create_bottom_quad(x, y, front, back, uv_side))
 
                     is_visible = true
             else:
@@ -300,7 +304,7 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_tr
                     
                     if create_sides:
                         add_quad(surface_tool, create_front_quad(x, y, bottom_y, front, uv, bottom_uv))
-                        add_quad(surface_tool, create_top_quad(x, y, front, back, uv))
+                        add_quad(surface_tool, create_top_quad(x, y, front, back, uv_side))
                            
                     is_visible = false
 
@@ -311,6 +315,13 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_tr
             for x in range(rect.size.width + 1):
                 var pos_in_sheet = Vector2(rect.pos.x + x, rect.pos.y + y)
                 var uv = pos_in_sheet_to_uv(pos_in_sheet, sprite_sheet_size)
+
+                var pos_in_sheet_right = Vector2(rect.pos.x + x - 0.5, rect.pos.y + y + 0.5)
+                var uv_right = pos_in_sheet_to_uv(pos_in_sheet_right, sprite_sheet_size)
+
+                var pos_in_sheet_left = Vector2(rect.pos.x + x + 0.5, rect.pos.y + y + 0.5)
+                var uv_left = pos_in_sheet_to_uv(pos_in_sheet_left, sprite_sheet_size)
+
                 var pixel_opaque = false
                 
                 if x != rect.size.width and y != rect.size.height:
@@ -320,12 +331,12 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_tr
                 if pixel_opaque:
                     if not is_visible:
                         # Changed from invisible to visible, so draw LEFT quad.
-                        add_quad(surface_tool, create_left_quad(x, y, front, back, uv))
+                        add_quad(surface_tool, create_left_quad(x, y, front, back, uv_left))
                         is_visible = true
                 else:
                     if is_visible:
                         # Changed from visible to invisible, so draw RIGHT quad.
-                        add_quad(surface_tool, create_right_quad(x, y, front, back, uv))
+                        add_quad(surface_tool, create_right_quad(x, y, front, back, uv_right))
                         is_visible = false
 
 
