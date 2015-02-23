@@ -32,10 +32,11 @@ func _load_sheet(spritesheet):
     var light_color
 
     if spritesheet == "tile":
-        depth = 3
         is_centered = false
         is_light_source = false
+        depth = 3
         create_sides = true
+        is_transparent = false
     elif spritesheet == "player":
         is_transparent = false
         is_centered = true
@@ -283,7 +284,7 @@ func create_mesh(sprites, texture, rect, depth, is_centered, create_sides, is_tr
             var uv_side = pos_in_sheet_to_uv(pos_in_sheet_side, sprite_sheet_size)
             
             var pixel_opaque = false
-            
+
             if x != rect.size.width and y != rect.size.height:
                 color = sprites.get_pixel(pos_in_sheet.x, pos_in_sheet.y)
                 pixel_opaque = (color.a > 0)

@@ -153,7 +153,7 @@ func _process(delta):
                 if collider.object_type() == "TILE":
                     click_in_tile_mode(collider)
                 elif collider.object_type() == "ITEM":
-                    click_in_tile_mode(collider)
+                    click_in_tile_mode(level.get_floor_tile_at(collider.grid))
 
         ray.set_enabled(false)
 

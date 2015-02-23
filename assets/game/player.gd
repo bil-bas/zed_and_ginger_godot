@@ -151,7 +151,7 @@ func handle_collision(motion):
         else:
             var safe = collider.get_node(@'MeshInstance').frame in collider.safe_frames
             if not safe:
-                kill(new_player_state)
+                kill(collider, new_player_state)
 
     var normal = get_collision_normal()
 
@@ -223,7 +223,7 @@ func footprints(motion):
             else:
                 distance_to_footprint = FOOTPRINT_DISTANCE
 
-func kill(new_state):
+func kill(killer, new_state):
     velocity = Vector3()
 
     set_layer_mask(object_data.CollisionLayer.TILES_PLAYER)
@@ -244,6 +244,8 @@ func kill(new_state):
         state = State.ON_BACK
     elif new_state == "eaten":
         state = State.EATEN
+        killer.set_is_horizontal(killer.is_horizontal_after_kill)
+        killer.get_node("MeshInstance").animation = "killed_player"
     elif new_state == "exploded":
         state = State.EXPLODED
         velocity.y = EXPLODED_SPEED
@@ -267,8 +269,8 @@ func on_in_area(area):
         else:
             var safe = area.get_node(@'MeshInstance').frame in area.safe_frames
             if not safe:
-                kill(new_player_state)
-
+                kill(area, new_player_state)
+                
 var is_horizontal = false setget set_is_horizontal
 func set_is_horizontal(value):
     if is_horizontal == value:
@@ -285,6 +287,8 @@ func set_is_horizontal(value):
 
 
 func finish():
+    if state != State.OK:
+        return
     remove_board()
     mesh.animation = "dancing"
     state = State.FINISHED
@@ -292,6 +296,8 @@ func finish():
     velocity.z = 0
 
 func caught():
+    if state != State.OK:
+        return
     remove_board()
     mesh.animation = "crouching"
     state = State.CAUGHT

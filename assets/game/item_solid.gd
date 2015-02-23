@@ -9,7 +9,7 @@ func object_type():
 func _ready():
     collision_layer = get_node(@'/root/object_data').CollisionLayer
     set_layer_mask(collision_layer.ITEMS_PLAYER)
-    set_is_horizontal(data.initially_horizontal)
+    set_is_horizontal(data.is_initially_horizontal)
 
 func on_in_area(area):
     pass

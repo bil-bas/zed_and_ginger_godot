@@ -3,7 +3,8 @@
         "is_transparent": false,
         "cast_shadow": true,
         "receive_shadow": true,
-        "initially_horizontal": false,
+        "is_initially_horizontal": false,
+        "is_horizontal_after_kill": false,
         "player_state": "ok",
         "safe_frames": [],
         "is_area": false,
@@ -11,9 +12,8 @@
         "initial_velocity": [0, 0, 0],
         "mass": 1,
         "create_sides": true,
-        "light_color": [0, 0, 0, 0]
+        "light_color": [0, 0, 0, 0],
     },
-
     "order_in_editor": [
         "flytrap",
         "pacer",
@@ -23,13 +23,14 @@
         "crate",
         "glass_tower",
         "start_post",
-        "hover_board"
+        "hover_board",
+        "tentacle",
     ],
-
     "types": {
         "flytrap": {
-            "initially_horizontal": true,
-            "player_state": "eaten"
+            "is_initially_horizontal": true,
+            "is_horizontal_after_kill": false,
+            "player_state": "eaten",
         },
         "pacer": {
             "cast_shadow": false,
@@ -49,8 +50,8 @@
             "is_transparent": true,
         },
         "mine": {
-            "initially_horizontal": true,
-            "player_state": "exploded"
+            "is_initially_horizontal": true,
+            "player_state": "exploded",
         },
         "rat": {
         },
@@ -72,7 +73,10 @@
             "depth": 4,
         },
         "hover_board": {
-            "initially_horizontal": true
+            "is_initially_horizontal": true
+        },
+        "tentacle": {
+            "player_state": "eaten",
         }
     }
 }

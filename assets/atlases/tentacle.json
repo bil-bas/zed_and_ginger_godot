@@ -1,0 +1,1 @@
+{"tile_size":[9,82],"animations":{"killed_player":[{"tile":2,"duration":0.1},{"tile":6,"duration":0.1},{"tile":3,"duration":0.1},{"tile":4,"duration":0.1},{"tile":5,"duration":0.1},{"tile":4,"duration":0.1},{"tile":5,"duration":0.1}],"default":[{"tile":0,"duration":3.0},{"tile":1,"duration":0.1},{"tile":7,"duration":0.1},{"tile":1,"duration":0.1}]}}
