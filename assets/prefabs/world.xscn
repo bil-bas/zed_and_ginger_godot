@@ -3,12 +3,12 @@
 	<ext_resource path="res://scripts/show_after_process.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
 	<resource type="Environment" path="local://1">
-		<bool name="ambient_light/enabled"> False </bool>
-		<color name="ambient_light/color"> 0, 0, 0, 1 </color>
-		<real name="ambient_light/energy"> 1 </real>
+		<bool name="ambient_light/enabled"> True </bool>
+		<color name="ambient_light/color"> 1, 1, 1, 1 </color>
+		<real name="ambient_light/energy"> 64 </real>
 		<bool name="fxaa/enabled"> True </bool>
 		<int name="background/mode"> 1 </int>
-		<color name="background/color"> 0, 0, 0, 1 </color>
+		<color name="background/color"> 0, 0, 0, 0 </color>
 		<nil name="background/texture">  </nil>
 		<nil name="background/cubemap">  </nil>
 		<real name="background/energy"> 1 </real>
@@ -54,7 +54,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="71">
+			<string_array  len="74">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -113,6 +113,9 @@
 				<string> "Level" </string>
 				<string> "Spatial" </string>
 				<string> "script/script" </string>
+				<string> "WallTiles" </string>
+				<string> "FloorTiles" </string>
+				<string> "Items" </string>
 				<string> "ViewportSprite" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
@@ -132,9 +135,9 @@
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 7 </int>
+			<int> 10 </int>
 			<string> "variants" </string>
-			<array  len="29" shared="false">
+			<array  len="28" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -259,7 +262,7 @@
 				<bool> True </bool>
 				<resource  resource_type="World" path="local://2">  </resource>
 				<bool> False </bool>
-				<int> 3 </int>
+				<int> 2 </int>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<transform> 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 5, 2, 9 </transform>
 				<int> 0 </int>
@@ -273,7 +276,6 @@
 				<transform> 0.612372, 0.612372, 0.5, -0.75, 0.25, 0.612372, 0.25, -0.75, 0.612372, -5, 10, 20 </transform>
 				<real> 1 </real>
 				<color> 1, 1, 1, 1 </color>
-				<real> 0.05 </real>
 				<real> 0.5 </real>
 				<real> 2 </real>
 				<resource  resource_type="Script" path="res://game/level.gd">  </resource>
@@ -283,7 +285,7 @@
 				<resource  resource_type="Script" path="res://scripts/show_after_process.gd">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="203"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 14, 2, 0, 5, 2, 6, 3, 7, 4, 8, 3, 9, 3, 10, 5, 11, 3, 12, 5, 13, 5, 14, 6, 15, 5, 16, 5, 17, 5, 0, 1, 0, 18, 18, -1, 14, 2, 0, 19, 7, 20, 8, 21, 3, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13, 27, 3, 28, 14, 29, 15, 30, 16, 31, 16, 0, 2, 0, 32, 32, -1, 5, 2, 0, 19, 7, 21, 3, 33, 5, 34, 17, 0, 1, 0, 35, 35, -1, 23, 2, 0, 19, 7, 20, 18, 21, 3, 36, 13, 37, 3, 38, 5, 39, 9, 40, 19, 41, 20, 42, 20, 43, 3, 44, 16, 45, 21, 46, 16, 47, 10, 48, 19, 49, 15, 50, 9, 51, 13, 52, 16, 53, 22, 54, 23, 0, 1, 0, 56, 55, -1, 4, 2, 0, 19, 7, 21, 3, 57, 24, 0, 0, 0, 58, 58, -1, 15, 2, 0, 21, 3, 59, 19, 60, 19, 61, 13, 62, 25, 63, 16, 64, 26, 65, 9, 66, 3, 67, 27, 68, 5, 69, 25, 70, 20, 57, 28, 0 </int_array>
+			<int_array  len="230"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 14, 2, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 3, 10, 5, 11, 5, 12, 5, 13, 5, 14, 6, 15, 5, 16, 5, 17, 5, 0, 1, 0, 18, 18, -1, 14, 2, 0, 19, 7, 20, 8, 21, 3, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13, 27, 3, 28, 14, 29, 15, 30, 16, 31, 16, 0, 2, 0, 32, 32, -1, 5, 2, 0, 19, 7, 21, 3, 33, 5, 34, 17, 0, 1, 0, 35, 35, -1, 23, 2, 0, 19, 7, 20, 18, 21, 3, 36, 13, 37, 3, 38, 5, 39, 9, 40, 19, 41, 20, 42, 20, 43, 3, 44, 16, 45, 16, 46, 16, 47, 10, 48, 19, 49, 15, 50, 9, 51, 13, 52, 16, 53, 21, 54, 22, 0, 1, 0, 56, 55, -1, 4, 2, 0, 19, 7, 21, 3, 57, 23, 0, 5, 0, 1, 58, -1, 1, 2, 0, 0, 5, 0, 1, 59, -1, 1, 2, 0, 0, 5, 0, 1, 60, -1, 1, 2, 0, 0, 0, 0, 61, 61, -1, 15, 2, 0, 21, 3, 62, 19, 63, 19, 64, 13, 65, 24, 66, 16, 67, 25, 68, 9, 69, 3, 70, 26, 71, 5, 72, 24, 73, 20, 57, 27, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

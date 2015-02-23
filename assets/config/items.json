@@ -66,7 +66,6 @@
         "glass_tower": {
             "depth": 8,
             "is_transparent": true,
-            "cast_shadow": false,
             "is_area": true,
         },
         "start_post": {

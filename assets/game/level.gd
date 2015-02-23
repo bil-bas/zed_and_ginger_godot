@@ -17,12 +17,19 @@ var item_objects = {} # grid => item nodes
 var floor_tile_objects = {}
 var wall_tile_objects = {}
 var is_editor
+var wall_nodes
+var floor_nodes
+var item_nodes
 
 func _ready():
     logger = get_node(@'/root/logger')
     mesh_manager = get_node(@'/root/mesh_manager')
     object_data = get_node(@'/root/object_data')
     utilities = get_node(@'/root/utilities')
+    wall_nodes = get_node(@'WallTiles')
+    floor_nodes = get_node(@'FloorTiles')
+    item_nodes = get_node(@'Items')
+
     SCALE = 8 * mesh_manager.PIXEL_SIZE
 
 func setup(is_editor):
@@ -115,7 +122,7 @@ func create_wall_tile(tile_data, i, j):
     tile.data = tile_data
     tile.set_translation(Vector3(i * SCALE, (j + 1) * SCALE, 0))
     tile.is_floor = false
-    add_child(tile)
+    wall_nodes.add_child(tile)
     wall_tile_objects[tile_data.grid] = tile
 
 func create_floor_tile(tile_data, i, j):
@@ -124,7 +131,7 @@ func create_floor_tile(tile_data, i, j):
     tile.set_rotation(Vector3(-PI / 2, 0, 0))
     tile.set_translation(Vector3(i * SCALE, 0, j * SCALE))
     tile.is_floor = true
-    add_child(tile)
+    floor_nodes.add_child(tile)
     floor_tile_objects[tile_data.grid] = tile
 
 func generate_items():
@@ -139,7 +146,7 @@ func create_item_object(item_data, grid):
     item.set_translation(grid_to_world(grid))
     item_objects[grid] = item
 
-    add_child(item)
+    item_nodes.add_child(item)
 
     if not is_editor and item.initial_velocity.length() > 0.1:
         item.set_velocity(item.initial_velocity)

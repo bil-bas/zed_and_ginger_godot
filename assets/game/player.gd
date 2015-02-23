@@ -180,7 +180,7 @@ func handle_hover_board_collision(board):
     logger.debug("Jumped onto board")
     surfing_on = board
 
-    get_parent().remove_child(surfing_on)
+    get_node("../Items").remove_child(surfing_on)
     add_child(surfing_on)
 
     surfing_on.set_translation(Vector3(0, 0.3, -0.4))
@@ -194,7 +194,7 @@ func remove_board():
 
     logger.debug("Jumped off board")
     remove_child(surfing_on)
-    get_parent().add_child(surfing_on)
+    get_node("../Items").add_child(surfing_on)
 
     surfing_on.set_translation(get_translation() + Vector3(-0.6, 0.2, 0))
     surfing_on.velocity = Vector3(-0.8, 0, 0)

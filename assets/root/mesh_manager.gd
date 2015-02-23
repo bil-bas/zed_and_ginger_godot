@@ -59,14 +59,15 @@ func _load_sheet(spritesheet):
     # Create a material for all meshes created from the spritesheet
     var material = FixedMaterial.new()
     material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
-    # DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA, DEPTH_DRAW_OPAQUE_ONLY
-    material.set_depth_draw_mode(Material.DEPTH_DRAW_OPAQUE_ONLY)
+    
     if is_transparent:
         material.set_fixed_flag(FixedMaterial.FLAG_USE_ALPHA, true)
         if is_light_source:
             material.set_blend_mode(Material.BLEND_MODE_ADD)
         else:
-            pass#material.set_blend_mode(Material.BLEND_MODE_PREMULT_ALPHA)
+            # DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA, DEPTH_DRAW_OPAQUE_ONLY, DEPTH_DRAW_NEVER, DEPTH_DRAW_ALWAYS
+            material.set_depth_draw_mode(Material.DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA)
+
     if is_light_source:
         material.set_flag(FixedMaterial.FLAG_UNSHADED, true)
 
