@@ -2,6 +2,7 @@ extends Spatial
 
 const MIN_EMIT_DISTANCE = 0.1
 
+
 var previous_pos
 var surface_tool
 var quads = []
@@ -9,7 +10,7 @@ var base_material
 var previous_color
 var elapsed_time = 0
 
-var height = 0.4 setget set_height
+var height = 1 setget set_height
 func set_height(value):
 	height = value
 

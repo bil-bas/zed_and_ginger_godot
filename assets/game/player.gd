@@ -7,6 +7,8 @@ const UP = Vector3(0, 1, 0)
 const GRAVITY = -9.81
 const FOOTPRINT_DISTANCE = 0.3
 const NUM_FOOTPRINTS = 12
+const TRAIL_HEIGHT_WALKING = 0.8
+const TRAIL_HEIGHT_SURFING = 1.8
 
 class State:
     const OK = 0
@@ -162,6 +164,10 @@ func handle_collision(motion):
             elif collider.type == "speed_pill":
                 collider.queue_free()
                 speed_trail = speed_trail_prefab.instance()
+                if surfing_on == null:
+                    speed_trail.height = TRAIL_HEIGHT_WALKING
+                else:
+                    speed_trail.height = TRAIL_HEIGHT_SURFING
                 add_child(speed_trail)
                 speed_remaining = 5
         else:
@@ -193,7 +199,7 @@ func handle_rat_collision(rat):
 func handle_hover_board_collision(board):
     remove_board()
     if speed_trail != null:
-        speed_trail.height = 1.8
+        speed_trail.height = TRAIL_HEIGHT_SURFING
 
     logger.debug("Jumped onto board")
     surfing_on = board
@@ -219,7 +225,7 @@ func remove_board():
         return
 
     if speed_trail != null:
-        speed_trail.height = 0.4
+        speed_trail.height = TRAIL_HEIGHT_WALKING
 
     logger.debug("Jumped off board")
     remove_child(surfing_on)

@@ -9,11 +9,15 @@ var mesh_manager
 var progress
 var finish_x
 var chase_x
+var theme_music
+var finish_music
 
 func _ready():
     mesh_manager = get_node(@'/root/mesh_manager')
     level = get_node(@'World/Viewport/Level')
     progress = get_node(@'CanvasLayer/ScorePanel/LevelProgress')
+    theme_music = get_node(@'Music/Theme')
+    finish_music = get_node(@'Music/Finish')
 
 func setup():
     var level_setup = level.setup(false)
@@ -44,8 +48,9 @@ func _fixed_process(delta):
         set_fixed_process(false)
     elif player_x >= finish_x:
         player.finish()
+        theme_music.stop()
+        finish_music.play()
         set_fixed_process(false)
-
 
 func create_player(grid):
     player = mesh_manager.new_mesh_object("player")
