@@ -289,9 +289,11 @@ func finish():
     mesh.animation = "dancing"
     state = State.FINISHED
     velocity.x = 0
+    velocity.z = 0
 
 func caught():
     remove_board()
     mesh.animation = "crouching"
     state = State.CAUGHT
     velocity.x = 0
+    velocity.z = 0
