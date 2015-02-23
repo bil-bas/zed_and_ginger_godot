@@ -26,7 +26,7 @@ class Animation:
 
 
 var anim_index
-
+var timer
 
 var meshes = [] setget set_meshes
 func set_meshes(value):
@@ -52,6 +52,10 @@ func set_animation(value):
         self.frame = animation_obj.frame_index(0)
     else:
         anim_index = 0
+        timer = Timer.new()
+        add_child(timer)
+        timer.set_one_shot(false)
+        timer.connect("timeout", self, "_on_animate")
         _on_animate()
 
 
@@ -70,24 +74,25 @@ func set_frame(value):
 
 
 func stop():
-    var timer = get_child("Timer")
     if timer != null:
         timer.stop()
+        timer = null
 
+var stop_on_completion = false setget set_stop_on_completion
+func set_stop_on_completion(value):
+    stop_on_completion = value
 
 func _on_animate():
-    var timer = get_child("Timer")
-    if timer == null:
-        timer = Timer.new()
-        add_child(timer)
-        timer.set_one_shot(false)
-        timer.connect("timeout", self, "_on_animate")
-
     self.frame = animation_obj.frame_index(anim_index)
+    var wait_time = animation_obj.frame_duration(anim_index)
 
-    var timer = get_child("Timer")
-    timer.set_wait_time(animation_obj.frame_duration(anim_index))
+    anim_index += 1
+    if anim_index == animation_obj.size():
+        if stop_on_completion:
+            anim_index = animation_obj.size() - 1
+            return
+        else:
+            anim_index = 0
+
+    timer.set_wait_time(wait_time)
     timer.start()
-
-    anim_index = (anim_index + 1) % animation_obj.size()
-

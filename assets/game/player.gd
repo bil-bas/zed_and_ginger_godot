@@ -245,6 +245,7 @@ func kill(killer, new_state):
     elif new_state == "eaten":
         state = State.EATEN
         killer.set_is_horizontal(killer.is_horizontal_after_kill)
+        killer.get_node("MeshInstance").stop_on_completion = true
         killer.get_node("MeshInstance").animation = "killed_player"
     elif new_state == "exploded":
         state = State.EXPLODED
