@@ -112,7 +112,12 @@ func _ready():
     logger.debug("Created 3d viewport")
 
 func setup():
-    var level_setup = level.setup(true)
+    var data = Globals.get("level_data")
+    Globals.clear("level_data")
+    var filename = Globals.get("level_filename")
+    Globals.clear("level_filename")
+    
+    var level_setup = level.setup(data, filename, true)
     while level_setup.is_valid():
         level_setup.resume()
         yield()

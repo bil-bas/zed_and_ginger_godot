@@ -9,7 +9,7 @@ var tiles = []
 var items = {} # grid => item-data
 var name = "MyLevel"
 
-var filename = "res://levels/level0.json"
+var filename
 var logger
 var mesh_manager
 var object_data
@@ -30,10 +30,12 @@ func _ready():
 
     SCALE = 8 * mesh_manager.PIXEL_SIZE
 
-func setup(is_editor):
+func setup(data, filename, is_editor):
+    self.filename = filename
     self.is_editor = is_editor
-    if File.new().file_exists(filename):
-        restore()
+
+    if data != null:
+        restore(data)
     else:
         create()
         save()
@@ -44,10 +46,9 @@ func setup(is_editor):
     # yield()
     generate_items()
 
-func restore():
+func restore(data):
     logger.info("Loading level")
 
-    var data = utilities.load_json(filename)
     name = data["name"]
 
     var x = 0
