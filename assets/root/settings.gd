@@ -24,6 +24,12 @@ func _ready():
     save()
 
     update_volumes()
+    update_screen_size()
+
+func save():
+    _config.save(CONFIG_FILE)
+
+# Set defaults
 
 func default_video_settings():
     var keys = _config.get_section_keys(VIDEO_SECTION)
@@ -41,8 +47,14 @@ func default_audio_settings():
     if not MUSIC_VOLUME in keys:
         _config.set_value(AUDIO_SECTION, MUSIC_VOLUME, 100)
 
-func save():
-    _config.save(CONFIG_FILE)
+# Update engine values
+
+func update_screen_size():
+    # TODO: This doesn't actually do ANYTHING!
+    if get_video_fullscreen():
+        OS.set_video_mode(Vector2(1680, 1050), true, false)
+    else:
+        OS.set_video_mode(Vector2(800, 600), false, false)
 
 func update_volumes():
     var master = get_audio_master_volume() / 50.0
@@ -60,6 +72,7 @@ func get_video_fullscreen():
 
 func set_video_fullscreen(value):
     _config.set_value(VIDEO_SECTION, FULLSCREEN, value)
+    update_screen_size()
     save()
 
 # Audio settings.
