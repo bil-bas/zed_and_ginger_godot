@@ -14,7 +14,7 @@ end
 
 desc "Run project fullscreen"
 task :run_fs do
-  system "../godot/bin/godot.x11.tools.64 -path assets -f root.xscn"
+  system "../godot/bin/godot.x11.tools.64 -path assets -f -r 1680x1050 root.xscn"
 end
 
 desc "Edit pixel art"
