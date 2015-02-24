@@ -6,6 +6,15 @@ def target_for_release(release)
   release == :release ? "release" : "release_debug"
 end
 
+namespace :build do
+  [:x11, :server].each do |platform|
+    desc "Build #{platform} executable"
+    task platform do
+      system "scons --jobs={NUM_CORES} platform=#{platform}"
+    end
+  end
+end
+
 namespace :template do
   [:x11].each do |platform|
     namespace platform do

@@ -20,6 +20,8 @@ namespace "export" do
   PLATFORMS.each_pair do |platform, data|
     desc "Build #{data[:name]}"
     task platform  do
+        
+      ENV["EMSCRIPTEN_ROOT"] = "/home/spooner/Documents/emsdk_portable/emscripten/master"
       FileUtils.cd "assets" do
         puts "=" * 70
         puts
