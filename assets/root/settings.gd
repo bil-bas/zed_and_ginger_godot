@@ -23,6 +23,8 @@ func _ready():
 
     save()
 
+    update_volumes()
+
 func default_video_settings():
     var keys = _config.get_section_keys(VIDEO_SECTION)
     if not FULLSCREEN in keys:
@@ -42,6 +44,15 @@ func default_audio_settings():
 func save():
     _config.save(CONFIG_FILE)
 
+func update_volumes():
+    var master = get_audio_master_volume() / 50.0
+
+    var effects = get_audio_effects_volume() / 100.0
+    AudioServer.set_fx_global_volume_scale(effects * master)
+
+    var music = get_audio_music_volume() / 100.0
+    AudioServer.set_stream_global_volume_scale(music * master)
+
 # Video settings.
 
 func get_video_fullscreen():
@@ -58,6 +69,7 @@ func get_audio_master_volume():
 
 func set_audio_master_volume(value):
     _config.set_value(AUDIO_SECTION, MASTER_VOLUME, value)
+    update_volumes()
     save()
 
 func get_audio_effects_volume():
@@ -65,6 +77,7 @@ func get_audio_effects_volume():
 
 func set_audio_effects_volume(value):
     _config.set_value(AUDIO_SECTION, EFFECTS_VOLUME, value)
+    update_volumes()
     save()
 
 func get_audio_music_volume():
@@ -72,4 +85,5 @@ func get_audio_music_volume():
 
 func set_audio_music_volume(value):
     _config.set_value(AUDIO_SECTION, MUSIC_VOLUME, value)
+    update_volumes()
     save()

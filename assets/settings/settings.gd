@@ -17,24 +17,12 @@ func setup():
 
 func _on_MasterVolume_value_changed(value):
     _settings.set_audio_master_volume(value)
-    update_volumes()
 
 func _on_EffectsVolume_value_changed(value):
     _settings.set_audio_effects_volume(value)
-    update_volumes()
 
 func _on_MusicVolume_value_changed(value):
     _settings.set_audio_music_volume(value)
-    update_volumes()
-
-func update_volumes():
-    var master = _settings.get_audio_master_volume() / 50.0
-
-    var effects = _settings.get_audio_effects_volume() / 100.0
-    AudioServer.set_fx_global_volume_scale(effects * master)
-
-    var music = _settings.get_audio_music_volume() / 100.0
-    AudioServer.set_stream_global_volume_scale(music * master)
 
 func _on_Fullscreen_toggled(value):
     _settings.set_video_fullscreen(value)
