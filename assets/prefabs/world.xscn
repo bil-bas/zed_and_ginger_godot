@@ -213,7 +213,7 @@
 				<resource name=""></resource>				<bool> True </bool>
 				<int> 2 </int>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-				<transform> 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 5, 2, 9 </transform>
+				<transform> 1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 5, 5, 9 </transform>
 				<int> 0 </int>
 				<real> 60 </real>
 				<real> 0.1 </real>
