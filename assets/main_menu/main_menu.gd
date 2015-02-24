@@ -19,5 +19,8 @@ func _on_Play_pressed():
 func _on_Editor_pressed():
     scene_manager.goto("res://game/editor.xscn")
 
+func _on_Settings_pressed():
+    scene_manager.goto("res://settings/settings.xscn")
+
 func _on_Quit_pressed():
     OS.get_main_loop().quit()

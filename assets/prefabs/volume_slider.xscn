@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://fonts/lcd_solid_24.fnt" type="Font"></ext_resource>
+<resource_file type="PackedScene" subresource_count="1" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="29">
-				<string> "MyButton" </string>
-				<string> "Button" </string>
+			<string_array  len="27">
+				<string> "Volume" </string>
+				<string> "HSlider" </string>
 				<string> "_import_path" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
@@ -14,7 +13,6 @@
 				<string> "visibility/light_mask" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
-				<string> "rect/min_size" </string>
 				<string> "focus_neighbour/left" </string>
 				<string> "focus_neighbour/top" </string>
 				<string> "focus_neighbour/right" </string>
@@ -22,17 +20,16 @@
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
-				<string> "size_flags/vertical" </string>
 				<string> "size_flags/stretch_ratio" </string>
-				<string> "custom_fonts/font" </string>
-				<string> "disabled" </string>
-				<string> "toggle_mode" </string>
-				<string> "click_on_press" </string>
-				<string> "text" </string>
-				<string> "icon" </string>
-				<string> "flat" </string>
-				<string> "clip_text" </string>
-				<string> "align" </string>
+				<string> "range/min" </string>
+				<string> "range/max" </string>
+				<string> "range/step" </string>
+				<string> "range/page" </string>
+				<string> "range/value" </string>
+				<string> "range/exp_edit" </string>
+				<string> "rounded_values" </string>
+				<string> "tick_count" </string>
+				<string> "ticks_on_borders" </string>
 				<string> "__meta__" </string>
 			</string_array>
 			<string> "version" </string>
@@ -42,19 +39,19 @@
 			<string> "node_count" </string>
 			<int> 1 </int>
 			<string> "variants" </string>
-			<array  len="13" shared="false">
+			<array  len="12" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
 				<int> 1 </int>
-				<real> 180 </real>
-				<real> 50 </real>
-				<vector2> 180, 50 </vector2>
+				<real> 200 </real>
+				<real> 16 </real>
 				<bool> False </bool>
-				<int> 2 </int>
-				<resource  resource_type="Font" path="res://fonts/lcd_solid_24.fnt">  </resource>
-				<string> "MyButton" </string>
-				<resource name=""></resource>				<dictionary  shared="false">
+				<int> 3 </int>
+				<real> 0 </real>
+				<real> 100 </real>
+				<int> 11 </int>
+				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
@@ -62,11 +59,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 0.735092 </real>
+							<real> 0.487675 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -800, -219.865 </vector2>
+							<vector2> -100.798, -528.61 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -175,7 +172,7 @@
 				</dictionary>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="61"> 				-1, -1, 1, 0, -1, 27, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 0, 11, 0, 12, 0, 13, 0, 14, 7, 15, 1, 16, 8, 17, 8, 18, 2, 19, 9, 20, 7, 21, 7, 22, 1, 23, 10, 24, 11, 25, 7, 26, 7, 27, 3, 28, 12, 0 </int_array>
+			<int_array  len="57"> 				-1, -1, 1, 0, -1, 25, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 6, 14, 1, 15, 7, 16, 2, 17, 8, 18, 9, 19, 2, 20, 8, 21, 2, 22, 6, 23, 1, 24, 10, 25, 6, 26, 11, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

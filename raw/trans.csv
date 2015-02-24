@@ -1,6 +1,7 @@
 ID, en
 PLAY_BUTTON, Play
 EDITOR_BUTTON, Editor
+SETTINGS_BUTTON, Settings
 QUIT_BUTTON, Quit
 LOADING_SCENE, Loading...
 SETUP_SCENE, Setup...
@@ -9,3 +10,7 @@ SAVE_AS_BUTTON, Save..
 UNDO_BUTTON, Undo
 REDO_BUTTON, Redo
 BACK_BUTTON, Back
+MASTER_VOLUME, Master Volume
+EFFECTS_VOLUME, Effects Volume
+MUSIC_VOLUME, Music Volume
+FULLSCREEN, Fullscreen
