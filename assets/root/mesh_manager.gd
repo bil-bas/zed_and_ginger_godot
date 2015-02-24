@@ -47,7 +47,7 @@ func _load_sheet(spritesheet):
     else:
         var data = object_data.ITEM_TYPES[spritesheet]
         is_transparent = data["is_transparent"]
-        is_light_source = data["light_color"].a > 0
+        is_light_source = data["is_light_source"]
         depth = data["depth"]
         create_sides = data["create_sides"]
         is_centered = create_sides

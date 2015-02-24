@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://scripts/history.gd" type="Script"></ext_resource>
-	<ext_resource path="res://prefabs/small_button.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://fonts/lcd_solid_16.fnt" type="Font"></ext_resource>
 	<ext_resource path="res://game/editor.gd" type="Script"></ext_resource>
+	<ext_resource path="res://fonts/lcd_solid_12.fnt" type="Font"></ext_resource>
+	<ext_resource path="res://scripts/history.gd" type="Script"></ext_resource>
 	<ext_resource path="res://prefabs/world.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://prefabs/small_button.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://prefabs/picker_panel.xscn" type="PackedScene"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
@@ -85,7 +85,7 @@
 			<string> "node_count" </string>
 			<int> 14 </int>
 			<string> "variants" </string>
-			<array  len="44" shared="false">
+			<array  len="42" shared="false">
 				<node_path> "" </node_path>
 				<resource  resource_type="Script" path="res://game/editor.gd">  </resource>
 				<dictionary  shared="false">
@@ -226,6 +226,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -293,12 +299,6 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> False </bool>
 							<string> "viewport_mode" </string>
@@ -357,12 +357,11 @@
 				<string> "BACK_BUTTON" </string>
 				<real> 605 </real>
 				<real> 341 </real>
-				<resource  resource_type="Font" path="res://fonts/lcd_solid_16.fnt">  </resource>
+				<resource  resource_type="Font" path="res://fonts/lcd_solid_12.fnt">  </resource>
 				<int> 0 </int>
 				<resource  resource_type="PackedScene" path="res://prefabs/picker_panel.xscn">  </resource>
 				<real> 4 </real>
-				<real> 32 </real>
-				<real> 3 </real>
+				<real> 27 </real>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -381,10 +380,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -452,8 +447,12 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> True </bool>
 							<string> "viewport_mode" </string>
@@ -484,13 +483,12 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<real> 31 </real>
 				<real> 560 </real>
 				<real> 576 </real>
 				<real> 100 </real>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="374"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 1, 5, 3, 2, 2, 0, 4, 4, 0, 0, 0, 1, 6, -1, 2, 2, 0, 3, 5, 0, 0, 0, 8, 7, -1, 16, 2, 0, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 22, 13, 23, 8, 0, 0, 0, 25, 24, -1, 16, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 13, 14, 14, 15, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 22, 13, 23, 8, 0, 4, 0, 27, 26, -1, 18, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 28, 16, 29, 16, 13, 17, 14, 18, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 12, 21, 13, 22, 13, 23, 8, 0, 5, 0, 31, 30, 19, 3, 2, 0, 13, 20, 32, 21, 0, 5, 0, 31, 33, 19, 5, 2, 0, 29, 22, 13, 20, 14, 23, 32, 24, 0, 5, 0, 31, 34, 19, 5, 2, 0, 29, 25, 13, 20, 14, 26, 32, 27, 0, 5, 0, 31, 35, 19, 5, 2, 0, 29, 28, 13, 20, 14, 29, 32, 30, 0, 0, 0, 37, 36, -1, 21, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 28, 31, 29, 8, 13, 10, 14, 32, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 22, 13, 23, 8, 38, 33, 39, 34, 40, 6, 0, 10, 0, 25, 41, 35, 8, 2, 0, 42, 9, 43, 9, 28, 36, 29, 37, 13, 36, 14, 38, 4, 39, 0, 10, 0, 25, 44, 35, 9, 2, 0, 9, 12, 42, 9, 43, 9, 28, 36, 29, 40, 13, 36, 14, 36, 4, 39, 0, 0, 0, 46, 45, -1, 25, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 29, 41, 13, 10, 14, 42, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 23, 8, 47, 7, 48, 43, 49, 8, 50, 7, 51, 8, 52, 12, 53, 6, 54, 34, 55, 12, 0 </int_array>
+			<int_array  len="374"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 1, 5, 3, 2, 2, 0, 4, 4, 0, 0, 0, 1, 6, -1, 2, 2, 0, 3, 5, 0, 0, 0, 8, 7, -1, 16, 2, 0, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 22, 13, 23, 8, 0, 0, 0, 25, 24, -1, 16, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 13, 14, 14, 15, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 22, 13, 23, 8, 0, 4, 0, 27, 26, -1, 18, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 28, 16, 29, 16, 13, 17, 14, 18, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 12, 21, 13, 22, 13, 23, 8, 0, 5, 0, 31, 30, 19, 3, 2, 0, 13, 20, 32, 21, 0, 5, 0, 31, 33, 19, 5, 2, 0, 29, 22, 13, 20, 14, 23, 32, 24, 0, 5, 0, 31, 34, 19, 5, 2, 0, 29, 25, 13, 20, 14, 26, 32, 27, 0, 5, 0, 31, 35, 19, 5, 2, 0, 29, 28, 13, 20, 14, 29, 32, 30, 0, 0, 0, 37, 36, -1, 21, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 28, 31, 29, 8, 13, 10, 14, 32, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 22, 13, 23, 8, 38, 33, 39, 34, 40, 6, 0, 10, 0, 25, 41, 35, 8, 2, 0, 42, 9, 43, 9, 28, 36, 29, 37, 13, 36, 14, 36, 4, 38, 0, 10, 0, 25, 44, 35, 9, 2, 0, 9, 12, 42, 9, 43, 9, 28, 36, 29, 37, 13, 36, 14, 36, 4, 38, 0, 0, 0, 46, 45, -1, 25, 2, 0, 9, 6, 10, 8, 11, 8, 12, 9, 29, 39, 13, 10, 14, 40, 15, 0, 16, 0, 17, 0, 18, 0, 19, 12, 20, 6, 21, 13, 23, 8, 47, 7, 48, 41, 49, 8, 50, 7, 51, 8, 52, 12, 53, 6, 54, 34, 55, 12, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="42"> 				3, 0, 57, 56, 2, 0, 6, 0, 59, 58, 2, 0, 7, 0, 59, 60, 2, 0, 8, 0, 59, 61, 2, 0, 9, 0, 59, 62, 2, 0, 10, 0, 64, 63, 2, 0, 13, 0, 66, 65, 2, 0 </int_array>
 		</dictionary>

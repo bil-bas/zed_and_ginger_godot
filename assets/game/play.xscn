@@ -210,7 +210,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://prefabs/world.xscn">  </resource>
 				<dictionary  shared="false">

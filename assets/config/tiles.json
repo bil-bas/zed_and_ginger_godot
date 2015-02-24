@@ -101,6 +101,7 @@
         "PORTHOLE": {
         },
         "DOTS": {
+            "spawn_items": ["spark"],
         },
 
 

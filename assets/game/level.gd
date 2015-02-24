@@ -1,10 +1,11 @@
 extends Spatial
 
+const FLOOR_SIZE = 5
 var SCALE
 
+
 # Stored data.
-var floor_tiles = []
-var wall_tiles = []
+var tiles = []
 var items = {} # grid => item-data
 var name = "MyLevel"
 
@@ -14,11 +15,9 @@ var mesh_manager
 var object_data
 var utilities
 var item_objects = {} # grid => item nodes
-var floor_tile_objects = {}
-var wall_tile_objects = {}
+var tile_objects = {}
 var is_editor
-var wall_nodes
-var floor_nodes
+var tile_nodes
 var item_nodes
 
 func _ready():
@@ -26,8 +25,7 @@ func _ready():
     mesh_manager = get_node(@'/root/mesh_manager')
     object_data = get_node(@'/root/object_data')
     utilities = get_node(@'/root/utilities')
-    wall_nodes = get_node(@'WallTiles')
-    floor_nodes = get_node(@'FloorTiles')
+    tile_nodes = get_node(@'Tiles')
     item_nodes = get_node(@'Items')
 
     SCALE = 8 * mesh_manager.PIXEL_SIZE
@@ -53,7 +51,7 @@ func restore():
     name = data["name"]
 
     var x = 0
-    for tile_row in data["floor_tiles"]:
+    for tile_row in data["tiles"]:
         var y = 0
         var row = []
         for tile_hash in tile_row:
@@ -61,18 +59,7 @@ func restore():
             row.append(tile)
             y += 1
         x += 1
-        floor_tiles.append(row)
-
-    var x = 0
-    for tile_row in data["wall_tiles"]:
-        var y = 0
-        var row = []
-        for tile_hash in tile_row:
-            var tile = object_data.create_tile(tile_hash["type"], Vector2(x, y))
-            row.append(tile)
-            y += 1
-        x += 1
-        wall_tiles.append(row)
+        tiles.append(row)
 
     for item_data in data["items"]:
         var grid = Vector2(item_data["grid"][0], item_data["grid"][1])
@@ -83,56 +70,41 @@ func create():
     logger.info("Creating level")
 
     for x in range(50):
-        var wall_row = []
-        var floor_row = []
-        for y in range(5):
-            logger.info("Creating wall tile")
-            # Wall
-            var tile_info = object_data.create_tile("BLUE_TILE", Vector2(x, y))
-            wall_row.append(tile_info)
-            logger.info("Creating floor tile")
-            # Floor
-            tile_info = object_data.create_tile("WHITE_TILE", Vector2(x, y))
-            floor_row.append(tile_info)
-
-        wall_tiles.append(wall_row)
-        floor_tiles.append(floor_row)
+        var row = []
+        for y in range(FLOOR_SIZE * 2):
+            var tile_info
+            if y < FLOOR_SIZE:
+                tile_info = object_data.create_tile("WHITE_TILE", Vector2(x, y))
+                row.append(tile_info)
+            else:
+                tile_info = object_data.create_tile("BLUE_TILE", Vector2(x, y))
+                row.append(tile_info)
+            
+        tiles.append(row)
 
     logger.info("Created level")
 
 func generate_tiles():
     var i = 0
-    for tile_row in wall_tiles:
+    for tile_row in tiles:
         var j = 0
         for tile_data in tile_row:
-            create_wall_tile(tile_data, i, j)
+            create_tile(tile_data, i, j)
             j += 1
         i += 1
    
-    var i = 0
-    for tile_row in floor_tiles:
-        var j = 0
-        for tile_data in tile_row:
-            create_floor_tile(tile_data, i, j)
-            j += 1
-        i += 1
-
-func create_wall_tile(tile_data, i, j):
+func create_tile(tile_data, i, j):
     var tile = mesh_manager.new_mesh_object("tile", is_editor)
     tile.data = tile_data
-    tile.set_translation(Vector3(i * SCALE, (j + 1) * SCALE, 0))
-    tile.is_floor = false
-    wall_nodes.add_child(tile)
-    wall_tile_objects[tile_data.grid] = tile
 
-func create_floor_tile(tile_data, i, j):
-    var tile = mesh_manager.new_mesh_object("tile", is_editor)
-    tile.data = tile_data
-    tile.set_rotation(Vector3(-PI / 2, 0, 0))
-    tile.set_translation(Vector3(i * SCALE, 0, j * SCALE))
-    tile.is_floor = true
-    floor_nodes.add_child(tile)
-    floor_tile_objects[tile_data.grid] = tile
+    if j < FLOOR_SIZE:
+        tile.set_rotation(Vector3(-PI / 2, 0, 0))
+        tile.set_translation(Vector3(i * SCALE, 0, j * SCALE))
+    else:
+        tile.set_translation(Vector3(i * SCALE, (j - FLOOR_SIZE + 1) * SCALE, 0))       
+
+    tile_nodes.add_child(tile)
+    tile_objects[tile_data.grid] = tile
 
 func generate_items():
     for grid in items:
@@ -144,32 +116,33 @@ func create_item_object(item_data, grid):
     item.data = item_data
 
     item.set_translation(grid_to_world(grid))
+
     item_objects[grid] = item
 
     item_nodes.add_child(item)
+
+    if item.grid.y >= FLOOR_SIZE:
+        item.set_rotation(item.get_rotation() + Vector3(PI / 2, 0, 0))
 
     if not is_editor and item.initial_velocity.length() > 0.1:
         item.set_velocity(item.initial_velocity)
 
 func grid_to_world(grid):
-    return Vector3(grid.x + 0.5, 0, grid.y + 0.5)
+    if grid.y < FLOOR_SIZE:
+        return Vector3(grid.x + 0.5, 0, grid.y + 0.5)
+    else:
+        return Vector3(grid.x + 0.5, (grid.y - FLOOR_SIZE) + 0.5, 0.5)
 
 func save():
     logger.info("Saving level: %s" % name)
 
-    var data = { "name": name,  "floor_tiles": [], "wall_tiles": [], "items": [] }
+    var data = { "name": name,  "tiles": [], "items": [] }
 
-    for floor_row in floor_tiles:
+    for tile_row in tiles:
         var row = []
-        for floor_tile in floor_row:
-            row.append(floor_tile.to_data())
-        data["floor_tiles"].append(row)
-
-    for wall_row in wall_tiles:
-        var row = []
-        for wall_tile in wall_row:
-            row.append(wall_tile.to_data())
-        data["wall_tiles"].append(row)
+        for tile in tile_row:
+            row.append(tile.to_data())
+        data["tiles"].append(row)
 
     for grid in items:
         var item = items[grid]
@@ -178,7 +151,7 @@ func save():
     get_node(@'/root/utilities').save_json(filename, data)
 
 func get_length():
-    return wall_tiles.size()
+    return tiles.size()
 
 # -- Editor manipulation...
 
@@ -206,26 +179,14 @@ func get_item_at(grid):
     else:
         return null
 
-func get_floor_tile_at(grid):
-    return floor_tile_objects[grid]
+func get_tile_at(grid):
+    return tile_objects[grid]
 
-func get_wall_tile_at(grid):
-    return wall_tile_objects[grid]
-
-func change_wall_tile(type, grid):
-    var tile = wall_tile_objects[grid]
-    wall_tile_objects.erase(tile)
+func change_tile(type, grid):
+    var tile = tile_objects[grid]
+    tile_objects.erase(tile)
     tile.queue_free()
 
     var tile_data = object_data.create_tile(type, grid)
-    wall_tiles[grid.x][grid.y] = tile_data
-    create_wall_tile(tile_data, grid.x, grid.y)
-
-func change_floor_tile(type, grid):
-    var tile = floor_tile_objects[grid]
-    floor_tile_objects.erase(tile)
-    tile.queue_free()
-
-    var tile_data = object_data.create_tile(type, grid)
-    floor_tiles[grid.x][grid.y] = tile_data
-    create_floor_tile(tile_data, grid.x, grid.y)
+    tiles[grid.x][grid.y] = tile_data
+    create_tile(tile_data, grid.x, grid.y)

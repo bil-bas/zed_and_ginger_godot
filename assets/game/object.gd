@@ -9,3 +9,12 @@ func _get(name):
 
 func _get_property_list():
     return data._get_property_list()
+
+func _ready():
+    var object_data = get_node(@'/root/object_data')
+    var mesh_manager = get_node(@'/root/mesh_manager')
+
+    for name in data.get("spawn_items"):
+        var item = mesh_manager.new_mesh_object(name)
+        item.data = object_data.create_item(name, self.grid)
+        get_node(@'Items').add_child(item)

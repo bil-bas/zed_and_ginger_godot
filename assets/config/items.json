@@ -13,33 +13,40 @@
         "mass": 1,
         "create_sides": true,
         "light_color": [0, 0, 0, 0],
+        "is_light_source": true,
+        "spawn_items": [],
+        "can_place_on_wall": false,
+        "can_place_on_floor": true,
     },
     "order_in_editor": [
-        "flytrap",
-        "pacer",
-        "mine",
-        "rat",
-        "roller",
-        "crate",
-        "glass_tower",
-        "start_post",
-        "hover_board",
-        "tentacle",
-        "speed_pill",
+            "flytrap",
+            "mine",
+            "rat",
+            "roller",
+            "crate",
+            "glass_tower",
+            "start_post",
+            "hover_board",
+            "tentacle",
+            "speed_pill",
+            "laser_eye",
     ],
     "types": {
         "flytrap": {
             "is_initially_horizontal": true,
             "is_horizontal_after_kill": false,
             "player_state": "eaten",
+            "tile_type": "floor",
         },
-        "pacer": {
+        "spark": {
             "cast_shadow": false,
             "receive_shadow": false,
             "player_state": "electrocuted",
             "is_area": "true",
             "light_color": [0.005, 0.005, 0.01, 1],
+            "is_light_source": true,
             "is_transparent": true,
+            "initial_velocity": [0, 4, 0],
         },
         "fire_exhaust": {
             "cast_shadow": false,
@@ -49,6 +56,7 @@
             "is_area": true,
             "light_color": [0.015, 0.01, 0, 1],
             "is_transparent": true,
+            "can_place_on_wall": true,
         },
         "mine": {
             "is_initially_horizontal": true,
@@ -69,17 +77,29 @@
             "depth": 8,
             "is_transparent": true,
             "is_area": true,
+            "can_place_on_wall": true,
         },
         "start_post": {
             "depth": 4,
         },
         "hover_board": {
-            "is_initially_horizontal": true
+            "is_initially_horizontal": true,
         },
         "tentacle": {
             "player_state": "eaten",
         },
         "speed_pill": {
         },
+        "laser_eye": {
+            "is_initially_horizontal": true,
+            "spawn_items": ["laser_beam"],
+            "can_place_on_wall": true,
+        },
+        "laser_beam": {
+            "is_transparent": true,
+            "player_state": "burnt",
+            "is_light_source": true,
+            "light_color": [0.01, 0.0, 0.0, 1],
+        }
     }
 }

@@ -9,7 +9,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="40">
+			<string_array  len="42">
 				<string> "ItemArea" </string>
 				<string> "Area" </string>
 				<string> "_import_path" </string>
@@ -50,15 +50,17 @@
 				<string> "transform/local" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
+				<string> "Items" </string>
+				<string> "Spatial" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 3 </int>
+			<int> 4 </int>
 			<string> "variants" </string>
-			<array  len="17" shared="false">
+			<array  len="18" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
@@ -193,9 +195,10 @@
 				</dictionary>
 				<resource name=""></resource>				<node_path> ".." </node_path>
 				<resource  resource_type="Script" path="res://scripts/mesh_animator.gd">  </resource>
+				<transform> 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0.1 </transform>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="107"> 				-1, -1, 1, 0, -1, 18, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 7, 12, 3, 13, 8, 14, 9, 15, 10, 16, 11, 17, 2, 18, 12, 19, 13, 0, 0, 0, 20, 20, -1, 19, 2, 0, 3, 1, 4, 2, 21, 4, 22, 2, 23, 14, 24, 2, 25, 2, 26, 11, 27, 11, 28, 3, 29, 3, 30, 3, 31, 3, 32, 2, 33, 7, 34, 14, 35, 15, 18, 16, 0, 0, 0, 36, 36, -1, 6, 2, 0, 3, 1, 37, 6, 4, 2, 38, 5, 39, 3, 0 </int_array>
+			<int_array  len="122"> 				-1, -1, 1, 0, -1, 18, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 7, 12, 3, 13, 8, 14, 9, 15, 10, 16, 11, 17, 2, 18, 12, 19, 13, 0, 0, 0, 20, 20, -1, 19, 2, 0, 3, 1, 4, 2, 21, 4, 22, 2, 23, 14, 24, 2, 25, 2, 26, 11, 27, 11, 28, 3, 29, 3, 30, 3, 31, 3, 32, 2, 33, 7, 34, 14, 35, 15, 18, 16, 0, 0, 0, 36, 36, -1, 6, 2, 0, 3, 1, 37, 6, 4, 2, 38, 5, 39, 3, 0, 0, 0, 41, 40, -1, 4, 2, 0, 3, 1, 37, 17, 4, 2, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

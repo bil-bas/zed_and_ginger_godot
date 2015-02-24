@@ -5,26 +5,19 @@ class ChangeTileAction:
     var _old_type
     var _new_type
     var _level
-    var _is_floor
 
-    func _init(grid, is_floor, old_type, new_type, level):
+    func _init(grid, old_type, new_type, level):
         _grid = grid
         _old_type = old_type
         _new_type = new_type
         _level = level
-        _is_floor = is_floor
 
     func do_action():
-        if _is_floor:
-            _level.change_floor_tile(_new_type, _grid)
-        else:
-            _level.change_wall_tile(_new_type, _grid)
+        _level.change_tile(_new_type, _grid)
+
         
     func undo_action():
-        if _is_floor:
-            _level.change_floor_tile(_new_type, _grid)
-        else:
-            _level.change_wall_tile(_new_type, _grid)
+        _level.change_tile(_old_type, _grid)
 
 class AddItemAction:
     var _grid
@@ -143,11 +136,7 @@ func _process(delta):
             var current_tab = tabs.get_current_tab()
 
             if current_tab == ITEMS_TAB:
-                if collider.object_type() == "TILE":
-                    if collider.is_floor:
-                        click_in_item_mode(collider.grid)
-                elif collider.object_type() == "ITEM":
-                    click_in_item_mode(collider.grid)
+                click_in_item_mode(collider.grid)
 
             elif current_tab == TILES_TAB:
                 if collider.object_type() == "TILE":
@@ -159,6 +148,14 @@ func _process(delta):
 
 func click_in_item_mode(grid):
     if left_mouse_down:
+        if current_item_type != null:
+            if grid.y < level.FLOOR_SIZE:
+                if not object_data.ITEM_TYPES[current_item_type]["can_place_on_floor"]:
+                    return
+            else:
+                if not object_data.ITEM_TYPES[current_item_type]["can_place_on_wall"]:
+                    return
+
         var old_item = level.get_item_at(grid)
 
         if current_item_type == null:
@@ -175,11 +172,15 @@ func click_in_item_mode(grid):
 
         update_history_buttons()
     else:
-        current_item_type = level.get_item_at(grid)
+        var item = level.get_item_at(grid)
+        if item == null:
+            current_item_type = null
+        else:
+            current_item_type = level.get_item_at(grid).type
 
 func click_in_tile_mode(tile):
     if left_mouse_down:
-        var action = ChangeTileAction.new(tile.grid, tile.is_floor, tile.type, current_tile_type, level)
+        var action = ChangeTileAction.new(tile.grid, tile.type, current_tile_type, level)
         history.add(action)
         update_history_buttons()
     else:
@@ -261,7 +262,7 @@ func create_delete_picker():
 
 func create_item_picker(name):
     var item = mesh_manager.new_mesh_object(name)
-    item.data = object_data.ITEM_TYPES[name]
+    item.data = object_data.create_item(name, Vector2(0, 0))
 
     var picker = preload("res://prefabs/item_picker.xscn").instance()
     picker.get_node(@'Viewport').add_child(item)

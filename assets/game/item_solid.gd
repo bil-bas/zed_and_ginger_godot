@@ -39,7 +39,6 @@ func set_velocity(value):
         set_layer_mask(collision_layer.PLAYER_MOVING_ITEMS + collision_layer.TILES_MOVING_ITEMS)
         set_fixed_process(true)
 
-
 func _fixed_process(delta):
     set_linear_velocity(velocity)
     if get_translation().x < 0:

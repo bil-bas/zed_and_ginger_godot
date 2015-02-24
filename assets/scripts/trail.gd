@@ -12,7 +12,7 @@ var elapsed_time = 0
 
 var height = 1 setget set_height
 func set_height(value):
-	height = value
+    height = value
 
 var is_emitting = true setget set_is_emitting
 func set_is_emitting(value):
