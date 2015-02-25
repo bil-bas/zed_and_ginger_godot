@@ -20,7 +20,12 @@ func _ready():
     finish_music = get_node(@'Music/Finish')
 
 func setup():
-    var level_setup = level.setup(false)
+    var data = Globals.get("level_data")
+    Globals.clear("level_data")
+    var filename = Globals.get("level_filename")
+    Globals.clear("level_filename")
+
+    var level_setup = level.setup(data, filename, false)
     while level_setup.is_valid():
         level_setup.resume()
         yield()

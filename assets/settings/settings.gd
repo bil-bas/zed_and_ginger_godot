@@ -6,11 +6,11 @@ var _audio_server
 func _ready():
     _settings = get_node(@"/root/settings")
 
-    get_node(@"Panel/Tabs/Video/Fullscreen").set_pressed(_settings.get_video_fullscreen())
+    get_node(@"Tabs/Video/Fullscreen").set_pressed(_settings.get_video_fullscreen())
 
-    get_node(@"Panel/Tabs/Audio/MasterVolume").set_value(_settings.get_audio_master_volume())
-    get_node(@"Panel/Tabs/Audio/EffectsVolume").set_value(_settings.get_audio_effects_volume())
-    get_node(@"Panel/Tabs/Audio/MusicVolume").set_value(_settings.get_audio_music_volume())
+    get_node(@"Tabs/Audio/MasterVolume").set_value(_settings.get_audio_master_volume())
+    get_node(@"Tabs/Audio/EffectsVolume").set_value(_settings.get_audio_effects_volume())
+    get_node(@"Tabs/Audio/MusicVolume").set_value(_settings.get_audio_music_volume())
 
 func setup():
     yield()
@@ -28,4 +28,4 @@ func _on_Fullscreen_toggled(value):
     _settings.set_video_fullscreen(value)
 
 func _on_BackButton_pressed():
-    get_node(@'/root/Root/SceneManager').goto("res://main_menu/main_menu.xscn")
+    get_node(@'/root/Root/SceneManager').close_dialog()

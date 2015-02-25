@@ -92,7 +92,7 @@
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -800, -597.515 </vector2>
+							<vector2> -800, -500 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>

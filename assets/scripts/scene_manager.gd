@@ -20,6 +20,7 @@ var time_max = 1
 var setup_routine
 var setup_progress
 var dialog
+var timer
 
 func _ready():
     logger = get_node(@'/root/logger')
@@ -127,7 +128,10 @@ func show_dialog(scene_file):
     var scene = load(scene_file).instance()
     dialog.add_child(scene)
     dialog.show()
-    get_tree().set_pause(true)
+    timer = Timer.new()
+    timer.connect("timeout", get_tree(), "set_pause", [true])
+    timer.set_wait_time(0.001)
+    timer.start()
 
 func close_dialog():
     if dialog.get_child_count() > 0:
