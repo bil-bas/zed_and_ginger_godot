@@ -1,5 +1,11 @@
 extends Node
 
+const BACKGROUND_LAYER = -1
+const SCENE_LAYER = 0
+const GUI_LAYER = 1
+const DIALOG_LAYER = 2
+const FOREGROUND_LAYER = 3
+
 const INITIAL_SCENE = "res://main_menu/main_menu.xscn"
 const BASE_SIZE = Vector2(800, 600) # Size the game is developed for.
 
@@ -13,12 +19,15 @@ var logger
 var time_max = 1
 var setup_routine
 var setup_progress
+var dialog
 
 func _ready():
     logger = get_node(@'/root/logger')
     logger.level = logger.Level.DEBUG
     logger.truncate_log_file = true
     logger.filename = "user://log.txt"
+
+    dialog = get_node(@'../Dialog/Control/Center/Dialog')
 
     loading_label = get_node(@'LoadingLabel')
     progress_bar = get_node(@'LoadingProgress')
@@ -74,7 +83,7 @@ func setup_scene():
         set_process(false)
         loading_label.hide()
         progress_bar.hide()
-        root_node.get_node(@'Background').set_layer(-1)
+        root_node.get_node(@'Background').set_layer(BACKGROUND_LAYER)
 
 func update_loading_progress():
     var progress = loader.get_stage() * 100.0 / loader.get_stage_count()
@@ -86,7 +95,7 @@ func set_new_scene(scene_resource):
     root_node.add_child(current_scene)
 
     # Hide everything behind the background
-    root_node.get_node(@'Background').set_layer(127)
+    root_node.get_node(@'Background').set_layer(FOREGROUND_LAYER)
     
     logger.info("Setting up scene")
     setup_routine = current_scene.setup()
@@ -105,8 +114,23 @@ func goto(scene_file):
     if current_scene != null:
         current_scene.queue_free()
 
+    close_dialog()
+
     set_process(true)
     wait_frames = 1
     progress_bar.show()
     loading_label.show()
     loading_label.set_text("LOADING_SCENE")
+
+func show_dialog(scene_file):
+    close_dialog()
+    var scene = load(scene_file).instance()
+    dialog.add_child(scene)
+    #dialog.grab_focus()
+    dialog.show()
+
+func close_dialog():
+    if dialog.get_child_count() > 0:
+        #dialog.release_focus()
+        dialog.remove_and_delete_child(dialog.get_child(0))
+        dialog.hide()

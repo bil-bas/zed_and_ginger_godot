@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
 	<ext_resource path="res://scripts/show_after_process.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/level.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
@@ -208,7 +208,7 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
-				<rect2> 0, 0, 800, 600 </rect2>
+				<rect2> 0, 0, 800, 500 </rect2>
 				<bool> False </bool>
 				<resource name=""></resource>				<bool> True </bool>
 				<int> 2 </int>

@@ -14,3 +14,5 @@ MASTER_VOLUME, Master Volume
 EFFECTS_VOLUME, Effects Volume
 MUSIC_VOLUME, Music Volume
 FULLSCREEN, Fullscreen
+EDIT_LEVEL, Edit Level
+CANCEL_BUTTON, Cancel

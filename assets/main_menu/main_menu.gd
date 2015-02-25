@@ -17,7 +17,7 @@ func _on_Play_pressed():
     scene_manager.goto("res://game/play.xscn")
 
 func _on_Editor_pressed():
-    scene_manager.goto("res://pick_level_to_edit/pick_level_to_edit.xscn")
+    scene_manager.show_dialog("res://pick_level/pick_level_to_edit.xscn")
 
 func _on_Settings_pressed():
     scene_manager.goto("res://settings/settings.xscn")

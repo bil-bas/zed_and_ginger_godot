@@ -93,9 +93,11 @@ var mesh_manager
 var object_data
 var current_item_picker
 var current_tile_picker
+var scene_manager
 
 func _ready():
     logger = get_node(@'/root/logger')
+    scene_manager = get_node(@'/root/Root/SceneManager')
 
     camera = get_node(@'World/Viewport/Camera')
     level = get_node(@'World/Viewport/Level')
@@ -216,6 +218,11 @@ func select_with_cursor(mouse_pos, length=100):
 func _on_SaveButton_pressed():
     level.save()
 
+func _on_SaveAsButton_pressed():
+    scene_manager.show_dialog("res://pick_level/pick_level_to_save.xscn")
+
+    level.save()
+
 func _on_UndoButton_pressed():
     history.undo()
     update_history_buttons()
@@ -225,7 +232,7 @@ func _on_RedoButton_pressed():
     update_history_buttons()
 
 func _on_BackButton_pressed():
-    get_node(@'/root/Root/SceneManager').goto("res://main_menu/main_menu.xscn")
+    scene_manager.goto("res://main_menu/main_menu.xscn")
 
 func update_history_buttons():
     undo_button.set_disabled(not history.get_can_undo())
