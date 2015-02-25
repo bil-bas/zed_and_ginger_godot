@@ -126,11 +126,11 @@ func show_dialog(scene_file):
     close_dialog()
     var scene = load(scene_file).instance()
     dialog.add_child(scene)
-    #dialog.grab_focus()
     dialog.show()
+    get_tree().set_pause(true)
 
 func close_dialog():
     if dialog.get_child_count() > 0:
-        #dialog.release_focus()
+        get_tree().set_pause(false)
         dialog.remove_and_delete_child(dialog.get_child(0))
         dialog.hide()
