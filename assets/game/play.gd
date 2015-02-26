@@ -1,7 +1,7 @@
 extends Node
 
 const CHASE_SPEED = 2
-const LEVEL_MARGIN = 10 # Tiles at the ends.
+const LEVEL_MARGIN = 12 # Tiles at the ends.
 
 var player
 var level 

@@ -176,15 +176,17 @@ func handle_collision(motion):
                 kill(collider, new_player_state)
 
     var normal = get_collision_normal()
-
     if normal.dot(UP) > 0.7:
         on_floor = true
-
-        motion = normal.slide(motion)
-        velocity = normal.slide(velocity)
-        move(motion)
     else:
         on_floor = false
+
+    motion = normal.slide(motion)
+    velocity = normal.slide(velocity)
+    move(motion)
+
+    if is_colliding():
+    	handle_collision(motion)
 
 func handle_rat_collision(rat):
     if get_translation().y > 0.3:
