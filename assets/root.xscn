@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
-	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
-	<ext_resource path="res://scripts/scene_manager.gd" type="Script"></ext_resource>
 	<ext_resource path="res://fonts/lcd_solid_24.fnt" type="Font"></ext_resource>
+	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
+	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
+	<ext_resource path="res://scripts/scene_manager.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="76">
+			<string_array  len="77">
 				<string> "Root" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -53,13 +53,21 @@
 				<string> "frame" </string>
 				<string> "region" </string>
 				<string> "region_rect" </string>
-				<string> "SceneManager" </string>
+				<string> "Scene" </string>
+				<string> "Dialog" </string>
 				<string> "process/pause_mode" </string>
-				<string> "script/script" </string>
-				<string> "LoadingLabel" </string>
-				<string> "Label" </string>
+				<string> "Control" </string>
+				<string> "rect/min_size" </string>
+				<string> "Center" </string>
+				<string> "CenterContainer" </string>
+				<string> "use_top_left" </string>
+				<string> "PanelContainer" </string>
 				<string> "margin/left" </string>
 				<string> "margin/top" </string>
+				<string> "SceneManager" </string>
+				<string> "script/script" </string>
+				<string> "Loading" </string>
+				<string> "Label" </string>
 				<string> "custom_fonts/font" </string>
 				<string> "range/min" </string>
 				<string> "range/max" </string>
@@ -74,23 +82,16 @@
 				<string> "autowrap" </string>
 				<string> "uppercase" </string>
 				<string> "percent_visible" </string>
-				<string> "LoadingProgress" </string>
+				<string> "Progress" </string>
 				<string> "ProgressBar" </string>
 				<string> "percent/visible" </string>
-				<string> "Dialog" </string>
-				<string> "Control" </string>
-				<string> "rect/min_size" </string>
-				<string> "Center" </string>
-				<string> "CenterContainer" </string>
-				<string> "use_top_left" </string>
-				<string> "PanelContainer" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 11 </int>
+			<int> 13 </int>
 			<string> "variants" </string>
 			<array  len="37" shared="false">
 				<node_path> "" </node_path>
@@ -231,6 +232,13 @@
 				<resource  resource_type="Texture" path="res://sprites/moon.png">  </resource>
 				<bool> False </bool>
 				<rect2> 0, 0, 0, 0 </rect2>
+				<int> 3 </int>
+				<real> 500 </real>
+				<vector2> 800, 500 </vector2>
+				<real> 396 </real>
+				<real> 244 </real>
+				<real> 404 </real>
+				<real> 256 </real>
 				<resource  resource_type="Script" path="res://scripts/scene_manager.gd">  </resource>
 				<real> 200 </real>
 				<real> 375 </real>
@@ -241,16 +249,9 @@
 				<real> 400 </real>
 				<real> 430 </real>
 				<real> 100 </real>
-				<real> 40 </real>
-				<vector2> 800, 600 </vector2>
-				<vector2> 800, 500 </vector2>
-				<real> 396 </real>
-				<real> 244 </real>
-				<real> 404 </real>
-				<real> 256 </real>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="411"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, -1, 5, 2, 0, 6, 2, 7, 3, 8, 4, 9, 5, 0, 1, 0, 11, 10, -1, 19, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 16, 9, 17, 10, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 25, 11, 26, 7, 27, 12, 28, 13, 29, 6, 0, 1, 0, 31, 30, -1, 21, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 32, 14, 33, 4, 34, 15, 35, 16, 36, 6, 27, 17, 37, 6, 7, 3, 38, 18, 39, 18, 40, 8, 41, 8, 42, 16, 28, 13, 43, 18, 44, 19, 0, 0, 0, 5, 45, -1, 7, 2, 0, 46, 11, 6, 16, 7, 3, 8, 4, 9, 5, 47, 20, 0, 4, 0, 49, 48, -1, 31, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 50, 21, 51, 22, 16, 10, 17, 23, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 26, 7, 52, 24, 53, 4, 54, 7, 55, 7, 56, 7, 57, 4, 58, 18, 59, 18, 60, 25, 61, 16, 62, 16, 63, 18, 64, 18, 65, 26, 0, 4, 0, 67, 66, -1, 25, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 50, 21, 51, 27, 16, 10, 17, 28, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 26, 7, 53, 4, 54, 29, 55, 7, 56, 4, 57, 4, 58, 18, 59, 18, 68, 18, 0, 0, 0, 5, 69, -1, 5, 2, 0, 6, 11, 7, 3, 8, 4, 9, 5, 0, 7, 0, 70, 70, -1, 17, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 16, 30, 17, 30, 71, 31, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0, 8, 0, 73, 72, -1, 16, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 71, 32, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 74, 18, 0, 9, 0, 75, 69, -1, 19, 2, 0, 46, 11, 12, 18, 13, 7, 14, 7, 15, 8, 50, 33, 51, 34, 16, 35, 17, 36, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0 </int_array>
+			<int_array  len="437"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, -1, 5, 2, 0, 6, 2, 7, 3, 8, 4, 9, 5, 0, 1, 0, 11, 10, -1, 19, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 16, 9, 17, 10, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 25, 11, 26, 7, 27, 12, 28, 13, 29, 6, 0, 1, 0, 31, 30, -1, 21, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 32, 14, 33, 4, 34, 15, 35, 16, 36, 6, 27, 17, 37, 6, 7, 3, 38, 18, 39, 18, 40, 8, 41, 8, 42, 16, 28, 13, 43, 18, 44, 19, 0, 0, 0, 5, 45, -1, 5, 2, 0, 6, 16, 7, 3, 8, 4, 9, 5, 0, 0, 0, 5, 46, -1, 6, 2, 0, 47, 11, 6, 20, 7, 3, 8, 4, 9, 5, 0, 5, 0, 48, 48, -1, 17, 2, 0, 12, 18, 13, 7, 14, 7, 15, 8, 16, 9, 17, 21, 49, 22, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0, 6, 0, 51, 50, -1, 16, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 49, 22, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 52, 18, 0, 7, 0, 53, 46, -1, 18, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 23, 55, 24, 16, 25, 17, 26, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0, 0, 0, 1, 56, -1, 3, 2, 0, 47, 11, 57, 27, 0, 0, 0, 5, 58, -1, 5, 2, 0, 6, 20, 7, 3, 8, 4, 9, 5, 0, 10, 0, 59, 59, -1, 31, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 28, 55, 29, 16, 10, 17, 30, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 26, 7, 60, 31, 61, 4, 62, 7, 63, 7, 64, 7, 65, 4, 66, 18, 67, 18, 68, 32, 69, 16, 70, 16, 71, 18, 72, 18, 73, 33, 0, 10, 0, 75, 74, -1, 25, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 28, 55, 34, 16, 10, 17, 35, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 26, 7, 61, 4, 62, 36, 63, 7, 64, 4, 65, 4, 66, 18, 67, 18, 76, 18, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
