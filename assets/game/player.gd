@@ -47,7 +47,7 @@ func object_type():
 func _ready():
     logger = get_node(@'/root/logger')
     mesh = get_node(@'MeshInstance')
-    audio = get_node(@'SpatialSamplePlayer')
+    audio = get_node(@'Audio')
     floor_ray = get_node(@'FloorRay')
     camera = get_node(@'../../Camera')
 
@@ -108,12 +108,15 @@ func _fixed_process(delta):
         if on_floor:
             var jump_pressed = Input.is_action_pressed("jump")
             if jump_pressed:
+                
                 if surfing_on != null or not floor_tile.is_sticky:
+                    audio.play("player_jump")
                     if surfing_on != null:
                         remove_board()
                     velocity.y = JUMP_SPEED
                     on_floor = false
                 else:
+                    audio.play("player_jump")
                     pass # TODO: play sound?
             elif surfing_on == null:
                 walk_speed *= floor_tile.speed_multiplier
@@ -186,17 +189,19 @@ func handle_collision(motion):
     move(motion)
 
     if is_colliding():
-    	handle_collision(motion)
+        handle_collision(motion)
 
 func handle_rat_collision(rat):
     if get_translation().y > 0.3:
         rat.get_node(@'MeshInstance').animation = "dead"
         rat.set_layer_mask(0)
         rat.set_is_horizontal(true)
+        audio.play("rat_squashed")
     else:
         rat.get_node(@'MeshInstance').animation = "running"
         rat.set_velocity(Vector3(-10, 0, 0))
         rat.set_layer_mask(object_data.CollisionLayer.TILES_MOVING_ITEMS)
+        audio.play("rat_chased")
 
 func handle_hover_board_collision(board):
     remove_board()
@@ -270,24 +275,30 @@ func kill(killer, new_state):
 
     if new_state == "burnt":
         state = State.BURNT
+        audio.play("player_died")
     elif new_state == "electrocuted":
         state = State.ELECTROCUTED
+        audio.play("player_died")
     elif new_state == "flattened":
         state = State.FLATTENED
         var translation = get_translation()
         translation.y = 0
         set_translation(translation)
         set_is_horizontal(true)
+        audio.play("player_died")
     elif new_state == "on_back":
         state = State.ON_BACK
+        audio.play("player_died")
     elif new_state == "eaten":
         state = State.EATEN
         killer.set_is_horizontal(killer.is_horizontal_after_kill)
         killer.get_node("MeshInstance").stop_on_completion = true
         killer.get_node("MeshInstance").animation = "killed_player"
+        audio.play("fly_trap_chew")
     elif new_state == "exploded":
         state = State.EXPLODED
         velocity.y = EXPLODED_SPEED
+        audio.play("mine_explosion")
     else:
         logger.error("Bad player state: %s", new_state)
         assert(false)
@@ -340,6 +351,8 @@ func finish():
 func caught():
     if state != State.OK:
         return
+
+    audio.play("fly_trap_chew")
 
     remove_board()
     remove_trail()

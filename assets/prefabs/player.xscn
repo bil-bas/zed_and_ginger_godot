@@ -1,20 +1,100 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="6" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
+<resource_file type="PackedScene" subresource_count="14" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+	<ext_resource path="res://effects/rat_chased.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://effects/speed_pill_taken.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://effects/player_jump.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://scripts/mesh_animator.gd" type="Script"></ext_resource>
-	<ext_resource path="res://prefabs/touch_button.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://effects/fly_trap_snap.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://effects/spring_bounce.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://effects/mine_explosion.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://effects/fly_trap_chew.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://effects/player_died.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
+	<ext_resource path="res://effects/rat_squashed.smp" type="Sample"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 0.5 </real>
 		<real name="height"> 0.5 </real>
 
 	</resource>
 	<resource type="SampleLibrary" path="local://2">
+		<dictionary name="samples/spring_bounce" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/spring_bounce.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/fly_trap_snap" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/fly_trap_snap.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/fly_trap_chew" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/fly_trap_chew.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/speed_pill_taken" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/speed_pill_taken.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/rat_chased" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/rat_chased.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/rat_squashed" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/rat_squashed.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/mine_explosion" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/mine_explosion.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/player_jump" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/player_jump.smp">  </resource>
+		</dictionary>
+		<dictionary name="samples/player_died" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://effects/player_died.smp">  </resource>
+		</dictionary>
 
 	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="77">
+			<string_array  len="58">
 				<string> "Player" </string>
 				<string> "KinematicBody" </string>
 				<string> "_import_path" </string>
@@ -53,54 +133,35 @@
 				<string> "transform/local" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
-				<string> "SpatialSamplePlayer" </string>
-				<string> "params/volume_db" </string>
-				<string> "params/pitch_scale" </string>
-				<string> "params/attenuation/min_distance" </string>
-				<string> "params/attenuation/max_distance" </string>
-				<string> "params/attenuation/distance_exp" </string>
-				<string> "params/emission_cone/degrees" </string>
-				<string> "params/emission_cone/attenuation_db" </string>
-				<string> "config/polyphony" </string>
+				<string> "Audio" </string>
+				<string> "SamplePlayer" </string>
+				<string> "config/voices" </string>
 				<string> "config/samples" </string>
+				<string> "default/volume_db" </string>
+				<string> "default/pitch_scale" </string>
+				<string> "default/pan" </string>
+				<string> "default/depth" </string>
+				<string> "default/height" </string>
+				<string> "default/filter/type" </string>
+				<string> "default/filter/cutoff" </string>
+				<string> "default/filter/resonance" </string>
+				<string> "default/filter/gain" </string>
+				<string> "default/reverb_room" </string>
+				<string> "default/reverb_send" </string>
+				<string> "default/chorus_send" </string>
 				<string> "FloorRay" </string>
 				<string> "RayCast" </string>
 				<string> "enabled" </string>
 				<string> "cast_to" </string>
-				<string> "TouchButtons" </string>
-				<string> "Container" </string>
-				<string> "visibility/opacity" </string>
-				<string> "visibility/self_opacity" </string>
-				<string> "visibility/light_mask" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
-				<string> "focus_neighbour/left" </string>
-				<string> "focus_neighbour/top" </string>
-				<string> "focus_neighbour/right" </string>
-				<string> "focus_neighbour/bottom" </string>
-				<string> "focus/ignore_mouse" </string>
-				<string> "focus/stop_mouse" </string>
-				<string> "size_flags/horizontal" </string>
-				<string> "size_flags/vertical" </string>
-				<string> "size_flags/stretch_ratio" </string>
-				<string> "JumpButton" </string>
-				<string> "TouchScreenButton" </string>
-				<string> "action" </string>
-				<string> "MoveButtons" </string>
-				<string> "UpButton" </string>
-				<string> "transform/pos" </string>
-				<string> "DownButton" </string>
-				<string> "LeftButton" </string>
-				<string> "RightButton" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 12 </int>
+			<int> 5 </int>
 			<string> "variants" </string>
-			<array  len="36" shared="false">
+			<array  len="21" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
@@ -118,11 +179,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 0.323534 </real>
+							<real> 0.735093 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -383.629, -600 </vector2>
+							<vector2> -112.121, -413.52 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -138,7 +199,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 7.403717 </real>
+									<real> 405.027985 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -227,154 +288,21 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "3D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<resource name=""></resource>				<real> 0 </real>
 				<int> 0 </int>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Script" path="res://scripts/mesh_animator.gd">  </resource>
-				<real> 1 </real>
-				<real> 100 </real>
-				<real> 180 </real>
-				<real> -6 </real>
+				<int> 10 </int>
 				<resource  resource_type="SampleLibrary" path="local://2">  </resource>
-				<vector3> 0, -5, 0 </vector3>
-				<real> 8 </real>
-				<real> 12 </real>
+				<real> 1 </real>
+				<nil>  </nil>
 				<int> 2 </int>
-				<resource  resource_type="PackedScene" path="res://prefabs/touch_button.xscn">  </resource>
-				<string> "jump" </string>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 0.397215 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -126.23, -597.515 </vector2>
-							<string> "snap" </string>
-							<int> 10 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<real> 40 </real>
-				<vector2> 92, 410 </vector2>
-				<string> "move_up" </string>
-				<vector2> 90, 515 </vector2>
-				<string> "move_downn" </string>
-				<vector2> 37, 466 </vector2>
-				<string> "move_left" </string>
-				<vector2> 146, 462 </vector2>
-				<string> "move_right" </string>
+				<vector3> 0, -5, 0 </vector3>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="304"> 				-1, -1, 1, 0, -1, 17, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 2, 13, 2, 14, 2, 15, 2, 16, 7, 17, 8, 18, 9, 0, 0, 0, 19, 19, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 20, 2, 21, 10, 22, 2, 23, 2, 24, 11, 25, 11, 26, 3, 27, 3, 28, 3, 29, 3, 30, 3, 31, 12, 32, 10, 33, 13, 17, 14, 0, 0, 0, 34, 34, -1, 6, 2, 0, 3, 1, 35, 6, 4, 2, 36, 5, 37, 3, 0, 0, 0, 38, 38, -1, 12, 2, 0, 3, 1, 4, 2, 39, 11, 40, 15, 41, 15, 42, 16, 43, 15, 44, 17, 45, 18, 46, 4, 47, 19, 0, 0, 0, 49, 48, -1, 5, 2, 0, 3, 1, 4, 2, 50, 2, 51, 20, 0, 0, 0, 53, 52, -1, 16, 2, 0, 4, 2, 54, 15, 55, 15, 56, 4, 57, 21, 58, 22, 59, 0, 60, 0, 61, 0, 62, 0, 63, 3, 64, 2, 65, 23, 66, 23, 67, 15, 0, 5, 0, 69, 68, 24, 3, 2, 0, 70, 25, 18, 26, 0, 5, 0, 53, 71, -1, 16, 2, 0, 4, 2, 54, 15, 55, 15, 56, 4, 57, 27, 58, 27, 59, 0, 60, 0, 61, 0, 62, 0, 63, 3, 64, 2, 65, 23, 66, 23, 67, 15, 0, 7, 0, 69, 72, 24, 4, 2, 0, 73, 28, 70, 29, 18, 26, 0, 7, 0, 69, 74, 24, 4, 2, 0, 73, 30, 70, 31, 18, 26, 0, 7, 0, 69, 75, 24, 4, 2, 0, 73, 32, 70, 33, 18, 26, 0, 7, 0, 69, 76, 24, 4, 2, 0, 73, 34, 70, 35, 18, 26, 0 </int_array>
+			<int_array  len="159"> 				-1, -1, 1, 0, -1, 17, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 2, 13, 2, 14, 2, 15, 2, 16, 7, 17, 8, 18, 9, 0, 0, 0, 19, 19, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 20, 2, 21, 10, 22, 2, 23, 2, 24, 11, 25, 11, 26, 3, 27, 3, 28, 3, 29, 3, 30, 3, 31, 12, 32, 10, 33, 13, 17, 14, 0, 0, 0, 34, 34, -1, 6, 2, 0, 3, 1, 35, 6, 4, 2, 36, 5, 37, 3, 0, 0, 0, 39, 38, -1, 15, 2, 0, 40, 15, 41, 16, 42, 11, 43, 17, 44, 11, 45, 11, 46, 11, 47, 18, 48, 18, 49, 18, 50, 18, 51, 19, 52, 11, 53, 11, 0, 0, 0, 55, 54, -1, 5, 2, 0, 3, 1, 4, 2, 56, 2, 57, 20, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

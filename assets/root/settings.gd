@@ -60,7 +60,7 @@ func update_volumes():
     var master = get_audio_master_volume() / 50.0
 
     var effects = get_audio_effects_volume() / 100.0
-    AudioServer.set_fx_global_volume_scale(effects * master)
+    AudioServer.set_fx_global_volume_scale(effects * master * 0.25)
 
     var music = get_audio_music_volume() / 100.0
     AudioServer.set_stream_global_volume_scale(music * master)
