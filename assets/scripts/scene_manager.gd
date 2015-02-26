@@ -121,9 +121,12 @@ func goto(scene_file):
     loading_label.show()
     loading_label.set_text("LOADING_SCENE")
 
-func show_dialog(scene_file):
+func show_dialog(scene_file, callback=null):
     close_dialog()
     var scene = load(scene_file).instance()
+    if callback != null:
+        scene.set_callback(callback)
+
     dialog.add_child(scene)
     dialog.show()
     dialog_base.show()
@@ -135,7 +138,6 @@ func _pause_tree():
 func close_dialog():
     if dialog.get_child_count() > 0:
         var scene = dialog.get_child(0)
-        print(var2str(scene))
         scene.queue_free()
         dialog_base.hide()
         get_tree().set_pause(false)

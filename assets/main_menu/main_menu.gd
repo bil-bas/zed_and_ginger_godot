@@ -22,7 +22,12 @@ func _on_Play_pressed():
     scene_manager.goto("res://game/play.xscn")
 
 func _on_Editor_pressed():
-    scene_manager.show_dialog("res://pick_level/pick_level_to_edit.xscn")
+    scene_manager.show_dialog("res://pick_level/pick_level_to_edit.xscn", funcref(self, "_on_level_selected"))
+
+func _on_level_selected(filename, level_data):
+    Globals.set("level_filename", filename)
+    Globals.set("level_data", level_data)
+    scene_manager.goto("res://game/editor.xscn")
 
 func _on_Settings_pressed():
     scene_manager.show_dialog("res://settings/settings.xscn")

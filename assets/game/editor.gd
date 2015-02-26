@@ -219,9 +219,10 @@ func _on_SaveButton_pressed():
     level.save()
 
 func _on_SaveAsButton_pressed():
-    scene_manager.show_dialog("res://pick_level/pick_level_to_save.xscn")
+    scene_manager.show_dialog("res://pick_level/pick_level_to_save.xscn", funcref(self, "on_save_file_picked"))
 
-    level.save()
+func on_save_file_picked(filename, level_data):
+    level.save_as(filename)
 
 func _on_UndoButton_pressed():
     history.undo()

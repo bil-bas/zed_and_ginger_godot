@@ -134,8 +134,12 @@ func grid_to_world(grid):
     else:
         return Vector3(grid.x + 0.5, (grid.y - FLOOR_SIZE) + 0.5, 0.5)
 
+func save_as(filename):
+    self.filename = filename
+    save()
+
 func save():
-    logger.info("Saving level: %s" % name)
+    logger.info("Saving level: %s (%s)" % [name, filename])
 
     var data = { "name": name,  "tiles": [], "items": [] }
 
