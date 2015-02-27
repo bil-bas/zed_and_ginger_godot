@@ -66,8 +66,9 @@ func _load_sheet(spritesheet):
         if is_light_source:
             material.set_blend_mode(Material.BLEND_MODE_ADD)
         else:
+            pass
             # DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA, DEPTH_DRAW_OPAQUE_ONLY, DEPTH_DRAW_NEVER, DEPTH_DRAW_ALWAYS
-            material.set_depth_draw_mode(Material.DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA)
+            #material.set_depth_draw_mode(Material.DEPTH_DRAW_OPAQUE_PRE_PASS_ALPHA)
 
     if is_light_source:
         material.set_flag(FixedMaterial.FLAG_UNSHADED, true)

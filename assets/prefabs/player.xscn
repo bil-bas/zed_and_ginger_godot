@@ -2,15 +2,15 @@
 <resource_file type="PackedScene" subresource_count="14" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://effects/rat_chased.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://effects/speed_pill_taken.smp" type="Sample"></ext_resource>
-	<ext_resource path="res://effects/player_jump.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://scripts/mesh_animator.gd" type="Script"></ext_resource>
+	<ext_resource path="res://effects/player_jump.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://effects/fly_trap_snap.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://effects/spring_bounce.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://effects/mine_explosion.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://effects/fly_trap_chew.smp" type="Sample"></ext_resource>
 	<ext_resource path="res://effects/player_died.smp" type="Sample"></ext_resource>
-	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
 	<ext_resource path="res://effects/rat_squashed.smp" type="Sample"></ext_resource>
+	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 0.5 </real>
 		<real name="height"> 0.5 </real>
@@ -161,7 +161,7 @@
 			<string> "node_count" </string>
 			<int> 5 </int>
 			<string> "variants" </string>
-			<array  len="21" shared="false">
+			<array  len="20" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
@@ -294,7 +294,6 @@
 				<int> 0 </int>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Script" path="res://scripts/mesh_animator.gd">  </resource>
-				<int> 10 </int>
 				<resource  resource_type="SampleLibrary" path="local://2">  </resource>
 				<real> 1 </real>
 				<nil>  </nil>
@@ -302,7 +301,7 @@
 				<vector3> 0, -5, 0 </vector3>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="159"> 				-1, -1, 1, 0, -1, 17, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 2, 13, 2, 14, 2, 15, 2, 16, 7, 17, 8, 18, 9, 0, 0, 0, 19, 19, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 20, 2, 21, 10, 22, 2, 23, 2, 24, 11, 25, 11, 26, 3, 27, 3, 28, 3, 29, 3, 30, 3, 31, 12, 32, 10, 33, 13, 17, 14, 0, 0, 0, 34, 34, -1, 6, 2, 0, 3, 1, 35, 6, 4, 2, 36, 5, 37, 3, 0, 0, 0, 39, 38, -1, 15, 2, 0, 40, 15, 41, 16, 42, 11, 43, 17, 44, 11, 45, 11, 46, 11, 47, 18, 48, 18, 49, 18, 50, 18, 51, 19, 52, 11, 53, 11, 0, 0, 0, 55, 54, -1, 5, 2, 0, 3, 1, 4, 2, 56, 2, 57, 20, 0 </int_array>
+			<int_array  len="159"> 				-1, -1, 1, 0, -1, 17, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 3, 11, 4, 12, 2, 13, 2, 14, 2, 15, 2, 16, 7, 17, 8, 18, 9, 0, 0, 0, 19, 19, -1, 19, 2, 0, 3, 1, 4, 2, 11, 4, 20, 2, 21, 10, 22, 2, 23, 2, 24, 11, 25, 11, 26, 3, 27, 3, 28, 3, 29, 3, 30, 3, 31, 12, 32, 10, 33, 13, 17, 14, 0, 0, 0, 34, 34, -1, 6, 2, 0, 3, 1, 35, 6, 4, 2, 36, 5, 37, 3, 0, 0, 0, 39, 38, -1, 15, 2, 0, 40, 4, 41, 15, 42, 11, 43, 16, 44, 11, 45, 11, 46, 11, 47, 17, 48, 17, 49, 17, 50, 17, 51, 18, 52, 11, 53, 11, 0, 0, 0, 55, 54, -1, 5, 2, 0, 3, 1, 4, 2, 56, 2, 57, 19, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
