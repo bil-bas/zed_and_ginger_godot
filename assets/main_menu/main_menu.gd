@@ -45,12 +45,12 @@ func _on_Back_pressed():
     camera_animator.play("zoom_out")
 
 func _on_CameraAnimator_finished():
-	if camera_animator.get_current_animation() == "zoom_in":
-		level_buttons.show()
-		update_level_buttons()
-	else:
-		menu_buttons.show()
-	
+    if camera_animator.get_current_animation() == "zoom_in":
+        level_buttons.show()
+        update_level_buttons()
+    else:
+        menu_buttons.show()
+    
 func _on_Editor_pressed():
     scene_manager.show_dialog("res://pick_level/pick_level_to_edit.xscn", funcref(self, "_on_edit_level_selected"))
 

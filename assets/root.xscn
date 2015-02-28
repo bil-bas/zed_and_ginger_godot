@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+<resource_file type="PackedScene" subresource_count="4" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://fonts/lcd_solid_24.fnt" type="Font"></ext_resource>
-	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
-	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
+	<ext_resource path="res://prefabs/background.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://scripts/scene_manager.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="78">
+			<string_array  len="59">
 				<string> "Root" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -18,14 +17,18 @@
 				<string> "offset" </string>
 				<string> "rotation" </string>
 				<string> "scale" </string>
-				<string> "Stars" </string>
 				<string> "TextureFrame" </string>
+				<string> "Scene" </string>
+				<string> "Dialog" </string>
+				<string> "process/pause_mode" </string>
+				<string> "Control" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
 				<string> "visibility/light_mask" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
+				<string> "rect/min_size" </string>
 				<string> "focus_neighbour/left" </string>
 				<string> "focus_neighbour/top" </string>
 				<string> "focus_neighbour/right" </string>
@@ -35,29 +38,6 @@
 				<string> "size_flags/horizontal" </string>
 				<string> "size_flags/vertical" </string>
 				<string> "size_flags/stretch_ratio" </string>
-				<string> "texture" </string>
-				<string> "modulate" </string>
-				<string> "expand" </string>
-				<string> "Moon" </string>
-				<string> "Sprite" </string>
-				<string> "transform/pos" </string>
-				<string> "transform/rot" </string>
-				<string> "transform/scale" </string>
-				<string> "z/z" </string>
-				<string> "z/relative" </string>
-				<string> "centered" </string>
-				<string> "flip_h" </string>
-				<string> "flip_v" </string>
-				<string> "vframes" </string>
-				<string> "hframes" </string>
-				<string> "frame" </string>
-				<string> "region" </string>
-				<string> "region_rect" </string>
-				<string> "Scene" </string>
-				<string> "Dialog" </string>
-				<string> "process/pause_mode" </string>
-				<string> "Control" </string>
-				<string> "rect/min_size" </string>
 				<string> "Center" </string>
 				<string> "CenterContainer" </string>
 				<string> "use_top_left" </string>
@@ -92,9 +72,9 @@
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 14 </int>
+			<int> 13 </int>
 			<string> "variants" </string>
-			<array  len="38" shared="false">
+			<array  len="34" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -219,23 +199,136 @@
 				<vector2> 0, 0 </vector2>
 				<real> 0 </real>
 				<vector2> 1, 1 </vector2>
-				<bool> True </bool>
+				<resource  resource_type="PackedScene" path="res://prefabs/background.xscn">  </resource>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_states__" </string>
+					<dictionary  shared="false">
+						<string> "2D" </string>
+						<dictionary  shared="false">
+							<string> "pixel_snap" </string>
+							<bool> True </bool>
+							<string> "zoom" </string>
+							<real> 0.540361 </real>
+							<string> "use_snap" </string>
+							<bool> False </bool>
+							<string> "ofs" </string>
+							<vector2> -83.9984, -500 </vector2>
+							<string> "snap" </string>
+							<int> 10 </int>
+						</dictionary>
+						<string> "3D" </string>
+						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "viewports" </string>
+							<array  len="4" shared="false">
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> True </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+							</array>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
+							<string> "ambient_light_color" </string>
+							<color> 0.15, 0.15, 0.15, 1 </color>
+							<string> "show_grid" </string>
+							<bool> True </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
+							<string> "znear" </string>
+							<real> 0.1 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
+						</dictionary>
+					</dictionary>
+					<string> "__editor_run_settings__" </string>
+					<dictionary  shared="false">
+						<string> "custom_args" </string>
+						<string> "-l $scene" </string>
+						<string> "run_mode" </string>
+						<int> 0 </int>
+					</dictionary>
+					<string> "__editor_plugin_screen__" </string>
+					<string> "2D" </string>
+				</dictionary>
+				<int> 0 </int>
+				<int> 2 </int>
+				<int> 3 </int>
+				<bool> False </bool>
 				<real> 1 </real>
 				<int> 1 </int>
 				<real> 800 </real>
-				<real> 600 </real>
-				<int> 2 </int>
-				<resource  resource_type="Texture" path="res://sprites/starscape.png">  </resource>
-				<color> 1, 1, 1, 1 </color>
-				<vector2> 550, 200 </vector2>
-				<vector2> 12, 12 </vector2>
-				<int> 0 </int>
-				<resource  resource_type="Texture" path="res://sprites/moon.png">  </resource>
-				<bool> False </bool>
-				<rect2> 0, 0, 0, 0 </rect2>
-				<int> 3 </int>
 				<real> 500 </real>
 				<vector2> 800, 500 </vector2>
+				<bool> True </bool>
 				<real> 396 </real>
 				<real> 244 </real>
 				<real> 404 </real>
@@ -243,6 +336,7 @@
 				<resource  resource_type="Script" path="res://scripts/scene_manager.gd">  </resource>
 				<real> 200 </real>
 				<real> 375 </real>
+				<real> 600 </real>
 				<real> 393 </real>
 				<resource  resource_type="Font" path="res://fonts/lcd_solid_24.fnt">  </resource>
 				<string> "Loading..." </string>
@@ -253,7 +347,7 @@
 				<int> 5 </int>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="454"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, -1, 5, 2, 0, 6, 2, 7, 3, 8, 4, 9, 5, 0, 1, 0, 11, 10, -1, 19, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 16, 9, 17, 10, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 25, 11, 26, 7, 27, 12, 28, 13, 29, 6, 0, 1, 0, 31, 30, -1, 21, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 32, 14, 33, 4, 34, 15, 35, 16, 36, 6, 27, 17, 37, 6, 7, 3, 38, 18, 39, 18, 40, 8, 41, 8, 42, 16, 28, 13, 43, 18, 44, 19, 0, 0, 0, 5, 45, -1, 5, 2, 0, 6, 16, 7, 3, 8, 4, 9, 5, 0, 0, 0, 5, 46, -1, 6, 2, 0, 47, 11, 6, 20, 7, 3, 8, 4, 9, 5, 0, 5, 0, 48, 48, -1, 17, 2, 0, 12, 18, 13, 7, 14, 7, 15, 8, 16, 9, 17, 21, 49, 22, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0, 6, 0, 51, 50, -1, 16, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 49, 22, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 52, 18, 0, 7, 0, 53, 46, -1, 18, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 23, 55, 24, 16, 25, 17, 26, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0, 0, 0, 1, 56, -1, 3, 2, 0, 47, 11, 57, 27, 0, 0, 0, 5, 58, -1, 5, 2, 0, 6, 20, 7, 3, 8, 4, 9, 5, 0, 10, 0, 59, 59, -1, 31, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 28, 55, 29, 16, 10, 17, 30, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 26, 7, 60, 31, 61, 4, 62, 7, 63, 7, 64, 7, 65, 4, 66, 18, 67, 18, 68, 32, 69, 16, 70, 16, 71, 18, 72, 18, 73, 33, 0, 10, 0, 75, 74, -1, 25, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 28, 55, 34, 16, 10, 17, 35, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 26, 7, 61, 4, 62, 36, 63, 7, 64, 4, 65, 4, 66, 18, 67, 18, 76, 18, 0, 0, 0, 5, 77, -1, 5, 2, 0, 6, 37, 7, 3, 8, 4, 9, 5, 0 </int_array>
+			<int_array  len="371"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, -1, 5, 2, 0, 6, 2, 7, 3, 8, 4, 9, 5, 0, 1, 0, 10, 4, 6, 2, 2, 0, 3, 7, 0, 0, 0, 5, 11, -1, 5, 2, 0, 6, 8, 7, 3, 8, 4, 9, 5, 0, 0, 0, 5, 12, -1, 6, 2, 0, 13, 9, 6, 10, 7, 3, 8, 4, 9, 5, 0, 4, 0, 14, 14, -1, 17, 2, 0, 15, 11, 16, 12, 17, 12, 18, 13, 19, 14, 20, 15, 21, 16, 22, 0, 23, 0, 24, 0, 25, 0, 26, 11, 27, 17, 28, 9, 29, 9, 30, 12, 0, 5, 0, 32, 31, -1, 16, 2, 0, 15, 17, 16, 12, 17, 12, 18, 13, 21, 16, 22, 0, 23, 0, 24, 0, 25, 0, 26, 11, 27, 17, 28, 9, 29, 9, 30, 12, 33, 11, 0, 6, 0, 34, 12, -1, 18, 2, 0, 15, 17, 16, 12, 17, 12, 18, 13, 35, 18, 36, 19, 19, 20, 20, 21, 22, 0, 23, 0, 24, 0, 25, 0, 26, 11, 27, 17, 28, 9, 29, 9, 30, 12, 0, 0, 0, 1, 37, -1, 3, 2, 0, 13, 9, 38, 22, 0, 0, 0, 5, 39, -1, 5, 2, 0, 6, 10, 7, 3, 8, 4, 9, 5, 0, 9, 0, 40, 40, -1, 31, 2, 0, 15, 17, 16, 12, 17, 12, 18, 13, 35, 23, 36, 24, 19, 25, 20, 26, 22, 0, 23, 0, 24, 0, 25, 0, 26, 17, 27, 17, 28, 9, 30, 12, 41, 27, 42, 4, 43, 12, 44, 12, 45, 12, 46, 4, 47, 11, 48, 11, 49, 28, 50, 8, 51, 8, 52, 11, 53, 11, 54, 29, 0, 9, 0, 56, 55, -1, 25, 2, 0, 15, 17, 16, 12, 17, 12, 18, 13, 35, 23, 36, 30, 19, 25, 20, 31, 22, 0, 23, 0, 24, 0, 25, 0, 26, 11, 27, 17, 28, 9, 30, 12, 42, 4, 43, 32, 44, 12, 45, 4, 46, 4, 47, 11, 48, 11, 57, 11, 0, 0, 0, 5, 58, -1, 5, 2, 0, 6, 33, 7, 3, 8, 4, 9, 5, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

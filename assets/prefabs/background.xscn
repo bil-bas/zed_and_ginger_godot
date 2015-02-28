@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
 	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
+	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
@@ -181,17 +181,17 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<vector2> 0, 0 </vector2>
+				<vector2> 562, 159 </vector2>
 				<real> 0 </real>
 				<vector2> 12, 12 </vector2>
 				<int> 0 </int>
 				<resource  resource_type="Texture" path="res://sprites/moon.png">  </resource>
+				<vector2> 0, 0 </vector2>
 				<bool> False </bool>
-				<vector2> 40, 8 </vector2>
 				<rect2> 0, 0, 0, 0 </rect2>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="96"> 				-1, -1, 1, 0, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 1, 14, 1, 15, 6, 16, 6, 17, 2, 18, 7, 19, 8, 20, 1, 21, 9, 0, 0, 0, 23, 22, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 24, 10, 25, 11, 26, 12, 27, 13, 28, 1, 18, 14, 29, 15, 30, 16, 31, 15, 32, 15, 33, 3, 34, 3, 35, 13, 19, 8, 36, 15, 37, 17, 0 </int_array>
+			<int_array  len="96"> 				-1, -1, 1, 0, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 1, 14, 1, 15, 6, 16, 6, 17, 2, 18, 7, 19, 8, 20, 1, 21, 9, 0, 0, 0, 23, 22, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 24, 10, 25, 11, 26, 12, 27, 13, 28, 1, 18, 14, 29, 1, 30, 15, 31, 16, 32, 16, 33, 3, 34, 3, 35, 13, 19, 8, 36, 16, 37, 17, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
