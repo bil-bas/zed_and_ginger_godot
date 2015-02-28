@@ -47,9 +47,9 @@
 				<bool> True </bool>
 				<real> 1 </real>
 				<int> 1 </int>
-				<real> 180 </real>
+				<real> 136 </real>
 				<real> 50 </real>
-				<vector2> 180, 50 </vector2>
+				<vector2> 130, 50 </vector2>
 				<bool> False </bool>
 				<int> 2 </int>
 				<resource  resource_type="Font" path="res://fonts/lcd_solid_24.fnt">  </resource>
@@ -62,11 +62,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 0.735092 </real>
+							<real> 0.54036 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -800, -219.865 </vector2>
+							<vector2> -800, -500 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>

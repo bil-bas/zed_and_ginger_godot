@@ -1,19 +1,19 @@
 ID, en
-PLAY_BUTTON, Play
-EDITOR_BUTTON, Editor
-SETTINGS_BUTTON, Settings
-QUIT_BUTTON, Quit
+PLAY, Play
+EDITOR, Editor
+SETTINGS, Settings
+QUIT, Quit
 LOADING_SCENE, Loading...
 SETUP_SCENE, Setup...
-SAVE_BUTTON, Save
-SAVE_AS_BUTTON, Save as...
-UNDO_BUTTON, Undo
-REDO_BUTTON, Redo
-BACK_BUTTON, Back
+SAVE, Save
+SAVE_AS, Save as...
+UNDO, Undo
+REDO, Redo
+BACK, Back
 MASTER_VOLUME, Master Volume
 EFFECTS_VOLUME, Effects Volume
 MUSIC_VOLUME, Music Volume
 FULLSCREEN, Fullscreen
 EDIT_LEVEL, Edit Level
-CANCEL_BUTTON, Cancel
+CANCEL, Cancel
 SAVE_LEVEL, Save Level

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://main_menu/scroll_title.gd" type="Script"></ext_resource>
-	<ext_resource path="res://main_menu/main_menu.gd" type="Script"></ext_resource>
-	<ext_resource path="res://prefabs/my_button.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://music/Space_Cat_Ambient.ogg" type="AudioStream"></ext_resource>
-	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
 	<ext_resource path="res://sprites/ship.png" type="Texture"></ext_resource>
+	<ext_resource path="res://main_menu/main_menu.gd" type="Script"></ext_resource>
+	<ext_resource path="res://music/Space_Cat_Ambient.ogg" type="AudioStream"></ext_resource>
+	<ext_resource path="res://prefabs/my_button.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://main_menu/scroll_title.gd" type="Script"></ext_resource>
+	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
@@ -249,15 +249,15 @@
 				<color> 1, 1, 1, 1 </color>
 				<rect2> 0, 0, 0, 0 </rect2>
 				<int> 3 </int>
-				<real> 2 </real>
+				<real> -88 </real>
 				<real> 30 </real>
-				<real> -246 </real>
-				<real> 280 </real>
+				<real> -268 </real>
+				<real> 254 </real>
 				<int> 8 </int>
 				<resource  resource_type="PackedScene" path="res://prefabs/my_button.xscn">  </resource>
-				<real> 248 </real>
+				<real> 180 </real>
 				<string> "Play single player game" </string>
-				<string> "PLAY_BUTTON" </string>
+				<string> "PLAY" </string>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -276,12 +276,10 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "fov" </string>
 							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -349,6 +347,8 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
 							<string> "default_light" </string>
@@ -380,14 +380,14 @@
 				<real> 58 </real>
 				<real> 108 </real>
 				<string> "Edit levels" </string>
-				<string> "EDITOR_BUTTON" </string>
+				<string> "EDITOR" </string>
 				<real> 116 </real>
 				<real> 166 </real>
-				<string> "SETTINGS_BUTTON" </string>
+				<string> "SETTINGS" </string>
 				<real> 174 </real>
 				<real> 224 </real>
 				<string> "Quit game entirely" </string>
-				<string> "QUIT_BUTTON" </string>
+				<string> "QUIT" </string>
 				<resource  resource_type="AudioStream" path="res://music/Space_Cat_Ambient.ogg">  </resource>
 			</array>
 			<string> "nodes" </string>
