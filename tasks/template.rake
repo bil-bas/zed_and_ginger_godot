@@ -6,11 +6,15 @@ def target_for_release(release)
   release == :release ? "release" : "release_debug"
 end
 
+def target_for_debug(release)
+  release == :release ? "release_debug" : "debug"
+end
+
 namespace :build do
   [:x11, :server].each do |platform|
     desc "Build #{platform} executable"
     task platform do
-      system "scons --jobs={NUM_CORES} platform=#{platform}"
+      system "scons --jobs={NUM_CORES} platform=#{platform} "
     end
   end
 end
@@ -22,7 +26,7 @@ namespace :template do
         desc "Build #{platform} export template: #{release.upcase}"
         task release do
           FileUtils.cd "../godot" do
-            system "scons --jobs=#{NUM_CORES} platform=#{platform} target=#{target_for_release(release)}"
+            system "scons --jobs=#{NUM_CORES} platform=#{platform} target=#{target_for_debug(release)}"
             FileUtils.cp "bin/godot.x11.opt.tools.64", File.expand_path("~/.godot/templates/linux_64_#{release}")
           end
         end
@@ -61,7 +65,7 @@ namespace :template do
           system "scons --jobs=#{NUM_CORES} platform=android target=#{target_for_release(release)}"
 
           FileUtils.mkdir_p "platform/android/java/libs/armeabi"
-          FileUtils.cp "bin/libgodot.android.opt.#{release}.so", "platform/android/java/libs/armeabi/libgodot_android.so"
+          FileUtils.cp "bin/libgodot.android.opt#{release == :debug ? ".debug" : ""}.so", "platform/android/java/libs/armeabi/libgodot_android.so"
           FileUtils.cd "platform/android/java/" do
             system 'ant release'
           end

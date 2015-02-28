@@ -87,7 +87,7 @@ func _load_sheet(spritesheet):
     else:
         _world_offsets[spritesheet] = Vector3(-(width - 2) * PIXEL_SIZE / 2, (height - 2) * PIXEL_SIZE, 0)
     
-    _sprite_sizes[spritesheet] = Vector3(texture.get_width() / width, texture.get_height() / height, depth)
+    _sprite_sizes[spritesheet] = Vector3(width - 2, height - 2, depth)
 
     # Create save data.
     var meshes = []
@@ -157,23 +157,27 @@ func new_mesh_object(spritesheet, is_editor=false):
 
     var is_centered = (spritesheet != "tile")
 
-#    box = obj.AddComponent(BoxCollider)
-#    size = _sprite_sizes[spritesheet]
-#    width, height, depth = size.x, size.y, size.z
-#    if is_centered:
-#        box.center = Vector3(0, height / 2, 0) * PIXEL_SIZE
-#        box.size = Vector3(width, height, depth) * PIXEL_SIZE
-#    else:
-#        box.center = Vector3(0, height / 2, -depth / 2) * PIXEL_SIZE
-#        box.size = Vector3(width, height, depth) * PIXEL_SIZE
+    var box = obj.get_shape(0)
+    var size = _sprite_sizes[spritesheet]
+    if is_centered:
+        pass#box.set_translation(Vector3(0, size.y / 2, 0) * PIXEL_SIZE)
+    else:
+        pass#box.set_translation(Vector3(0, size.y / 2, -size.z / 2) * PIXEL_SIZE)
 
-#    var collision_object = CollisionObject.new()
-#    var shape = BoxShape.new()
-#    shape.extents = Vector3(1, 1, 1)
-#    collision_object.add_shape(shape)
-#    obj.add_child(collision_object)
-
-#    box.material = Resources.Load("PhysicsMaterials/Floor")
+    if spritesheet != "player":
+        #box.set_extents(size * 0.5 * PIXEL_SIZE)
+        
+        # Show collision shapes.
+        if false and is_centered:
+            var cube = TestCube.new()
+            var material = FixedMaterial.new()
+            material.set_parameter(FixedMaterial.PARAM_DIFFUSE, Color(1, 1, 1, 0.1))
+            material.set_fixed_flag(FixedMaterial.FLAG_USE_ALPHA, true)
+            material.set_blend_mode(Material.BLEND_MODE_ADD)
+            cube.set_material_override(material)
+            cube.set_scale(size * PIXEL_SIZE * 0.55)
+            obj.add_child(cube)
+            cube.set_translation(Vector3(0, size.y / 2, 0) * PIXEL_SIZE)
 
     return obj
 
