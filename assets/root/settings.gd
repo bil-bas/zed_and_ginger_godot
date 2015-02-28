@@ -5,6 +5,7 @@ const CONFIG_FILE = "user://settings.ini"
 const VIDEO_SECTION = "video"
 const FULLSCREEN = "fullscreen"
 const SHOW_FPS = "show_fps"
+const VSYNC = "vsync"
 
 const AUDIO_SECTION = "audio"
 const MASTER_VOLUME = "master_volume"
@@ -28,6 +29,7 @@ func _ready():
     update_volumes()
     update_screen_size()
     update_show_fps()
+    update_vsync()
 
 func save():
     _config.save(CONFIG_FILE)
@@ -41,6 +43,9 @@ func default_video_settings():
 
     if not SHOW_FPS in keys:
         _config.set_value(VIDEO_SECTION, SHOW_FPS, false)
+
+    if not VSYNC in keys:
+    	_config.set_value(VIDEO_SECTION, VSYNC, true)
 
 func default_audio_settings():
     var keys = _config.get_section_keys(AUDIO_SECTION);
@@ -70,6 +75,12 @@ func update_show_fps():
         _fps_overlay.queue_free()
         _fps_overlay = null
 
+func update_vsync():
+	if get_video_vsync():
+		OS.set_target_fps(60)
+	else:
+		OS.set_target_fps(0)
+
 func update_volumes():
     var master = get_audio_master_volume() / 50.0
 
@@ -95,6 +106,14 @@ func get_video_show_fps():
 func set_video_show_fps(value):
 	_config.set_value(VIDEO_SECTION, SHOW_FPS, value)
 	update_show_fps()
+	save()
+
+func get_video_vsync():
+	return _config.get_value(VIDEO_SECTION, VSYNC)
+
+func set_video_vsync(value):
+	_config.set_value(VIDEO_SECTION, VSYNC, value)
+	update_vsync()
 	save()
 
 # Audio settings.

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="8" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://prefabs/settings_grid.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://prefabs/setting_label.scn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://prefabs/settings_checkbox.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://fonts/lcd_solid_24.fnt" type="Font"></ext_resource>
-	<ext_resource path="res://prefabs/volume_slider.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://prefabs/setting_label.scn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://prefabs/my_button.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://prefabs/volume_slider.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://settings/settings.gd" type="Script"></ext_resource>
+	<ext_resource path="res://prefabs/settings_checkbox.xscn" type="PackedScene"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="60">
+			<string_array  len="63">
 				<string> "Settings" </string>
 				<string> "VBoxContainer" </string>
 				<string> "_import_path" </string>
@@ -50,6 +50,8 @@
 				<string> "CheckButton" </string>
 				<string> "ShowFPSLabel" </string>
 				<string> "ShowFPS" </string>
+				<string> "VSyncLabel" </string>
+				<string> "VSync" </string>
 				<string> "Audio" </string>
 				<string> "MasterVolumeLabel" </string>
 				<string> "MasterVolume" </string>
@@ -65,6 +67,7 @@
 				<string> "_on_Fullscreen_toggled" </string>
 				<string> "toggled" </string>
 				<string> "_on_ShowFPS_toggled" </string>
+				<string> "_on_VSync_toggled" </string>
 				<string> "_on_MasterVolume_value_changed" </string>
 				<string> "value_changed" </string>
 				<string> "_on_EffectsVolume_value_changed" </string>
@@ -75,11 +78,11 @@
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
-			<int> 6 </int>
+			<int> 7 </int>
 			<string> "node_count" </string>
-			<int> 16 </int>
+			<int> 18 </int>
 			<string> "variants" </string>
-			<array  len="56" shared="false">
+			<array  len="61" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
@@ -206,7 +209,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<real> 350 </real>
 				<vector2> 700, 350 </vector2>
@@ -233,10 +236,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "zfar" </string>
 							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -304,24 +309,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -356,6 +359,10 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -423,28 +430,24 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -479,10 +482,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "zfar" </string>
 							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -550,24 +555,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -585,6 +588,11 @@
 				<string> "SHOW_FPS" </string>
 				<real> 41 </real>
 				<real> 62 </real>
+				<real> 83 </real>
+				<real> 101 </real>
+				<string> "VSYNC" </string>
+				<real> 82 </real>
+				<real> 103 </real>
 				<real> 240 </real>
 				<real> 18 </real>
 				<string> "MASTER_VOLUME" </string>
@@ -628,6 +636,10 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -695,28 +707,24 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -731,9 +739,9 @@
 				</dictionary>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="380"> 				-1, -1, 1, 0, -1, 18, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 6, 14, 1, 15, 7, 16, 7, 17, 2, 18, 8, 19, 9, 0, 0, 0, 21, 20, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 10, 22, 11, 9, 0, 10, 0, 11, 0, 12, 0, 13, 6, 14, 1, 15, 7, 16, 7, 17, 2, 23, 12, 24, 13, 25, 1, 0, 1, 0, 27, 26, 14, 9, 2, 0, 3, 1, 28, 3, 29, 3, 30, 15, 31, 16, 7, 15, 8, 15, 19, 17, 0, 2, 0, 33, 32, 18, 6, 2, 0, 31, 2, 7, 19, 8, 20, 34, 21, 19, 22, 0, 2, 0, 36, 35, 23, 5, 2, 0, 30, 24, 7, 25, 8, 26, 19, 27, 0, 2, 0, 33, 37, 18, 6, 2, 0, 31, 28, 7, 19, 8, 29, 34, 30, 19, 22, 0, 2, 0, 36, 38, 23, 6, 2, 0, 30, 24, 31, 31, 7, 25, 8, 32, 19, 27, 0, 1, 0, 27, 39, 14, 8, 2, 0, 28, 3, 29, 3, 30, 15, 31, 16, 7, 15, 8, 15, 19, 17, 0, 7, 0, 33, 40, 18, 5, 2, 0, 7, 33, 8, 34, 34, 35, 19, 22, 0, 7, 0, 42, 41, 36, 6, 2, 0, 30, 37, 31, 2, 7, 38, 8, 39, 19, 40, 0, 7, 0, 33, 43, 18, 6, 2, 0, 31, 41, 7, 33, 8, 42, 34, 43, 19, 22, 0, 7, 0, 42, 44, 36, 6, 2, 0, 30, 37, 31, 44, 7, 38, 8, 45, 19, 40, 0, 7, 0, 33, 45, 18, 6, 2, 0, 31, 46, 7, 33, 8, 47, 34, 48, 19, 22, 0, 7, 0, 42, 46, 36, 6, 2, 0, 30, 37, 31, 49, 7, 38, 8, 50, 19, 40, 0, 0, 0, 48, 47, -1, 17, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 31, 51, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 6, 14, 6, 15, 7, 16, 7, 17, 2, 0, 14, 0, 50, 49, 52, 4, 2, 0, 7, 53, 34, 54, 19, 55, 0 </int_array>
+			<int_array  len="418"> 				-1, -1, 1, 0, -1, 18, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 6, 14, 1, 15, 7, 16, 7, 17, 2, 18, 8, 19, 9, 0, 0, 0, 21, 20, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 10, 22, 11, 9, 0, 10, 0, 11, 0, 12, 0, 13, 6, 14, 1, 15, 7, 16, 7, 17, 2, 23, 12, 24, 13, 25, 1, 0, 1, 0, 27, 26, 14, 9, 2, 0, 3, 1, 28, 3, 29, 3, 30, 15, 31, 16, 7, 15, 8, 15, 19, 17, 0, 2, 0, 33, 32, 18, 6, 2, 0, 31, 2, 7, 19, 8, 20, 34, 21, 19, 22, 0, 2, 0, 36, 35, 23, 5, 2, 0, 30, 24, 7, 25, 8, 26, 19, 27, 0, 2, 0, 33, 37, 18, 6, 2, 0, 31, 28, 7, 19, 8, 29, 34, 30, 19, 22, 0, 2, 0, 36, 38, 23, 6, 2, 0, 30, 24, 31, 31, 7, 25, 8, 32, 19, 27, 0, 2, 0, 33, 39, 18, 6, 2, 0, 31, 33, 7, 19, 8, 34, 34, 35, 19, 22, 0, 2, 0, 36, 40, 23, 6, 2, 0, 30, 24, 31, 36, 7, 25, 8, 37, 19, 27, 0, 1, 0, 27, 41, 14, 8, 2, 0, 28, 3, 29, 3, 30, 15, 31, 16, 7, 15, 8, 15, 19, 17, 0, 9, 0, 33, 42, 18, 5, 2, 0, 7, 38, 8, 39, 34, 40, 19, 22, 0, 9, 0, 44, 43, 41, 6, 2, 0, 30, 42, 31, 2, 7, 43, 8, 44, 19, 45, 0, 9, 0, 33, 45, 18, 6, 2, 0, 31, 46, 7, 38, 8, 47, 34, 48, 19, 22, 0, 9, 0, 44, 46, 41, 6, 2, 0, 30, 42, 31, 49, 7, 43, 8, 50, 19, 45, 0, 9, 0, 33, 47, 18, 6, 2, 0, 31, 51, 7, 38, 8, 52, 34, 53, 19, 22, 0, 9, 0, 44, 48, 41, 6, 2, 0, 30, 42, 31, 54, 7, 43, 8, 55, 19, 45, 0, 0, 0, 50, 49, -1, 17, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 31, 56, 7, 4, 8, 5, 9, 0, 10, 0, 11, 0, 12, 0, 13, 6, 14, 6, 15, 7, 16, 7, 17, 2, 0, 16, 0, 52, 51, 57, 4, 2, 0, 7, 58, 34, 59, 19, 60, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="36"> 				4, 0, 52, 51, 2, 0, 6, 0, 52, 53, 2, 0, 9, 0, 55, 54, 2, 0, 11, 0, 55, 56, 2, 0, 13, 0, 55, 57, 2, 0, 15, 0, 59, 58, 2, 0 </int_array>
+			<int_array  len="42"> 				4, 0, 54, 53, 2, 0, 6, 0, 54, 55, 2, 0, 8, 0, 54, 56, 2, 0, 11, 0, 58, 57, 2, 0, 13, 0, 58, 59, 2, 0, 15, 0, 58, 60, 2, 0, 17, 0, 62, 61, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
