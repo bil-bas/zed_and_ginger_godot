@@ -4,6 +4,7 @@ const CONFIG_FILE = "user://settings.ini"
 
 const VIDEO_SECTION = "video"
 const FULLSCREEN = "fullscreen"
+const SHOW_FPS = "show_fps"
 
 const AUDIO_SECTION = "audio"
 const MASTER_VOLUME = "master_volume"
@@ -11,6 +12,7 @@ const EFFECTS_VOLUME = "effects_volume"
 const MUSIC_VOLUME = "music_volume"
 
 var _config
+var _fps_overlay
 
 func _ready():
     _config = ConfigFile.new()
@@ -25,6 +27,7 @@ func _ready():
 
     update_volumes()
     update_screen_size()
+    update_show_fps()
 
 func save():
     _config.save(CONFIG_FILE)
@@ -35,6 +38,9 @@ func default_video_settings():
     var keys = _config.get_section_keys(VIDEO_SECTION)
     if not FULLSCREEN in keys:
         _config.set_value(VIDEO_SECTION, FULLSCREEN, false)
+
+    if not SHOW_FPS in keys:
+        _config.set_value(VIDEO_SECTION, SHOW_FPS, false)
 
 func default_audio_settings():
     var keys = _config.get_section_keys(AUDIO_SECTION);
@@ -56,6 +62,14 @@ func update_screen_size():
     else:
         OS.set_video_mode(Vector2(800, 600), false, false)
 
+func update_show_fps():
+    if get_video_show_fps():
+        _fps_overlay = preload("res://prefabs/fps_overlay.xscn").instance()
+        get_node(@"/root/Root/Overlay").add_child(_fps_overlay)
+    elif _fps_overlay != null:
+        _fps_overlay.queue_free()
+        _fps_overlay = null
+
 func update_volumes():
     var master = get_audio_master_volume() / 50.0
 
@@ -74,6 +88,14 @@ func set_video_fullscreen(value):
     _config.set_value(VIDEO_SECTION, FULLSCREEN, value)
     update_screen_size()
     save()
+
+func get_video_show_fps():
+	return _config.get_value(VIDEO_SECTION, SHOW_FPS)
+
+func set_video_show_fps(value):
+	_config.set_value(VIDEO_SECTION, SHOW_FPS, value)
+	update_show_fps()
+	save()
 
 # Audio settings.
 

@@ -14,6 +14,7 @@ MASTER_VOLUME, Master Volume
 EFFECTS_VOLUME, Effects Volume
 MUSIC_VOLUME, Music Volume
 FULLSCREEN, Fullscreen
+SHOW_FPS, Show FPS
 EDIT_LEVEL, Edit Level
 CANCEL, Cancel
 SAVE_LEVEL, Save Level

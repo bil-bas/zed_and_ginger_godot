@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://fonts/lcd_solid_24.fnt" type="Font"></ext_resource>
-	<ext_resource path="res://sprites/starscape.png" type="Texture"></ext_resource>
-	<ext_resource path="res://sprites/moon.png" type="Texture"></ext_resource>
-	<ext_resource path="res://scripts/scene_manager.gd" type="Script"></ext_resource>
+<resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+	<ext_resource path="res://scripts/fps.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="78">
-				<string> "Root" </string>
-				<string> "Node" </string>
+			<string_array  len="37">
+				<string> "FPSOverlay" </string>
+				<string> "Label" </string>
 				<string> "_import_path" </string>
-				<string> "__meta__" </string>
-				<string> "Background" </string>
-				<string> "CanvasLayer" </string>
-				<string> "layer" </string>
-				<string> "offset" </string>
-				<string> "rotation" </string>
-				<string> "scale" </string>
-				<string> "Stars" </string>
-				<string> "TextureFrame" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
 				<string> "visibility/light_mask" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
 				<string> "focus_neighbour/left" </string>
 				<string> "focus_neighbour/top" </string>
 				<string> "focus_neighbour/right" </string>
@@ -33,42 +19,7 @@
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
-				<string> "size_flags/vertical" </string>
 				<string> "size_flags/stretch_ratio" </string>
-				<string> "texture" </string>
-				<string> "modulate" </string>
-				<string> "expand" </string>
-				<string> "Moon" </string>
-				<string> "Sprite" </string>
-				<string> "transform/pos" </string>
-				<string> "transform/rot" </string>
-				<string> "transform/scale" </string>
-				<string> "z/z" </string>
-				<string> "z/relative" </string>
-				<string> "centered" </string>
-				<string> "flip_h" </string>
-				<string> "flip_v" </string>
-				<string> "vframes" </string>
-				<string> "hframes" </string>
-				<string> "frame" </string>
-				<string> "region" </string>
-				<string> "region_rect" </string>
-				<string> "Scene" </string>
-				<string> "Dialog" </string>
-				<string> "process/pause_mode" </string>
-				<string> "Control" </string>
-				<string> "rect/min_size" </string>
-				<string> "Center" </string>
-				<string> "CenterContainer" </string>
-				<string> "use_top_left" </string>
-				<string> "PanelContainer" </string>
-				<string> "margin/left" </string>
-				<string> "margin/top" </string>
-				<string> "SceneManager" </string>
-				<string> "script/script" </string>
-				<string> "Loading" </string>
-				<string> "Label" </string>
-				<string> "custom_fonts/font" </string>
 				<string> "range/min" </string>
 				<string> "range/max" </string>
 				<string> "range/step" </string>
@@ -82,20 +33,35 @@
 				<string> "autowrap" </string>
 				<string> "uppercase" </string>
 				<string> "percent_visible" </string>
-				<string> "Progress" </string>
-				<string> "ProgressBar" </string>
-				<string> "percent/visible" </string>
-				<string> "Overlay" </string>
+				<string> "script/script" </string>
+				<string> "__meta__" </string>
+				<string> "Timer 2" </string>
+				<string> "Timer" </string>
+				<string> "wait_time" </string>
+				<string> "one_shot" </string>
+				<string> "autostart" </string>
+				<string> "_on_Timer_2_timeout" </string>
+				<string> "timeout" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
-			<int> 0 </int>
+			<int> 1 </int>
 			<string> "node_count" </string>
-			<int> 14 </int>
+			<int> 2 </int>
 			<string> "variants" </string>
-			<array  len="38" shared="false">
+			<array  len="12" shared="false">
 				<node_path> "" </node_path>
+				<bool> True </bool>
+				<real> 1 </real>
+				<int> 1 </int>
+				<int> 2 </int>
+				<real> 0 </real>
+				<bool> False </bool>
+				<string> "" </string>
+				<int> 0 </int>
+				<real> -1 </real>
+				<resource  resource_type="Script" path="res://scripts/fps.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -124,7 +90,7 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 6.3475 </real>
+									<real> 4 </real>
 									<string> "x_rot" </string>
 									<real> 0 </real>
 									<string> "y_rot" </string>
@@ -213,49 +179,13 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
-				<int> -1 </int>
-				<vector2> 0, 0 </vector2>
-				<real> 0 </real>
-				<vector2> 1, 1 </vector2>
-				<bool> True </bool>
-				<real> 1 </real>
-				<int> 1 </int>
-				<real> 800 </real>
-				<real> 600 </real>
-				<int> 2 </int>
-				<resource  resource_type="Texture" path="res://sprites/starscape.png">  </resource>
-				<color> 1, 1, 1, 1 </color>
-				<vector2> 550, 200 </vector2>
-				<vector2> 12, 12 </vector2>
-				<int> 0 </int>
-				<resource  resource_type="Texture" path="res://sprites/moon.png">  </resource>
-				<bool> False </bool>
-				<rect2> 0, 0, 0, 0 </rect2>
-				<int> 3 </int>
-				<real> 500 </real>
-				<vector2> 800, 500 </vector2>
-				<real> 396 </real>
-				<real> 244 </real>
-				<real> 404 </real>
-				<real> 256 </real>
-				<resource  resource_type="Script" path="res://scripts/scene_manager.gd">  </resource>
-				<real> 200 </real>
-				<real> 375 </real>
-				<real> 393 </real>
-				<resource  resource_type="Font" path="res://fonts/lcd_solid_24.fnt">  </resource>
-				<string> "Loading..." </string>
-				<real> -1 </real>
-				<real> 400 </real>
-				<real> 430 </real>
-				<real> 100 </real>
-				<int> 5 </int>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="454"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, -1, 5, 2, 0, 6, 2, 7, 3, 8, 4, 9, 5, 0, 1, 0, 11, 10, -1, 19, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 16, 9, 17, 10, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 25, 11, 26, 7, 27, 12, 28, 13, 29, 6, 0, 1, 0, 31, 30, -1, 21, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 32, 14, 33, 4, 34, 15, 35, 16, 36, 6, 27, 17, 37, 6, 7, 3, 38, 18, 39, 18, 40, 8, 41, 8, 42, 16, 28, 13, 43, 18, 44, 19, 0, 0, 0, 5, 45, -1, 5, 2, 0, 6, 16, 7, 3, 8, 4, 9, 5, 0, 0, 0, 5, 46, -1, 6, 2, 0, 47, 11, 6, 20, 7, 3, 8, 4, 9, 5, 0, 5, 0, 48, 48, -1, 17, 2, 0, 12, 18, 13, 7, 14, 7, 15, 8, 16, 9, 17, 21, 49, 22, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0, 6, 0, 51, 50, -1, 16, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 49, 22, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 52, 18, 0, 7, 0, 53, 46, -1, 18, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 23, 55, 24, 16, 25, 17, 26, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 25, 11, 26, 7, 0, 0, 0, 1, 56, -1, 3, 2, 0, 47, 11, 57, 27, 0, 0, 0, 5, 58, -1, 5, 2, 0, 6, 20, 7, 3, 8, 4, 9, 5, 0, 10, 0, 59, 59, -1, 31, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 28, 55, 29, 16, 10, 17, 30, 18, 0, 19, 0, 20, 0, 21, 0, 22, 6, 23, 6, 24, 11, 26, 7, 60, 31, 61, 4, 62, 7, 63, 7, 64, 7, 65, 4, 66, 18, 67, 18, 68, 32, 69, 16, 70, 16, 71, 18, 72, 18, 73, 33, 0, 10, 0, 75, 74, -1, 25, 2, 0, 12, 6, 13, 7, 14, 7, 15, 8, 54, 28, 55, 34, 16, 10, 17, 35, 18, 0, 19, 0, 20, 0, 21, 0, 22, 18, 23, 6, 24, 11, 26, 7, 61, 4, 62, 36, 63, 7, 64, 4, 65, 4, 66, 18, 67, 18, 76, 18, 0, 0, 0, 5, 77, -1, 5, 2, 0, 6, 37, 7, 3, 8, 4, 9, 5, 0 </int_array>
+			<int_array  len="78"> 				-1, -1, 1, 0, -1, 28, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 0, 8, 0, 9, 0, 10, 0, 11, 1, 12, 1, 13, 4, 14, 2, 15, 5, 16, 2, 17, 2, 18, 2, 19, 5, 20, 6, 21, 6, 22, 7, 23, 8, 24, 8, 25, 6, 26, 6, 27, 9, 28, 10, 29, 11, 0, 0, 0, 31, 30, -1, 4, 2, 0, 32, 2, 33, 6, 34, 1, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="0"> 				 </int_array>
+			<int_array  len="6"> 				1, 0, 36, 35, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
