@@ -5,7 +5,7 @@ extends Node2D
 
 const LEVEL_OFFSET = Vector2(40, 0)
 const NUM_LEVELS = 2
-const CAMERA_IN_OFFSET = Vector2(-210, 130)
+const CAMERA_IN_OFFSET = Vector2(-216, 130)
 
 var scene_manager
 var logger
@@ -23,7 +23,6 @@ func _ready():
     camera_animator = get_node(@"Viewport/Camera/CameraAnimator")
     level_buttons = get_node(@"GUI/LevelButtons")
 
-    get_node(@"Viewport/Ship/ShipAnimator").play("move")
     level_buttons.hide()
 
 func setup():
@@ -45,11 +44,15 @@ func _on_Back_pressed():
     camera_animator.play("zoom_out")
 
 func _on_CameraAnimator_finished():
-    if camera_animator.get_current_animation() == "zoom_in":
+    var animation = camera_animator.get_current_animation()
+    if animation == "zoom_in":
         level_buttons.show()
         update_level_buttons()
-    else:
+    elif animation == "zoom_out":
         menu_buttons.show()
+    elif animation == "move_level":
+        level_buttons.show()
+        update_level_buttons()
     
 func _on_Editor_pressed():
     scene_manager.show_dialog("res://pick_level/pick_level_to_edit.xscn", funcref(self, "_on_edit_level_selected"))
@@ -66,14 +69,20 @@ func _on_Quit_pressed():
     OS.get_main_loop().quit()
 
 func _on_Last_pressed():
-    camera.set_offset(camera.get_offset() - LEVEL_OFFSET)
     current_level -= 1
-    update_level_buttons()
+    level_buttons.hide()
+    move_level(-LEVEL_OFFSET)
 
 func _on_Next_pressed():
-    camera.set_offset(camera.get_offset() + LEVEL_OFFSET)
     current_level += 1
-    update_level_buttons()
+    level_buttons.hide()
+    move_level(LEVEL_OFFSET)
+
+func move_level(offset):
+    var move_level = camera_animator.get_animation("move_level")
+    move_level.track_set_key_value(0, 0, camera.get_offset())
+    move_level.track_set_key_value(0, 1, camera.get_offset() + offset)
+    camera_animator.play("move_level")
 
 func _on_Start_pressed():
     scene_manager.goto("res://game/play.xscn")
