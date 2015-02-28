@@ -30,10 +30,10 @@ func _on_Fullscreen_toggled(value):
     _settings.set_video_fullscreen(value)
 
 func _on_ShowFPS_toggled(value):
-	_settings.set_video_show_fps(value)
+    _settings.set_video_show_fps(value)
 
 func _on_VSync_toggled(value):
-	_settings.set_video_vsync(value)
+    _settings.set_video_vsync(value)
 
 func _on_BackButton_pressed():
     get_node(@'/root/Root/SceneManager').close_dialog()
