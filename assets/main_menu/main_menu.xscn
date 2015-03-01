@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="41" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://icons/start_2.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/settings_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/next_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/next_2.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/settings_2.png" type="Texture"></ext_resource>
-	<ext_resource path="res://sprites/ship.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/start_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/next_0.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/start_1.png" type="Texture"></ext_resource>
-	<ext_resource path="res://main_menu/main_menu.gd" type="Script"></ext_resource>
-	<ext_resource path="res://icons/previous_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/quit_0.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/previous_2.png" type="Texture"></ext_resource>
-	<ext_resource path="res://music/Space_Cat_Ambient.ogg" type="AudioStream"></ext_resource>
-	<ext_resource path="res://icons/back_1.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/start_0.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/previous_1.png" type="Texture"></ext_resource>
 	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
+	<ext_resource path="res://music/Space_Cat_Ambient.ogg" type="AudioStream"></ext_resource>
+	<ext_resource path="res://icons/next_0.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/back_2.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/quit_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/quit_1.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/editor_1.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/editor_0.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/editor_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/quit_2.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/settings_1.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/editor_2.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/back_0.png" type="Texture"></ext_resource>
 	<ext_resource path="res://fonts/lcd_solid_24.fnt" type="Font"></ext_resource>
+	<ext_resource path="res://icons/quit_1.png" type="Texture"></ext_resource>
+	<ext_resource path="res://main_menu/main_menu.gd" type="Script"></ext_resource>
+	<ext_resource path="res://icons/next_2.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/start_2.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/start_1.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/settings_1.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/editor_2.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/start_0.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/back_1.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/quit_2.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/quit_0.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/previous_2.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/editor_3.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/editor_1.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/previous_1.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/editor_0.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/previous_0.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/settings_3.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/next_1.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/back_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://icons/previous_0.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/settings_0.png" type="Texture"></ext_resource>
-	<ext_resource path="res://prefabs/texture_button.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://fonts/lcd_solid_40.fnt" type="Font"></ext_resource>
+	<ext_resource path="res://icons/start_3.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/next_3.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/settings_2.png" type="Texture"></ext_resource>
+	<ext_resource path="res://sprites/ship.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/quit_3.png" type="Texture"></ext_resource>
+	<ext_resource path="res://icons/previous_3.png" type="Texture"></ext_resource>
+	<ext_resource path="res://prefabs/texture_button.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://prefabs/background.xscn" type="PackedScene"></ext_resource>
 	<resource type="Animation" path="local://1">
 		<string name="resource/name"> "move_level" </string>
@@ -73,8 +73,8 @@
 			<real_array  len="2"> 				-2, 1 </real_array>
 			<string> "values" </string>
 			<array  len="2" shared="false">
-				<vector2> 1, 1 </vector2>
 				<vector2> 0.2, 0.2 </vector2>
+				<vector2> 1, 1 </vector2>
 			</array>
 			<string> "times" </string>
 			<real_array  len="2"> 				0, 0.5 </real_array>
@@ -90,7 +90,7 @@
 			<string> "values" </string>
 			<array  len="2" shared="false">
 				<vector2> 0, 0 </vector2>
-				<vector2> -210, 130 </vector2>
+				<vector2> 0, 0 </vector2>
 			</array>
 			<string> "times" </string>
 			<real_array  len="2"> 				0, 0.5 </real_array>
@@ -111,8 +111,8 @@
 			<real_array  len="2"> 				-2, 1 </real_array>
 			<string> "values" </string>
 			<array  len="2" shared="false">
-				<vector2> 0.2, 0.2 </vector2>
 				<vector2> 1, 1 </vector2>
+				<vector2> 0.2, 0.2 </vector2>
 			</array>
 			<string> "times" </string>
 			<real_array  len="2"> 				0, 0.5 </real_array>
@@ -128,7 +128,7 @@
 			<string> "values" </string>
 			<array  len="2" shared="false">
 				<vector2> 0, 0 </vector2>
-				<vector2> 0, 0 </vector2>
+				<vector2> -210, 130 </vector2>
 			</array>
 			<string> "times" </string>
 			<real_array  len="2"> 				0, 0.5 </real_array>
@@ -220,8 +220,8 @@
 				<string> "playback/default_blend_time" </string>
 				<string> "root/root" </string>
 				<string> "anims/move_level" </string>
-				<string> "anims/zoom_in" </string>
 				<string> "anims/zoom_out" </string>
+				<string> "anims/zoom_in" </string>
 				<string> "playback/active" </string>
 				<string> "playback/speed" </string>
 				<string> "blend_times" </string>
@@ -341,11 +341,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 1.360376 </real>
+							<real> 0.663421 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> 112.02, -119.721 </vector2>
+							<vector2> -166.908, -440.552 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -486,6 +486,10 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -553,28 +557,24 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -627,12 +627,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -700,22 +694,28 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -786,10 +786,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "zfar" </string>
 							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -857,24 +859,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -920,10 +920,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "zfar" </string>
 							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -991,24 +993,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -1044,10 +1044,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "zfar" </string>
 							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -1115,24 +1117,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
