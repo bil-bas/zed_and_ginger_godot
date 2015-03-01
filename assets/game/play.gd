@@ -11,6 +11,8 @@ var finish_x
 var chase_x
 var theme_music
 var finish_music
+var level_number
+var achievements
 
 func _ready():
     mesh_manager = get_node(@'/root/mesh_manager')
@@ -18,12 +20,12 @@ func _ready():
     progress = get_node(@'CanvasLayer/ScorePanel/LevelProgress')
     theme_music = get_node(@'Music/Theme')
     finish_music = get_node(@'Music/Finish')
+    achievements = get_node(@'/root/achievements')
 
 func setup():
     var data = Globals.get("level_data")
-    Globals.clear("level_data")
     var filename = Globals.get("level_filename")
-    Globals.clear("level_filename")
+    level_number = Globals.get("level_number")
 
     var level_setup = level.setup(data, filename, false)
     while level_setup.is_valid():
@@ -56,6 +58,10 @@ func _fixed_process(delta):
         theme_music.stop()
         finish_music.play()
         set_fixed_process(false)
+        if level_number > 0:
+            achievements.increment_stat("COMPLETED_LEVEL_%d" % level_number)
+
+    achievements.save()
 
 func create_player(grid):
     player = mesh_manager.new_mesh_object("player")

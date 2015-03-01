@@ -4,7 +4,6 @@
 extends Node2D
 
 const LEVEL_OFFSET = Vector2(40, 0)
-const NUM_LEVELS = 2
 const CAMERA_IN_OFFSET = Vector2(-216, 130)
 
 var scene_manager
@@ -18,8 +17,10 @@ var previous
 var next
 var start
 var level_name_panel
+var achievements
 
 func _ready():
+    achievements = get_node(@'/root/achievements')
     scene_manager = get_node(@'/root/Root/SceneManager')
     logger = get_node(@'/root/logger')
     camera = get_node(@"Viewport/Camera")
@@ -105,12 +106,13 @@ func update_level_buttons():
     start.set_disabled(false)
     level_name_panel.show()
     previous.set_disabled(current_level == 1)
-    next.set_disabled(current_level == NUM_LEVELS)
+    next.set_disabled(not achievements.has_unlocked("LEVEL_%d" % (current_level + 1)))
 
     var filename = "res://levels/%d.json" % current_level
     Globals.set("level_filename", filename)
     var level_data = get_node(@"/root/utilities").load_json(filename)
     Globals.set("level_data", level_data)
+    Globals.set("level_number", current_level)
 
     var level_label = level_name_panel.get_node(@"LevelLabel")
     level_label.set_text("%d: %s" % [current_level, level_data["name"]])

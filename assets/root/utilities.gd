@@ -35,3 +35,22 @@ func list_files_in_directory(path):
     dir.list_dir_end()
 
     return files
+
+
+func _encryption_password():
+    return "flibber"
+
+
+func save_encrypted(filename, data):
+    var f = File.new()
+    var err = f.open_encrypted_with_pass(filename, File.WRITE, _encryption_password())
+    f.store_var(data)
+    f.close()
+
+
+func load_encrypted(filename):
+    var f = File.new()
+    var err = f.open_encrypted_with_pass(filename, File.READ, _encryption_password())
+    var data = f.get_var()
+    f.close()
+    return data
