@@ -1,8 +1,8 @@
 ID, en
 PLAY, Play
-EDITOR, Editor
-SETTINGS, Settings
-QUIT, Quit
+EDITOR_TIP, Level Editor
+SETTINGS_TIP, Game Settings
+QUIT_TIP, Quit Application
 LOADING_SCENE, Loading...
 SETUP_SCENE, Setup...
 SAVE, Save

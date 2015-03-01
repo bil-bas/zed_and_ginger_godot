@@ -68,7 +68,7 @@ func _on_Settings_pressed():
 func _on_Quit_pressed():
     OS.get_main_loop().quit()
 
-func _on_Last_pressed():
+func _on_Previous_pressed():
     current_level -= 1
     level_buttons.hide()
     move_level(-LEVEL_OFFSET)
@@ -88,7 +88,7 @@ func _on_Start_pressed():
     scene_manager.goto("res://game/play.xscn")
 
 func update_level_buttons():
-    var last = get_node(@"GUI/LevelButtons/Last")
+    var last = get_node(@"GUI/LevelButtons/Previous")
     last.set_disabled(current_level == 1)
     var next = get_node(@"GUI/LevelButtons/Next")
     next.set_disabled(current_level == NUM_LEVELS)
