@@ -13,6 +13,7 @@ var theme_music
 var finish_music
 var level_number
 var achievements
+var x_distance
 
 func _ready():
     mesh_manager = get_node(@'/root/mesh_manager')
@@ -41,6 +42,7 @@ func setup():
     progress.set_max(finish_x)
 
     create_player(Vector2(start_x, 3))
+    x_distance = start_x
 
     set_fixed_process(true)
 
@@ -50,9 +52,14 @@ func _fixed_process(delta):
     progress.set_value(player_x)
     progress.chase_x = chase_x
 
+    if player_x > x_distance:
+        achievements.increment_stat("METRES_WALKED", player_x - x_distance)
+        x_distance = player_x
+
     if player_x <= chase_x:
         player.caught()
         set_fixed_process(false)
+        achievements.save()
     elif player_x >= finish_x:
         player.finish()
         theme_music.stop()
@@ -60,8 +67,7 @@ func _fixed_process(delta):
         set_fixed_process(false)
         if level_number > 0:
             achievements.increment_stat("COMPLETED_LEVEL_%d" % level_number)
-
-    achievements.save()
+        achievements.save()
 
 func create_player(grid):
     player = mesh_manager.new_mesh_object("player")
