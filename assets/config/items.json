@@ -86,7 +86,7 @@
             "is_initially_horizontal": true,
         },
         "tentacle": {
-            "player_state": "eaten",
+            "player_state": "strangled",
         },
         "speed_pill": {
         },

@@ -52,10 +52,6 @@ func _fixed_process(delta):
     progress.set_value(player_x)
     progress.chase_x = chase_x
 
-    if player_x > x_distance:
-        achievements.increment_stat("METRES_WALKED", player_x - x_distance)
-        x_distance = player_x
-
     if player_x <= chase_x:
         player.caught()
         set_fixed_process(false)

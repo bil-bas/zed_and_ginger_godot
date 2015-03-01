@@ -21,7 +21,8 @@ class State:
     const FLATTENED = 22
     const BURNT = 23
     const EATEN = 24
-    const EXPLODED = 25
+    const STRANGLED = 25
+    const EXPLODED = 26
 
 var logger
 var mesh
@@ -40,12 +41,14 @@ var surfing_on
 var speed_trail_prefab = preload("res://prefabs/speed_trail.xscn")
 var speed_trail
 var speed_remaining = 0
+var achievements
 
 func object_type():
     return "PLAYER"
 
 func _ready():
     logger = get_node(@'/root/logger')
+    achievements = get_node(@'/root/achievements')
     mesh = get_node(@'MeshInstance')
     audio = get_node(@'Audio')
     floor_ray = get_node(@'FloorRay')
@@ -108,13 +111,13 @@ func _fixed_process(delta):
         if on_floor:
             var jump_pressed = Input.is_action_pressed("jump")
             if jump_pressed:
-                
                 if surfing_on != null or not floor_tile.is_sticky:
                     audio.play("player_jump")
                     if surfing_on != null:
                         remove_board()
                     velocity.y = JUMP_SPEED
                     on_floor = false
+                    achievements.increment_stat("JUMPS")
                 else:
                     audio.play("player_jump")
                     pass # TODO: play sound?
@@ -295,6 +298,12 @@ func kill(killer, new_state):
         killer.get_node("MeshInstance").stop_on_completion = true
         killer.get_node("MeshInstance").animation = "killed_player"
         audio.play("fly_trap_chew")
+    elif new_state == "strangled":
+        state = State.STRANGLED
+        killer.set_is_horizontal(killer.is_horizontal_after_kill)
+        killer.get_node("MeshInstance").stop_on_completion = true
+        killer.get_node("MeshInstance").animation = "killed_player"
+        audio.play("fly_trap_chew")
     elif new_state == "exploded":
         state = State.EXPLODED
         velocity.y = EXPLODED_SPEED
@@ -302,6 +311,10 @@ func kill(killer, new_state):
     else:
         logger.error("Bad player state: %s", new_state)
         assert(false)
+
+    achievements.increment_stat("DEATHS")
+    achievements.increment_stat(new_state.to_upper())
+    achievements.save()
 
     mesh.animation = new_state
 

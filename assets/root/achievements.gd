@@ -27,6 +27,46 @@ const DEFINITIONS = {
     "LONG_WALK_3": {
         "stat": "METRES_WALKED",
         "required": 10000
+    },
+    "DIED_1": {
+        "stat": "DEATHS",
+        "required": 10
+    },
+    "DIED_2": {
+        "stat": "DEATHS",
+        "required": 100
+    },
+    "DIED_3": {
+        "stat": "DEATHS",
+        "required": 1000
+    },
+    "BURNT_TO_DEATH_1": {
+        "stat": "BURNT",
+        "required": 10
+    },
+    "EATEN_TO_DEATH_1": {
+        "stat": "EATEN",
+        "required": 10
+    },
+    "STRANGLED_TO_DEATH_1": {
+        "stat": "STRANGLED",
+        "required": 10
+    },
+    "EXPLODED_TO_DEATH_1": {
+        "stat": "EXPLODED",
+        "required": 10
+    },
+    "ELECTROCUTED_TO_DEATH_1": {
+        "stat": "ELECTROCUTED",
+        "required": 10
+    },
+    "FLATTENED_TO_DEATH_1": {
+        "stat": "FLATTENED",
+        "required": 10
+    },
+    "JUMPER_1": {
+        "stat": "JUMPS",
+        "required": 100
     }
 }
 
@@ -37,7 +77,17 @@ const NAMES = [
     "EVER_COMPLETED_LEVEL_2",
     "LONG_WALK_1",
     "LONG_WALK_2",
-    "LONG_WALK_3"
+    "LONG_WALK_3",
+    "DIED_1",
+    "DIED_2",
+    "DIED_3",
+    "BURNED_TO_DEATH_1",
+    "EATEN_TO_DEATH_1",
+    "STRANGLED_TO_DEATH_1",
+    "EXPLODED_TO_DEATH_1",
+    "ELECTROCUTED_TO_DEATH_1",
+    "FLATTENED_TO_DEATH_1",
+    "JUMPER_1"
 ]
 
 
@@ -89,17 +139,14 @@ class LocalAchievements:
         utilities.save_encrypted(FILENAME, data)
 
     func clear():
-        print("Creating stats")
         statistics = {}
         achievements = {}
         unlocks = []
 
     func has_unlocked(name):
-        print(name, name in unlocks)
         return (name in unlocks)
 
     func _restore():
-        print("Loading stats")
         var data = utilities.load_encrypted(FILENAME)
         statistics = data["statistics"]
         achievements = data["achievements"]
