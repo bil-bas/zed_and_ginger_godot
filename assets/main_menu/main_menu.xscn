@@ -17,7 +17,6 @@
 	<ext_resource path="res://icons/settings_3.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/previous_2.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/quit_3.png" type="Texture"></ext_resource>
-	<ext_resource path="res://prefabs/background.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://icons/back_3.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/previous_1.png" type="Texture"></ext_resource>
 	<ext_resource path="res://music/Space_Cat_Ambient.ogg" type="AudioStream"></ext_resource>
@@ -30,6 +29,7 @@
 	<ext_resource path="res://fonts/lcd_solid_48.fnt" type="Font"></ext_resource>
 	<ext_resource path="res://icons/quit_0.png" type="Texture"></ext_resource>
 	<ext_resource path="res://icons/back_0.png" type="Texture"></ext_resource>
+	<ext_resource path="res://prefabs/background.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://prefabs/texture_button.xscn" type="PackedScene"></ext_resource>
 	<resource type="Animation" path="local://1">
 		<real name="length"> 0.5 </real>
