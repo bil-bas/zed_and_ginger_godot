@@ -14,6 +14,10 @@ var menu_buttons
 var level_buttons
 var current_level = 1
 var camera_animator
+var previous
+var next
+var start
+var level_name_panel
 
 func _ready():
     scene_manager = get_node(@'/root/Root/SceneManager')
@@ -22,6 +26,10 @@ func _ready():
     menu_buttons = get_node(@"GUI/MenuButtons")
     camera_animator = get_node(@"Viewport/Camera/CameraAnimator")
     level_buttons = get_node(@"GUI/LevelButtons")
+    previous = level_buttons.get_node(@"Previous")
+    next = level_buttons.get_node(@"Next")
+    start = level_buttons.get_node(@"CenterStart/Start")
+    level_name_panel = level_buttons.get_node(@"CenterLevelName/Panel")
 
     level_buttons.hide()
 
@@ -70,12 +78,12 @@ func _on_Quit_pressed():
 
 func _on_Previous_pressed():
     current_level -= 1
-    level_buttons.hide()
+    disable_level_buttons()
     move_level(-LEVEL_OFFSET)
 
 func _on_Next_pressed():
     current_level += 1
-    level_buttons.hide()
+    disable_level_buttons()
     move_level(LEVEL_OFFSET)
 
 func move_level(offset):
@@ -87,10 +95,16 @@ func move_level(offset):
 func _on_Start_pressed():
     scene_manager.goto("res://game/play.xscn")
 
+func disable_level_buttons():
+    previous.set_disabled(true)
+    next.set_disabled(true)
+    start.set_disabled(true)
+    level_name_panel.hide()
+
 func update_level_buttons():
-    var last = get_node(@"GUI/LevelButtons/Previous")
-    last.set_disabled(current_level == 1)
-    var next = get_node(@"GUI/LevelButtons/Next")
+    start.set_disabled(false)
+    level_name_panel.show()
+    previous.set_disabled(current_level == 1)
     next.set_disabled(current_level == NUM_LEVELS)
 
     var filename = "res://levels/%d.json" % current_level
@@ -98,6 +112,5 @@ func update_level_buttons():
     var level_data = get_node(@"/root/utilities").load_json(filename)
     Globals.set("level_data", level_data)
 
-    var level_label = get_node(@"GUI/LevelButtons/Center/Box/Panel/LevelLabel")
+    var level_label = level_name_panel.get_node(@"LevelLabel")
     level_label.set_text("%d: %s" % [current_level, level_data["name"]])
-
