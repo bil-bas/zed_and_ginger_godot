@@ -276,6 +276,8 @@ func kill(killer, new_state):
     remove_board()
     remove_trail()
 
+    var animation = new_state
+
     if new_state == "burnt":
         state = State.BURNT
         audio.play("player_died")
@@ -304,6 +306,7 @@ func kill(killer, new_state):
         killer.get_node("MeshInstance").stop_on_completion = true
         killer.get_node("MeshInstance").animation = "killed_player"
         audio.play("fly_trap_chew")
+        animation = "eaten"
     elif new_state == "exploded":
         state = State.EXPLODED
         velocity.y = EXPLODED_SPEED
@@ -316,7 +319,7 @@ func kill(killer, new_state):
     achievements.increment_stat(new_state.to_upper())
     achievements.save()
 
-    mesh.animation = new_state
+    mesh.animation = animation
 
 func create_footprint():
     var footprint = preload("res://prefabs/footprint.xscn").instance()
