@@ -4,3 +4,4 @@ export
 .tmp
 level.json
 log.txt
+*.keystore
